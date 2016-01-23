@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:keepScreenOn="true"
+    android:id="@+id/main_screen">
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ateButton"
+        android:background="@drawable/ate_button_action"
+        android:layout_below="@+id/title"
+        android:layout_alignLeft="@+id/title"
+        android:layout_alignStart="@+id/title"
+        android:layout_marginTop="22dp"
+        android:onClick="ateButton" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/statsButton"
+        android:background="@drawable/stat_button_action"
+        android:layout_marginTop="20dp"
+        android:onClick="statsButton"
+        android:layout_below="@+id/ateButton"
+        android:layout_alignLeft="@+id/ateButton"
+        android:layout_alignStart="@+id/ateButton" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/goalsButton"
+        android:background="@drawable/rewards_button_action"
+        android:onClick="goalsButton"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/statsButton"
+        android:layout_alignLeft="@+id/statsButton"
+        android:layout_alignStart="@+id/statsButton" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/warningButton"
+        android:background="@drawable/warning_button_action"
+        android:onClick="warningsButton"
+        android:layout_alignBottom="@+id/settingsButton"
+        android:layout_alignLeft="@+id/goalsButton"
+        android:layout_alignStart="@+id/goalsButton" />
+
+    <ImageButton
+        android:layout_width="55dp"
+        android:layout_height="35dp"
+        android:id="@+id/settingsButton"
+        android:background="@drawable/settings_button_action"
+        android:layout_marginBottom="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/title"
+        android:layout_alignEnd="@+id/title"
+        android:onClick="settingsButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:text="HealthTrack"
+        android:textStyle="bold"
+        android:textSize="50sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#403c3c" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ateText"
+        android:text="Tell us what you ate today!"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_alignTop="@+id/ateButton"
+        android:layout_toRightOf="@+id/ateButton"
+        android:layout_toEndOf="@+id/ateButton" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/statsText"
+        android:text="View your daily in- take stats."
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_alignTop="@+id/statsButton"
+        android:layout_toRightOf="@+id/statsButton"
+        android:layout_toEndOf="@+id/statsButton" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/goalsText"
+        android:text="Set and track your goals"
+        android:textColor="#403c3c"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_alignTop="@+id/goalsButton"
+        android:layout_toRightOf="@+id/goalsButton"
+        android:layout_toEndOf="@+id/goalsButton" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/warningsText"
+        android:text="View potential health risks"
+        android:textColor="#403c3c"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_alignTop="@+id/warningButton"
+        android:layout_toRightOf="@+id/warningButton"
+        android:layout_toEndOf="@+id/warningButton" />
+
+</RelativeLayout>
