@@ -48,9 +48,9 @@
         android:id="@+id/warningButton"
         android:background="@drawable/warning_button_action"
         android:onClick="warningsButton"
-        android:layout_alignBottom="@+id/settingsButton"
+        android:layout_below="@+id/goalsButton"
         android:layout_alignLeft="@+id/goalsButton"
-        android:layout_alignStart="@+id/goalsButton" />
+        android:layout_marginTop="20dp" />
 
     <ImageButton
         android:layout_width="55dp"

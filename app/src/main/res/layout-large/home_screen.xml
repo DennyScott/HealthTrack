@@ -13,14 +13,13 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:id="@+id/ateButton"
-        android:layout_marginLeft="41dp"
+        android:layout_marginLeft="46dp"
         android:layout_marginStart="41dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="75dp"
         android:background="@drawable/ate_button_action"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="ateButton" />
+        android:onClick="ateButton"
+        android:layout_below="@+id/title"
+        android:layout_alignParentLeft="true" />
 
     <ImageButton
         android:layout_width="150dp"
@@ -49,11 +48,10 @@
         android:layout_height="150dp"
         android:id="@+id/warningButton"
         android:background="@drawable/warning_button_action"
-        android:layout_above="@+id/settingsButton"
-        android:layout_alignLeft="@+id/goalsButton"
-        android:layout_alignStart="@+id/goalsButton"
-        android:layout_marginTop="30dp"
-        android:onClick="warningsButton" />
+        android:layout_marginTop="29dp"
+        android:onClick="warningsButton"
+        android:layout_below="@+id/goalsButton"
+        android:layout_alignLeft="@+id/goalsButton" />
 
     <ImageButton
         android:layout_width="80dp"
@@ -75,9 +73,10 @@
         android:text="HealthTrack"
         android:textStyle="bold"
         android:textSize="70sp"
+        android:textColor="#403c3c"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="#403c3c" />
+        android:layout_marginTop="48dp" />
 
     <TextView
         android:layout_width="fill_parent"

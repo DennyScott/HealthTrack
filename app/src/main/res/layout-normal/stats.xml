@@ -25,9 +25,8 @@
         android:layout_height="35dp"
         android:id="@+id/settingsButton"
         android:background="@drawable/settings_button_action"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="29dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/title"
-        android:layout_alignEnd="@+id/title" />
+        android:layout_toRightOf="@+id/title" />
 
 </RelativeLayout>
