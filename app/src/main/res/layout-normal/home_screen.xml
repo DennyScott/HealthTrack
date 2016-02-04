@@ -14,13 +14,13 @@
         android:layout_height="100dp"
         android:id="@+id/ateButton"
         android:background="@drawable/ate_button_action"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="15dp"
         android:onClick="ateButton"
+        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp"
         android:layout_below="@+id/title"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp" />
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:layout_width="100dp"
@@ -72,9 +72,9 @@
         android:text="HealthTrack"
         android:textStyle="bold"
         android:textSize="50sp"
+        android:textColor="#403c3c"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="#403c3c" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="fill_parent"
