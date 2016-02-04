@@ -13,13 +13,14 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:id="@+id/ateButton"
-        android:layout_marginLeft="46dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="38dp"
         android:background="@drawable/ate_button_action"
         android:onClick="ateButton"
         android:layout_below="@+id/title"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:layout_width="150dp"
