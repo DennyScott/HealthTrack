@@ -7,13 +7,13 @@ import android.os.Bundle;
 /**
  * Created by Khaled on 1/23/2016.
  */
-public class settings extends Activity {
+public class Goals extends Activity {
     private int backPressed = 0;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings);
+        setContentView(R.layout.goals);
     }
 
     public void onBackPressed() {
@@ -23,7 +23,7 @@ public class settings extends Activity {
             backPressed++;
             Output.toastMessage(this, message);
         } else {
-            Intent gameMode = new Intent(this, mainScreen.class);
+            Intent gameMode = new Intent(this, MainActivity.class);
             startActivity(gameMode);
             finish();
         }

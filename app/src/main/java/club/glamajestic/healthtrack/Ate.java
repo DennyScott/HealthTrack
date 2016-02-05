@@ -1,20 +1,19 @@
 package club.glamajestic.healthtrack;
 
-/**
- * Created by Khaled on 1/22/2016.
-**/
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class stats extends Activity{
+/**
+ * Created by Khaled on 1/23/2016.
+ */
+public class Ate extends Activity {
     private int backPressed = 0;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.stats);
+        setContentView(R.layout.ate);
     }
 
     public void onBackPressed() {
@@ -24,7 +23,7 @@ public class stats extends Activity{
             backPressed++;
             Output.toastMessage(this, message);
         } else {
-            Intent gameMode = new Intent(this, mainScreen.class);
+            Intent gameMode = new Intent(this, MainActivity.class);
             startActivity(gameMode);
             finish();
         }

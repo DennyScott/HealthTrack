@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class mainScreen extends Activity {
+public class MainActivity extends Activity {
 
     private ImageButton ate;
     private ImageButton stats;
@@ -26,31 +26,31 @@ public class mainScreen extends Activity {
     }
 
     public void ateButton(View view) {
-        Intent gameMode = new Intent(this, club.glamajestic.healthtrack.ate.class);
+        Intent gameMode = new Intent(this, Ate.class);
         startActivity(gameMode);
         finish();
     }
 
     public void statsButton(View view) {
-        Intent gameMode = new Intent(this, club.glamajestic.healthtrack.stats.class);
+        Intent gameMode = new Intent(this, Stats.class);
         startActivity(gameMode);
         finish();
     }
 
     public void warningsButton(View view) {
-        Intent gameMode = new Intent(this, club.glamajestic.healthtrack.warnings.class);
+        Intent gameMode = new Intent(this, Warnings.class);
         startActivity(gameMode);
         finish();
     }
 
     public void goalsButton(View view) {
-        Intent gameMode = new Intent(this, club.glamajestic.healthtrack.goals.class);
+        Intent gameMode = new Intent(this, Goals.class);
         startActivity(gameMode);
         finish();
     }
 
     public void settingsButton(View view) {
-        Intent gameMode = new Intent(this, club.glamajestic.healthtrack.settings.class);
+        Intent gameMode = new Intent(this, Settings.class);
         startActivity(gameMode);
         finish();
     }

@@ -7,7 +7,7 @@ import android.os.Bundle;
 /**
  * Created by Khaled on 1/23/2016.
  */
-public class warnings extends Activity {
+public class Warnings extends Activity {
     private int backPressed = 0;
 
     @Override
@@ -23,7 +23,7 @@ public class warnings extends Activity {
             backPressed++;
             Output.toastMessage(this, message);
         } else {
-            Intent gameMode = new Intent(this, mainScreen.class);
+            Intent gameMode = new Intent(this, MainActivity.class);
             startActivity(gameMode);
             finish();
         }
