@@ -7,7 +7,7 @@
     android:background="@drawable/background"
     android:orientation="vertical"
     android:keepScreenOn="true"
-    android:id="@+id/main_screen">
+    android:id="@+id/rewards">
 
     <TextView
         android:layout_width="wrap_content"

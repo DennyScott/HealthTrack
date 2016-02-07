@@ -7,7 +7,8 @@
     android:background="@drawable/background"
     android:orientation="vertical"
     android:keepScreenOn="true"
-    android:id="@+id/main_screen">
+
+    android:id="@+id/stats">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,6 +20,15 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="#403c3c" />
+    <FrameLayout
+        android:id="@+id/chartFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/title"
+        android:largeHeap="true"
+        android:layout_above="@+id/settingsButton">
+    </FrameLayout>
 
     <ImageButton
         android:layout_width="55dp"
