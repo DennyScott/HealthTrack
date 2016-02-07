@@ -3,6 +3,7 @@ package club.glamajestic.healthtrack;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 /**
@@ -18,7 +19,7 @@ public class settings extends Activity {
     public void onBackPressed() {
         if (backPressed == 0) {
             backPressed++;
-            String text = "Press back again to go return to Main Scren!";
+            String text = "Press back again to go return to Main Screen!";
             Toast info = new Toast(this);
             info.makeText(this, text, Toast.LENGTH_LONG).show();
         } else {
@@ -26,6 +27,11 @@ public class settings extends Activity {
             startActivity(gameMode);
             finish();
         }
+    }
+    public void settingsButton(View view) {
+        Intent gameMode = new Intent(this, settings.class);
+        startActivity(gameMode);
+        finish();
     }
 
 }

@@ -7,18 +7,11 @@ import business.stats;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.WindowManager;
+import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
@@ -33,10 +26,16 @@ import java.util.ArrayList;
 
 public class statsGui extends Activity {
     private FrameLayout stats;
-    private PieChart mChart;
+    private stats StatsBus = new stats();
+    private PieChart chart;
+    private Button dayButton;
+    private Button weekButton;
+    private Button monthButton;
+
+    int mode = 0;// 0 = day, 1 = week, 2 = month
     // we're going to display pie chart for smartphones martket shares
-    private float[] yData = {5, 10, 15, 30, 40};
-    private String[] xData = {"Cholesterol", "Sodium", "Sugar", "Protein", "Fat"};
+    private float[] yData = StatsBus.getValues(mode);
+    private String[] xData = StatsBus.getKeys(mode);
     int backPressed = 0;
 
 
@@ -44,28 +43,31 @@ public class statsGui extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stats);
+        dayButton = (Button) findViewById(R.id.dayButton);
+        weekButton = (Button) findViewById(R.id.weekButton);
+        monthButton = (Button) findViewById(R.id.monthButton);
+        dayButton.setAlpha(0.8f);
 
         stats = (FrameLayout) findViewById(R.id.chartFrame);
-        mChart = new PieChart(this);
+        chart = new PieChart(this);
         // add pie chart to main layout
-        stats.addView(mChart);
-
+        stats.addView(chart);
         // configure pie chart
-        mChart.setUsePercentValues(true);
-        mChart.setDescription("Daily Nutritional Intake");
+        chart.setUsePercentValues(true);
+        chart.setDescription("Daily Nutritional Intake");
 
         // enable hole and configure
-        mChart.setDrawHoleEnabled(true);
-        mChart.setHoleColorTransparent(true);
-        mChart.setHoleRadius(7);
-        mChart.setTransparentCircleRadius(10);
+        chart.setDrawHoleEnabled(true);
+        chart.setHoleColorTransparent(true);
+        chart.setHoleRadius(7);
+        chart.setTransparentCircleRadius(10);
 
         // enable rotation of the chart by touch
-        mChart.setRotationAngle(0);
-        mChart.setRotationEnabled(true);
+        chart.setRotationAngle(0);
+        chart.setRotationEnabled(true);
 
         // set a chart value selected listener
-        mChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
 
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
@@ -85,7 +87,7 @@ public class statsGui extends Activity {
         addData();
 
         // customize legends
-        Legend l = mChart.getLegend();
+        Legend l = chart.getLegend();
         l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
         l.setXEntrySpace(7);
         l.setYEntrySpace(5);
@@ -102,7 +104,7 @@ public class statsGui extends Activity {
             xVals.add(xData[i]);
 
         // create pie data set
-        PieDataSet dataSet = new PieDataSet(yVals1, "Market Share");
+        PieDataSet dataSet = new PieDataSet(yVals1, "Nutritional Elements");
         dataSet.setSliceSpace(3);
         dataSet.setSelectionShift(5);
 
@@ -133,19 +135,18 @@ public class statsGui extends Activity {
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.GRAY);
 
-        mChart.setData(data);
-
+        chart.setData(data);
         // undo all highlights
-        mChart.highlightValues(null);
+        chart.highlightValues(null);
 
         // update pie chart
-        mChart.invalidate();
+        chart.invalidate();
     }
 
     public void onBackPressed() {
         if (backPressed == 0) {
             backPressed++;
-            String text = "Press back again to go return to Main Scren!";
+            String text = "Press back again to go return to Main Screen!";
             Toast info = new Toast(this);
             info.makeText(this, text, Toast.LENGTH_LONG).show();
         } else {
@@ -154,4 +155,41 @@ public class statsGui extends Activity {
             finish();
         }
     }
+    public void settingsButton(View view) {
+        Intent gameMode = new Intent(this, settings.class);
+        startActivity(gameMode);
+        finish();
+    }
+    public void dayButton(View view) {
+        mode = 0;
+        yData = StatsBus.getValues(mode);
+        xData = StatsBus.getKeys(mode);
+        dayButton.setAlpha(0.8f);
+        weekButton.setAlpha(0.4f);
+        monthButton.setAlpha(0.4f);
+        chart.setDescription("Daily Nutritional Intake");
+        addData();
+    }
+    public void weekButton(View view) {
+        mode = 1;
+        yData = StatsBus.getValues(mode);
+        xData = StatsBus.getKeys(mode);
+        dayButton.setAlpha(0.4f);
+        weekButton.setAlpha(0.8f);
+        monthButton.setAlpha(0.4f);
+        chart.setDescription("Weekly Nutritional Intake");
+        addData();
+    }
+    public void monthButton(View view) {
+        mode = 2;
+        yData = StatsBus.getValues(mode);
+        xData = StatsBus.getKeys(mode);
+        dayButton.setAlpha(0.4f);
+        weekButton.setAlpha(0.4f);
+        monthButton.setAlpha(0.8f);
+        chart.setDescription("Monthly Nutritional Intake");
+        addData();
+
+    }
+
 }
