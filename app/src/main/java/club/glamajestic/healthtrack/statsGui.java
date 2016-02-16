@@ -3,7 +3,7 @@ package club.glamajestic.healthtrack;
 /**
  * Created by Khaled on 1/22/2016.
 **/
-import business.stats;
+import business.Stats;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -26,22 +26,24 @@ import java.util.ArrayList;
 
 public class statsGui extends Activity {
     private FrameLayout stats;
-    private stats StatsBus = new stats();
+    private Stats StatsBus = new Stats();
     private PieChart chart;
     private Button dayButton;
     private Button weekButton;
     private Button monthButton;
 
     int mode = 0;// 0 = day, 1 = week, 2 = month
-    // we're going to display pie chart for smartphones martket shares
-    private float[] yData = StatsBus.getValues(mode);
-    private String[] xData = StatsBus.getKeys(mode);
+    private float[] yData;
+    private String[] xData;
     int backPressed = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatsBus.init(mode);
+        yData = StatsBus.getValues();
+        xData = StatsBus.getKeys();
         setContentView(R.layout.stats);
         dayButton = (Button) findViewById(R.id.dayButton);
         weekButton = (Button) findViewById(R.id.weekButton);
@@ -72,8 +74,14 @@ public class statsGui extends Activity {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
                 // display msg when value selected
-                if (e == null)
+                if (e == null  )
                     return;
+                if(e.getXIndex() == yData.length-1){
+                    makeToast("Other Clicked");
+                }
+                else{
+                    makeToast( xData[e.getXIndex()]+" Clicked");
+                }
                 //Insert what happens on click
             }
 
@@ -142,13 +150,17 @@ public class statsGui extends Activity {
         // update pie chart
         chart.invalidate();
     }
+    public void makeToast(String text){
+            Toast info = new Toast(this);
+            info.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
 
     public void onBackPressed() {
         if (backPressed == 0) {
             backPressed++;
             String text = "Press back again to go return to Main Screen!";
             Toast info = new Toast(this);
-            info.makeText(this, text, Toast.LENGTH_LONG).show();
+            info.makeText(this, text, Toast.LENGTH_SHORT).show();
         } else {
             Intent gameMode = new Intent(this, mainScreen.class);
             startActivity(gameMode);
@@ -162,8 +174,9 @@ public class statsGui extends Activity {
     }
     public void dayButton(View view) {
         mode = 0;
-        yData = StatsBus.getValues(mode);
-        xData = StatsBus.getKeys(mode);
+        StatsBus.init(mode);
+        yData = StatsBus.getValues();
+        xData = StatsBus.getKeys();
         dayButton.setAlpha(0.8f);
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.4f);
@@ -172,8 +185,9 @@ public class statsGui extends Activity {
     }
     public void weekButton(View view) {
         mode = 1;
-        yData = StatsBus.getValues(mode);
-        xData = StatsBus.getKeys(mode);
+        StatsBus.init(mode);
+        yData = StatsBus.getValues();
+        xData = StatsBus.getKeys();
         dayButton.setAlpha(0.4f);
         weekButton.setAlpha(0.8f);
         monthButton.setAlpha(0.4f);
@@ -182,8 +196,9 @@ public class statsGui extends Activity {
     }
     public void monthButton(View view) {
         mode = 2;
-        yData = StatsBus.getValues(mode);
-        xData = StatsBus.getKeys(mode);
+        StatsBus.init(mode);
+        yData = StatsBus.getValues();
+        xData = StatsBus.getKeys();
         dayButton.setAlpha(0.4f);
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.8f);
