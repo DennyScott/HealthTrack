@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">HealthTrack</string>
     <string name="action_settings">Settings</string>
+    <string name="ate_main_screen">Tell us what you\'ve eaten today.</string>
+    <string name="ate_title">Food Eaten</string>
+    <string name="goals_main_screen">Set and track your goals.</string>
+    <string name="goals_title">Goals</string>
+    <string name="settings_title">Settings</string>
+    <string name="stats_main_screen">View your daily-intake stats.</string>
+    <string name="stats_title">Stats</string>
+    <string name="warnings_main_screen">View potential health risks.</string>
+    <string name="warnings_title">Potential Risks</string>
 </resources>
