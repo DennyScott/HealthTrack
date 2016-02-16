@@ -1,210 +1,110 @@
-package club.glamajestic.healthtrack;
-
-/**
- * Created by Khaled on 1/22/2016.
-**/
-import business.Stats;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.Toast;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
+package business;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class statsGui extends Activity {
-    private FrameLayout stats;
-    private Stats StatsBus = new Stats();
-    private PieChart chart;
-    private Button dayButton;
-    private Button weekButton;
-    private Button monthButton;
+public class Stats {
+    float[] values;
+    String[] keys;
+    float[] otherValues;
+    String[] otherKeys;
+    final int MAX_SIZE = 7;
+    int amountOfOtherData = 0;
+    int size =0;// size of hashtable received from database for now we will use a known value
+    // we will show the top 6 biggest contributors and everything else will be listed under other
+    public void init(int mode){
+        size = 8;
+        amountOfOtherData = size - (MAX_SIZE-1);
+        values = new float[MAX_SIZE];
+        keys = new String[MAX_SIZE];
+        if(amountOfOtherData > 0){
+            otherValues = new float[amountOfOtherData];
+            otherKeys = new String[amountOfOtherData];
+        }
+        float[] inValues = {5, 10, 15, 30, 40, 20, 10, 60}; // these values will be attained from database later on
+        String[] inKeys = {"Cholesterol", "Sodium", "Sugar", "Protein", "Fat", "Fiber", "Calcium", "Carbs"};// these values will be attained from database later on
+        ArrayList<keyValuePair> kVP = sort(inValues,inKeys );
+        if(size > MAX_SIZE) {
+            populate(kVP);
+        }
+        else if(size <= MAX_SIZE && size > 0){
+            values = inValues;
+            keys = inKeys;
+        }
+        else{// if size is 0 or undefined return dummy item so that stats lib wont crash.
+            values = new float[] {50,50};
+            keys = new String[]{"Nothing","Nothing"};
+        }
 
-    int mode = 0;// 0 = day, 1 = week, 2 = month
-    private float[] yData;
-    private String[] xData;
-    int backPressed = 0;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        StatsBus.init(mode);
-        yData = StatsBus.getValues();
-        xData = StatsBus.getKeys();
-        setContentView(R.layout.stats);
-        dayButton = (Button) findViewById(R.id.dayButton);
-        weekButton = (Button) findViewById(R.id.weekButton);
-        monthButton = (Button) findViewById(R.id.monthButton);
-        dayButton.setAlpha(0.8f);
-
-        stats = (FrameLayout) findViewById(R.id.chartFrame);
-        chart = new PieChart(this);
-        // add pie chart to main layout
-        stats.addView(chart);
-        // configure pie chart
-        chart.setUsePercentValues(true);
-        chart.setDescription("Daily Nutritional Intake");
-
-        // enable hole and configure
-        chart.setDrawHoleEnabled(true);
-        chart.setHoleColorTransparent(true);
-        chart.setHoleRadius(7);
-        chart.setTransparentCircleRadius(10);
-
-        // enable rotation of the chart by touch
-        chart.setRotationAngle(0);
-        chart.setRotationEnabled(true);
-
-        // set a chart value selected listener
-        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-
-            @Override
-            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                // display msg when value selected
-                if (e == null  )
-                    return;
-                if(e.getXIndex() == yData.length-1){
-                    makeToast("Other Clicked");
-                }
-                else{
-                    makeToast( xData[e.getXIndex()]+" Clicked");
-                }
-                //Insert what happens on click
+    }
+    public  float[] getValues(){//mode here is day/week/month
+        return values;
+    }
+    public  String[] getKeys(){
+        return keys;
+    }
+    public  float[] getOtherValues(){//mode here is day/week/month
+        return otherValues;
+    }
+    public  String[] getOtherKeys(){
+        return otherKeys;
+    }
+    void populate(ArrayList<keyValuePair> array){
+        for(int x = 0; x< MAX_SIZE-1; x++){
+            values[x] = array.get(x).value;
+            keys[x] = array.get(x).key;
+        }
+        if(amountOfOtherData > 0){
+            for(int x = MAX_SIZE-1; x< size; x++){
+                otherValues[x-(MAX_SIZE-1)] = array.get(x).value;
+                otherKeys[x-(MAX_SIZE-1)] = array.get(x).key;
             }
-
-            @Override
-            public void onNothingSelected() {
-
+            int otherTotal = 0;
+            for(int x  =0 ; x< otherValues.length; x++){
+                otherTotal += otherValues[x];
             }
-        });
-
-        // add data
-        addData();
-
-        // customize legends
-        Legend l = chart.getLegend();
-        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
-        l.setXEntrySpace(7);
-        l.setYEntrySpace(5);
-    }
-    private void addData() {
-        ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-
-        for (int i = 0; i < yData.length; i++)
-            yVals1.add(new Entry(yData[i], i));
-
-        ArrayList<String> xVals = new ArrayList<String>();
-
-        for (int i = 0; i < xData.length; i++)
-            xVals.add(xData[i]);
-
-        // create pie data set
-        PieDataSet dataSet = new PieDataSet(yVals1, "Nutritional Elements");
-        dataSet.setSliceSpace(3);
-        dataSet.setSelectionShift(5);
-
-        // add many colors
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.JOYFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.COLORFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.LIBERTY_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.PASTEL_COLORS)
-            colors.add(c);
-
-        colors.add(ColorTemplate.getHoloBlue());
-        dataSet.setColors(colors);
-
-        // instantiate pie data object now
-        PieData data = new PieData(xVals, dataSet);
-        data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(11f);
-        data.setValueTextColor(Color.GRAY);
-
-        chart.setData(data);
-        // undo all highlights
-        chart.highlightValues(null);
-
-        // update pie chart
-        chart.invalidate();
-    }
-    public void makeToast(String text){
-            Toast info = new Toast(this);
-            info.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }
-
-    public void onBackPressed() {
-        if (backPressed == 0) {
-            backPressed++;
-            String text = "Press back again to go return to Main Screen!";
-            Toast info = new Toast(this);
-            info.makeText(this, text, Toast.LENGTH_SHORT).show();
-        } else {
-            Intent gameMode = new Intent(this, mainScreen.class);
-            startActivity(gameMode);
-            finish();
+            values[MAX_SIZE-1] = otherTotal;
+            keys[MAX_SIZE-1] = "Other";
         }
     }
-    public void settingsButton(View view) {
-        Intent gameMode = new Intent(this, settings.class);
-        startActivity(gameMode);
-        finish();
+    ArrayList<keyValuePair> sort(float[] values, String[] keys){
+        ArrayList<keyValuePair> retVal = null;
+        if(size > 0 && values.length == size && keys.length == size) {
+            ArrayList<keyValuePair> kVP = new ArrayList<keyValuePair>();
+            for (int x = 0; x < size; x++) {
+                kVP.add(new keyValuePair(keys[x], values[x]));
+            }
+            Collections.sort(kVP);
+            retVal = kVP;
+        }
+        return retVal;
     }
-    public void dayButton(View view) {
-        mode = 0;
-        StatsBus.init(mode);
-        yData = StatsBus.getValues();
-        xData = StatsBus.getKeys();
-        dayButton.setAlpha(0.8f);
-        weekButton.setAlpha(0.4f);
-        monthButton.setAlpha(0.4f);
-        chart.setDescription("Daily Nutritional Intake");
-        addData();
-    }
-    public void weekButton(View view) {
-        mode = 1;
-        StatsBus.init(mode);
-        yData = StatsBus.getValues();
-        xData = StatsBus.getKeys();
-        dayButton.setAlpha(0.4f);
-        weekButton.setAlpha(0.8f);
-        monthButton.setAlpha(0.4f);
-        chart.setDescription("Weekly Nutritional Intake");
-        addData();
-    }
-    public void monthButton(View view) {
-        mode = 2;
-        StatsBus.init(mode);
-        yData = StatsBus.getValues();
-        xData = StatsBus.getKeys();
-        dayButton.setAlpha(0.4f);
-        weekButton.setAlpha(0.4f);
-        monthButton.setAlpha(0.8f);
-        chart.setDescription("Monthly Nutritional Intake");
-        addData();
+}
+class keyValuePair implements Comparable<keyValuePair> {
+    float value;
+    String key;
 
+    keyValuePair(String key, float value) {
+        this.value = value;
+        this.key = key;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        boolean retVal = false;
+        if (other == this && this.key.toLowerCase().equals(((keyValuePair) other).key.toLowerCase())
+                && this.value ==(((keyValuePair)other).value)) retVal = true;
+        return retVal;
+    }
+    @Override
+    public int compareTo(keyValuePair other) {
+        int retVal = 0;
+        if(other.value > this.value){
+            retVal = 1;
+        }
+        else if(other.value < this.value){
+            retVal = -1;
+        }
+        return retVal;
+    }
 }
