@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:keepScreenOn="true"
-    android:id="@+id/main_screen"
+    android:id="@+id/warnings"
     android:background="@drawable/background">
 
     <ImageButton
