@@ -33,7 +33,7 @@ public class Ate extends Activity {
         }
     }
     public void settingsButton(View view) {
-        Intent gameMode = new Intent(this, settings.class);
+        Intent gameMode = new Intent(this, Settings.class);
         startActivity(gameMode);
         finish();
     }
