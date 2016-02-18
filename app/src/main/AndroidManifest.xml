@@ -14,39 +14,39 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".statsGui"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Stats"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:configChanges="orientation|keyboardHidden|screenSize">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
             android:name=".Goals"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Goals"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:configChanges="orientation|keyboardHidden|screenSize">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
             android:name=".Ate"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="What I ate Today"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:configChanges="orientation|keyboardHidden|screenSize">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
             android:name=".Warnings"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Warnings"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:configChanges="orientation|keyboardHidden|screenSize">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
             android:name=".Settings"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Settings"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:configChanges="orientation|keyboardHidden|screenSize">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity
+            android:name=".mainStats"
+            android:label="@string/title_activity_main_stats"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
