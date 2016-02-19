@@ -1,5 +1,6 @@
 package club.glamajestic.healthtrack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 
 public class mainStats extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -20,6 +22,7 @@ public class mainStats extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_stats);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -27,7 +30,7 @@ public class mainStats extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Add Food Item", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -80,14 +83,23 @@ public class mainStats extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.nav_goals) {
+            // Handle the goals
+            Intent gameMode = new Intent(this, Goals.class);
+            startActivity(gameMode);
+            finish();
+        } else if (id == R.id.nav_food) {
+            Intent gameMode = new Intent(this, Ate.class);
+            startActivity(gameMode);
+            finish();
+        } else if (id == R.id.nav_dstats) {
+            Intent gameMode = new Intent(this, statsGui.class);
+            startActivity(gameMode);
+            finish();
+        } else if (id == R.id.nav_settings) {
+            Intent gameMode = new Intent(this, Settings.class);
+            startActivity(gameMode);
+            finish();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
