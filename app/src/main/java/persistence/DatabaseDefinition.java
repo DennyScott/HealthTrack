@@ -222,6 +222,8 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 //        return result.trim();
 //    }
 
+    //*************DATABASE INSERTIONS*************************
+
     public long createPersonalInfo(Data_PersonalInfo data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues vals = new ContentValues();
@@ -299,6 +301,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //          calories_eaten
         //          protein_eaten
         //          carbohydrdates_eaten
+        //          fats_eaten
         vals.put(COLNAME_ID, data.getmId());
         vals.put(COLNAME_FOODNAME, data.getmFoodName());
         vals.put(COLNAME_EATEN_DATE, data.getmEatendate());
@@ -312,6 +315,175 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return db.insert(TABLE_TRANS_HIST, null, vals);
     }
 
+    /////////////////END DATABASE INSERTIONS////////////////////////
+
+    //***************DATABASE SINGLE ID RETRIEVALS****************************
+
+    public Data_PersonalInfo getPersonalInfo(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //SELECT * FROM TABLE_ (because it SHOULD HAVE only 1 entry)
+        //ToDo possibility to change this to personal preferences file vs sqlite database
+        Cursor cursor = db.query(
+                TABLE_PERS_INFO,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+        //retreieve the data in the assumed order:
+        //        personal information
+        //          _id
+        //          name
+        //          gender
+        //          age
+        //          weight
+        Data_PersonalInfo retrievedData = new Data_PersonalInfo(
+                cursor.getInt(0), //int _id is always the first column
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getInt(2),
+                cursor.getInt(3)
+        );
+
+        return retrievedData;
+    }
+
+    public Data_CustomFoods getCustomFood(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //SELECT * FROM TABLE_ WHERE _id = Id
+        Cursor cursor = db.query(
+                TABLE_CUST_FOODS,
+                null,
+                "_id=?",
+                new String[] {Integer.toString(id)},
+                null,
+                null,
+                null);
+        //retreieve the data in the assumed order:
+        //        custom foods
+        //              id
+        //              food_name
+        //              calories
+        //              proteins
+        //              carbohydrdates
+        //              fats
+        Data_CustomFoods retrievedData = new Data_CustomFoods(
+                cursor.getInt(0), //int _id is always the first column
+                cursor.getString(1),
+                cursor.getInt(2),
+                cursor.getInt(2),
+                cursor.getInt(3),
+                cursor.getInt(4)
+        );
+
+        return retrievedData;
+    }
+
+    public Data_ExternalFoods getExternalFood(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //SELECT * FROM TABLE_ WHERE _id = Id
+        Cursor cursor = db.query(
+                TABLE_EXT_FOODS,
+                null,
+                "_id=?",
+                new String[] {Integer.toString(id)},
+                null,
+                null,
+                null);
+        //retreieve the data in the assumed order:
+        //        external foods
+        //          id
+        //          food_name
+        //          calories
+        //          proteins
+        //          carbohydrdates
+        //          fats
+        Data_ExternalFoods retrievedData = new Data_ExternalFoods(
+                cursor.getInt(0), //int _id is always the first column
+                cursor.getString(1),
+                cursor.getInt(2),
+                cursor.getInt(2),
+                cursor.getInt(3),
+                cursor.getInt(4)
+        );
+
+        return retrievedData;
+    }
+
+    public Data_TransactionalHistory getTransactionalHistory(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //SELECT * FROM TABLE_ WHERE _id = id
+        Cursor cursor = db.query(
+                TABLE_TRANS_HIST,
+                null,
+                "_id=?",
+                new String[] {Integer.toString(id)},
+                null,
+                null,
+                null);
+        //retreieve the data in the assumed order:
+        //        transactional history (eaten)
+        //          id
+        //          food_name
+        //          eaten_date
+        //          eaten_time
+        //          portion_size
+        //          calories_eaten
+        //          protein_eaten
+        //          carbohydrdates_eaten
+        //          fats_eaten
+        Data_TransactionalHistory retrievedData = new Data_TransactionalHistory(
+                cursor.getInt(0), //int _id is always the first column
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(2),
+                cursor.getInt(3),
+                cursor.getInt(4),
+                cursor.getInt(5),
+                cursor.getInt(6),
+                cursor.getInt(7)
+        );
+
+        return retrievedData;
+    }
+
+    /////////////////END DATABASE SINGLE ID RETRIEVALS////////////////////////
+
+    //***************DATABASE SINGLE ID DELETIONS******************************
+    public void deleteCustomFood(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(
+                TABLE_CUST_FOODS,
+                "_id=?",
+                new String[] {Integer.toString(id)}
+        );
+        db.close();
+    }
+    public void deleteExternalFood(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(
+                TABLE_EXT_FOODS,
+                "_id=?",
+                new String[] {Integer.toString(id)}
+        );
+        db.close();
+    }
+    public void deleteTransHistoryRecord(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(
+                TABLE_TRANS_HIST,
+                "_id=?",
+                new String[] {Integer.toString(id)}
+        );
+        db.close();
+    }
+    /////////////////END DATABASE SINGLE ID DELETIONS//////////////////////////
+
 }
 
 class Data_PersonalInfo {
@@ -320,6 +492,14 @@ class Data_PersonalInfo {
     private String mGender;
     private int mAge;
     private int mWeight;
+
+    public Data_PersonalInfo(int mId, String mName, String mGender, int mAge, int mWeight) {
+        this.mId = mId;
+        this.mName = mName;
+        this.mGender = mGender;
+        this.mAge = mAge;
+        this.mWeight = mWeight;
+    }
 
     public int getmId() {
         return mId;
@@ -369,6 +549,15 @@ class Data_CustomFoods {
     private int mProtein;
     private int mCarbohydrates;
     private int mFats;
+
+    public Data_CustomFoods(int mId, String mFoodName, int mCalories, int mProtein, int mCarbohydrates, int mFats) {
+        this.mId = mId;
+        this.mFoodName = mFoodName;
+        this.mCalories = mCalories;
+        this.mProtein = mProtein;
+        this.mCarbohydrates = mCarbohydrates;
+        this.mFats = mFats;
+    }
 
     public int getmId() {
         return mId;
@@ -427,6 +616,15 @@ class Data_ExternalFoods {
     private int mCarbohydrates;
     private int mFats;
 
+    public Data_ExternalFoods(int mId, String mFoodName, int mCalories, int mProtein, int mCarbohydrates, int mFats) {
+        this.mId = mId;
+        this.mFoodName = mFoodName;
+        this.mCalories = mCalories;
+        this.mProtein = mProtein;
+        this.mCarbohydrates = mCarbohydrates;
+        this.mFats = mFats;
+    }
+
     public int getmId() {
         return mId;
     }
@@ -484,8 +682,29 @@ class Data_TransactionalHistory {
     private int  mPortionSize;
     private int mEatenCalories;
     private int mEatenProtein;
-    private int mEatenFats;
     private int mEatenCarohydrates;
+    private int mEatenFats;
+    //        transactional history (eaten)
+    //          id
+    //          food_name
+    //          eaten_date
+    //          eaten_time
+    //          portion_size
+    //          calories_eaten
+    //          protein_eaten
+    //          carbohydrdates_eaten
+    //          fats_eaten
+    public Data_TransactionalHistory(int mId, String mFoodName, String mEatendate, String mEatentime, int mPortionSize, int mEatenCalories, int mEatenProtein, int mEatenCarohydrates, int mEatenFats) {
+        this.mId = mId;
+        this.mFoodName = mFoodName;
+        this.mEatendate = mEatendate;
+        this.mEatentime = mEatentime;
+        this.mPortionSize = mPortionSize;
+        this.mEatenCalories = mEatenCalories;
+        this.mEatenProtein = mEatenProtein;
+        this.mEatenCarohydrates = mEatenCarohydrates;
+        this.mEatenFats = mEatenFats;
+    }
 
     public int getmId() {
         return mId;
