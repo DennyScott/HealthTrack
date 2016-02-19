@@ -25,18 +25,16 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 
 public class statsGui extends Activity {
+    int mode = 0;// 0 = day, 1 = week, 2 = month
+    int backPressed = 0;
     private FrameLayout stats;
     private Stats StatsBus = new Stats();
     private PieChart chart;
     private Button dayButton;
     private Button weekButton;
     private Button monthButton;
-
-    int mode = 0;// 0 = day, 1 = week, 2 = month
     private float[] yData;
     private String[] xData;
-    int backPressed = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,13 +160,13 @@ public class statsGui extends Activity {
             Toast info = new Toast(this);
             info.makeText(this, text, Toast.LENGTH_SHORT).show();
         } else {
-            Intent gameMode = new Intent(this, mainScreen.class);
+            Intent gameMode = new Intent(this, MainActivity.class);
             startActivity(gameMode);
             finish();
         }
     }
     public void settingsButton(View view) {
-        Intent gameMode = new Intent(this, settings.class);
+        Intent gameMode = new Intent(this, Settings.class);
         startActivity(gameMode);
         finish();
     }
