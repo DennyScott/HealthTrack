@@ -14,14 +14,13 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     //for
     private static final String LOG  = "DatabaseDefinitionTest";
     /*
-        SQL Tables:
+        SQL Tables (refer to classes for final data member order):
             personal information
                 _id
                 name
                 gender
                 age
                 weight
-
             custom foods
                 id
                 food_name
@@ -210,17 +209,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-//
-//
-//    public String getFirstRow(SQLiteDatabase db) {
-//
-//        Cursor row = db.query(TABLE_NAME,new String[] {"*"}, null, null,null,null,null);
-//        String result = "";
-//        for (int i = 0; i < row.getColumnCount(); i++) {
-//            result += row.getString(i) + ' ';
-//        }
-//        return result.trim();
-//    }
 
     //*************DATABASE INSERTIONS*************************
 
@@ -264,8 +252,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //get the ID of the resulting insertion
         return db.insert(TABLE_CUST_FOODS, null, vals);
     }
-
-
 
     public long createExternalFoods(Data_ExternalFoods data) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -455,6 +441,17 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     /////////////////END DATABASE SINGLE ID RETRIEVALS////////////////////////
 
     //***************DATABASE SINGLE ID DELETIONS******************************
+
+    public void deletePersonalInfo(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(
+                TABLE_PERS_INFO,
+                "_id=?",
+                new String[] {Integer.toString(id)}
+        );
+        db.close();
+    }
+
     public void deleteCustomFood(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(
@@ -464,6 +461,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         );
         db.close();
     }
+
     public void deleteExternalFood(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(
@@ -473,16 +471,112 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         );
         db.close();
     }
+
     public void deleteTransHistoryRecord(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(
                 TABLE_TRANS_HIST,
                 "_id=?",
-                new String[] {Integer.toString(id)}
+                new String[]{Integer.toString(id)}
         );
         db.close();
     }
     /////////////////END DATABASE SINGLE ID DELETIONS//////////////////////////
+
+    //***************DATABASE SINGLE ID UPDATES******************************
+
+    public int updatePersonalInfo(Data_PersonalInfo newRecord) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues vals = new ContentValues();
+        //update the data in the assumed order:
+        //        personal information
+        //          _id
+        //          name
+        //          gender
+        //          age
+        //          weight
+        vals.put(COLNAME_ID, newRecord.getmId());
+        vals.put(COLNAME_NAME, newRecord.getmName());
+        vals.put(COLNAME_GENDER, newRecord.getmGender());
+        vals.put(COLNAME_AGE, newRecord.getmAge());
+        vals.put(COLNAME_WEIGHT, newRecord.getmWeight());
+
+        //returns the number of rows affected
+        return db.update(TABLE_PERS_INFO,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
+    }
+
+    public int updateCustomFood(Data_CustomFoods newRecord) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues vals = new ContentValues();
+        //update the data in the assumed order:
+        //        custom foods
+        //              id
+        //              food_name
+        //              calories
+        //              proteins
+        //              carbohydrdates
+        //              fats
+        vals.put(COLNAME_ID, newRecord.getmId());
+        vals.put(COLNAME_FOODNAME, newRecord.getmFoodName());
+        vals.put(COLNAME_CALORIES, newRecord.getmCalories());
+        vals.put(COLNAME_PROTEINS, newRecord.getmProtein());
+        vals.put(COLNAME_CARBOHYDRATES, newRecord.getmCarbohydrates());
+        vals.put(COLNAME_FATS, newRecord.getmFats());
+
+        //returns the number of rows affected
+        return db.update(TABLE_CUST_FOODS,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
+    }
+
+    public int updateExternalFood(Data_ExternalFoods newRecord) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues vals = new ContentValues();
+        //update the data in the assumed order:
+        //        external foods
+        //          id
+        //          food_name
+        //          calories
+        //          proteins
+        //          carbohydrdates
+        //          fats
+        vals.put(COLNAME_ID, newRecord.getmId());
+        vals.put(COLNAME_FOODNAME, newRecord.getmFoodName());
+        vals.put(COLNAME_CALORIES, newRecord.getmCalories());
+        vals.put(COLNAME_PROTEINS, newRecord.getmProtein());
+        vals.put(COLNAME_CARBOHYDRATES, newRecord.getmCarbohydrates());
+        vals.put(COLNAME_FATS, newRecord.getmFats());
+
+        //returns the number of rows affected
+        return db.update(TABLE_EXT_FOODS,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
+    }
+
+    public int updateTransaHistoryRecord(Data_TransactionalHistory newRecord) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues vals = new ContentValues();
+        //update the data in the assumed order:
+        //        transactional history (eaten)
+        //          id
+        //          food_name
+        //          eaten_date
+        //          eaten_time
+        //          portion_size
+        //          calories_eaten
+        //          protein_eaten
+        //          carbohydrdates_eaten
+        //          fats_eaten
+        vals.put(COLNAME_ID, newRecord.getmId());
+        vals.put(COLNAME_FOODNAME, newRecord.getmFoodName());
+        vals.put(COLNAME_EATEN_DATE, newRecord.getmEatendate());
+        vals.put(COLNAME_EATEN_TIME, newRecord.getmEatentime());
+        vals.put(COLNAME_PORTIONSIZE, newRecord.getmPortionSize());
+        vals.put(COLNAME_EATEN_CALORIES, newRecord.getmEatenCalories());
+        vals.put(COLNAME_EATEN_PROTEINS, newRecord.getmEatenProtein());
+        vals.put(COLNAME_EATEN_FATS, newRecord.getmEatenFats());
+
+        //returns the number of rows affected
+        return db.update(TABLE_TRANS_HIST,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
+    }
+
+    /////////////////END DATABASE SINGLE ID UPDATES//////////////////////////
 
 }
 
