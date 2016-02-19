@@ -25,5 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile files('/HealthTrack/libs/mpandroidchartlibrary-2-1-6.jar')
-    compile files('D:/keepo/Users/Keepo/Google Drive/IDEProjects/AndroidStudioProjects/HealthTrack/libs/mpandroidchartlibrary-2-1-6.jar')
+    compile files('C:/Users/Khaled/Dropbox/HealthTrack/libs/mpandroidchartlibrary-2-1-6.jar')
 }
