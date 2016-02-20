@@ -23,7 +23,7 @@ public class Stats {
         }
         float[] inValues = {5, 10, 15, 30, 40, 20, 10, 60}; // these values will be attained from database later on
         String[] inKeys = {"Cholesterol", "Sodium", "Sugar", "Protein", "Fat", "Fiber", "Calcium", "Carbs"};// these values will be attained from database later on
-        ArrayList<keyValuePair> kVP = sort(inValues,inKeys );
+        ArrayList<KeyValuePair> kVP = sort(inValues,inKeys );
         if(size > MAX_SIZE) {
             populate(kVP);
         }
@@ -49,7 +49,7 @@ public class Stats {
     public  String[] getOtherKeys(){
         return otherKeys;
     }
-    void populate(ArrayList<keyValuePair> array){
+    void populate(ArrayList<KeyValuePair> array){
         for(int x = 0; x< MAX_SIZE-1; x++){
             values[x] = array.get(x).value;
             keys[x] = array.get(x).key;
@@ -67,43 +67,15 @@ public class Stats {
             keys[MAX_SIZE-1] = "Other";
         }
     }
-    ArrayList<keyValuePair> sort(float[] values, String[] keys){
-        ArrayList<keyValuePair> retVal = null;
+    ArrayList<KeyValuePair> sort(float[] values, String[] keys){
+        ArrayList<KeyValuePair> retVal = null;
         if(size > 0 && values.length == size && keys.length == size) {
-            ArrayList<keyValuePair> kVP = new ArrayList<keyValuePair>();
+            ArrayList<KeyValuePair> kVP = new ArrayList<KeyValuePair>();
             for (int x = 0; x < size; x++) {
-                kVP.add(new keyValuePair(keys[x], values[x]));
+                kVP.add(new KeyValuePair(keys[x], values[x]));
             }
             Collections.sort(kVP);
             retVal = kVP;
-        }
-        return retVal;
-    }
-}
-class keyValuePair implements Comparable<keyValuePair> {
-    float value;
-    String key;
-
-    keyValuePair(String key, float value) {
-        this.value = value;
-        this.key = key;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        boolean retVal = false;
-        if (other == this && this.key.toLowerCase().equals(((keyValuePair) other).key.toLowerCase())
-                && this.value ==(((keyValuePair)other).value)) retVal = true;
-        return retVal;
-    }
-    @Override
-    public int compareTo(keyValuePair other) {
-        int retVal = 0;
-        if(other.value > this.value){
-            retVal = 1;
-        }
-        else if(other.value < this.value){
-            retVal = -1;
         }
         return retVal;
     }
