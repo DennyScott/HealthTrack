@@ -1,7 +1,8 @@
 package business;
 
 /**
- * Created by Deny Raaen on 20/02/2016.
+ * Write Java Docs (basic description for class, and description for each
+ * complicated method).
  */
 public class KeyValuePair implements Comparable<KeyValuePair> {
     float value;
@@ -19,6 +20,7 @@ public class KeyValuePair implements Comparable<KeyValuePair> {
                 && this.value ==(((KeyValuePair)other).value)) retVal = true;
         return retVal;
     }
+
     @Override
     public int compareTo(KeyValuePair other) {
         int retVal = 0;
