@@ -7,8 +7,9 @@ package club.glamajestic.healthtrack;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
-public class Stats extends Activity{
+public class Stats extends Activity {
     private int backPressed = 0;
 
     @Override

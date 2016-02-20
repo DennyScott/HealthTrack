@@ -24,7 +24,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-public class StatsGuiTempBecauseWindowsIsCaseInsensitive extends Activity {
+public class StatsGui extends Activity {
     int mode = 0;// 0 = day, 1 = week, 2 = month
     int backPressed = 0;
     private FrameLayout stats;
@@ -39,13 +39,16 @@ public class StatsGuiTempBecauseWindowsIsCaseInsensitive extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         StatsBus.init(mode);
         yData = StatsBus.getValues();
         xData = StatsBus.getKeys();
         setContentView(R.layout.stats);
+
         dayButton = (Button) findViewById(R.id.dayButton);
         weekButton = (Button) findViewById(R.id.weekButton);
         monthButton = (Button) findViewById(R.id.monthButton);
+
         dayButton.setAlpha(0.8f);
 
         stats = (FrameLayout) findViewById(R.id.chartFrame);
@@ -170,6 +173,7 @@ public class StatsGuiTempBecauseWindowsIsCaseInsensitive extends Activity {
         startActivity(gameMode);
         finish();
     }
+
     public void dayButton(View view) {
         mode = 0;
         StatsBus.init(mode);

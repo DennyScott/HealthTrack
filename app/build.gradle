@@ -27,4 +27,5 @@ dependencies {
     compile files('/HealthTrack/libs/mpandroidchartlibrary-2-1-6.jar')
     compile files('C:/Users/Khaled/Dropbox/HealthTrack/libs/mpandroidchartlibrary-2-1-6.jar')
     compile files('D:/Google Drive/IDEProjects/AndroidStudioProjects/HealthTrack/libs/mpandroidchartlibrary-2-1-6.jar')
+    compile files('C:/Users/Deny Raaen/StudioProjects/HealthTrack/libs/mpandroidchartlibrary-2-1-6.jar')
 }
