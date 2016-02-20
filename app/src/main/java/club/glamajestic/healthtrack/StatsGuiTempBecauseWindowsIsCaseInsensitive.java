@@ -24,7 +24,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-public class statsGui extends Activity {
+public class StatsGuiTempBecauseWindowsIsCaseInsensitive extends Activity {
     int mode = 0;// 0 = day, 1 = week, 2 = month
     int backPressed = 0;
     private FrameLayout stats;
