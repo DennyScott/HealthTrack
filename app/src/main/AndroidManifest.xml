@@ -34,6 +34,11 @@
             android:label="Goals User Info"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
+            android:name=".GoalsSubmission"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Goals Submission"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity
             android:name=".Ate"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="What I ate Today"
