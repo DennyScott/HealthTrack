@@ -11,7 +11,7 @@ import android.widget.Toast;
  */
 public class Goals extends Activity {
     private int backPressed = 0;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +32,7 @@ public class Goals extends Activity {
             finish();
         }
     }
+
     public void settingsButton(View view) {
         Intent gameMode = new Intent(this, Settings.class);
         startActivity(gameMode);
