@@ -1,0 +1,4 @@
+January 25th 6hours - Project Setup and initial GUI setup.
+February 4th 3hrs - Logo design and Background Design
+February 7th- 5hrs - Implementing Statistical Featres and abstraction layer
+February 16th -4hrs = Implementing Buissnes Class For Stats

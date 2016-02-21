@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
     }
 
     public void statsButton(View view) {
-        Intent gameMode = new Intent(this, statsGui.class);
+        Intent gameMode = new Intent(this, StatsGui.class);
         startActivity(gameMode);
         finish();
     }

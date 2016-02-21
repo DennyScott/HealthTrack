@@ -14,6 +14,7 @@
         android:layout_height="100dp"
         android:id="@+id/ateButton"
         android:background="@drawable/ate_button_action"
+
         android:layout_marginTop="15dp"
         android:onClick="ateButton"
         android:layout_marginLeft="26dp"
