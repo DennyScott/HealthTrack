@@ -5,21 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-import android.widget.Button;
 
 /**
- * Created by Khaled on 1/23/2016.
+ * Created by Wilson on 2/21/2016.
  */
-public class Goals extends Activity implements View.OnClickListener {
+
+public class GoalsUserInfo extends Activity {
     private int backPressed = 0;
-    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.goals);
-        button = (Button)findViewById(R.id.button);
-        button.setOnClickListener(this);
+        setContentView(R.layout.goals_user_info);
     }
 
     public void onBackPressed() {
@@ -41,22 +38,5 @@ public class Goals extends Activity implements View.OnClickListener {
         Intent gameMode = new Intent(this, Settings.class);
         startActivity(gameMode);
         finish();
-    }
-
-    private void buttonClick()
-    {
-        Intent gameMode = new Intent(this, GoalsUserInfo.class);
-        startActivity(gameMode);
-        finish();
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId())
-        {
-            case R.id.button:
-                buttonClick();
-                break;
-        }
     }
 }

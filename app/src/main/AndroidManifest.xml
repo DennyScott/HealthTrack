@@ -29,6 +29,11 @@
             android:label="Goals"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
+            android:name=".GoalsUserInfo"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Goals User Info"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity
             android:name=".Ate"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="What I ate Today"
