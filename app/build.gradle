@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         applicationId "club.glamajestic.healthtrack"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
