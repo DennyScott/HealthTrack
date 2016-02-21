@@ -11,6 +11,11 @@
     <string name="warnings_main_screen">View potential health risks.</string>
     <string name="warnings_title">Potential Risks</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="user_info_button">Enter User Info</string>
+    <string name="goals_submission_button">Goals Submission</string>
+    <string name="goals_submission_title">Goals Submission</string>
+    <string name="user_info_title">User Information</string>
+    <string name="save_changes_button">Save Changes</string>
 
     <!-- Strings related to Settings -->
 

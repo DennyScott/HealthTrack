@@ -16,9 +16,9 @@
         android:text="@string/goals_submission_title"
         android:textStyle="bold"
         android:textSize="40sp"
+        android:textColor="#403c3c"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="#403c3c" />
+        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:layout_width="55dp"
