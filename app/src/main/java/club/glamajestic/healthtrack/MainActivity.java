@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
     }
 
     public void settingsButton(View view) {
-        Intent gameMode = new Intent(this, Settings.class);
+        Intent gameMode = new Intent(this, SettingsActivity.class);
         startActivity(gameMode);
         finish();
     }
