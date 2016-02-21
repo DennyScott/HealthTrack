@@ -3,20 +3,26 @@ package club.glamajestic.healthtrack;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 /**
  * Created by Wilson on 2/21/2016.
  */
 
-public class GoalsUserInfo extends Activity {
+public class GoalsUserInfo extends Activity implements View.OnClickListener {
     private int backPressed = 0;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goals_user_info);
+        button = (Button)findViewById(R.id.saveButton);
+        button.setOnClickListener(this);
     }
 
     public void onBackPressed() {
@@ -38,5 +44,21 @@ public class GoalsUserInfo extends Activity {
         Intent gameMode = new Intent(this, Settings.class);
         startActivity(gameMode);
         finish();
+    }
+
+    private void saveClicked() {
+        String text = "Changes Updated";
+        Toast saved = new Toast(this);
+        saved.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.saveButton:
+                saveClicked();
+                break;
+        }
     }
 }
