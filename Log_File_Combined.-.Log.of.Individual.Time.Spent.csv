@@ -60,5 +60,7 @@ WT,6e4ec77c192a5e6a762ffc81011effebf9838c61,2/21/2016,Setting Goals,1,1,Learn to
 WT,cf43072de956d42aa32c3cf9870459e854d9ea7a,2/21/2016,Setting Goals,3,2,Learn about and make Toast messages to the save button on goal activities
 AR,e128a10122addb6e657ef1b2a007e13c60c6b6c3,2/21/2016,Documentation,0.5,1,Created README.md file for GitHub
 KES,d33862c9f7148e0128db2ce754c80f8ea050eaf6,2/21/2016,Unit Tests,2,2,"Adding simple JUnit tests, fixing a few bugs"
-AR,No commit - Wiki,2/21/2016,,,,
-KB,,,,,,
+KB,No commit - Architecture ,2/21/2016,Arch Diagram,1,1,sketched up file structure and dependencies
+SW,2fa691cbbe88c420a044ccac99212298f21136bc,2/21/2016,Unit Tests,2,3,Completed unit tests for stats business layer
+SW,No commit - Wiki,2/21/2016,Wiki,2,4,"Learn Markdown, create developer tasks page"
+AR,No commit - Wiki,2/21/2016,Wiki,3,3,Described Java packages and applied proper markup
