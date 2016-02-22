@@ -16,6 +16,7 @@ public class htNotification {
     public htNotification(String type){
         this.type = type;
     }
+
     public static void throwNotification(String type, int amount, Context cont) {
         DatabaseDefinition datadef = new DatabaseDefinition(cont,null,null,1,null);
         NotificationCompat.Builder notBuilder = new NotificationCompat.Builder(cont)

@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
-
     private ImageButton ate;
     private ImageButton stats;
     private ImageButton warnings;
@@ -28,30 +27,25 @@ public class MainActivity extends Activity {
     public void ateButton(View view) {
         Intent gameMode = new Intent(this, Ate.class);
         startActivity(gameMode);
-        finish();
     }
 
     public void statsButton(View view) {
         Intent gameMode = new Intent(this, StatsGui.class);
         startActivity(gameMode);
-        finish();
     }
 
     public void warningsButton(View view) {
         Intent gameMode = new Intent(this, Warnings.class);
         startActivity(gameMode);
-        finish();
     }
 
     public void goalsButton(View view) {
         Intent gameMode = new Intent(this, Goals.class);
         startActivity(gameMode);
-        finish();
     }
 
     public void settingsButton(View view) {
         Intent gameMode = new Intent(this, SettingsActivity.class);
         startActivity(gameMode);
-        finish();
     }
 }
