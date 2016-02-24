@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
+
     private ImageButton ate;
     private ImageButton stats;
     private ImageButton warnings;
@@ -44,6 +45,11 @@ public class MainActivity extends Activity {
         startActivity(gameMode);
     }
 
+    /**
+     * Creates a new <code>Intent</code> and starts <code>SettingsActivity</code>.
+     *
+     * @param view Unused.
+     */
     public void settingsButton(View view) {
         Intent gameMode = new Intent(this, SettingsActivity.class);
         startActivity(gameMode);
