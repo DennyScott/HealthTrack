@@ -22,16 +22,16 @@ public class htNotification {
     /**
      * Throws the notification in the background to the user.
      *
-     * @param type
-     * @param amount
-     * @param context
+     * @param type The nutritional type whose limit has been exceeded.
+     * @param amount The amount that the type has been exceeded by.
+     * @param context Allows access so the notification can be sent.
      */
     public static void throwNotification(String type, int amount, Context context) {
         DatabaseDefinition datadef = new DatabaseDefinition(context,null,null,1,null);
         NotificationCompat.Builder notBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(android.R.drawable.ic_popup_disk_full)
                 .setContentTitle("HealthTrack")
-                .setContentText("You have exceeded your limit for "+type+" of "+amount);
+                .setContentText("You have exceeded your limit for " + type + " of " + amount);
         NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 // mId allows you to update the notification later on.
