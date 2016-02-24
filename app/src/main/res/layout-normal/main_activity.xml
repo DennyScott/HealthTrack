@@ -56,15 +56,15 @@
         android:layout_marginTop="20dp" />
 
     <ImageButton
-        android:layout_width="55dp"
-        android:layout_height="35dp"
+        android:layout_width="@dimen/settings_button_normal_width"
+        android:layout_height="@dimen/settings_button_normal_height"
         android:id="@+id/settingsButton"
         android:background="@drawable/settings_button_action"
-        android:layout_marginBottom="23dp"
+        android:onClick="settingsButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/title"
-        android:layout_alignEnd="@+id/title"
-        android:onClick="settingsButton" />
+        android:layout_alignRight="@+id/warningsText"
+        android:layout_alignEnd="@+id/warningsText"
+        android:layout_margin="@dimen/settings_button_margin" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,17 +72,18 @@
         android:id="@+id/title"
         android:text="@string/app_name"
         android:textStyle="bold"
-        android:textSize="50sp"
-        android:textColor="#403c3c"
+        android:textSize="@dimen/title_normal"
+        android:textColor="@color/title_colour"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textIsSelectable="false" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ateText"
         android:text="@string/ate_main_screen"
-        android:textColor="#ffffff"
+        android:textColor="@color/text_colour"
         android:textSize="25sp"
         android:textAlignment="center"
         android:layout_alignTop="@+id/ateButton"
@@ -94,7 +95,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/statsText"
         android:text="@string/stats_main_screen"
-        android:textColor="#ffffff"
+        android:textColor="@color/text_colour"
         android:textSize="25sp"
         android:textAlignment="center"
         android:layout_alignTop="@+id/statsButton"
@@ -106,7 +107,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/goalsText"
         android:text="@string/goals_main_screen"
-        android:textColor="#403c3c"
+        android:textColor="@color/text_colour"
         android:textSize="25sp"
         android:textAlignment="center"
         android:layout_alignTop="@+id/goalsButton"
@@ -118,7 +119,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/warningsText"
         android:text="@string/warnings_main_screen"
-        android:textColor="#403c3c"
+        android:textColor="@color/text_colour"
         android:textSize="25sp"
         android:textAlignment="center"
         android:layout_alignTop="@+id/warningButton"

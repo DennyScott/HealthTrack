@@ -82,6 +82,14 @@
     <string name="pref_title_fibre_alert">Alert for Fibre Intake</string>
     <string name="pref_title_iron_alert">Alert for Iron Intake</string>
     <string name="pref_title_vitamin_alert">Alert for Vitamin Intake</string>
+    <string name="text_entry_target_weight">Target weight</string>
+    <string name="text_entry_target_weeks">Target number of weeks</string>
+    <string name="text_entry_name">Name</string>
+    <string name="text_entry_age">Age</string>
+    <string name="text_entry_weight">Weight (lbs)</string>
+    <string name="day_button">Day</string>
+    <string name="week_button">Week</string>
+    <string name="month_button">Month</string>
 
 
 </resources>
