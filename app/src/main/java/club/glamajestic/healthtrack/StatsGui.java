@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
@@ -22,9 +21,10 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 
 public class StatsGui extends Activity {
+
     // 0 = day, 1 = week, 2 = month
     // day by default
-    int mode = 0;
+    private int mode = 0;
 
     private FrameLayout stats;
     private Stats StatsBus = new Stats();
@@ -35,6 +35,9 @@ public class StatsGui extends Activity {
     private float[] yData;
     private String[] xData;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +103,11 @@ public class StatsGui extends Activity {
         l.setYEntrySpace(5);
     }
 
+    /**
+     * Fills the <code>PieChart</code> with data.
+     *
+     * @see PieChart
+     */
     private void addData() {
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
@@ -153,16 +161,32 @@ public class StatsGui extends Activity {
         chart.invalidate();
     }
 
+    /**
+     * Calls <code>finish()</code> to close this <code>Activity</code>, returning to previous
+     * <code>Activity</code> on the stack.
+     */
     public void onBackPressed() {
         Output.toastMessage(this, "Returning to previous screen.", Output.LONG_TOAST);
         finish();
     }
 
+    /**
+     * Creates a new <code>Intent</code> and starts <code>SettingsActivity</code>.
+     *
+     * @param view Unused.
+     */
     public void settingsButton(View view) {
-        Intent gameMode = new Intent(this, Settings.class);
+        Intent gameMode = new Intent(this, SettingsActivity.class);
         startActivity(gameMode);
     }
 
+    /**
+     * When the day button is clicked, the <code>PieChart</code> is updated to show the data
+     * for the user's day.
+     *
+     * @param view View that has been clicked.
+     * @see PieChart
+     */
     public void dayButton(View view) {
         mode = 0;
         StatsBus.init(mode);
@@ -175,6 +199,13 @@ public class StatsGui extends Activity {
         addData();
     }
 
+    /**
+     * When the week button is clicked, the <code>PieChart</code> is updated to show the data
+     * for the user's week.
+     *
+     * @param view View that has been clicked.
+     * @see PieChart
+     */
     public void weekButton(View view) {
         mode = 1;
         StatsBus.init(mode);
@@ -187,6 +218,13 @@ public class StatsGui extends Activity {
         addData();
     }
 
+    /**
+     * When the month button is clicked, the <code>PieChart</code> is updated to show the data
+     * for the user's month.
+     *
+     * @param view View that has been clicked.
+     * @see PieChart
+     */
     public void monthButton(View view) {
         mode = 2;
         StatsBus.init(mode);

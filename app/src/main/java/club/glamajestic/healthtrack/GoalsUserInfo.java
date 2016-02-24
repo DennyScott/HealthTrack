@@ -7,9 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+/**
+ * <code>GoalsUserInfo</code> allows the user to enter information about themselves, which the
+ * app can then use when providing statistics and managing goals.
+ */
 public class GoalsUserInfo extends Activity implements View.OnClickListener {
+
     private Button saveButton;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,20 +26,28 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         saveButton.setOnClickListener(this);
     }
 
+    /**
+     * Calls <code>finish()</code> to close this <code>Activity</code>, returning to previous
+     * <code>Activity</code> on the stack.
+     */
     public void onBackPressed() {
         Output.toastMessage(this, "Returning to previous screen.", Output.LONG_TOAST);
         finish();
     }
 
+    /**
+     * Creates a new <code>Intent</code> and starts <code>SettingsActivity</code>.
+     *
+     * @param view Unused.
+     */
     public void settingsButton(View view) {
-        Intent gameMode = new Intent(this, Settings.class);
+        Intent gameMode = new Intent(this, SettingsActivity.class);
         startActivity(gameMode);
     }
 
-    private void saveClicked() {
-        Output.toastMessage(this, "Changes updated.", Output.SHORT_TOAST);
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -39,5 +55,9 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
                 saveClicked();
                 break;
         }
+    }
+
+    private void saveClicked() {
+        Output.toastMessage(this, "Changes updated.", Output.SHORT_TOAST);
     }
 }
