@@ -93,11 +93,11 @@ public class mainStats extends AppCompatActivity
             startActivity(gameMode);
             finish();
         } else if (id == R.id.nav_dstats) {
-            Intent gameMode = new Intent(this, statsGui.class);
+            Intent gameMode = new Intent(this, StatsGui.class);
             startActivity(gameMode);
             finish();
         } else if (id == R.id.nav_settings) {
-            Intent gameMode = new Intent(this, Settings.class);
+            Intent gameMode = new Intent(this, SettingsActivity.class);
             startActivity(gameMode);
             finish();
         }

@@ -252,4 +252,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+    public void onBackPressed() {
+
+        Intent gameMode = new Intent(this, mainStats.class);
+        startActivity(gameMode);
+        finish();
+    }
 }
