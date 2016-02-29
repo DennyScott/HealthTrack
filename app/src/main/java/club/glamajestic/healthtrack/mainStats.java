@@ -100,12 +100,7 @@ public class mainStats extends AppCompatActivity
             Intent gameMode = new Intent(this, Settings.class);
             startActivity(gameMode);
             finish();
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

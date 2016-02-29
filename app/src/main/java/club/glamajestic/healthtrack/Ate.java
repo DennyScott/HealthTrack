@@ -19,18 +19,10 @@ public class Ate extends Activity {
     }
 
     public void onBackPressed() {
-        String message = "Press back again to return to main screen.";
 
-        if (backPressed == 0) {
-            backPressed++;
-            String text = "Press back again to go return to Main Screen!";
-            Toast info = new Toast(this);
-            info.makeText(this, text, Toast.LENGTH_LONG).show();
-        } else {
-            Intent gameMode = new Intent(this, MainActivity.class);
-            startActivity(gameMode);
-            finish();
-        }
+        Intent gameMode = new Intent(this, mainStats.class);
+        startActivity(gameMode);
+        finish();
     }
     public void settingsButton(View view) {
         Intent gameMode = new Intent(this, Settings.class);

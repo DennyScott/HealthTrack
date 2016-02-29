@@ -2,35 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_goals"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Goals" />
+
         <item
             android:id="@+id/nav_food"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_food"
             android:title="Food Journal" />
         <item
             android:id="@+id/nav_dstats"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_dstats"
             android:title="Detailed Stats" />
+        <item
+            android:id="@+id/nav_goals"
+            android:icon="@drawable/ic_goals"
+            android:title="Goals" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_manage"
             android:title="Settings" />
-    </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+
+    </group>
 
 </menu>
