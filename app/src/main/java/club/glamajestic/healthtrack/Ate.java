@@ -7,33 +7,37 @@ import android.view.View;
 import android.widget.Toast;
 
 /**
- * Created by Khaled on 1/23/2016.
+ * <code>Ate</code> is an <code>Activity</code> that shows information on what the user has eaten.
  */
 public class Ate extends Activity {
-    private int backPressed = 0;
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ate);
     }
 
+    /**
+     * Calls <code>finish()</code> to close this <code>Activity</code>, returning to previous
+     * <code>Activity</code> on the stack.
+     */
     public void onBackPressed() {
-        String message = "Press back again to return to main screen.";
 
-        if (backPressed == 0) {
-            backPressed++;
-            String text = "Press back again to go return to Main Screen!";
-            Toast info = new Toast(this);
-            info.makeText(this, text, Toast.LENGTH_LONG).show();
-        } else {
-            Intent gameMode = new Intent(this, MainActivity.class);
-            startActivity(gameMode);
-            finish();
-        }
+        Intent gameMode = new Intent(this, mainStats.class);
+        startActivity(gameMode);
+        finish();
     }
+
+    /**
+     * Creates a new <code>Intent</code> and starts <code>SettingsActivity</code>.
+     *
+     * @param view Unused.
+     */
     public void settingsButton(View view) {
-        Intent gameMode = new Intent(this, Settings.class);
+        Intent gameMode = new Intent(this, SettingsActivity.class);
         startActivity(gameMode);
         finish();
     }

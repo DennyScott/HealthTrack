@@ -28,30 +28,30 @@ public class MainActivity extends Activity {
     public void ateButton(View view) {
         Intent gameMode = new Intent(this, Ate.class);
         startActivity(gameMode);
-        finish();
     }
 
     public void statsButton(View view) {
         Intent gameMode = new Intent(this, StatsGui.class);
         startActivity(gameMode);
-        finish();
     }
 
     public void warningsButton(View view) {
         Intent gameMode = new Intent(this, Warnings.class);
         startActivity(gameMode);
-        finish();
     }
 
     public void goalsButton(View view) {
         Intent gameMode = new Intent(this, Goals.class);
         startActivity(gameMode);
-        finish();
     }
 
+    /**
+     * Creates a new <code>Intent</code> and starts <code>SettingsActivity</code>.
+     *
+     * @param view Unused.
+     */
     public void settingsButton(View view) {
         Intent gameMode = new Intent(this, SettingsActivity.class);
         startActivity(gameMode);
-        finish();
     }
 }
