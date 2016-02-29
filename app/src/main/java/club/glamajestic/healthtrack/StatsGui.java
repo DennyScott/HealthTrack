@@ -166,7 +166,8 @@ public class StatsGui extends Activity {
      * <code>Activity</code> on the stack.
      */
     public void onBackPressed() {
-        Output.toastMessage(this, "Returning to previous screen.", Output.LONG_TOAST);
+        Intent gameMode = new Intent(this, mainStats.class);
+        startActivity(gameMode);
         finish();
     }
 
