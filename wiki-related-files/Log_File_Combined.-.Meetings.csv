@@ -1,0 +1,37 @@
+Date,Length of Meeting (hours),Attendence,Summary,Design Decisions,Rationale for Design Decisions
+1/8/2016,0.5,All present,"Everyone, before the meeting, found a potential customer with an app idea",Choose customer who wants a health-tracking application,"The other ideas seemed too difficult, given our experience"
+,,,Discussed customers interviewed and their app ideas,"Don't go with app about encrypting (texts, emails, images)","The other ideas seemed to rely/need some sort of network integration, which we could not incoporate"
+,,,Decided on which app to pursue,Don't go with app about video+subtitling,
+,,,,Don’t' go with app about graphing generic data (but incorporate it into health-tracking),
+,,,,Don't go with app that detects collisions in real life,
+,,,,Don’t go with app that tracks business inquiries,
+,,,,Don't go with tinder clone app for couches,
+1/13/2016,1,All present,"Discussed health tracking app, gave it a name",Named app HealthTrack,WhatsApp group chat to coordinate meetings/informal discussions
+,,,Discussed ideas about coordinating and organizing work,Use WhatsApp,Trello gave us an interface that looked like the Roadmap slide shown in class
+,,,Discussed ideas about maintaining consistency in coding styles,Use Trello,Slack allows organized discussion about features as they can be subdivided into categories
+,,,,Use Slack,Slack allows us to see/be notified of commits and comment on them
+,,,,Scott will make the GitHub repo,Shared Google Drive folder allows coordinating files that are relevant to project but not part of the app (eg meetings files)
+,,,,Check shared Drive folder/Trello for coding standards file,The graphing would require lots of work so we should start that first (algorithms to generate the graphics/graphs)
+,,,,Integrate graphing/pie charts/statistical analysis into app,"Scott has a private GitHub repo we can use for this project, as we did not want the project available publicly (yet?)"
+,,,,Allow customers to input data,Everyone should use JavaDocs when possible
+,,,,Allow customers to input most eaten foods,"Everyone should include 4 files: the class, a version control/log file, test files, JavaDocs auto-generated HTML)"
+1/15/2016,0.5,All present,Planned date for formal meeting with customer,Customer has inconvenient meeting hours,Everyone except Scott is busy during the hours the customer is available
+,,,Recording equipment available through Scott,Scott will meet the customer and record the video himself,The customer cannot come to the university and arranging for rides to get to a place they can meet was daunting
+,,,,,Spoke with professor and found that not everyone has to be present for the recording
+,,,,,We thought up questions to ask the customer that Scott would ask and record the answers of
+1/20/2016,2,All present,Brought individual vision statements together,Features:,The goals setting and flexibility would only require a few database calls and organization
+,,,Combined into one vision statement,Goal settings + flexibilty,The customer should be able to input their own food + have a preloaded list to choose from. Two tables to maintain consistency and defaults
+,,,Broke down video into (big/) user stories,Custom foods + pre-loaded foods from an existing database,The notifications will be used to tell the user of goal related information or warnings 
+,,,Decided on which elements to not pursue,Push Notifications for user reminders,The foods should not be static images or information but interactable to allow user friendliness
+,,,Estimated times of completion for each user story,Breakdown of foods for health content,
+,,,"Prepped submission for Jan25,2016",,
+1/27/2016,1,All present,Discussed app design (GUI made),Color scheme should be brighter,Brighter colors will make the app more vibrant
+,,,Compiled ideas/resources for understanding Android development,We will be using a library to generate the Pie charts and graphs,We are allowed to use third party libraries (after speaking to professor)
+,,,Review Google's android tutorials,,The third party libraries save days on the statistical information display user story
+,,,Discussed Chart Library use,,
+2/8/2016,1,All present,Discussed GUI colour and refactoring,We decided to use peach colours,Background was unusable on larger devices
+,,,Added Canadian Nutrition File (CNF),Added the CNF files to the Android file,The CNF files have nutritional information and we can easily extract whatever rows we need/want 
+2/21/2016,4,All present,Updated hours of user stories,We will research standard Android GUIs,"Android has standard features so that we don't have to spend time ""reinventing the wheel"""
+,,,Prepped submission of Itr1,We have to put more emphasis on coding standards,Emphasizing coding standards will make it easier to understand each other's code
+,,,Re-estimated times of completion for each user story,Reduced estimates,"Estimates were inflated as per Itr0 grading, and needed to be re-evaluated"
+,,,Updated the priority of Statistical Feature,Made Statistical Features a High Priority,We felt this was a feature that made the app stand out the most as visually representing the numbers generated by this app will be its selling point 

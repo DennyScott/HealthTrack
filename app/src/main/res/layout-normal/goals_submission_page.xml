@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:keepScreenOn="true"
+    android:id="@+id/rewards">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:text="@string/goals_submission_title"
+        android:textStyle="bold"
+        android:textSize="@dimen/title_normal"
+        android:textColor="@color/title_colour"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="@dimen/settings_button_normal_width"
+        android:layout_height="@dimen/settings_button_normal_height"
+        android:id="@+id/settingsButton"
+        android:background="@drawable/settings_button_action"
+        android:onClick="settingsButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/settings_button_margin" />
+
+    <Button
+        android:layout_width="@dimen/save_changes_button_width"
+        android:layout_height="@dimen/save_changes_button_height"
+        android:text="@string/save_changes_button"
+        android:id="@+id/saveButton"
+        android:layout_above="@+id/settingsButton"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/targetWeightTextEntry"
+        android:layout_below="@+id/title"
+        android:layout_alignLeft="@+id/title"
+        android:layout_alignStart="@+id/title"
+        android:layout_marginTop="22dp"
+        android:text="@string/text_entry_target_weight"
+        android:layout_alignRight="@+id/settingsButton"
+        android:layout_alignEnd="@+id/settingsButton" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/targetWeeksTextEntry"
+        android:layout_below="@+id/targetWeightTextEntry"
+        android:layout_alignLeft="@+id/targetWeightTextEntry"
+        android:layout_alignStart="@+id/targetWeightTextEntry"
+        android:layout_alignRight="@+id/settingsButton"
+        android:layout_alignEnd="@+id/settingsButton"
+        android:text="@string/text_entry_target_weeks" />
+
+</RelativeLayout>

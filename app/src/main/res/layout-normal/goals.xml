@@ -15,19 +15,39 @@
         android:id="@+id/title"
         android:text="@string/goals_title"
         android:textStyle="bold"
-        android:textSize="40sp"
+        android:textSize="@dimen/title_normal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="#403c3c" />
+        android:textColor="@color/title_colour" />
 
     <ImageButton
-        android:layout_width="55dp"
-        android:layout_height="35dp"
+        android:layout_width="@dimen/settings_button_normal_width"
+        android:layout_height="@dimen/settings_button_normal_height"
         android:id="@+id/settingsButton"
         android:background="@drawable/settings_button_action"
-        android:layout_marginBottom="28dp"
         android:onClick="settingsButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/title" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="@dimen/settings_button_margin"
+        android:layout_marginBottom="@dimen/settings_button_margin" />
+
+    <Button
+        android:layout_width="@dimen/goals_button_width"
+        android:layout_height="@dimen/goals_button_height"
+        android:text="@string/user_info_button"
+        android:id="@+id/goalsUserInfoButton"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp" />
+
+    <Button
+        android:layout_width="@dimen/goals_button_width"
+        android:layout_height="@dimen/goals_button_height"
+        android:text="@string/goals_submission_button"
+        android:id="@+id/goalsSubmissionButton"
+        android:layout_below="@+id/goalsUserInfoButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp" />
 
 </RelativeLayout>

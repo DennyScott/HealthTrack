@@ -4,26 +4,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Stats {
-    float[] values;
-    String[] keys;
-    float[] otherValues;
-    String[] otherKeys;
-    final int MAX_SIZE = 7;
-    int amountOfOtherData = 0;
-    int size =0;// size of hashtable received from database for now we will use a known value
-    // we will show the top 6 biggest contributors and everything else will be listed under other
+    private float[] values;
+    private String[] keys;
+    private float[] otherValues;
+    private String[] otherKeys;
+    private final int MAX_SIZE = 7;
+    private int amountOfOtherData;
+    int mode;
+    private int size =0;
+    public Stats(){
+        amountOfOtherData = 0;
+        init(0);// will initialize to day by default.
+    }
+    // sets our chart information, must be called every time we switch our mode i.e day/week/month, to get new data from data base.
     public void init(int mode){
-        size = 8;
-        amountOfOtherData = size - (MAX_SIZE-1);
+        otherKeys = new String[]{"Nothing","Nothing"};// init to something other than null to avert crashes
+        otherValues = new float[] {50,50};// init to something other than null to avert crashes
+        this.mode = mode;
         values = new float[MAX_SIZE];
         keys = new String[MAX_SIZE];
+        float[] inValues = valuesFromDB(mode);
+        String[] inKeys = keysFromDB(mode);
+        size = sizeOf(inKeys,inValues);
+        amountOfOtherData = size - (MAX_SIZE-1);
         if(amountOfOtherData > 0){
             otherValues = new float[amountOfOtherData];
             otherKeys = new String[amountOfOtherData];
         }
-        float[] inValues = {5, 10, 15, 30, 40, 20, 10, 60}; // these values will be attained from database later on
-        String[] inKeys = {"Cholesterol", "Sodium", "Sugar", "Protein", "Fat", "Fiber", "Calcium", "Carbs"};// these values will be attained from database later on
-        ArrayList<keyValuePair> kVP = sort(inValues,inKeys );
+        ArrayList<KeyValuePair> kVP = sort(inValues,inKeys );
         if(size > MAX_SIZE) {
             populate(kVP);
         }
@@ -49,7 +57,11 @@ public class Stats {
     public  String[] getOtherKeys(){
         return otherKeys;
     }
-    void populate(ArrayList<keyValuePair> array){
+    /*populates our "main values" - aka things visible on main chart, and populates the "other"
+    * not visible on chart, but will be able to visit the detailed subsection for every element
+    * in the chart later on (next iteration)
+    * */
+    private void populate(ArrayList<KeyValuePair> array){
         for(int x = 0; x< MAX_SIZE-1; x++){
             values[x] = array.get(x).value;
             keys[x] = array.get(x).key;
@@ -67,44 +79,39 @@ public class Stats {
             keys[MAX_SIZE-1] = "Other";
         }
     }
-    ArrayList<keyValuePair> sort(float[] values, String[] keys){
-        ArrayList<keyValuePair> retVal = null;
+    // Sorts key value pair so we get the biggest nutritional components first
+    private ArrayList<KeyValuePair> sort(float[] values, String[] keys){
+        ArrayList<KeyValuePair> retVal = null;
         if(size > 0 && values.length == size && keys.length == size) {
-            ArrayList<keyValuePair> kVP = new ArrayList<keyValuePair>();
+            ArrayList<KeyValuePair> kVP = new ArrayList<KeyValuePair>();
             for (int x = 0; x < size; x++) {
-                kVP.add(new keyValuePair(keys[x], values[x]));
+                kVP.add(new KeyValuePair(keys[x], values[x]));
             }
             Collections.sort(kVP);
             retVal = kVP;
         }
         return retVal;
     }
-}
-class keyValuePair implements Comparable<keyValuePair> {
-    float value;
-    String key;
-
-    keyValuePair(String key, float value) {
-        this.value = value;
-        this.key = key;
+    private String[] keysFromDB(int mode){
+        String[] keys =  {"Cholesterol", "Sodium", "Sugar", "Protein", "Fat", "Fiber", "Calcium", "Carbs"};// these values will be attained from database later on
+        return keys;
     }
-
-    @Override
-    public boolean equals(Object other) {
-        boolean retVal = false;
-        if (other == this && this.key.toLowerCase().equals(((keyValuePair) other).key.toLowerCase())
-                && this.value ==(((keyValuePair)other).value)) retVal = true;
-        return retVal;
+    private float[] valuesFromDB(int mode){
+        float[] values = {5, 10, 15, 30, 40, 20, 10, 60};// these values will be attained from database later on
+        return values;
     }
-    @Override
-    public int compareTo(keyValuePair other) {
-        int retVal = 0;
-        if(other.value > this.value){
-            retVal = 1;
+    // returns size of array from database.
+    private int sizeOf(String[] keys, float[] values){// finds smallest of two list sizes in case of mistake in DB code.
+        int returnVal = 0;
+        if(keys != null && values != null) {
+            int val1 = keys.length;
+            int val2 = values.length;
+            if (val1 < val2) {
+                returnVal = val1;
+            } else {
+                returnVal = val2;
+            }
         }
-        else if(other.value < this.value){
-            retVal = -1;
-        }
-        return retVal;
+        return returnVal;
     }
 }
