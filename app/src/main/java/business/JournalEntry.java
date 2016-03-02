@@ -9,5 +9,5 @@ import java.sql.Date;
 public class JournalEntry {
     Date dateEntered;
     //Food eaten;
-    //Serving size;
+    int servings;
 }
