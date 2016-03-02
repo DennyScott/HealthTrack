@@ -36,8 +36,6 @@ public class Goals extends Activity implements View.OnClickListener {
         Intent gameMode = new Intent(this, mainStats.class);
         startActivity(gameMode);
         finish();
-        Output.toastMessage(this, "Returning to previous screen.", Output.LONG_TOAST);
-        finish();
     }
 
     /**
