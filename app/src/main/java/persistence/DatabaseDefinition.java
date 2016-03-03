@@ -63,10 +63,10 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     private final String OPT_COMMA      = ",";
 
     //tables
-    private final String TABLE_PERS_INFO        = " PersonalInformation(";
-    private final String TABLE_CUST_FOODS       = " CustomFoods(";
-    private final String TABLE_EXT_FOODS        = " ExternalFoods(";
-    private final String TABLE_TRANS_HIST       = " TransactionalHistory(";
+    public final String TABLE_PERS_INFO        = " PersonalInformation(";
+    public final String TABLE_CUST_FOODS       = " CustomFoods(";
+    public final String TABLE_EXT_FOODS        = " ExternalFoods(";
+    public final String TABLE_TRANS_HIST       = " TransactionalHistory(";
 
     //*table values
     //PersInfo Table:
@@ -93,15 +93,15 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 //    private final String COLNAME_FATS = "";
 
     //Transactional History Table:
-    //private final String COLNAME_ID = "";     //reusable
-//    private final String COLNAME_FOODNAME = "";
-    private final String COLNAME_EATEN_DATE = "EatenDate";
-    private final String COLNAME_EATEN_TIME = "EatenTime";
-    private final String COLNAME_EATEN_CALORIES = "EatenCalories";
-    private final String COLNAME_EATEN_PROTEINS = "EatenProteins";
-    private final String COLNAME_EATEN_CARBS = "EatenCarbohydrates";
-    private final String COLNAME_EATEN_FATS = "EatenFats";
-    private final String COLNAME_PORTIONSIZE = "PortionSize";
+//    public final String COLNAME_ID = "";     //reusable
+//    public final String COLNAME_FOODNAME = "";
+    public final String COLNAME_EATEN_DATE = "EatenDate";
+    public final String COLNAME_EATEN_TIME = "EatenTime";
+    public final String COLNAME_EATEN_CALORIES = "EatenCalories";
+    public final String COLNAME_EATEN_PROTEINS = "EatenProteins";
+    public final String COLNAME_EATEN_CARBS = "EatenCarbohydrates";
+    public final String COLNAME_EATEN_FATS = "EatenFats";
+    public final String COLNAME_PORTIONSIZE = "PortionSize";
 
 
     private Context dbContext;
@@ -111,6 +111,12 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     public DatabaseDefinition(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, DatabaseErrorHandler errorHandler) {
         super(context, name, factory, version, errorHandler);
         cursorFactory = factory;
+        dbContext = context;
+    }
+
+
+    public DatabaseDefinition(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION, null);
         dbContext = context;
     }
 
