@@ -20,6 +20,18 @@ public class Data_TransactionalHistory {
     //          protein_eaten
     //          carbohydrdates_eaten
     //          fats_eaten
+
+    //Transactional History Table:
+    public final String COLNAME_ID = "";     //reusable
+    public final String COLNAME_FOODNAME = "";
+    public static final String COLNAME_EATEN_DATE = "EatenDate";
+    public static final String COLNAME_EATEN_TIME = "EatenTime";
+    public final String COLNAME_EATEN_CALORIES = "EatenCalories";
+    public final String COLNAME_EATEN_PROTEINS = "EatenProteins";
+    public final String COLNAME_EATEN_CARBS = "EatenCarbohydrates";
+    public final String COLNAME_EATEN_FATS = "EatenFats";
+    public final String COLNAME_PORTIONSIZE = "PortionSize";
+
     public Data_TransactionalHistory(int mId, String mFoodName, String mEatendate, String mEatentime, int mPortionSize, int mEatenCalories, int mEatenProtein, int mEatenCarohydrates, int mEatenFats) {
         this.mId = mId;
         this.mFoodName = mFoodName;
