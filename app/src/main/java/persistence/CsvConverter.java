@@ -1,5 +1,8 @@
 package persistence;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,12 +27,12 @@ public class CsvConverter {
 //    };
     String[] filenames = {"extdb/FOOD NAME.csv"};
 
-    public void main(String[] args) {
+    public CsvConverter() {
         commonCols = new ArrayList<String>();
         allCols = new ArrayList<String>();
         outCols = new ArrayList<String>();
         files = new ArrayList<String>();
-        foods = new Foods(commonCols,allCols,outCols,files);
+        foods = new Foods(commonCols, allCols, outCols, files);
 
         getFiles(filenames);
         //reorganize columns
@@ -92,7 +95,7 @@ public class CsvConverter {
                 //for each file, open it first
                 filein = new BufferedReader(new FileReader(f));
                 //get the first line
-                line =  filein.readLine();
+                line = filein.readLine();
                 //split it into the columns and add it to the arraylist
                 filecols = new ArrayList<String>(
                         Arrays.asList(
@@ -100,12 +103,12 @@ public class CsvConverter {
 
                 //iterate through the rest of the file, creating/adding the objects
                 String data[];
-                while((line = filein.readLine()) != null) {
+                while ((line = filein.readLine()) != null) {
                     data = splitLineIntoData(line, ",");
                     if (data.length == 0) continue;
                     if (firstFile) {
                         //if its the first file, add the food directly
-                        foods.addNewFood(filecols,data);
+                        foods.addNewFood(filecols, data);
                     } else {
                         createFood(filecols, data);
 
@@ -138,7 +141,7 @@ public class CsvConverter {
                 do {
                     commaVal += tokens[i];
                     i++;
-                    if (i == tokens.length)  {
+                    if (i == tokens.length) {
                         break;
                     }
                     if (!tokens[i].contains(dblOrSingQuote)) {
@@ -159,10 +162,10 @@ public class CsvConverter {
         int indexOfFood = foods.hasFood(filecols, data);
         if (indexOfFood != -1) {
             //food exists already, add to it extra information
-            foods.addUniqueData(indexOfFood, filecols,data);
+            foods.addUniqueData(indexOfFood, filecols, data);
         } else {
             //new food found
-            foods.addNewFood(filecols,data);
+            foods.addNewFood(filecols, data);
         }
     }
 
@@ -232,8 +235,14 @@ public class CsvConverter {
             System.out.println(allCols.indexOf(c) + ": " + c);
         }
     }
-    public void getFiles(String[] args) {
-        for (String f : args) {
+
+    /**
+     * Gets the column headings from the CSV files and compiles them together. Calls {@link #joinColumns(String[])}
+     *
+     * @param filenames The files to extract the columns from
+     */
+    public void getFiles(String[] filenames) {
+        for (String f : filenames) {
             //f are filenames for each passed csv
             files.add(f);
             joinColumns(
@@ -244,6 +253,13 @@ public class CsvConverter {
 
     //add the columns to the corresponding list
     //if duplicate, add to commons (duplicate = primary ID)
+
+    /**
+     * add the columns to the corresponding list
+     * if duplicate, add to commons (duplicate = primary ID)
+     *
+     * @param columns
+     */
     public void joinColumns(String[] columns) {
         for (String c : columns) {
             if (allCols.contains(c)) {
@@ -257,12 +273,13 @@ public class CsvConverter {
     }
 
     /**
-     open a file and read the first line, splitting it by commas
-     return null on empty file
+     * open a file and read the first line, splitting it by commas
+     * return null on empty file
      */
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     public String[] openCsvGetColumns(String filename) {
         File file = new File(filename);
-        try (BufferedReader br = new BufferedReader(new FileReader(file))){
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             //read only first line
             String line = br.readLine();
             return line.split(",");
