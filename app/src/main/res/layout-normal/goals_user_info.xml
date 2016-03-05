@@ -43,8 +43,8 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/text_entry_name"
+        android:inputType="textPersonName|textCapWords"
+        android:hint="Name"
         android:ems="10"
         android:id="@+id/nameTextEntry"
         android:layout_below="@+id/title"
@@ -58,12 +58,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:hint="Age"
         android:ems="10"
         android:id="@+id/ageTextEntry"
         android:layout_below="@+id/nameTextEntry"
         android:layout_alignLeft="@+id/nameTextEntry"
         android:layout_alignStart="@+id/nameTextEntry"
-        android:text="@string/text_entry_age"
         android:layout_alignRight="@+id/title"
         android:layout_alignEnd="@+id/title" />
 
@@ -71,12 +71,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
+        android:hint="Weight (lbs)"
         android:ems="10"
         android:id="@+id/targetWeightTextEntry"
         android:layout_below="@+id/ageTextEntry"
         android:layout_alignLeft="@+id/ageTextEntry"
         android:layout_alignStart="@+id/ageTextEntry"
-        android:text="@string/text_entry_weight"
         android:layout_alignRight="@+id/title"
         android:layout_alignEnd="@+id/title" />
 

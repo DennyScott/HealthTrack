@@ -43,13 +43,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
+        android:hint="Target Weight (lbs)"
         android:ems="10"
         android:id="@+id/targetWeightTextEntry"
         android:layout_below="@+id/title"
         android:layout_alignLeft="@+id/title"
         android:layout_alignStart="@+id/title"
         android:layout_marginTop="22dp"
-        android:text="@string/text_entry_target_weight"
         android:layout_alignRight="@+id/settingsButton"
         android:layout_alignEnd="@+id/settingsButton" />
 
@@ -57,13 +57,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:hint="Target Weeks"
         android:ems="10"
         android:id="@+id/targetWeeksTextEntry"
         android:layout_below="@+id/targetWeightTextEntry"
         android:layout_alignLeft="@+id/targetWeightTextEntry"
         android:layout_alignStart="@+id/targetWeightTextEntry"
         android:layout_alignRight="@+id/settingsButton"
-        android:layout_alignEnd="@+id/settingsButton"
-        android:text="@string/text_entry_target_weeks" />
+        android:layout_alignEnd="@+id/settingsButton" />
 
 </RelativeLayout>
