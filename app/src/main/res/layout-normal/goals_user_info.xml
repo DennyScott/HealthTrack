@@ -73,11 +73,34 @@
         android:inputType="numberDecimal"
         android:hint="Weight (lbs)"
         android:ems="10"
-        android:id="@+id/targetWeightTextEntry"
+        android:id="@+id/weightTextEntry"
         android:layout_below="@+id/ageTextEntry"
         android:layout_alignLeft="@+id/ageTextEntry"
         android:layout_alignStart="@+id/ageTextEntry"
         android:layout_alignRight="@+id/title"
         android:layout_alignEnd="@+id/title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Load User Input (test)"
+        android:id="@+id/textView"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/weightTextEntry"
+        android:layout_alignLeft="@+id/weightTextEntry"
+        android:layout_alignStart="@+id/weightTextEntry" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Load"
+        android:id="@+id/loadButton"
+        android:onClick="readMessage"
+        android:layout_above="@+id/saveButton"
+        android:layout_alignLeft="@+id/saveButton"
+        android:layout_alignStart="@+id/saveButton"
+        android:layout_alignRight="@+id/saveButton"
+        android:layout_alignEnd="@+id/saveButton" />
 
 </RelativeLayout>
