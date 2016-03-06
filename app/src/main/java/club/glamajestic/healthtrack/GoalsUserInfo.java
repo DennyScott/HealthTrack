@@ -80,24 +80,10 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         saveText();
     }
 
+    // Saves info in a string: "Full Name, age, weight"
     private void saveText(){
-        /*try {
-
-            OutputStreamWriter out = new OutputStreamWriter(openFileOutput("userInfo", MODE_APPEND));
-            EditText ET = (EditText)findViewById(R.id.nameTextEntry);
-            String text = ET.getText().toString();
-            out.write(text);
-            out.write('\n');
-            out.close();
-            Toast.makeText(this, text, Toast.LENGTH_LONG).show();
-
-        } catch (Throwable t) {
-
-            Toast.makeText(this, "Exception: " + t.toString(), Toast.LENGTH_LONG).show();
-
-        }*/
         String message = editText.getText().toString();
-        String fileName = "userInput";
+        String fileName = "userInfo";
         try {
             FileOutputStream fileOutputStream = openFileOutput(fileName,MODE_PRIVATE);
             fileOutputStream.write(message.getBytes());
@@ -122,13 +108,14 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
     }
 
     /*
-    This is only here as a reminder of how to retrieve the user's input from internal storage.
+    This is only here as a reminder of how to retrieve the user's input from internal storage,
+    and that it works. It's temporary.
     Requires plain text view widget and a load button.
      */
     public void readMessage(View view) {
         try {
             String message;
-            FileInputStream fileInputStream = openFileInput("userInput");
+            FileInputStream fileInputStream = openFileInput("userInfo");
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             StringBuffer stringBuffer = new StringBuffer();
