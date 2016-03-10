@@ -89,8 +89,8 @@ public class StatsGui extends Activity {
      * <code>Activity</code> on the stack.
      */
     public void onBackPressed() {
-        Intent gameMode = new Intent(this, mainStats.class);
-        startActivity(gameMode);
+        //Intent gameMode = new Intent(this, mainStats.class);
+        //startActivity(gameMode);
         finish();
     }
 

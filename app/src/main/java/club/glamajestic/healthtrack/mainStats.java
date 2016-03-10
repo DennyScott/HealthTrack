@@ -123,19 +123,19 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
             // Handle the goals
             Intent gameMode = new Intent(this, Goals.class);
             startActivity(gameMode);
-            finish();
+            //finish();
         } else if (id == R.id.nav_food) {
             Intent gameMode = new Intent(this, Ate.class);
             startActivity(gameMode);
-            finish();
+            //finish();
         } else if (id == R.id.nav_dstats) {
             Intent gameMode = new Intent(this, StatsGui.class);
             startActivity(gameMode);
-            finish();
+            //finish();
         } else if (id == R.id.nav_settings) {
             Intent gameMode = new Intent(this, SettingsActivity.class);
             startActivity(gameMode);
-            finish();
+            //finish();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
