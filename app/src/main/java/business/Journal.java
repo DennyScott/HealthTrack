@@ -35,13 +35,13 @@ public class Journal {
         Cursor result = db.query(
                 dataDef.TABLE_TRANS_HIST,
                 new String[] {
-                        Data_TransactionalHistory.COLNAME_EATEN_DATE,
-                        Data_TransactionalHistory.COLNAME_EATEN_TIME
+                        DataTransactionalHistory.COLNAME_EATEN_DATE,
+                        DataTransactionalHistory.COLNAME_EATEN_TIME
                 },
-                (Data_TransactionalHistory.COLNAME_EATEN_DATE+" = ?"),
+                (DataTransactionalHistory.COLNAME_EATEN_DATE+" = ?"),
                 new String[] {
                         searchDate.toString()
-                },null,null,Data_TransactionalHistory.COLNAME_EATEN_DATE
+                },null,null, DataTransactionalHistory.COLNAME_EATEN_DATE
         );
         db.close();
         return null;

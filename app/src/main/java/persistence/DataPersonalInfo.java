@@ -1,13 +1,13 @@
 package persistence;
 
-public class Data_PersonalInfo {
+public class DataPersonalInfo {
     private int mId;
     private String mName;
     private String mGender;
     private int mAge;
     private int mWeight;
 
-    public Data_PersonalInfo(int mId, String mName, String mGender, int mAge, int mWeight) {
+    public DataPersonalInfo(int mId, String mName, String mGender, int mAge, int mWeight) {
         this.mId = mId;
         this.mName = mName;
         this.mGender = mGender;
