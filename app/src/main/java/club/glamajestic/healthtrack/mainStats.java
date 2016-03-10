@@ -13,15 +13,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageButton;
+import android.widget.FrameLayout;
+import com.github.mikephil.charting.charts.PieChart;
 
-public class mainStats extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import business.InitPieChart;
+
+public class mainStats extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+    private FrameLayout stats;
+    private PieChart chart;
+    private float[] yData;
+    private String[] xData;
+    int charInitMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_stats);
+        stats = (FrameLayout) findViewById(R.id.chartMainScreen);
+        charInitMode = 3;
+        InitPieChart pie = new InitPieChart(this, stats, chart, yData, xData, charInitMode);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,7 +54,6 @@ public class mainStats extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
