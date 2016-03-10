@@ -39,7 +39,7 @@
                     <FrameLayout
                         android:id="@+id/chartFrame"
                         android:layout_width="match_parent"
-                        android:layout_height="466dp"
+                        android:layout_height="537dp"
                         android:largeHeap="true"
                         android:layout_alignRight="@+id/monthButton"
                         android:layout_alignEnd="@+id/monthButton"

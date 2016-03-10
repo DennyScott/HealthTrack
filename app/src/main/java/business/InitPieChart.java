@@ -14,6 +14,8 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
+
+import club.glamajestic.healthtrack.DisplayList;
 import club.glamajestic.healthtrack.StatsGui;
 
 /**
@@ -75,7 +77,7 @@ public class InitPieChart {
                 if (mode == 3) {
                     openStats(ctx);
                 } else {
-                    //TO DO..What Happens on click
+                    openList(ctx);
                 }
             }
 
@@ -163,6 +165,10 @@ public class InitPieChart {
     }
     private void openStats(Context ctx){
         Intent gameMode = new Intent(ctx, StatsGui.class);
+        ctx.startActivity(gameMode);
+    }
+    private void openList(Context ctx){
+        Intent gameMode = new Intent(ctx, DisplayList.class);
         ctx.startActivity(gameMode);
     }
 }
