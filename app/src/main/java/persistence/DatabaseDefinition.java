@@ -8,6 +8,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
+/*
+    TODO
+        Add more columns to the food tables
+            Sodium
+
+
+ */
+
 
 public class DatabaseDefinition extends SQLiteOpenHelper {
 
@@ -45,6 +53,10 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
                 protein_eaten
                 carbohydrdates_eaten
                 fats_eaten
+            Goals table
+                id
+                date
+                < >
      */
 
     //for all tables
@@ -191,6 +203,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 //          protein_eaten
 //          carbohydrdates_eaten
 //          fats_eaten
+        //week-month2016
         db.execSQL(
                 CREATE_TABLE + IF_NOT_EXISTS + TABLE_TRANS_HIST +
                         COLNAME_ID              + DATATYPE_INT  + OPT_PRIM_KEY + OPT_COMMA +
@@ -218,7 +231,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 
     //*************DATABASE INSERTIONS*************************
 
-    public long createPersonalInfo(Data_PersonalInfo data) {
+    public long createPersonalInfo(DataPersonalInfo data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues vals = new ContentValues();
         //        personal information
@@ -237,7 +250,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return db.insert(TABLE_PERS_INFO, null, vals);
     }
 
-    public long createCustomFoods(Data_CustomFoods data) {
+    public long createCustomFoods(DataCustomFoods data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues vals = new ContentValues();
         //        custom foods
@@ -259,7 +272,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return db.insert(TABLE_CUST_FOODS, null, vals);
     }
 
-    public long createExternalFoods(Data_ExternalFoods data) {
+    public long createExternalFoods(DataExternalFoods data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues vals = new ContentValues();
         //        external foods
@@ -281,7 +294,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return db.insert(TABLE_EXT_FOODS, null, vals);
     }
 
-    public long createTransactionalHistory(Data_TransactionalHistory data) {
+    public long createTransactionalHistory(DataTransactionalHistory data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues vals = new ContentValues();
         //        transactional history (eaten)
@@ -311,7 +324,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 
     //***************DATABASE SINGLE ID RETRIEVALS****************************
 
-    public Data_PersonalInfo getPersonalInfo(int id) {
+    public DataPersonalInfo getPersonalInfo(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         //SELECT * FROM TABLE_ (because it SHOULD HAVE only 1 entry)
@@ -331,7 +344,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //          gender
         //          age
         //          weight
-        Data_PersonalInfo retrievedData = new Data_PersonalInfo(
+        DataPersonalInfo retrievedData = new DataPersonalInfo(
                 cursor.getInt(0), //int _id is always the first column
                 cursor.getString(1),
                 cursor.getString(2),
@@ -342,7 +355,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return retrievedData;
     }
 
-    public Data_CustomFoods getCustomFood(int id) {
+    public DataCustomFoods getCustomFood(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         //SELECT * FROM TABLE_ WHERE _id = Id
@@ -362,7 +375,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //              proteins
         //              carbohydrdates
         //              fats
-        Data_CustomFoods retrievedData = new Data_CustomFoods(
+        DataCustomFoods retrievedData = new DataCustomFoods(
                 cursor.getInt(0), //int _id is always the first column
                 cursor.getString(1),
                 cursor.getInt(2),
@@ -374,7 +387,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return retrievedData;
     }
 
-    public Data_ExternalFoods getExternalFood(int id) {
+    public DataExternalFoods getExternalFood(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         //SELECT * FROM TABLE_ WHERE _id = Id
@@ -394,7 +407,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //          proteins
         //          carbohydrdates
         //          fats
-        Data_ExternalFoods retrievedData = new Data_ExternalFoods(
+        DataExternalFoods retrievedData = new DataExternalFoods(
                 cursor.getInt(0), //int _id is always the first column
                 cursor.getString(1),
                 cursor.getInt(2),
@@ -406,7 +419,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return retrievedData;
     }
 
-    public Data_TransactionalHistory getTransactionalHistory(int id) {
+    public DataTransactionalHistory getTransactionalHistory(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         //SELECT * FROM TABLE_ WHERE _id = id
@@ -429,7 +442,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //          protein_eaten
         //          carbohydrdates_eaten
         //          fats_eaten
-        Data_TransactionalHistory retrievedData = new Data_TransactionalHistory(
+        DataTransactionalHistory retrievedData = new DataTransactionalHistory(
                 cursor.getInt(0), //int _id is always the first column
                 cursor.getString(1),
                 cursor.getString(2),
@@ -491,7 +504,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 
     //***************DATABASE SINGLE ID UPDATES******************************
 
-    public int updatePersonalInfo(Data_PersonalInfo newRecord) {
+    public int updatePersonalInfo(DataPersonalInfo newRecord) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues vals = new ContentValues();
         //update the data in the assumed order:
@@ -511,7 +524,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return db.update(TABLE_PERS_INFO,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
     }
 
-    public int updateCustomFood(Data_CustomFoods newRecord) {
+    public int updateCustomFood(DataCustomFoods newRecord) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues vals = new ContentValues();
         //update the data in the assumed order:
@@ -533,7 +546,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return db.update(TABLE_CUST_FOODS,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
     }
 
-    public int updateExternalFood(Data_ExternalFoods newRecord) {
+    public int updateExternalFood(DataExternalFoods newRecord) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues vals = new ContentValues();
         //update the data in the assumed order:
@@ -555,7 +568,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return db.update(TABLE_EXT_FOODS,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
     }
 
-    public int updateTransaHistoryRecord(Data_TransactionalHistory newRecord) {
+    public int updateTransaHistoryRecord(DataTransactionalHistory newRecord) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues vals = new ContentValues();
         //update the data in the assumed order:

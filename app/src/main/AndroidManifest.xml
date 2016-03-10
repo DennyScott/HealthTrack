@@ -55,6 +55,11 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"></activity>
+        <activity
+            android:name=".DisplayList"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="List View"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <instrumentation android:name="android.support.test.runner.AndroidJUnitRunner"
             android:targetPackage="club.glamajestic.tests.StatsTest"
             android:label="Tests for Stats"/>

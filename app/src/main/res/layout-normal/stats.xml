@@ -10,36 +10,54 @@
     android:layout_weight="3"
     android:id="@+id/stats">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/title"
-        android:text="@string/stats_title"
-        android:textStyle="bold"
-        android:textSize="@dimen/title_normal"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/title_colour" />
-    <FrameLayout
-        android:id="@+id/chartFrame"
+    <TabHost
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:largeHeap="true"
-        android:layout_alignRight="@+id/monthButton"
-        android:layout_alignEnd="@+id/monthButton"
-        android:layout_above="@+id/dayButton"
-        android:layout_below="@+id/title">
-    </FrameLayout>
+        android:id="@+id/tabHost">
 
-    <ImageButton
-        android:layout_width="@dimen/settings_button_normal_width"
-        android:layout_height="@dimen/settings_button_normal_height"
-        android:id="@+id/settingsButton"
-        android:background="@drawable/settings_button_action"
-        android:onClick="settingsButton"
-        android:layout_above="@+id/chartFrame"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/pieChartTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/chartFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="537dp"
+                        android:largeHeap="true"
+                        android:layout_alignRight="@+id/monthButton"
+                        android:layout_alignEnd="@+id/monthButton"
+                        android:layout_above="@+id/dayButton"
+                        android:layout_marginTop="25dp">
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/barChartTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"></LinearLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
 
     <Button
         android:layout_width="wrap_content"
@@ -49,41 +67,52 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="@color/stats_time_button_text_colour"
+        android:textColor="#ffffff"
         android:textSize="@dimen/stats_time_button_text_size"
         android:onClick="dayButton"
-        android:background="#ffb9dd"
+        android:background="#e28f13"
         android:alpha="0.4"
         android:layout_toLeftOf="@+id/weekButton"
-        android:layout_toStartOf="@+id/weekButton" />
+        android:layout_toStartOf="@+id/weekButton"
+        android:textStyle="bold"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/week_button"
         android:id="@+id/weekButton"
-        android:textColor="@color/stats_time_button_text_colour"
+        android:textColor="#ffffff"
         android:textSize="@dimen/stats_time_button_text_size"
         android:onClick="weekButton"
         android:alpha="0.4"
-        android:background="#ffb9dd"
+        android:background="#e28f13"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:textStyle="bold"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/month_button"
         android:id="@+id/monthButton"
-        android:textColor="@color/stats_time_button_text_colour"
+        android:textColor="#ffffff"
         android:textSize="@dimen/stats_time_button_text_size"
         android:onClick="monthButton"
-        android:background="#ffb9dd"
+        android:background="#e28f13"
         android:alpha="0.4"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_toRightOf="@+id/weekButton"
-        android:layout_toEndOf="@+id/weekButton" />
+        android:layout_toEndOf="@+id/weekButton"
+        android:textStyle="bold"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp" />
 
 </RelativeLayout>

@@ -1,6 +1,6 @@
 package persistence;
 
-public class Data_ExternalFoods {
+public class DataExternalFoods {
     private int mId;
     private String mFoodName;
     private int mCalories;
@@ -8,7 +8,7 @@ public class Data_ExternalFoods {
     private int mCarbohydrates;
     private int mFats;
 
-    public Data_ExternalFoods(int mId, String mFoodName, int mCalories, int mProtein, int mCarbohydrates, int mFats) {
+    public DataExternalFoods(int mId, String mFoodName, int mCalories, int mProtein, int mCarbohydrates, int mFats) {
         this.mId = mId;
         this.mFoodName = mFoodName;
         this.mCalories = mCalories;

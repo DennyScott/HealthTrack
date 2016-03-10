@@ -1,6 +1,6 @@
 package persistence;
 
-public class Data_TransactionalHistory {
+public class DataTransactionalHistory {
     private int mId;
     private String mFoodName;
     private String mEatendate;  //TODO change this to a date object later
@@ -32,7 +32,7 @@ public class Data_TransactionalHistory {
     public final String COLNAME_EATEN_FATS = "EatenFats";
     public final String COLNAME_PORTIONSIZE = "PortionSize";
 
-    public Data_TransactionalHistory(int mId, String mFoodName, String mEatendate, String mEatentime, int mPortionSize, int mEatenCalories, int mEatenProtein, int mEatenCarohydrates, int mEatenFats) {
+    public DataTransactionalHistory(int mId, String mFoodName, String mEatendate, String mEatentime, int mPortionSize, int mEatenCalories, int mEatenProtein, int mEatenCarohydrates, int mEatenFats) {
         this.mId = mId;
         this.mFoodName = mFoodName;
         this.mEatendate = mEatendate;
