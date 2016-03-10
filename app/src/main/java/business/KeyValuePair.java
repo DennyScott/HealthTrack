@@ -7,10 +7,12 @@ package business;
 public class KeyValuePair implements Comparable<KeyValuePair> {
     float value;
     String key;
+    String unit;
 
-    KeyValuePair(String key, float value) {
+    KeyValuePair(String key, float value, String unit) {
         this.value = value;
         this.key = key;
+        this.unit = unit;
     }
 
     @Override

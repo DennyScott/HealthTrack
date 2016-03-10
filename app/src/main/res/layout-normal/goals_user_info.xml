@@ -43,8 +43,8 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/text_entry_name"
+        android:inputType="textPersonName|textCapWords"
+        android:hint="@string/name_submission_hint"
         android:ems="10"
         android:id="@+id/nameTextEntry"
         android:layout_below="@+id/title"
@@ -58,12 +58,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:hint="@string/age_submission_hint"
         android:ems="10"
         android:id="@+id/ageTextEntry"
         android:layout_below="@+id/nameTextEntry"
         android:layout_alignLeft="@+id/nameTextEntry"
         android:layout_alignStart="@+id/nameTextEntry"
-        android:text="@string/text_entry_age"
         android:layout_alignRight="@+id/title"
         android:layout_alignEnd="@+id/title" />
 
@@ -71,13 +71,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
+        android:hint="@string/weight_submission_hint"
         android:ems="10"
-        android:id="@+id/targetWeightTextEntry"
+        android:id="@+id/weightTextEntry"
         android:layout_below="@+id/ageTextEntry"
         android:layout_alignLeft="@+id/ageTextEntry"
         android:layout_alignStart="@+id/ageTextEntry"
-        android:text="@string/text_entry_weight"
         android:layout_alignRight="@+id/title"
         android:layout_alignEnd="@+id/title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/weightTextEntry"
+        android:layout_alignLeft="@+id/weightTextEntry"
+        android:layout_alignStart="@+id/weightTextEntry" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/test_load"
+        android:id="@+id/loadButton"
+        android:onClick="readMessage"
+        android:layout_above="@+id/saveButton"
+        android:layout_alignLeft="@+id/saveButton"
+        android:layout_alignStart="@+id/saveButton"
+        android:layout_alignRight="@+id/saveButton"
+        android:layout_alignEnd="@+id/saveButton" />
 
 </RelativeLayout>

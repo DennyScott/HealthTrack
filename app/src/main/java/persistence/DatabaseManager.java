@@ -34,7 +34,7 @@ static String[] filenames = {"extdb/FOOD NAME.csv",
         converter.printPrimaryKeys();
         //ready to read objects
         converter.readObjects();
-        converter.listFoods();
+        //converter.listFoods();
         //open csvs
         //  extract columns (first lines)
         //      put in a list

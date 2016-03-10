@@ -1,6 +1,7 @@
 package club.glamajestic.healthtrack;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,15 +14,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageButton;
+import android.widget.FrameLayout;
+import com.github.mikephil.charting.charts.PieChart;
 
-public class mainStats extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import business.InitPieChart;
+
+public class mainStats extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+    private FrameLayout stats;
+    private PieChart chart;
+    private MediaPlayer backgroundMusic;
+    boolean soundEnabled;
+    int charInitMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_stats);
+        boolean soundEnabled = true;
+        if(soundEnabled) {
+            backgroundMusic = MediaPlayer.create(this, R.raw.delta);
+            backgroundMusic.setLooping( true );
+            backgroundMusic.start();
+        }
+        stats = (FrameLayout) findViewById(R.id.chartMainScreen);
+        charInitMode = 3;
+        InitPieChart pie = new InitPieChart(this, stats, chart, charInitMode);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,7 +61,6 @@ public class mainStats extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -52,6 +68,26 @@ public class mainStats extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+            if (backgroundMusic != null) {
+                if (backgroundMusic.isPlaying()) {
+                    backgroundMusic.pause();
+                }
+            }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(backgroundMusic != null){
+            if(!backgroundMusic.isPlaying()){
+                backgroundMusic.start();
+            }
         }
     }
 
@@ -87,19 +123,19 @@ public class mainStats extends AppCompatActivity
             // Handle the goals
             Intent gameMode = new Intent(this, Goals.class);
             startActivity(gameMode);
-            finish();
+            //finish();
         } else if (id == R.id.nav_food) {
             Intent gameMode = new Intent(this, Ate.class);
             startActivity(gameMode);
-            finish();
+            //finish();
         } else if (id == R.id.nav_dstats) {
             Intent gameMode = new Intent(this, StatsGui.class);
             startActivity(gameMode);
-            finish();
+            //finish();
         } else if (id == R.id.nav_settings) {
             Intent gameMode = new Intent(this, SettingsActivity.class);
             startActivity(gameMode);
-            finish();
+            //finish();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -33,8 +33,8 @@ public class Goals extends Activity implements View.OnClickListener {
      * <code>Activity</code> on the stack.
      */
     public void onBackPressed() {
-        Intent gameMode = new Intent(this, mainStats.class);
-        startActivity(gameMode);
+        //Intent gameMode = new Intent(this, mainStats.class);
+        //startActivity(gameMode);
         finish();
     }
 
