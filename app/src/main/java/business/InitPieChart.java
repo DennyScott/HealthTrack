@@ -27,7 +27,12 @@ public class InitPieChart {
     FrameLayout f;
     PieChart pie;
     int mode;
-    public InitPieChart(final Context ctx, FrameLayout f, PieChart pie, float[] y, String[] x,final int charInitMode){
+    String[] putKeys;
+    String[] putUnits;
+    float[] putValues;
+    float[] y;
+    String[] x;
+    public InitPieChart(final Context ctx, FrameLayout f, PieChart pie, final int charInitMode){
         StatsBus = new Stats();
         this.ctx = ctx;
         this.f = f;
@@ -77,6 +82,16 @@ public class InitPieChart {
                 if (mode == 3) {
                     openStats(ctx);
                 } else {
+                    if(StatsBus.getKeys()[e.getXIndex()].equals("Other")){
+                        putKeys = StatsBus.getOtherKeys();
+                        putUnits = StatsBus.getOtherUnits();
+                        putValues = StatsBus.getOtherValues();
+                    }
+                    else{
+                        putKeys = StatsDataAccess.getFoodNames(mode,StatsBus.getKeys()[e.getXIndex()]);
+                        putUnits = StatsDataAccess.getFoodUnits(mode, StatsBus.getKeys()[e.getXIndex()]);
+                        putValues = StatsDataAccess.getFoodValues(mode, StatsBus.getKeys()[e.getXIndex()]);
+                    }
                     openList(ctx);
                 }
             }
@@ -168,7 +183,12 @@ public class InitPieChart {
         ctx.startActivity(gameMode);
     }
     private void openList(Context ctx){
+
+
         Intent gameMode = new Intent(ctx, DisplayList.class);
+        gameMode.putExtra("keys",putKeys);
+        gameMode.putExtra("units",putUnits);
+        gameMode.putExtra("values",putValues);
         ctx.startActivity(gameMode);
     }
 }

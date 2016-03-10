@@ -13,6 +13,7 @@ public class CustomList extends ArrayAdapter<String> {
     private final String[] web;
     private final float[] sub;
     private final String[] units;
+
     public CustomList(Activity context, String[] web, float[] sub, String[] units) {
         super(context, R.layout.main_list, web);
         this.context = context;

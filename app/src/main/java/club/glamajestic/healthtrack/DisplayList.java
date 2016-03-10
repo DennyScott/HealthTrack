@@ -11,11 +11,28 @@ import business.CustomList;
  */
 public class DisplayList extends Activity {
     // Array of strings...
-    String[] keys =  {"Cholesterol", "Sodium", "Sugar", "Protein", "Fat", "Fiber", "Calcium", "Carbs"};
-    float[] values = {5, 10, 15, 30, 40, 20, 10, 60};
-    String[] units = {"grams","grams","grams","grams","grams","grams","grams","grams"};
+    String[] keys =  {"Nothing to show"};
+    float[] values = {0};
+    String[] units = {""};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            keys = extras.getStringArray("keys");
+            units = extras.getStringArray("units");
+            values = extras.getFloatArray("values");
+        }
+        if(keys == null){
+            keys = new String[] {"Nothing to show"};
+        }
+        if(values == null){
+            values = new float[] {0};
+        }
+        if(units == null){
+            units = new String[] {""};
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view);
 

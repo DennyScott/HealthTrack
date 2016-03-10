@@ -80,7 +80,7 @@ public class StatsGui extends Activity {
         dayButton.setAlpha(0.8f);
 
         stats = (FrameLayout) findViewById(R.id.chartFrame);
-        pie = new InitPieChart(this, stats, chart, yData, xData, mode);
+        pie = new InitPieChart(this, stats, chart, mode);
 
 
     }
@@ -89,8 +89,8 @@ public class StatsGui extends Activity {
      * <code>Activity</code> on the stack.
      */
     public void onBackPressed() {
-        Intent gameMode = new Intent(this, mainStats.class);
-        startActivity(gameMode);
+        //Intent gameMode = new Intent(this, mainStats.class);
+        //startActivity(gameMode);
         finish();
     }
 
