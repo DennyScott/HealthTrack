@@ -6,7 +6,8 @@ import java.util.ArrayList;
  * Created by Deny Raaen on 20/02/2016.
  */
 public class Foods {
-    static ArrayList<Foods> entries = new ArrayList<Foods>();
+    static ArrayList<Foods> entries;
+    static ArrayList<Foods> nutrients;
     static ArrayList<String> commonCols;
     static ArrayList<String> allCols;
     static ArrayList<String> outCols;
@@ -20,6 +21,9 @@ public class Foods {
     //  the vals correspond to the value pairs of the data
     //this constructor initializes the static variables
     Foods(ArrayList<String> commonCols, ArrayList<String> allCols, ArrayList<String> outCols, ArrayList<String> files) {
+        if (Foods.entries == null) Foods.entries = new ArrayList<Foods>();
+        if (Foods.nutrients == null) Foods.nutrients = new ArrayList<Foods>();
+
         if (Foods.commonCols == null) Foods.commonCols = commonCols;
         if (Foods.allCols == null) Foods.allCols = allCols;
         if (Foods.outCols == null) Foods.outCols = outCols;
@@ -60,45 +64,55 @@ public class Foods {
         //data is a comma separated line of numbers, values, etc
         //  filecols tells us what each comma-separated data entry means (column headings)
         //for this food, check its data entry vals
-        Skip_Food:
         for (Foods f : entries) {
             for (String c : filecols) {
-                //for each (unique) column to check
-                //check if this is a unique column first
+                //find a primary key heading for this new data first
                 if (f.isCommonCol(c)) {
                     //this is a unique column.
                     // check if the data of this line is exactly equal
-                    String myData = f.vals.data.get(f.vals.cols.indexOf(c));
-                    String testData = data[filecols.indexOf(c)];
+                    String existingDataValue = f.vals.data.get(f.vals.cols.indexOf(c));
+                    String checkingDataValue = data[filecols.indexOf(c)];
                     //check if it is equal to:
                     // the corresponding parameter data array index val
                     //this food exists in the table already
                     //return the index number in the foods table
                     //get the data from the existing database //  do this by extracting the column data from the corresponding index
-                    if (myData.equalsIgnoreCase(testData)){
+                    if (existingDataValue.equalsIgnoreCase(checkingDataValue)){
                         return entries.indexOf(f);
                     } else {
                         //this is likely new data, ignore checks and check next food
                         //System.out.println("continue...");
-                        continue Skip_Food;
+                        break;
                     }
                 }
             }
-
         }
         //if code reaches here, all data entries were checked and this data does not exist in there
         return -1;
+    }
+
+    /**
+     * If the first few files opened were the nutrient-related files, we
+     *  can transfer their contents over to the other array list to append their values later.
+     *  This is because the nutrients need their own colum headings
+     */
+    public void transferCurrentFoodsToNutrients() {
+
     }
 
     public void addUniqueData(int indexOfFood, ArrayList<String> filecols, String[] data) {
         Foods oldFood = entries.get(indexOfFood);
         String fileData;
         //for each value pair in this food
-        for (String col : filecols) {         //for each newly passed
-            if (oldFood.vals.cols.indexOf(col) == -1) {        //check if the column does not exist
+        for (String col : filecols) {
+            //check if the column does not exist, or append it if its a nutrient
+            if (oldFood.vals.cols.indexOf(col) == -1 || filecols.indexOf("NutrientID") != -1) {
+                //in the event that this is a nutrientID, skip the column for foodID
+                if (col.equalsIgnoreCase("FoodID")) continue;
                 //new column found, add it          //if it doesnt exist, add it to the value pairs
                 oldFood.vals.cols.add(col);        //add the column
                 //add the data
+                //  if there are more columns than data entries or this data value is null, then assign ""
                 fileData = filecols.indexOf(col) >= data.length || data[filecols.indexOf(col)] == null ? "" : data[filecols.indexOf(col)];
                 oldFood.vals.data.add(fileData);
             } else {
@@ -133,6 +147,13 @@ public class Foods {
     class DataEntry {
         ArrayList<String> cols;
         ArrayList<String> data;
+
+        /**
+         * An index-to-index mapping class for data values, where the index of
+         *   the cols arraylist is the column heading for the index of the data arraylist
+         * @param cols
+         * @param data
+         */
         DataEntry(ArrayList<String> cols, ArrayList<String> data){
             this.cols = cols;
             this.data = data;

@@ -18,7 +18,9 @@ public class DatabaseManager  {
 //            "extdb/YIELD AMOUNT.csv",
 //            "extdb/YIELD NAME.csv"
 //    };
-static String[] filenames = {"extdb/FOOD NAME.csv"};
+static String[] filenames = {"extdb/FOOD NAME.csv",
+        "extdb/NUTRIENT AMOUNT.csv"};
+
 
     public static void main(String[] args) {
         //testing the converter
@@ -28,7 +30,8 @@ static String[] filenames = {"extdb/FOOD NAME.csv"};
         //reorganize columns
         //converter.reorderColumns();
         //pick which columns to keep
-        //chooseOutColumns();
+//        converter.chooseOutColumns();
+        converter.printPrimaryKeys();
         //ready to read objects
         converter.readObjects();
         converter.listFoods();
