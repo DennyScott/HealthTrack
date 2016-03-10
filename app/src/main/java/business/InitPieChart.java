@@ -30,7 +30,9 @@ public class InitPieChart {
     String[] putKeys;
     String[] putUnits;
     float[] putValues;
-    public InitPieChart(final Context ctx, FrameLayout f, PieChart pie, float[] y, final String[] x,final int charInitMode){
+    float[] y;
+    String[] x;
+    public InitPieChart(final Context ctx, FrameLayout f, PieChart pie, final int charInitMode){
         StatsBus = new Stats();
         this.ctx = ctx;
         this.f = f;
@@ -87,8 +89,8 @@ public class InitPieChart {
                     }
                     else{
                         putKeys = StatsDataAccess.getFoodNames(mode,StatsBus.getKeys()[e.getXIndex()]);
-                        putUnits = StatsDataAccess.getFoodUnits(mode,StatsBus.getKeys()[e.getXIndex()]);
-                        putValues = StatsDataAccess.getFoodValues(mode,StatsBus.getKeys()[e.getXIndex()]);
+                        putUnits = StatsDataAccess.getFoodUnits(mode, StatsBus.getKeys()[e.getXIndex()]);
+                        putValues = StatsDataAccess.getFoodValues(mode, StatsBus.getKeys()[e.getXIndex()]);
                     }
                     openList(ctx);
                 }

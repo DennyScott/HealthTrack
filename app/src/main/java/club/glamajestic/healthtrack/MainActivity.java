@@ -2,6 +2,8 @@ package club.glamajestic.healthtrack;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,11 +15,14 @@ public class MainActivity extends Activity {
     private ImageButton warnings;
     private ImageButton goals;
     private ImageButton settings;
+    private MediaPlayer backgroundMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        backgroundMusic = MediaPlayer.create(this, R.raw.delta);
+        backgroundMusic.start();
         ate = (ImageButton)findViewById(R.id.ateButton);
         stats = (ImageButton)findViewById(R.id.statsButton);
         warnings = (ImageButton)findViewById(R.id.warningButton);

@@ -1,6 +1,7 @@
 package club.glamajestic.healthtrack;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,17 +22,23 @@ import business.InitPieChart;
 public class mainStats extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout stats;
     private PieChart chart;
-    private float[] yData;
-    private String[] xData;
+    private MediaPlayer backgroundMusic;
+    boolean soundEnabled;
     int charInitMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_stats);
+        boolean soundEnabled = true;
+        if(soundEnabled) {
+            backgroundMusic = MediaPlayer.create(this, R.raw.delta);
+            backgroundMusic.setLooping( true );
+            backgroundMusic.start();
+        }
         stats = (FrameLayout) findViewById(R.id.chartMainScreen);
         charInitMode = 3;
-        InitPieChart pie = new InitPieChart(this, stats, chart, yData, xData, charInitMode);
+        InitPieChart pie = new InitPieChart(this, stats, chart, charInitMode);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,6 +68,26 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+            if (backgroundMusic != null) {
+                if (backgroundMusic.isPlaying()) {
+                    backgroundMusic.pause();
+                }
+            }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(backgroundMusic != null){
+            if(!backgroundMusic.isPlaying()){
+                backgroundMusic.start();
+            }
         }
     }
 

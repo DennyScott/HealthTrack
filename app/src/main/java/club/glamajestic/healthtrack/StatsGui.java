@@ -80,7 +80,7 @@ public class StatsGui extends Activity {
         dayButton.setAlpha(0.8f);
 
         stats = (FrameLayout) findViewById(R.id.chartFrame);
-        pie = new InitPieChart(this, stats, chart, yData, xData, mode);
+        pie = new InitPieChart(this, stats, chart, mode);
 
 
     }
