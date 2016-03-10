@@ -48,7 +48,7 @@
         android:layout_alignLeft="@+id/title"
         android:layout_alignStart="@+id/title"
         android:layout_marginTop="22dp"
-        android:text="Target Weight"
+        android:text="@string/weight_goal_hint"
         android:layout_alignRight="@+id/settingsButton"
         android:layout_alignEnd="@+id/settingsButton" />
 
@@ -63,6 +63,6 @@
         android:layout_alignStart="@+id/targetWeightTextEntry"
         android:layout_alignRight="@+id/settingsButton"
         android:layout_alignEnd="@+id/settingsButton"
-        android:text="Target Number of Weeks" />
+        android:text="@string/weeks_goal_hint" />
 
 </RelativeLayout>
