@@ -35,8 +35,8 @@
     <Button
         android:layout_width="@dimen/goals_button_width"
         android:layout_height="@dimen/goals_button_height"
-        android:text="FOOD USER"
-        android:id="@+id/foodUserInfoButton"
+        android:text="Enter Food"
+        android:id="@+id/foodEntryButton"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp" />
@@ -44,9 +44,9 @@
     <Button
         android:layout_width="@dimen/goals_button_width"
         android:layout_height="@dimen/goals_button_height"
-        android:text="FOOD ENTER"
-        android:id="@+id/foodSubmissionButton"
-        android:layout_below="@+id/foodUserInfoButton"
+        android:text="Custom Food Entry"
+        android:id="@+id/customFoodButton"
+        android:layout_below="@+id/foodEntryButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp" />
 
