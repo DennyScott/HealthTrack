@@ -20,6 +20,13 @@
     <string name="goals_submission_title">Goals Submission</string>
     <string name="user_info_title">User Information</string>
     <string name="save_changes_button">Save Changes</string>
+    <string name="name_submission_hint">Name</string>
+    <string name="age_submission_hint">Age</string>
+    <string name="weight_submission_hint">Weight (lbs)</string>
+    <string name="weight_goal_hint">Target Weight (lbs)</string>
+    <string name="weeks_goal_hint">Target Number of Weeks</string>
+
+    <string name="test_load">Temp Test Load</string>
 
     <!-- Strings related to Settings -->
 
@@ -86,11 +93,6 @@
     <string name="pref_title_fibre_alert">Alert for Fibre Intake</string>
     <string name="pref_title_iron_alert">Alert for Iron Intake</string>
     <string name="pref_title_vitamin_alert">Alert for Vitamin Intake</string>
-    <string name="text_entry_target_weight">Target weight</string>
-    <string name="text_entry_target_weeks">Target number of weeks</string>
-    <string name="text_entry_name">Name</string>
-    <string name="text_entry_age">Age</string>
-    <string name="text_entry_weight">Weight (lbs)</string>
     <string name="day_button">Day</string>
     <string name="week_button">Week</string>
     <string name="month_button">Month</string>

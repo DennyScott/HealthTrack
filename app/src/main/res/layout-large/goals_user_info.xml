@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="@string/name_submission_hint"
         android:ems="10"
         android:id="@+id/nameTextEntry"
         android:layout_below="@+id/title"
@@ -61,7 +61,7 @@
         android:layout_below="@+id/nameTextEntry"
         android:layout_alignLeft="@+id/nameTextEntry"
         android:layout_alignStart="@+id/nameTextEntry"
-        android:text="Age"
+        android:text="@string/age_submission_hint"
         android:layout_alignRight="@+id/title"
         android:layout_alignEnd="@+id/title" />
 
@@ -74,7 +74,7 @@
         android:layout_below="@+id/ageTextEntry"
         android:layout_alignLeft="@+id/ageTextEntry"
         android:layout_alignStart="@+id/ageTextEntry"
-        android:text="Weight (lbs)"
+        android:text="@string/weight_submission_hint"
         android:layout_alignRight="@+id/title"
         android:layout_alignEnd="@+id/title" />
 
