@@ -18,13 +18,26 @@ public class DatabaseManager  {
 //            "extdb/YIELD AMOUNT.csv",
 //            "extdb/YIELD NAME.csv"
 //    };
-static String[] filenames = {"extdb/FOOD NAME.csv",
-        "extdb/NUTRIENT AMOUNT.csv"};
+
+
+    static String foodsPattern[] = {
+            "apple",
+            "banana",
+            "cheese",
+            "fish",
+            "pancake"
+    };
+    static String[] filenames = {"extdb/FOOD NAME.csv",
+        "extdb/FOOD GROUP.csv",
+        "extdb/CONVERSION FACTOR.csv",
+        "extdb/MEASURE NAME.csv",
+        "extdb/NUTRIENT AMOUNT.csv"
+};
 
 
     public static void main(String[] args) {
         //testing the converter
-        CsvConverter converter = new CsvConverter();
+        CsvConverter converter = new CsvConverter(foodsPattern);
 
         converter.getFiles(filenames);
         //reorganize columns
@@ -34,7 +47,7 @@ static String[] filenames = {"extdb/FOOD NAME.csv",
         converter.printPrimaryKeys();
         //ready to read objects
         converter.readObjects();
-        //converter.listFoods();
+        converter.listFoods();
         //open csvs
         //  extract columns (first lines)
         //      put in a list

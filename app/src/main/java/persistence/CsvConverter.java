@@ -11,6 +11,7 @@ public class CsvConverter {
     ArrayList<String> outCols;
     ArrayList<String> files;
     Foods foods;
+    String[] foodsPattern;
     //    String[] filenames = {
 //            "extdb/FOOD NAME.csv",
 //            "extdb/FOOD SOURCE.csv",
@@ -23,13 +24,14 @@ public class CsvConverter {
 //            "extdb/YIELD NAME.csv"
 //    };
 
-    public CsvConverter() {
+
+    public CsvConverter(String[] foodsPattern) {
         commonCols = new ArrayList<String>();
         allCols = new ArrayList<String>();
         outCols = new ArrayList<String>();
         files = new ArrayList<String>();
         foods = new Foods(commonCols, allCols, outCols, files);
-
+        this.foodsPattern = foodsPattern;
 //        getFiles();
         //reorganize columns
         //reorderColumns();
@@ -102,6 +104,8 @@ public class CsvConverter {
 
                 //iterate through the rest of the file, creating/adding the objects
                 String data[];
+                //FOR EACH LINE THAT IS NOT THE FIRST FILE
+                //  Parse every food afterwards
                 while ((line = filein.readLine()) != null) {
                     data = splitLineIntoData(line, ",");
                     //skip if this line is empty
@@ -112,13 +116,25 @@ public class CsvConverter {
                         //  the firts file will have no duplicate foods
                         foods.addNewFood(filecols, data);
                     } else {
+                        //use this data from the file to see if
                         addUniqueFoodData(filecols, data);
                     }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            firstFile = false;
+            if (firstFile) {
+                firstFile = false;
+                //parse the foods to remove the ones that we don't want
+                Foods.pickOnlyWantedFoods(foodsPattern);
+                printFoods();
+            }
+        }
+    }
+
+    private void printFoods() {
+        for (Foods f : Foods.entries) {
+            System.out.println(f.vals.data.get(f.vals.cols.indexOf("FoodDescription")));
         }
     }
 
@@ -166,7 +182,9 @@ public class CsvConverter {
             foods.addUniqueData(indexOfFood, filecols, data);
         } else {
             //new food found
-            foods.addNewFood(filecols, data);
+            //      NEW UPDATE: Don't add new foods because we deleted the other ones that didnt
+            //          match the pattern
+            //foods.addNewFood(filecols, data);
         }
     }
 
