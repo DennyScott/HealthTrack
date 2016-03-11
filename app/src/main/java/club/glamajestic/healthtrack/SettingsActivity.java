@@ -256,6 +256,5 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         //Intent gameMode = new Intent(this, mainStats.class);
         //startActivity(gameMode);
         finish();
-
     }
 }
