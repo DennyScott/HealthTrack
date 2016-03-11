@@ -50,7 +50,7 @@ public class Foods {
      */
     public int hasFood(ArrayList<String> filecols, String[] data) {
         //check the global set of food entries
-        int indexOfFood = 0;
+        int indexOfFood;
         //...if the food exists in there already
         indexOfFood = Foods.foodExists(filecols,data);
         if (indexOfFood != -1) {

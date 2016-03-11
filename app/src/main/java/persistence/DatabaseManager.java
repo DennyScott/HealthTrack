@@ -28,12 +28,41 @@ public class DatabaseManager  {
             "pancake"
     };
     static String[] filenames = {"extdb/FOOD NAME.csv",
-        "extdb/FOOD GROUP.csv",
-        "extdb/CONVERSION FACTOR.csv",
-        "extdb/MEASURE NAME.csv",
-        "extdb/NUTRIENT AMOUNT.csv"
-};
+            "extdb/NUTRIENT AMOUNT.csv",
+            "extdb/CONVERSION FACTOR.csv"
+    };
 
+    //Food name has:
+    //  FoodGroup ID
+    //  Food Source ID
+    //      ignored
+
+    //Food Group has:
+    //  No additional IDs
+    //  Ties with FoodName
+
+    //Nutrient Amount has:
+    //  NutrientID
+    //  has MULTIPLE Nutrient IDs  though
+
+    //Nutrient Name has:
+    //  No additional IDs
+    //  Ties with NutrientAmmounr
+
+    //ConversionFactor has
+    //  MeasureID
+    //  Ties with FoodID
+    //  has MULTIPLE measure IDs though
+
+    //Measure Name has
+    //  Nothing
+    //  Ties with NutrientID from NutAmnt
+
+    static String idReplacements[] = {
+            "extdb/FOOD GROUP.csv",
+            "extdb/NUTRIENT NAME.csv",
+            "extdb/MEASURE NAME.csv"
+    };
 
     public static void main(String[] args) {
         //testing the converter
@@ -47,6 +76,8 @@ public class DatabaseManager  {
         converter.printPrimaryKeys();
         //ready to read objects
         converter.readObjects();
+        //replace the IDs with teh relevant files (n^2 search)
+        converter.replaceIDs(idReplacements);
         converter.listFoods();
         //open csvs
         //  extract columns (first lines)

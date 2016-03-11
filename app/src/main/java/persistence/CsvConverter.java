@@ -127,7 +127,6 @@ public class CsvConverter {
                 firstFile = false;
                 //parse the foods to remove the ones that we don't want
                 Foods.pickOnlyWantedFoods(foodsPattern);
-                printFoods();
             }
         }
     }
@@ -290,7 +289,7 @@ public class CsvConverter {
         for (String c : columns) {
             if (allCols.contains(c)) {
                 //common column
-                commonCols.add(c);
+                if (!commonCols.contains(c)) commonCols.add(c);
             } else {
                 //new column
                 allCols.add(c);
@@ -316,4 +315,78 @@ public class CsvConverter {
         return null;
     }
 
+    /**
+     * This method assumes that the current food entries have columns in the form of
+     *  (type)ID. This will be checked in the idReplacements files and appended to each food
+     * @param idReplacements A list of files to replace the IDs for in the existing food entries
+     */
+    public void replaceIDs(String[] idReplacements) {
+        //for each food, replace its column heading with the corresponding data
+        File file;
+        String line;
+        String[] lineColumns;
+        String primaryKey;
+        String foodPrimaryKeyValue;
+        //initialize linevals to appease compiler...
+        String[] lineVals = new String[0];
+        String fileData;
+        BufferedReader br;
+        for (String idFile : idReplacements) {
+            file = new File(idFile);
+            try {
+                br = new BufferedReader(new FileReader(file));
+                //read the first line to get the list of columns in this file
+                line = br.readLine();
+                lineColumns = line.split(",");
+                //the first column is the primary key to be finding/assessing for each food
+                primaryKey = lineColumns[0];
+                //now for each food, append the correct columns for this food from this file
+                for (Foods existingFood : Foods.entries) {
+                    //for each column of the food (since there could be multiple columns)
+                    for (int indexOfkey = 0; indexOfkey < existingFood.vals.cols.size(); indexOfkey++) {
+                        //if this is the primary key we're looking for, we're ready to append
+                        if (existingFood.vals.cols.get(indexOfkey).equalsIgnoreCase(primaryKey)) {
+                            //get this food's corresponding primary key value
+                            foodPrimaryKeyValue = existingFood.vals.data.get(indexOfkey);
+
+                            //reset the file marker
+                            br = new BufferedReader(new FileReader(file));
+                            //skip the first line since its just columns
+                            br.readLine();
+
+                            //now find the right ID for this food in the idPatternFile
+                            // and match it to the corresponding column val
+                            while ((line = br.readLine()) != null) {
+                                lineVals = splitLineIntoData(line,",");
+                                //the first value from the file = the primry key value to check against this food
+                                if (foodPrimaryKeyValue.equals(lineVals[0])) {
+                                    //we found the line to append
+                                    //leave the loop to begin appending
+                                    break;
+                                }
+                            }
+
+                            //code reaching here means we found this food's right line to append; do that
+                            //  we assume that each food has a corresponding entry
+                            //skip the first column because its the primary key, append the others
+                            for (int i = 1; i < lineVals.length; i++) {
+                                //add the column
+                                existingFood.vals.cols.add(lineColumns[i]);
+                                //add the data, making sure if its null to make it an empty str at least
+                                fileData = lineVals[i] == null ? "" : lineVals[i];
+                                existingFood.vals.data.add(fileData);
+                            }
+
+
+                        }
+                    }
+
+                    //this food now has its columns appended, go onto the next one
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 }
