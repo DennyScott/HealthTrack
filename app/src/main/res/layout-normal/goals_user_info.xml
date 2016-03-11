@@ -80,15 +80,27 @@
         android:layout_alignRight="@+id/title"
         android:layout_alignEnd="@+id/title" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/height_submission_hint"
+        android:ems="10"
+        android:id="@+id/heightTextEntry"
+        android:layout_below="@+id/weightTextEntry"
+        android:layout_alignLeft="@+id/weightTextEntry"
+        android:layout_alignStart="@+id/weightTextEntry"
+        android:layout_alignRight="@+id/weightTextEntry"
+        android:layout_alignEnd="@+id/weightTextEntry" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/textView"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/weightTextEntry"
-        android:layout_alignLeft="@+id/weightTextEntry"
-        android:layout_alignStart="@+id/weightTextEntry" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"

@@ -97,6 +97,11 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
             editText = (EditText)findViewById(R.id.weightTextEntry);
             message = ", " + editText.getText().toString();
             fileOutputStream.write(message.getBytes());
+            editText.setText("");
+
+            editText = (EditText)findViewById(R.id.heightTextEntry);
+            message = ", " + editText.getText().toString();
+            fileOutputStream.write(message.getBytes());
 
             fileOutputStream.close();
             editText.setText("");

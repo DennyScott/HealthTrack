@@ -23,6 +23,7 @@
     <string name="name_submission_hint">Name</string>
     <string name="age_submission_hint">Age</string>
     <string name="weight_submission_hint">Weight (lbs)</string>
+    <string name="height_submission_hint">Height (inches)</string>
     <string name="weight_goal_hint">Target Weight (lbs)</string>
     <string name="weeks_goal_hint">Target Number of Weeks</string>
 
