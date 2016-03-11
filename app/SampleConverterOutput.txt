@@ -1,0 +1,1227 @@
+Column: FoodID                        Val: 2
+Column: FoodCode                      Val: 2
+Column: FoodGroupID                   Val: 22
+Column: FoodSourceID                  Val: 20
+Column: FoodDescription               Val: Cheese souffle
+Column: FoodDescriptionF              Val: Souffl� au fromage
+Column: FoodDateOfEntry               Val: 1981-01-01
+Column: FoodDateOfPublication         Val:
+Column: CountryCode                   Val:
+Column: ScientificName                Val:
+Column: NutrientID                    Val: 203
+Column: NutrientValue                 Val: 9.54
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 204
+Column: NutrientValue                 Val: 15.7
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 205
+Column: NutrientValue                 Val: 5.91
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 207
+Column: NutrientValue                 Val: 1.67
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 208
+Column: NutrientValue                 Val: 204
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 221
+Column: NutrientValue                 Val: 0
+Column: StandardError                 Val:
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 12
+Column: NutrientDateOfEntry           Val: 9/13/2004
+Column: NutrientID                    Val: 255
+Column: NutrientValue                 Val: 67.17
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 262
+Column: NutrientValue                 Val: 0
+Column: StandardError                 Val:
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 12
+Column: NutrientDateOfEntry           Val: 9/13/2004
+Column: NutrientID                    Val: 263
+Column: NutrientValue                 Val: 0
+Column: StandardError                 Val:
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 12
+Column: NutrientDateOfEntry           Val: 9/13/2004
+Column: NutrientID                    Val: 268
+Column: NutrientValue                 Val: 853
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 4
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 269
+Column: NutrientValue                 Val: 2.66
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 291
+Column: NutrientValue                 Val: 0.1
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 301
+Column: NutrientValue                 Val: 184
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 303
+Column: NutrientValue                 Val: 0.74
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 304
+Column: NutrientValue                 Val: 13
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 305
+Column: NutrientValue                 Val: 167
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 306
+Column: NutrientValue                 Val: 119
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 307
+Column: NutrientValue                 Val: 318
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 309
+Column: NutrientValue                 Val: 1.1
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 312
+Column: NutrientValue                 Val: 0.031
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 315
+Column: NutrientValue                 Val: 0.043
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 317
+Column: NutrientValue                 Val: 15.8
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 319
+Column: NutrientValue                 Val: 188
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 321
+Column: NutrientValue                 Val: 64
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 323
+Column: NutrientValue                 Val: 2.03
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 324
+Column: NutrientValue                 Val: 79
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 339
+Column: NutrientValue                 Val: 2
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 401
+Column: NutrientValue                 Val: 0
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 404
+Column: NutrientValue                 Val: 0.052
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 405
+Column: NutrientValue                 Val: 0.296
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 406
+Column: NutrientValue                 Val: 0.317
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 409
+Column: NutrientValue                 Val: 2.55
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 4
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 410
+Column: NutrientValue                 Val: 0.971
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 415
+Column: NutrientValue                 Val: 0.038
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 417
+Column: NutrientValue                 Val: 27
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 418
+Column: NutrientValue                 Val: 0.604
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 430
+Column: NutrientValue                 Val: 8
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 431
+Column: NutrientValue                 Val: 6
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 501
+Column: NutrientValue                 Val: 0.134
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 502
+Column: NutrientValue                 Val: 0.366
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 503
+Column: NutrientValue                 Val: 0.538
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 504
+Column: NutrientValue                 Val: 0.889
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 505
+Column: NutrientValue                 Val: 0.717
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 506
+Column: NutrientValue                 Val: 0.266
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 507
+Column: NutrientValue                 Val: 0.155
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 508
+Column: NutrientValue                 Val: 0.517
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 509
+Column: NutrientValue                 Val: 0.428
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 510
+Column: NutrientValue                 Val: 0.621
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 511
+Column: NutrientValue                 Val: 0.449
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 512
+Column: NutrientValue                 Val: 0.237
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 513
+Column: NutrientValue                 Val: 0.391
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 514
+Column: NutrientValue                 Val: 0.781
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 515
+Column: NutrientValue                 Val: 2.017
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 516
+Column: NutrientValue                 Val: 0.233
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 517
+Column: NutrientValue                 Val: 0.825
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 518
+Column: NutrientValue                 Val: 0.623
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 601
+Column: NutrientValue                 Val: 129
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 605
+Column: NutrientValue                 Val: 1.239
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 606
+Column: NutrientValue                 Val: 5.742
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 609
+Column: NutrientValue                 Val: 0.044
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 610
+Column: NutrientValue                 Val: 0.103
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 611
+Column: NutrientValue                 Val: 0.136
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 612
+Column: NutrientValue                 Val: 0.62
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 613
+Column: NutrientValue                 Val: 2.968
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 614
+Column: NutrientValue                 Val: 1.389
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 617
+Column: NutrientValue                 Val: 5.383
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 618
+Column: NutrientValue                 Val: 2.204
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 619
+Column: NutrientValue                 Val: 0.484
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 620
+Column: NutrientValue                 Val: 0.047
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 621
+Column: NutrientValue                 Val: 0.022
+Column: StandardError                 Val:
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 626
+Column: NutrientValue                 Val: 0.274
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 627
+Column: NutrientValue                 Val: 0
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 629
+Column: NutrientValue                 Val: 0.001
+Column: StandardError                 Val: 8
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 5/1/1997
+Column: NutrientID                    Val: 630
+Column: NutrientValue                 Val: 0.002
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 631
+Column: NutrientValue                 Val: 0.003
+Column: StandardError                 Val:
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 645
+Column: NutrientValue                 Val: 5.82
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 646
+Column: NutrientValue                 Val: 2.77
+Column: StandardError                 Val: 0
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 806
+Column: NutrientValue                 Val: 21
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 814
+Column: NutrientValue                 Val: 194
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 815
+Column: NutrientValue                 Val: 30
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 4
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 825
+Column: NutrientValue                 Val: 2.01
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 827
+Column: NutrientValue                 Val: 0.006
+Column: StandardError                 Val:
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 831
+Column: NutrientValue                 Val: 0.452
+Column: StandardError                 Val:
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 832
+Column: NutrientValue                 Val: 0.03
+Column: StandardError                 Val:
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 835
+Column: NutrientValue                 Val: 0
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 12
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 836
+Column: NutrientValue                 Val: 0
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 12
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 837
+Column: NutrientValue                 Val: 99
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 5/28/2012
+Column: NutrientID                    Val: 854
+Column: NutrientValue                 Val: 0.006
+Column: StandardError                 Val:
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 2
+Column: NutrientDateOfEntry           Val: 4/27/2010
+Column: NutrientID                    Val: 855
+Column: NutrientValue                 Val: 0.047
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 102
+Column: NutrientDateOfEntry           Val: 4/16/2010
+Column: NutrientID                    Val: 861
+Column: NutrientValue                 Val: 0
+Column: StandardError                 Val:
+Column: NumberofObservations          Val: 0
+Column: NutrientSourceID              Val: 12
+Column: NutrientDateOfEntry           Val: 7/14/2009
+Column: NutrientID                    Val: 874
+Column: NutrientValue                 Val: 0
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 12
+Column: NutrientDateOfEntry           Val: 2/27/2015
+Column: NutrientID                    Val: 875
+Column: NutrientValue                 Val: 0
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 12
+Column: NutrientDateOfEntry           Val: 2/27/2015
+Column: NutrientID                    Val: 876
+Column: NutrientValue                 Val: 0
+Column: StandardError                 Val:
+Column: NumberofObservations          Val:
+Column: NutrientSourceID              Val: 12
+Column: NutrientDateOfEntry           Val: 2/27/2015
+Column: MeasureID                     Val: 341
+Column: ConversionFactorValue         Val: 0.40152
+Column: ConvFactorDateOfEntry         Val: 1997-05-01
+Column: FoodGroupCode                 Val: 22
+Column: FoodGroupName                 Val: Mixed Dishes
+Column: FoodGroupNameF                Val: Mets compos�s
+Column: NutrientCode                  Val: 203
+Column: NutrientSymbol                Val: PROT
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: PROTEIN
+Column: NutrientNameF                 Val: PROT�INES
+Column: Tagname                       Val: PROCNT
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 204
+Column: NutrientSymbol                Val: FAT
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: FAT (TOTAL LIPIDS)
+Column: NutrientNameF                 Val: LIPIDES TOTAUX
+Column: Tagname                       Val: FAT
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 205
+Column: NutrientSymbol                Val: CARB
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "CARBOHYDRATE, TOTAL (BY DIFFERENCE)"
+Column: NutrientNameF                 Val: GLUCIDES TOTAUX (PAR DIFF�RENCE)
+Column: Tagname                       Val: CHOCDF
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 207
+Column: NutrientSymbol                Val: ASH
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "ASH, TOTAL"
+Column: NutrientNameF                 Val: "CENDRES, TOTALES"
+Column: Tagname                       Val: ASH
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 208
+Column: NutrientSymbol                Val: KCAL
+Column: NutrientUnit                  Val: kCal
+Column: NutrientName                  Val: ENERGY (KILOCALORIES)
+Column: NutrientNameF                 Val: �NERGIE (KILOCALORIES)
+Column: Tagname                       Val: ENERC_KCAL
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 221
+Column: NutrientSymbol                Val: ALCO
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: ALCOHOL
+Column: NutrientNameF                 Val: ALCOOL
+Column: Tagname                       Val: ALC
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 255
+Column: NutrientSymbol                Val: H2O
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: MOISTURE
+Column: NutrientNameF                 Val: EAU
+Column: Tagname                       Val: WATER
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 262
+Column: NutrientSymbol                Val: CAFF
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: CAFFEINE
+Column: NutrientNameF                 Val: CAF�INE
+Column: Tagname                       Val: CAFFN
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 263
+Column: NutrientSymbol                Val: THBR
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: THEOBROMINE
+Column: NutrientNameF                 Val: TH�OBROMINE
+Column: Tagname                       Val: THEBRN
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 268
+Column: NutrientSymbol                Val: KJ
+Column: NutrientUnit                  Val: kJ
+Column: NutrientName                  Val: ENERGY (KILOJOULES)
+Column: NutrientNameF                 Val: �NERGIE (KILOJOULES)
+Column: Tagname                       Val: ENERC_KJ
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 269
+Column: NutrientSymbol                Val: TSUG
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "SUGARS, TOTAL"
+Column: NutrientNameF                 Val: SUCRES TOTAUX
+Column: Tagname                       Val: SUGAR
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 291
+Column: NutrientSymbol                Val: TDF
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FIBRE, TOTAL DIETARY"
+Column: NutrientNameF                 Val: FIBRES ALIMENTAIRES TOTALES
+Column: Tagname                       Val: FIBTG
+Column: NutrientDecimals              Val: 1
+Column: NutrientCode                  Val: 301
+Column: NutrientSymbol                Val: CA
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: CALCIUM
+Column: NutrientNameF                 Val: CALCIUM
+Column: Tagname                       Val: CA
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 303
+Column: NutrientSymbol                Val: FE
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: IRON
+Column: NutrientNameF                 Val: FER
+Column: Tagname                       Val: FE
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 304
+Column: NutrientSymbol                Val: MG
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: MAGNESIUM
+Column: NutrientNameF                 Val: MAGN�SIUM
+Column: Tagname                       Val: MG
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 305
+Column: NutrientSymbol                Val: P
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: PHOSPHORUS
+Column: NutrientNameF                 Val: PHOSPHORE
+Column: Tagname                       Val: P
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 306
+Column: NutrientSymbol                Val: K
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: POTASSIUM
+Column: NutrientNameF                 Val: POTASSIUM
+Column: Tagname                       Val: K
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 307
+Column: NutrientSymbol                Val: NA
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: SODIUM
+Column: NutrientNameF                 Val: SODIUM
+Column: Tagname                       Val: NA
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 309
+Column: NutrientSymbol                Val: ZN
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: ZINC
+Column: NutrientNameF                 Val: ZINC
+Column: Tagname                       Val: ZN
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 312
+Column: NutrientSymbol                Val: CU
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: COPPER
+Column: NutrientNameF                 Val: CUIVRE
+Column: Tagname                       Val: CU
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 315
+Column: NutrientSymbol                Val: MN
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: MANGANESE
+Column: NutrientNameF                 Val: MANGAN�SE
+Column: Tagname                       Val: MN
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 317
+Column: NutrientSymbol                Val: SE
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: SELENIUM
+Column: NutrientNameF                 Val: S�L�NIUM
+Column: Tagname                       Val: SE
+Column: NutrientDecimals              Val: 1
+Column: NutrientCode                  Val: 319
+Column: NutrientSymbol                Val: RT-�G
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: RETINOL
+Column: NutrientNameF                 Val: R�TINOL
+Column: Tagname                       Val: RETOL
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 321
+Column: NutrientSymbol                Val: BC-�G
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: BETA CAROTENE
+Column: NutrientNameF                 Val: B�TA CAROT�NE
+Column: Tagname                       Val: CARTB
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 323
+Column: NutrientSymbol                Val: ATMG
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: ALPHA-TOCOPHEROL
+Column: NutrientNameF                 Val: ALPHA-TOCOPH�ROL
+Column: Tagname                       Val: TOCPHA
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 324
+Column: NutrientSymbol                Val: D-IU
+Column: NutrientUnit                  Val: IU
+Column: NutrientName                  Val: VITAMIN D (INTERNATIONAL UNITS)
+Column: NutrientNameF                 Val: VITAMINE D (UNITES INTERNATIONALES)
+Column: Tagname                       Val: VITD_IU
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 328
+Column: NutrientSymbol                Val: D3+D2-�G
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: VITAMIN D (D2 + D3)
+Column: NutrientNameF                 Val: VITAMINE D (D2 + D3)
+Column: Tagname                       Val: VITD_ �G
+Column: NutrientDecimals              Val: 1
+Column: NutrientCode                  Val: 401
+Column: NutrientSymbol                Val: VITC
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: VITAMIN C
+Column: NutrientNameF                 Val: VITAMINE C
+Column: Tagname                       Val: VITC
+Column: NutrientDecimals              Val: 1
+Column: NutrientCode                  Val: 404
+Column: NutrientSymbol                Val: THIA
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: THIAMIN
+Column: NutrientNameF                 Val: THIAMINE
+Column: Tagname                       Val: THIA
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 405
+Column: NutrientSymbol                Val: RIBO
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: RIBOFLAVIN
+Column: NutrientNameF                 Val: RIBOFLAVINE
+Column: Tagname                       Val: RIBF
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 406
+Column: NutrientSymbol                Val: N-MG
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: NIACIN (NICOTINIC ACID) PREFORMED
+Column: NutrientNameF                 Val: NIACINE (ACIDE NICOTINIQUE) PR�FORM�E
+Column: Tagname                       Val: NIA
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 409
+Column: NutrientSymbol                Val: N-NE
+Column: NutrientUnit                  Val: NE
+Column: NutrientName                  Val: TOTAL NIACIN EQUIVALENT
+Column: NutrientNameF                 Val: �QUIVALENT EN NIACINE TOTALE
+Column: Tagname                       Val: NIAEQ
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 410
+Column: NutrientSymbol                Val: PANT
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: PANTOTHENIC ACID
+Column: NutrientNameF                 Val: ACIDE PANTOTH�NIQUE
+Column: Tagname                       Val: PANTAC
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 415
+Column: NutrientSymbol                Val: B6
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: VITAMIN B-6
+Column: NutrientNameF                 Val: VITAMINE B-6
+Column: Tagname                       Val: VITB6A
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 417
+Column: NutrientSymbol                Val: FOLA
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: TOTAL FOLACIN
+Column: NutrientNameF                 Val: FOLACINE TOTALE
+Column: Tagname                       Val: FOL
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 418
+Column: NutrientSymbol                Val: B12
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: VITAMIN B-12
+Column: NutrientNameF                 Val: VITAMINE B-12
+Column: Tagname                       Val: VITB12
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 430
+Column: NutrientSymbol                Val: VITK
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: VITAMIN K
+Column: NutrientNameF                 Val: VITAMINE K
+Column: Tagname                       Val: VITK
+Column: NutrientDecimals              Val: 1
+Column: NutrientCode                  Val: 431
+Column: NutrientSymbol                Val: FOAC
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: FOLIC ACID
+Column: NutrientNameF                 Val: ACIDE FOLIQUE
+Column: Tagname                       Val: FOLAC
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 501
+Column: NutrientSymbol                Val: TRP
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: TRYPTOPHAN
+Column: NutrientNameF                 Val: TRYPTOPHANE
+Column: Tagname                       Val: TRP
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 502
+Column: NutrientSymbol                Val: THR
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: THREONINE
+Column: NutrientNameF                 Val: THR�ONINE
+Column: Tagname                       Val: THR
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 503
+Column: NutrientSymbol                Val: ISO
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: ISOLEUCINE
+Column: NutrientNameF                 Val: ISOLEUCINE
+Column: Tagname                       Val: ILE
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 504
+Column: NutrientSymbol                Val: LEU
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: LEUCINE
+Column: NutrientNameF                 Val: LEUCINE
+Column: Tagname                       Val: LEU
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 505
+Column: NutrientSymbol                Val: LYS
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: LYSINE
+Column: NutrientNameF                 Val: LYSINE
+Column: Tagname                       Val: LYS
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 506
+Column: NutrientSymbol                Val: MET
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: METHIONINE
+Column: NutrientNameF                 Val: M�THIONINE
+Column: Tagname                       Val: MET
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 507
+Column: NutrientSymbol                Val: CYS
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: CYSTINE
+Column: NutrientNameF                 Val: CYSTINE
+Column: Tagname                       Val: CYS
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 508
+Column: NutrientSymbol                Val: PHE
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: PHENYLALANINE
+Column: NutrientNameF                 Val: PH�NYLALANINE
+Column: Tagname                       Val: PHE
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 509
+Column: NutrientSymbol                Val: TYR
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: TYROSINE
+Column: NutrientNameF                 Val: TYROSINE
+Column: Tagname                       Val: TYR
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 510
+Column: NutrientSymbol                Val: VAL
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: VALINE
+Column: NutrientNameF                 Val: VALINE
+Column: Tagname                       Val: VAL
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 511
+Column: NutrientSymbol                Val: ARG
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: ARGININE
+Column: NutrientNameF                 Val: ARGININE
+Column: Tagname                       Val: ARG
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 512
+Column: NutrientSymbol                Val: HIS
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: HISTIDINE
+Column: NutrientNameF                 Val: HISTIDINE
+Column: Tagname                       Val: HIS
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 513
+Column: NutrientSymbol                Val: ALA
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: ALANINE
+Column: NutrientNameF                 Val: ALANINE
+Column: Tagname                       Val: ALA
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 514
+Column: NutrientSymbol                Val: ASP
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: ASPARTIC ACID
+Column: NutrientNameF                 Val: ACIDE ASPARTIQUE
+Column: Tagname                       Val: ASP
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 515
+Column: NutrientSymbol                Val: GLU
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: GLUTAMIC ACID
+Column: NutrientNameF                 Val: ACIDE GLUTAMIQUE
+Column: Tagname                       Val: GLU
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 516
+Column: NutrientSymbol                Val: GLY
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: GLYCINE
+Column: NutrientNameF                 Val: GLYCINE
+Column: Tagname                       Val: GLY
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 517
+Column: NutrientSymbol                Val: PRO
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: PROLINE
+Column: NutrientNameF                 Val: PROLINE
+Column: Tagname                       Val: PRO
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 518
+Column: NutrientSymbol                Val: SER
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: SERINE
+Column: NutrientNameF                 Val: SERINE
+Column: Tagname                       Val: SER
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 601
+Column: NutrientSymbol                Val: CHOL
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: CHOLESTEROL
+Column: NutrientNameF                 Val: CHOLESTEROL
+Column: Tagname                       Val: CHOLE
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 605
+Column: NutrientSymbol                Val: TRFA
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, TRANS, TOTAL"
+Column: NutrientNameF                 Val: ACIDES GRAS TRANS TOTAUX
+Column: Tagname                       Val: FATRN
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 606
+Column: NutrientSymbol                Val: TSAT
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, SATURATED, TOTAL"
+Column: NutrientNameF                 Val: ACIDES GRAS SATUR�S TOTAUX
+Column: Tagname                       Val: FASAT
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 609
+Column: NutrientSymbol                Val: 8:0
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, SATURATED, 8:0, OCTANOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS SATUR�S, 8:0, OCTANO�QUE"
+Column: Tagname                       Val: F8D0
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 610
+Column: NutrientSymbol                Val: 10:0
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, SATURATED, 10:0, DECANOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS SATUR�S, 10:0, D�CANO�QUE"
+Column: Tagname                       Val: F10D0
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 611
+Column: NutrientSymbol                Val: 12:0
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, SATURATED, 12:0, DODECANOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS SATUR�S, 12:0, DOD�CANO�QUE"
+Column: Tagname                       Val: F12D0
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 612
+Column: NutrientSymbol                Val: 14:0
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, SATURATED, 14:0, TETRADECANOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS SATUR�S, 14:0, T�TRAD�CANO�QUE"
+Column: Tagname                       Val: F14D0
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 613
+Column: NutrientSymbol                Val: 16:0
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, SATURATED, 16:0, HEXADECANOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS SATUR�S, 16:0, HEXAD�CANO�QUE"
+Column: Tagname                       Val: F16D0
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 614
+Column: NutrientSymbol                Val: 18:0
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, SATURATED, 18:0, OCTADECANOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS SATUR�S, 18:0,  OCTAD�CANO�QUE"
+Column: Tagname                       Val: F18D0
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 617
+Column: NutrientSymbol                Val: 18:1undiff
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, MONOUNSATURATED, 18:1undifferentiated, OCTADECENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS MONOINSATUR�S, 18:1non diff�renci�, OCTAD�C�NO�QUE"
+Column: Tagname                       Val: F18D1
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 618
+Column: NutrientSymbol                Val: 18:2undiff
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 18:2undifferentiated, LINOLEIC, OCTADECADIENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 18:2non diff�renci�,  LINOL�IQUE, OCTAD�CADI�NO�QUE"
+Column: Tagname                       Val: F18D2
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 619
+Column: NutrientSymbol                Val: 18:3undiff
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 18:3undifferentiated, LINOLENIC, OCTADECATRIENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 18:3non diff�renci�, LINOL�NIQUE, OCTAD�CATRI�NO�QUE"
+Column: Tagname                       Val: F18D3
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 620
+Column: NutrientSymbol                Val: 20:4undiff
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 20:4, EICOSATETRAENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 20:4, E�COSAT�TRA�NO�QUE"
+Column: Tagname                       Val: F20D4
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 621
+Column: NutrientSymbol                Val: 22:6n-3DHA
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 22:6 n-3, DOCOSAHEXAENOIC (DHA)"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S,  22:6 n-3, DOCOSAHEXA�NO�QUE"
+Column: Tagname                       Val: F22D6N3
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 626
+Column: NutrientSymbol                Val: 16:1undiff
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, MONOUNSATURATED, 16:1undifferentiated, HEXADECENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS MONOINSATUR�S, 16:1non diff�renci�, HEXAD�C�NO�QUE"
+Column: Tagname                       Val: F16D1
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 627
+Column: NutrientSymbol                Val: 18:4
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 18:4, OCTADECATETRAENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 18:4, OCTAD�CAT�TRA�NO�QUE"
+Column: Tagname                       Val: F18D4
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 629
+Column: NutrientSymbol                Val: 20:5n-3EPA
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 20:5 n-3, EICOSAPENTAENOIC (EPA)"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 20:5 n-3, E�COSAPENTA�NO�QUE"
+Column: Tagname                       Val: F20D5N3
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 630
+Column: NutrientSymbol                Val: 22:1undiff
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, MONOUNSATURATED, 22:1undifferentiated, DOCOSENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS MONOINSATUR�S, 22:1non diff�renci�, DOCOS�NO�QUE"
+Column: Tagname                       Val: F22D1
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 631
+Column: NutrientSymbol                Val: 22:5n-3DPA
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 22:5 n-3, DOCOSAPENTAENOIC (DPA)"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 22:5 n-3, DOCOSAPENTA�NO�QUE"
+Column: Tagname                       Val: F22D5N3
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 645
+Column: NutrientSymbol                Val: MUFA
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, MONOUNSATURATED, TOTAL"
+Column: NutrientNameF                 Val: ACIDES GRAS MONOINSATUR�S  TOTAUX
+Column: Tagname                       Val: FAMS
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 646
+Column: NutrientSymbol                Val: PUFA
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, TOTAL"
+Column: NutrientNameF                 Val: ACIDES GRAS POLYINSATUR�S TOTAUX
+Column: Tagname                       Val: FAPU
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 432
+Column: NutrientSymbol                Val: FOLN
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: NATURALLY OCCURRING FOLATE
+Column: NutrientNameF                 Val: FOLATES PR�SENTS NATURELLEMENT
+Column: Tagname                       Val: FOLFD
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 320
+Column: NutrientSymbol                Val: RAE
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: RETINOL ACTIVITY EQUIVALENTS
+Column: NutrientNameF                 Val: �QUIVALENTS D'ACTIVIT� DU R�TINOL
+Column: Tagname                       Val: VITA_RAE
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 435
+Column: NutrientSymbol                Val: DFE
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: DIETARY FOLATE EQUIVALENTS
+Column: NutrientNameF                 Val: �QUIVALENTS DE FOLATE ALIMENTAIRE (�FA)
+Column: Tagname                       Val: FOLDFE
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 675
+Column: NutrientSymbol                Val: 18:2ccn-6
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 18:2 c,c n-6,  LINOLEIC, OCTADECADIENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 18:2 c,c n-6, LINOL�IQUE, OCTAD�CADI�NO�QUE"
+Column: Tagname                       Val: F18D2CN6
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 689
+Column: NutrientSymbol                Val: 20:3undiff
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 20:3, EICOSATRIENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 20:3, E�COSATRI�NO�QUE"
+Column: Tagname                       Val: F20D3
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 851
+Column: NutrientSymbol                Val: 18:3cccn-3
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 18:3 c,c,c n-3  LINOLENIC, OCTADECATRIENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 18:3 c,c,c  n-3, LINOL�NIQUE, OCTAD�CATRI�NO�QUE"
+Column: Tagname                       Val: F18D3CN3
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 685
+Column: NutrientSymbol                Val: 18:3cccn-6
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 18:3 c,c,c n-6, g-LINOLENIC, OCTADECATRIENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 18:3 c,c,c n-6, g-LINOL�NIQUE, OCTAD�CATRI�NO�QUE"
+Column: Tagname                       Val: F18D3CN6
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 334
+Column: NutrientSymbol                Val: CRYPX
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: BETA CRYPTOXANTHIN
+Column: NutrientNameF                 Val: B�TA-CRYPTOZANTHINE
+Column: Tagname                       Val: CRYPX
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 337
+Column: NutrientSymbol                Val: LYCPN
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: LYCOPENE
+Column: NutrientNameF                 Val: LYCOP�NE
+Column: Tagname                       Val: LYCPN
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 338
+Column: NutrientSymbol                Val: LUT+ZEA
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: LUTEIN AND ZEAXANTHIN
+Column: NutrientNameF                 Val: LUT�INE ET Z�AXANTHINE
+Column: Tagname                       Val: LUT+ZEA
+Column: NutrientDecimals              Val: 0
+Column: NutrientCode                  Val: 853
+Column: NutrientSymbol                Val: 20:3n-6
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 20:3 n-6, EICOSATRIENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 20:3 n-6, E�COSATRI�NO�QUE"
+Column: Tagname                       Val: F20D3N6
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 855
+Column: NutrientSymbol                Val: 20:4n-6
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 20:4 n-6, ARACHIDONIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 20:4 n-6, ARACHIDONIQUE"
+Column: Tagname                       Val: F20D4N6
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 852
+Column: NutrientSymbol                Val: 20:3n-3
+Column: NutrientUnit                  Val: g
+Column: NutrientName                  Val: "FATTY ACIDS, POLYUNSATURATED, 20:3 n-3 EICOSATRIENOIC"
+Column: NutrientNameF                 Val: "ACIDES GRAS POLYINSATUR�S, 20:3 n-3"
+Column: Tagname                       Val: F20D3N3
+Column: NutrientDecimals              Val: 3
+Column: NutrientCode                  Val: 578
+Column: NutrientSymbol                Val: B12-A
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: "VITAMIN B12, ADDED"
+Column: NutrientNameF                 Val: "VITAMINE B12, AJOUT�E"
+Column: Tagname                       Val:
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 573
+Column: NutrientSymbol                Val: ATMG-A
+Column: NutrientUnit                  Val: mg
+Column: NutrientName                  Val: "ALPHA-TOCOPHEROL, ADDED"
+Column: NutrientNameF                 Val: "ALPHA-TOCOPH�ROL, AJOUT�"
+Column: Tagname                       Val:
+Column: NutrientDecimals              Val: 2
+Column: NutrientCode                  Val: 325
+Column: NutrientSymbol                Val: D2-�G
+Column: NutrientUnit                  Val: �g
+Column: NutrientName                  Val: "VITAMIN D2, ERGOCALCIFEROL"
+Column: NutrientNameF                 Val: "VITAMINE D2, (ERGOCALCIF�ROL)"
+Column: Tagname                       Val: ERGCAL
+Column: NutrientDecimals              Val: 1
+Column: MeasureDescription            Val: 100ml
+Column: MeasureDescriptionF           Val: 100ml
