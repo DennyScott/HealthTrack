@@ -14,6 +14,7 @@ public class UserInfo {
     static int age;
     static double weight; // in pounds
     static int height; // in inches
+    static boolean male; // true is male, false is female
 
     public static String getName() {
         return name;
@@ -29,5 +30,9 @@ public class UserInfo {
 
     public static int getHeight() {
         return height;
+    }
+
+    public static boolean isMale() {
+        return male;
     }
 }
