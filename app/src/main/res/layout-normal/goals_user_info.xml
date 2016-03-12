@@ -79,19 +79,34 @@
         android:ems="10"
         android:id="@+id/heightTextEntry"
         android:layout_below="@+id/weightTextEntry"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
         android:layout_alignRight="@+id/weightTextEntry"
-        android:layout_alignEnd="@+id/weightTextEntry" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/textView"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/weightTextEntry"
+        android:layout_alignEnd="@+id/weightTextEntry"
         android:layout_alignLeft="@+id/weightTextEntry"
         android:layout_alignStart="@+id/weightTextEntry" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@+id/heightTextEntry"
+        android:layout_alignStart="@+id/heightTextEntry"
+        android:layout_below="@+id/heightTextEntry"
+        android:layout_alignRight="@+id/heightTextEntry"
+        android:layout_alignEnd="@+id/heightTextEntry"
+        android:layout_above="@+id/saveButton">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:id="@+id/male"
+            android:onClick="male" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:id="@+id/female"
+            android:onClick="female" />
+    </RadioGroup>
 
 </RelativeLayout>

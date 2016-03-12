@@ -20,10 +20,6 @@ import java.io.Serializable;
  * Created by Khaled on 3/11/2016.
  */
 public class UserDataAccess implements Serializable {
-    String name;
-    int age;
-    int weight;
-    int height;
     Activity ctx;
     UserData user;
     private static String[] PERMISSIONS_STORAGE = {
@@ -50,6 +46,9 @@ public class UserDataAccess implements Serializable {
     public String getName(){
         return user.name;
     }
+    public int getGender(){
+        return user.gender;
+    }
     public int getAge(){
         return user.age;
     }
@@ -62,11 +61,12 @@ public class UserDataAccess implements Serializable {
     public boolean isSet(){
         return user.set;
     }
-    public void setAll(String name, int age, int height, int weight){
+    public void setAll(String name, int age, int height, int weight,int gender){
         user.name = name;
         user.age = age;
         user.height = height;
         user.weight = weight;
+        user.gender = gender;
         user.set = true;
     }
     public void save(){
@@ -102,6 +102,7 @@ class UserData implements Serializable{
     int age;
     int weight;
     int height;
+    int gender;//0 male, 1 female
     boolean set;
     UserData(){
         set = false;
@@ -109,5 +110,6 @@ class UserData implements Serializable{
         age = 0;
         weight=0;
         height=0;
+        gender=1;
     }
 }
