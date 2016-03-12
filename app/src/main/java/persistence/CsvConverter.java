@@ -536,42 +536,92 @@ public class CsvConverter {
     //delete all nutrients that do not fit in the accepted pattern
     //TOO BUGGED
     public void deleteNonInterestingNutrients(String[] nutrientsToKeep) {
-        boolean acceptThisNutrient;
+        /*
+            Algorithm:
+                The 5th array element = first nutrient
+                Adding 7 brings you to the next nutrient
+                    starting from here
+                    if this food matches any of the string patterns, keep it
+                    if it doesnt
+                        delete this and the next 7 elements
+
+         */
         int i;
-        //delete them backwards so it doesnt affect the remaining elements
+        int indexCount;
+        int listSize;
+        Iterator<String> colIt;
+        Iterator<String> valsIt;
+        String col;
+        String val;
+        boolean match;
         for (Foods f : Foods.entries) {
-            for (i = 0; i < f.vals.cols.size(); i++) {
-                //check only if this is NutrientName column
-                if (!f.vals.cols.get(i).equalsIgnoreCase(f.vals.data.get(i + 5))) continue;
-                //code reaching here means this a NutrientName column
-                //check its value
-                acceptThisNutrient = false;
-                for (int j = 0; j < nutrientsToKeep.length; j++) {
-                    if (f.vals.data.get(i).equalsIgnoreCase(nutrientsToKeep[j])) {
-                        //accept this
-                        acceptThisNutrient = true;
+            listSize = f.vals.cols.size();
+            colIt = f.vals.cols.iterator();
+            valsIt = f.vals.data.iterator();
+            //advance the iterators 5 to get to the first nutrient
+            advanceIterators(colIt, valsIt, 4);
+            indexCount = 4;
+            while (colIt.hasNext() && indexCount+7 < listSize) {
+                col = colIt.next();
+                val = valsIt.next();
+                //check all the strings for a match
+                match = false;
+                for (i = 0; i < nutrientsToKeep.length; i++) {
+                    if (val.equalsIgnoreCase(nutrientsToKeep[i])){
+                        match = true;
                         break;
                     }
                 }
-                if (!acceptThisNutrient) {
-                    //delete this nutrient if it did not match any patterns
-                    //Here is a sample of the nutrient output
-//                    Column: NutrientCode                  Val: 203
-//                    Column: NutrientSymbol                Val: PROT
-//                    Column: NutrientUnit                  Val: g
-//                    Column: NutrientName                  Val: PROTEIN
-//                    Column: NutrientNameF                 Val: PROT�INES
-//                    Column: Tagname                       Val: PROCNT
-//                    Column: NutrientDecimals              Val: 2
-                    //we assume that nutrientName has been swapped with NutrientCode
-                    //we are currently at the index position of nutrientName, which is the first element
-                    // of this series of 7 things to delete
-                    //since the index falls forward to the next element, delete this index i 7 times
-                    for (int k = 0; k < 7; k++) {
-                        deleteCorrespondingArrayElements(f.vals.cols, f.vals.data, i);
+
+                if (!match) {
+                    //delete this and the next 7 elements
+                    for (i = 0; i < 7; i++) {
+                        colIt.remove();
+                        valsIt.remove();
+                        //no need to check has next since we know there are at least 7 more remaining
+                        //  elements (while loop)
+                        if (!colIt.hasNext()) break;
+                        colIt.next();
+                        valsIt.next();
+                    }
+                    //index stays the same since its like the next few elements were being deleted
+                    listSize = f.vals.cols.size();
+                } else {
+                    //skip to next nutrient
+                    advanceIterators(colIt, valsIt, 6);
+                    indexCount+= 6;
+                }
+
+            }
+
+        }
+    }
+
+    private void advanceIterators(Iterator<String> it1, Iterator<String> it2, int numToAdvance) {
+        for (int i = 0; i < numToAdvance && it1.hasNext() && it2.hasNext(); i++) {
+            it1.next();
+            it2.next();
+        }
+    }
+
+    public void trimQuotationMarks() {
+        for (Foods f : Foods.entries) {
+            for (int i = 0; i < f.vals.data.size(); i++) {
+                String thisData = f.vals.data.get(i);
+                if (thisData.length() > 0) {
+                    if (thisData.substring(0, 1).equals("\"")) {
+                        //this value has leading/trailing quotes. remove them
+                        thisData = thisData.substring(1, thisData.length() - 1);
+                        f.vals.data.set(i, thisData);
                     }
                 }
             }
+        }
+    }
+
+    public void swapScientificNameMeasureNameCols() {
+        for (Foods f : Foods.entries) {
+            swapCorrespondingColumnAndValue(f.vals.cols,f.vals.data,1, f.vals.cols.size() - 1);
         }
     }
 }

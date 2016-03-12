@@ -117,7 +117,7 @@ public class DatabaseManager  {
             "SUGARS, TOTAL",
             "THIAMIN",
             "VITAMIN B-12",
-            "VITAMIN B12, ADDED",
+//            "VITAMIN B12, ADDED", no tag
             "VITAMIN B-6",
             "VITAMIN C",
             "VITAMIN D (D2 + D3)",
@@ -149,13 +149,19 @@ public class DatabaseManager  {
 
         //delete the remaining nutrient-columns as they are unneeded
         converter.deleteColumnsWithString("Nutrient");
-        converter.listFoods("deleteBeforeNutrients.txt");
+        //converter.listFoods("deleteBeforeNutrients.txt");
 
+        //remove the trailing quotation marks per value
+        converter.trimQuotationMarks();
+
+        //the 2nd column is scientific name, last is measure description. swap them
+        //  to delete later
+        converter.swapScientificNameMeasureNameCols();
         //delete the remaining columns that arent of the desired vitamins/minerals
-        //converter.deleteNonInterestingNutrients(nutrientsToKeep);
+        converter.deleteNonInterestingNutrients(nutrientsToKeep);
 
         //THE FOODS ARE NOW READY
-        converter.listFoods("final.txt");
+        converter.listFoods("nutrientsAfterDeletion.txt");
 
         //at this time, all the foods are parsed and ready to turn into SQL queries
         //but which columns do we choose?
