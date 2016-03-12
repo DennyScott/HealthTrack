@@ -1,24 +1,13 @@
 package club.glamajestic.healthtrack;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import business.UserDataAccess;
 
 /**
  * <code>GoalsUserInfo</code> allows the user to enter information about themselves, which the
@@ -27,8 +16,12 @@ import java.io.OutputStreamWriter;
 public class GoalsUserInfo extends Activity implements View.OnClickListener {
 
     private Button saveButton;
-    private EditText editText;
-    private TextView textView;
+    private EditText nameText;
+    private EditText ageText;
+    private EditText weightText;
+    private EditText heightText;
+    private TextView display;
+    private UserDataAccess user;
 
     /**
      * {@inheritDoc}
@@ -39,9 +32,13 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         setContentView(R.layout.goals_user_info);
         saveButton = (Button)findViewById(R.id.saveButton);
         saveButton.setOnClickListener(this);
-        editText = (EditText)findViewById(R.id.nameTextEntry);
-        textView = (TextView)findViewById(R.id.textView);
-        textView.setVisibility(View.GONE);
+        nameText = (EditText)findViewById(R.id.nameTextEntry);
+        ageText = (EditText)findViewById(R.id.ageTextEntry);
+        weightText = (EditText)findViewById(R.id.weightTextEntry);
+        heightText = (EditText)findViewById(R.id.heightTextEntry);
+        display = (TextView)findViewById(R.id.textView);
+        display.setVisibility(View.GONE);
+        user = new UserDataAccess(this);
     }
 
     /**
@@ -52,17 +49,6 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         Output.toastMessage(this, "Returning to previous screen.", Output.LONG_TOAST);
         finish();
     }
-
-    /**
-     * Creates a new <code>Intent</code> and starts <code>SettingsActivity</code>.
-     *
-     * @param view Unused.
-     */
-    public void settingsButton(View view) {
-        Intent gameMode = new Intent(this, SettingsActivity.class);
-        startActivity(gameMode);
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -82,52 +68,25 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
 
     // Saves info in a string: "Full Name, age, weight"
     private void saveText(){
-        String message = editText.getText().toString();
-        String fileName = "userInfo";
-        try {
-            FileOutputStream fileOutputStream = openFileOutput(fileName,MODE_PRIVATE);
-            fileOutputStream.write(message.getBytes());
-            editText.setText("");
-
-            editText = (EditText)findViewById(R.id.ageTextEntry);
-            message = ", " + editText.getText().toString();
-            fileOutputStream.write(message.getBytes());
-            editText.setText("");
-
-            editText = (EditText)findViewById(R.id.weightTextEntry);
-            message = ", " + editText.getText().toString();
-            fileOutputStream.write(message.getBytes());
-
-            fileOutputStream.close();
-            editText.setText("");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /*
-    This is only here as a reminder of how to retrieve the user's input from internal storage,
-    and that it works. It's temporary.
-    Requires plain text view widget and a load button.
-     */
-    public void readMessage(View view) {
-        try {
-            String message;
-            FileInputStream fileInputStream = openFileInput("userInfo");
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            StringBuffer stringBuffer = new StringBuffer();
-            while ((message=bufferedReader.readLine())!=null) {
-                stringBuffer.append(message + "\n");
+        String name = nameText.getText().toString();
+        String age = ageText.getText().toString();
+        String weight = weightText.getText().toString();
+        String height = heightText.getText().toString();
+        if(name != null && age != null && weight != null && height != null) {
+            if(!name.equals("") && !age.equals( "") && !weight.equals("") && !height.equals( "")){
+                user.setAll(name,Integer.parseInt(age),Integer.parseInt(height),Integer.parseInt(weight));
+                user.save();
+                Intent gameMode = new Intent(this, mainStats.class);
+                startActivity(gameMode);
+                finish();
+            }else{
+                Output.toastMessage(this, "Please fill in all fields", Output.SHORT_TOAST);
             }
-            textView.setText(stringBuffer.toString());
-            textView.setVisibility(View.VISIBLE);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        else{
+            Output.toastMessage(this, "Please fill in all fields", Output.SHORT_TOAST);
+        }
+
+
     }
 }

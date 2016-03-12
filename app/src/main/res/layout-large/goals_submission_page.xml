@@ -13,56 +13,85 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title"
-        android:text="@string/goals_submission_title"
+        android:text="@string/user_info_title"
         android:textStyle="bold"
-        android:textSize="@dimen/title_large"
-        android:textColor="#403c3c"
+        android:textSize="@dimen/title_normal"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <ImageButton
-        android:layout_width="55dp"
-        android:layout_height="35dp"
-        android:id="@+id/settingsButton"
-        android:background="@drawable/settings_button_action"
-        android:layout_marginBottom="28dp"
-        android:onClick="settingsButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/title" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:layout_marginTop="20dp" />
 
     <Button
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/save_changes_button_width"
+        android:layout_height="@dimen/save_changes_button_height"
         android:text="@string/save_changes_button"
         android:id="@+id/saveButton"
-        android:layout_above="@+id/settingsButton"
-        android:layout_centerHorizontal="true" />
+        android:background="#ffb13d"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="textPersonName|textCapWords"
+        android:hint="@string/name_submission_hint"
         android:ems="10"
-        android:id="@+id/targetWeightTextEntry"
+        android:id="@+id/nameTextEntry"
         android:layout_below="@+id/title"
         android:layout_alignLeft="@+id/title"
         android:layout_alignStart="@+id/title"
-        android:layout_marginTop="22dp"
-        android:text="@string/weight_goal_hint"
-        android:layout_alignRight="@+id/settingsButton"
-        android:layout_alignEnd="@+id/settingsButton" />
+        android:layout_marginTop="23dp"
+        android:layout_alignRight="@+id/title"
+        android:layout_alignEnd="@+id/title" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:hint="@string/age_submission_hint"
         android:ems="10"
-        android:id="@+id/editText5"
-        android:layout_below="@+id/targetWeightTextEntry"
-        android:layout_alignLeft="@+id/targetWeightTextEntry"
-        android:layout_alignStart="@+id/targetWeightTextEntry"
-        android:layout_alignRight="@+id/settingsButton"
-        android:layout_alignEnd="@+id/settingsButton"
-        android:text="@string/weeks_goal_hint" />
+        android:id="@+id/ageTextEntry"
+        android:layout_below="@+id/nameTextEntry"
+        android:layout_alignLeft="@+id/nameTextEntry"
+        android:layout_alignStart="@+id/nameTextEntry"
+        android:layout_alignRight="@+id/title"
+        android:layout_alignEnd="@+id/title" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="@string/weight_submission_hint"
+        android:ems="10"
+        android:id="@+id/weightTextEntry"
+        android:layout_below="@+id/ageTextEntry"
+        android:layout_alignLeft="@+id/ageTextEntry"
+        android:layout_alignStart="@+id/ageTextEntry"
+        android:layout_alignRight="@+id/title"
+        android:layout_alignEnd="@+id/title" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="Height (cm)"
+        android:ems="10"
+        android:id="@+id/heightTextEntry"
+        android:layout_below="@+id/weightTextEntry"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignRight="@+id/weightTextEntry"
+        android:layout_alignEnd="@+id/weightTextEntry" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/weightTextEntry"
+        android:layout_alignLeft="@+id/weightTextEntry"
+        android:layout_alignStart="@+id/weightTextEntry" />
 
 </RelativeLayout>

@@ -18,27 +18,18 @@
         android:textSize="@dimen/title_normal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/title_colour" />
-
-    <ImageButton
-        android:layout_width="@dimen/settings_button_normal_width"
-        android:layout_height="@dimen/settings_button_normal_height"
-        android:id="@+id/settingsButton"
-        android:background="@drawable/settings_button_action"
-        android:onClick="settingsButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/settings_button_margin"
-        android:layout_margin="@dimen/settings_button_margin" />
+        android:textColor="#ffffff"
+        android:layout_marginTop="20dp" />
 
     <Button
         android:layout_width="@dimen/save_changes_button_width"
         android:layout_height="@dimen/save_changes_button_height"
         android:text="@string/save_changes_button"
         android:id="@+id/saveButton"
-        android:layout_above="@+id/settingsButton"
-        android:layout_centerHorizontal="true" />
+        android:background="#ffb13d"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -80,6 +71,19 @@
         android:layout_alignRight="@+id/title"
         android:layout_alignEnd="@+id/title" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="Height (cm)"
+        android:ems="10"
+        android:id="@+id/heightTextEntry"
+        android:layout_below="@+id/weightTextEntry"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignRight="@+id/weightTextEntry"
+        android:layout_alignEnd="@+id/weightTextEntry" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -89,17 +93,5 @@
         android:layout_below="@+id/weightTextEntry"
         android:layout_alignLeft="@+id/weightTextEntry"
         android:layout_alignStart="@+id/weightTextEntry" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/test_load"
-        android:id="@+id/loadButton"
-        android:onClick="readMessage"
-        android:layout_above="@+id/saveButton"
-        android:layout_alignLeft="@+id/saveButton"
-        android:layout_alignStart="@+id/saveButton"
-        android:layout_alignRight="@+id/saveButton"
-        android:layout_alignEnd="@+id/saveButton" />
 
 </RelativeLayout>

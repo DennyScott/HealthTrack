@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/editText3"
+        android:id="@+id/weightTextEntry"
         android:layout_below="@+id/ageTextEntry"
         android:layout_alignLeft="@+id/ageTextEntry"
         android:layout_alignStart="@+id/ageTextEntry"
