@@ -21,7 +21,6 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
     private EditText ageText;
     private EditText weightText;
     private EditText heightText;
-    private TextView display;
     private UserDataAccess user;
     private RadioButton male, female;
     int gender;
@@ -40,8 +39,6 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         ageText = (EditText)findViewById(R.id.ageTextEntry);
         weightText = (EditText)findViewById(R.id.weightTextEntry);
         heightText = (EditText)findViewById(R.id.heightTextEntry);
-        display = (TextView)findViewById(R.id.textView);
-        display.setVisibility(View.GONE);
         male = (RadioButton)findViewById(R.id.male);
         female = (RadioButton)findViewById(R.id.female);
         user = new UserDataAccess(this);
