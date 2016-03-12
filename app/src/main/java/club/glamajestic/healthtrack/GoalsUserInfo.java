@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import business.UserInfo;
+
 /**
  * <code>GoalsUserInfo</code> allows the user to enter information about themselves, which the
  * app can then use when providing statistics and managing goals.
@@ -94,29 +96,45 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener, Ada
     private void saveText(){
         String message = editText.getText().toString();
         String fileName = "userInfo";
+        double doubleValue;
+        int intValue;
+
         try {
             FileOutputStream fileOutputStream = openFileOutput(fileName,MODE_PRIVATE);
             fileOutputStream.write(message.getBytes());
+            UserInfo.setName(message);
             editText.setText("");
 
             editText = (EditText)findViewById(R.id.ageTextEntry);
             message = ", " + editText.getText().toString();
             fileOutputStream.write(message.getBytes());
+            doubleValue = Double.parseDouble(editText.getText().toString());
+            intValue = (int)doubleValue;
+            UserInfo.setAge(intValue);
             editText.setText("");
 
             editText = (EditText)findViewById(R.id.weightTextEntry);
             message = ", " + editText.getText().toString();
             fileOutputStream.write(message.getBytes());
+            doubleValue = Double.parseDouble(editText.getText().toString());
+            UserInfo.setWeight(doubleValue);
             editText.setText("");
 
             editText = (EditText)findViewById(R.id.heightTextEntry);
             message = ", " + editText.getText().toString();
             fileOutputStream.write(message.getBytes());
+            doubleValue = Double.parseDouble(editText.getText().toString());
+            intValue = (int)doubleValue;
+            UserInfo.setHeight(intValue);
             editText.setText("");
 
             spinner = (Spinner)findViewById(R.id.genderSpinner);
             message = ", " + spinner.getSelectedItem().toString();
             fileOutputStream.write(message.getBytes());
+            if (spinner.getSelectedItem().toString().equals("Male"))
+                UserInfo.setMale(true);
+            else
+                UserInfo.setMale(false);
 
             fileOutputStream.close();
             editText.setText("");

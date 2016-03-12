@@ -35,4 +35,24 @@ public class UserInfo {
     public static boolean isMale() {
         return male;
     }
+
+    public static void setName(String name) {
+        UserInfo.name = name;
+    }
+
+    public static void setAge(int age) {
+        UserInfo.age = age;
+    }
+
+    public static void setWeight(double weight) {
+        UserInfo.weight = weight;
+    }
+
+    public static void setHeight(int height) {
+        UserInfo.height = height;
+    }
+
+    public static void setMale(boolean valid) {
+        UserInfo.male = valid;
+    }
 }
