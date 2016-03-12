@@ -23,7 +23,7 @@ public class BMR implements Calculator{
     final double AGE_MULTIPLIER = 5;
     final int MALE_CONST = 5;
     final int FEMALE_CONST = -161;
-    UserDataAccess user = new UserDataAccess(this);
+    UserDataAccess user = new UserDataAccess();
 
     @Override
     public int calculate() {

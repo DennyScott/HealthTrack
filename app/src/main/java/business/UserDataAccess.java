@@ -26,6 +26,21 @@ public class UserDataAccess implements Serializable {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    public UserDataAccess(){
+        File userInfo = new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userInfo.ser");
+        if (userInfo.exists()) {
+            try {
+                ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(userInfo)));
+                user = (UserData) ois.readObject();
+                ois.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else{
+            user = new UserData();
+        }
+    }
     public UserDataAccess(Activity ctx){
         this.ctx = ctx;
         verifyStoragePermissions(ctx);

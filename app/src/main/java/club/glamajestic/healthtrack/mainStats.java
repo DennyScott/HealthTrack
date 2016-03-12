@@ -19,6 +19,7 @@ import com.github.mikephil.charting.charts.PieChart;
 
 import business.ClickSound;
 import business.InitPieChart;
+import business.UserDataAccess;
 
 public class mainStats extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout stats;
