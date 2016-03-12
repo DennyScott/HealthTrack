@@ -16,22 +16,23 @@ public class HeartRate implements Calculator {
     final int MAX_HR = 220;
     final double LOWER_MULTIPLIER = 0.5;
     final double UPPER_MULTIPLIER = 0.85;
+    UserDataAccess user = new UserDataAccess();
 
 
     @Override
-    public int calculate() {
-        max = MAX_HR - UserInfo.getAge();
+    public double calculate() {
+        max = MAX_HR - user.getAge();
         lowerRate = max * LOWER_MULTIPLIER;
         upperRate = max * UPPER_MULTIPLIER;
 
-        return 0;
+        return max;
     }
 
-    public double getLowerRate() {
-        return lowerRate;
+    public int getLowerRate() {
+        return (int) Math.round(lowerRate);
     }
 
-    public double getUpperRate() {
-        return upperRate;
+    public int getUpperRate() {
+        return (int) Math.round(upperRate);
     }
 }
