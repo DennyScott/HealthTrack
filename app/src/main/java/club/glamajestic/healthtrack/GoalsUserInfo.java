@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,15 +23,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import business.UserInfo;
+
 /**
  * <code>GoalsUserInfo</code> allows the user to enter information about themselves, which the
  * app can then use when providing statistics and managing goals.
  */
-public class GoalsUserInfo extends Activity implements View.OnClickListener {
+public class GoalsUserInfo extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private Button saveButton;
     private EditText editText;
     private TextView textView;
+    private Spinner spinner;
 
     /**
      * {@inheritDoc}
@@ -42,6 +48,12 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         editText = (EditText)findViewById(R.id.nameTextEntry);
         textView = (TextView)findViewById(R.id.textView);
         textView.setVisibility(View.GONE);
+
+        // For the gender spinner
+        spinner = (Spinner) findViewById(R.id.genderSpinner);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.gender,android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
     }
 
     /**
@@ -84,19 +96,45 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
     private void saveText(){
         String message = editText.getText().toString();
         String fileName = "userInfo";
+        double doubleValue;
+        int intValue;
+
         try {
             FileOutputStream fileOutputStream = openFileOutput(fileName,MODE_PRIVATE);
             fileOutputStream.write(message.getBytes());
+            UserInfo.setName(message);
             editText.setText("");
 
             editText = (EditText)findViewById(R.id.ageTextEntry);
             message = ", " + editText.getText().toString();
             fileOutputStream.write(message.getBytes());
+            doubleValue = Double.parseDouble(editText.getText().toString());
+            intValue = (int)doubleValue;
+            UserInfo.setAge(intValue);
             editText.setText("");
 
             editText = (EditText)findViewById(R.id.weightTextEntry);
             message = ", " + editText.getText().toString();
             fileOutputStream.write(message.getBytes());
+            doubleValue = Double.parseDouble(editText.getText().toString());
+            UserInfo.setWeight(doubleValue);
+            editText.setText("");
+
+            editText = (EditText)findViewById(R.id.heightTextEntry);
+            message = ", " + editText.getText().toString();
+            fileOutputStream.write(message.getBytes());
+            doubleValue = Double.parseDouble(editText.getText().toString());
+            intValue = (int)doubleValue;
+            UserInfo.setHeight(intValue);
+            editText.setText("");
+
+            spinner = (Spinner)findViewById(R.id.genderSpinner);
+            message = ", " + spinner.getSelectedItem().toString();
+            fileOutputStream.write(message.getBytes());
+            if (spinner.getSelectedItem().toString().equals("Male"))
+                UserInfo.setMale(true);
+            else
+                UserInfo.setMale(false);
 
             fileOutputStream.close();
             editText.setText("");
@@ -129,5 +167,16 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        TextView myText = (TextView) view;
+        Toast.makeText(this, " " + myText.getText(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
