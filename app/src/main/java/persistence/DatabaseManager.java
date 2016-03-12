@@ -20,14 +20,14 @@ public class DatabaseManager  {
 //    };
 
 
-    static String foodsPattern[] = {
+    static final String foodsPattern[] = {
             "apple",
             "banana",
             "cheese",
             "fish",
             "pancake"
     };
-    static String[] filenames = {"extdb/FOOD NAME.csv",
+    static final String[] filenames = {"extdb/FOOD NAME.csv",
             "extdb/NUTRIENT AMOUNT.csv",
             "extdb/CONVERSION FACTOR.csv"
     };
@@ -58,10 +58,76 @@ public class DatabaseManager  {
     //  Nothing
     //  Ties with NutrientID from NutAmnt
 
-    static String idReplacements[] = {
+    static final String idReplacements[] = {
             "extdb/FOOD GROUP.csv",
             "extdb/NUTRIENT NAME.csv",
             "extdb/MEASURE NAME.csv"
+    };
+
+    //replacement columns to take off the garbage from the CSV files
+    //  note that listColumns can also do this, but its a lot easier doing it here
+    //  and this will actually remove the columns from the entries (vs listing the ones that are relevant)
+    //  so listColumns does NOT modify the memory but this will
+    static final String columnsToKeep[] = {
+            "FoodDescription",
+            "ScientificName",
+            "NutrientID",   //important for connecting corresponding columns
+            "NutrientValue",
+            "ConversionFactorValue",
+            "FoodGroupName",
+            "NutrientCode",
+            "NutrientSymbol",
+            "NutrientUnit",
+            "NutrientName",
+            "NutrientNameF",
+            "Tagname",      //nutrient tag names will be used as heading names
+            "NutrientDecimals",
+            "MeasureDescription"
+    };
+
+    static final String nutrientsToKeep[] = {
+            "ALCOHOL",
+            "CAFFEINE",
+            "CALCIUM",
+            "CARBOHYDRATE, TOTAL (BY DIFFERENCE)",
+            "CHOLESTEROL",
+            "ENERGY (KILOCALORIES)",
+            "ENERGY (KILOJOULES)",
+            "FAT (TOTAL LIPIDS)",
+            "FATTY ACIDS, MONOUNSATURATED, TOTAL",
+            "FATTY ACIDS, POLYUNSATURATED, TOTAL",
+            "FATTY ACIDS, SATURATED, TOTAL",
+            "FATTY ACIDS, TRANS, TOTAL",
+            "FIBRE, TOTAL DIETARY",
+            "FOLIC ACID",
+            "FRUCTOSE",
+            "GALACTOSE",
+            "GLUCOSE",
+            "IRON",
+            "LACTOSE",
+            "MAGNESIUM",
+            "MANGANESE",
+            "MOISTURE",
+            "NATURALLY OCCURRING FOLATE",
+            "OXALIC ACID",
+            "PHOSPHORUS",
+            "POTASSIUM",
+            "PROTEIN",
+            "RIBOFLAVIN",
+            "SODIUM",
+            "STARCH",
+            "SUCROSE",
+            "SUGARS, TOTAL",
+            "THIAMIN",
+            "VITAMIN B-12",
+            "VITAMIN B12, ADDED",
+            "VITAMIN B-6",
+            "VITAMIN C",
+            "VITAMIN D (D2 + D3)",
+            "VITAMIN D (INTERNATIONAL UNITS)",
+            "VITAMIN D2, ERGOCALCIFEROL",
+            "VITAMIN K",
+            "ZINC"
     };
 
     public static void main(String[] args) {
@@ -73,26 +139,26 @@ public class DatabaseManager  {
         //converter.reorderColumns();
         //pick which columns to keep
 //        converter.chooseOutColumns();
-        converter.printPrimaryKeys();
         //ready to read objects
         converter.readObjects();
         //replace the IDs with teh relevant files (n^2 search)
         converter.replaceIDs(idReplacements);
+        //now remove the columns that aren't wanted
+        converter.replaceColumns(columnsToKeep);
+        //do some rearranging of the columns
+        //  want to change the multiple "NutrientName" columns to <Nutrient>Name eg ProteinName
+        converter.changeNutrientColumnNames();
+        //delete the remaining nutrient-columns as they are unneeded
+        converter.deleteColumnsWithString("Nutrient");
+        //delete the remaining columns that arent of the desired vitamins/minerals
+        converter.deleteNonInterestingNutrients(nutrientsToKeep);
+
+        //THE FOODS ARE NOW READY
         converter.listFoods();
-        //open csvs
-        //  extract columns (first lines)
-        //      put in a list
-        //  highlight common columns
-        //      put them together in another list
-        //      store this list in static class of food objects
-        //list columns + common ones
-        //  number their output
-        //      get space separated nums = columns of interest
-        //  <order them>
-        //      with 2 number pair swaps
-        //go through every file again
-        //  put data into food objects, checking for unique common column data
-        //      data entry point:
+        //at this time, all the foods are parsed and ready to turn into SQL queries
+        //but which columns do we choose?
+//        converter.listFoods();
+
     }
 
 

@@ -3,6 +3,7 @@ package persistence;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class CsvConverter {
@@ -388,5 +389,167 @@ public class CsvConverter {
             }
         }
 
+    }
+
+    private void swapColumns(){
+        //
+    }
+    /**
+     * For each food, loop through each column and remove the corresponding column/data entries
+     * @param columnsToKeep
+     */
+    public void replaceColumns(String[] columnsToKeep) {
+
+        Iterator<String> foodColumn;
+        Iterator<String> foodValue;
+        String curColumn;
+        boolean keepThis;
+
+
+        Iterator<Foods> it;
+        it = Foods.entries.iterator();
+        Foods thisFood;
+        while (it.hasNext()) {
+            thisFood = it.next();
+            //for each column/heading, remove the ones that aren' relevant
+            foodColumn = thisFood.vals.cols.iterator();
+            foodValue = thisFood.vals.data.iterator();
+            //loop through each column
+            while (foodColumn.hasNext() && foodValue.hasNext()) {
+                //Store the column to compare it to the accepted ones
+                curColumn = foodColumn.next();
+                //advance the value iterator; doesnt matter what its value is, we will remove it regardless
+                foodValue.next();
+                //see if this column exists in the columns to keep
+                keepThis = false;
+                for (int i = 0; i < columnsToKeep.length; i++) {
+                    if (curColumn.equalsIgnoreCase(columnsToKeep[i])) {
+                        //if this currently checking column is equal to ANY of the allowed ones, stop checking
+                        keepThis = true;
+                        break;
+                    }
+                }
+
+                if (!keepThis) {
+                    //this column wasnt in the ones to keep, so remove the iterator values
+                    foodColumn.remove();
+                    foodValue.remove();
+                }
+
+            }
+        }
+    }
+
+    public void swapArrayListElements(ArrayList<String> arrayList, int indexA, int indexB) {
+        String temp = arrayList.get(indexA);
+        arrayList.set(indexA,arrayList.get(indexB));
+        arrayList.set(indexB,temp);
+    }
+
+    public void swapCorrespondingColumnAndValue(ArrayList<String> listA, ArrayList<String> listB, int indexA, int indexB) {
+        swapArrayListElements(listA, indexA, indexB);
+        swapArrayListElements(listB, indexA, indexB);
+    }
+
+    public void changeNutrientColumnNames() {
+        //since nutrient amount table is read first, nutrientID and nutrientValue exist before the
+        //  nutrient names. But they appear in the exact sequential order aferwards.
+        //  Algorithm:
+        //      DO
+            //      Use two integers, A and B
+            //      Per NutrientID, let its index be A, find the corresponding NutrientCode at index B (sequentially)
+            //      A+1 index == NutrientValue. Swap this with Nutrient Code at B
+            //          ie swap (A+1, B)
+            //      B + 3 == NutrientName column. Swap NutrientName with NutrientValue so nutrientName comes first
+            //          this will simplify subsequent steps
+            //          ie swap (B, B+3)
+        //          Data[B] now equals the column name.
+        //              Do
+        //                  replace the Nutrient part of the column name with the tag name
+        //                  the tagname exists at B+5
+        //              while Col[B] != NutrientCode
+        //      Loop until no more nutrientIDs found
+
+        int a;
+        int b;
+        int i;
+        for (Foods f : Foods.entries) {
+            a = -1;
+            b = -1;
+            while (a < f.vals.cols.size()) {
+                for (i = a+1; i < f.vals.cols.size() &&
+                        !f.vals.cols.get(a).equalsIgnoreCase("NutrientID"); i++) {}
+                a = i;
+                for (i = b+1; i < f.vals.cols.size() &&
+                        !f.vals.cols.get(a).equalsIgnoreCase("NutrientCode"); i++) {}
+                b = i;
+                swapCorrespondingColumnAndValue(f.vals.cols,f.vals.data,a+1,b);
+                swapCorrespondingColumnAndValue(f.vals.cols,f.vals.data,b,b+3);
+                do {
+                    f.vals.cols.get(b).replace("Nutrient",
+                            f.vals.cols.get(b+5));
+                    b++;
+                } while (f.vals.cols.get(b).equalsIgnoreCase("NutrientCode"));
+                //subtract B to offset the b+1 in the for loop
+                b--;
+            }
+        }
+    }
+    //delete all columns containing a string
+    public void deleteColumnsWithString(String pattern) {
+        for (Foods f : Foods.entries) {
+            //delete them backwards so it doesnt affect the remaining elements
+            for (int i = f.vals.cols.size() - 1; i > 0; i--) {
+                if (f.vals.cols.get(i).equalsIgnoreCase(pattern)) {
+                    //delete these columns from the corresponding tables
+                    f.vals.cols.remove(i);
+                    f.vals.data.remove(i);
+                    //i will now point to the element AFTER i, so no adjusting is needed
+                }
+            }
+        }
+    }
+
+    public void deleteCorrespondingArrayElements(ArrayList<String> a, ArrayList<String> b, int index) {
+        a.remove(index);
+        b.remove(index);
+    }
+    //delete all nutrients that do not fit in the accepted pattern
+    public void deleteNonInterestingNutrients(String[] nutrientsToKeep) {
+        boolean acceptThisNutrient;
+        //delete them backwards so it doesnt affect the remaining elements
+        for (Foods f : Foods.entries)
+            for (int i = f.vals.data.size() - 1; i > 0; i--) {
+                //check only if this is NutrientName column
+                if (!f.vals.cols.get(i).equalsIgnoreCase("NutrientName")) continue;
+                //code reaching here means this a NutrientName column
+                //check its value
+                acceptThisNutrient = false;
+                for (int j = 0; j < nutrientsToKeep.length; j++) {
+                    if (f.vals.data.get(i).equalsIgnoreCase(nutrientsToKeep[j])) {
+                        //accept this
+                        acceptThisNutrient = true;
+                        break;
+                    }
+                }
+                if (!acceptThisNutrient) {
+                    //delete this nutrient if it did not match any patterns
+                    //Here is a sample of the nutrient output
+//                    Column: NutrientCode                  Val: 508
+//                    Column: NutrientSymbol                Val: PHE
+//                    Column: NutrientUnit                  Val: g
+//                    Column: NutrientName                  Val: PHENYLALANINE
+//                    Column: NutrientNameF                 Val: PH�NYLALANINE
+//                    Column: Tagname                       Val: PHE
+//                    Column: NutrientDecimals              Val: 3
+                    //we assume that nutrientName has been swapped with NutrientCode
+                    //we are currently at the index position of nutrientName, which is the first element
+                    // of this series of 7 things to delete
+                    //since the index falls forward to the next element, delete this index i 7 times
+                    for (int k = 0; k < 7; k++) {
+                        deleteCorrespondingArrayElements(f.vals.cols,f.vals.data,i);
+                    }
+                }
+            }
     }
 }
