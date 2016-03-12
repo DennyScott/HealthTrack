@@ -3,6 +3,7 @@ package persistence;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class CsvConverter {
@@ -11,6 +12,7 @@ public class CsvConverter {
     ArrayList<String> outCols;
     ArrayList<String> files;
     Foods foods;
+    String[] foodsPattern;
     //    String[] filenames = {
 //            "extdb/FOOD NAME.csv",
 //            "extdb/FOOD SOURCE.csv",
@@ -23,13 +25,14 @@ public class CsvConverter {
 //            "extdb/YIELD NAME.csv"
 //    };
 
-    public CsvConverter() {
+
+    public CsvConverter(String[] foodsPattern) {
         commonCols = new ArrayList<String>();
         allCols = new ArrayList<String>();
         outCols = new ArrayList<String>();
         files = new ArrayList<String>();
         foods = new Foods(commonCols, allCols, outCols, files);
-
+        this.foodsPattern = foodsPattern;
 //        getFiles();
         //reorganize columns
         //reorderColumns();
@@ -102,6 +105,8 @@ public class CsvConverter {
 
                 //iterate through the rest of the file, creating/adding the objects
                 String data[];
+                //FOR EACH LINE THAT IS NOT THE FIRST FILE
+                //  Parse every food afterwards
                 while ((line = filein.readLine()) != null) {
                     data = splitLineIntoData(line, ",");
                     //skip if this line is empty
@@ -112,13 +117,24 @@ public class CsvConverter {
                         //  the firts file will have no duplicate foods
                         foods.addNewFood(filecols, data);
                     } else {
+                        //use this data from the file to see if
                         addUniqueFoodData(filecols, data);
                     }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            firstFile = false;
+            if (firstFile) {
+                firstFile = false;
+                //parse the foods to remove the ones that we don't want
+                Foods.pickOnlyWantedFoods(foodsPattern);
+            }
+        }
+    }
+
+    private void printFoods() {
+        for (Foods f : Foods.entries) {
+            System.out.println(f.vals.data.get(f.vals.cols.indexOf("FoodDescription")));
         }
     }
 
@@ -166,7 +182,9 @@ public class CsvConverter {
             foods.addUniqueData(indexOfFood, filecols, data);
         } else {
             //new food found
-            foods.addNewFood(filecols, data);
+            //      NEW UPDATE: Don't add new foods because we deleted the other ones that didnt
+            //          match the pattern
+            //foods.addNewFood(filecols, data);
         }
     }
 
@@ -272,7 +290,7 @@ public class CsvConverter {
         for (String c : columns) {
             if (allCols.contains(c)) {
                 //common column
-                commonCols.add(c);
+                if (!commonCols.contains(c)) commonCols.add(c);
             } else {
                 //new column
                 allCols.add(c);
@@ -298,4 +316,240 @@ public class CsvConverter {
         return null;
     }
 
+    /**
+     * This method assumes that the current food entries have columns in the form of
+     *  (type)ID. This will be checked in the idReplacements files and appended to each food
+     * @param idReplacements A list of files to replace the IDs for in the existing food entries
+     */
+    public void replaceIDs(String[] idReplacements) {
+        //for each food, replace its column heading with the corresponding data
+        File file;
+        String line;
+        String[] lineColumns;
+        String primaryKey;
+        String foodPrimaryKeyValue;
+        //initialize linevals to appease compiler...
+        String[] lineVals = new String[0];
+        String fileData;
+        BufferedReader br;
+        for (String idFile : idReplacements) {
+            file = new File(idFile);
+            try {
+                br = new BufferedReader(new FileReader(file));
+                //read the first line to get the list of columns in this file
+                line = br.readLine();
+                lineColumns = line.split(",");
+                //the first column is the primary key to be finding/assessing for each food
+                primaryKey = lineColumns[0];
+                //now for each food, append the correct columns for this food from this file
+                for (Foods existingFood : Foods.entries) {
+                    //for each column of the food (since there could be multiple columns)
+                    for (int indexOfkey = 0; indexOfkey < existingFood.vals.cols.size(); indexOfkey++) {
+                        //if this is the primary key we're looking for, we're ready to append
+                        if (existingFood.vals.cols.get(indexOfkey).equalsIgnoreCase(primaryKey)) {
+                            //get this food's corresponding primary key value
+                            foodPrimaryKeyValue = existingFood.vals.data.get(indexOfkey);
+
+                            //reset the file marker
+                            br = new BufferedReader(new FileReader(file));
+                            //skip the first line since its just columns
+                            br.readLine();
+
+                            //now find the right ID for this food in the idPatternFile
+                            // and match it to the corresponding column val
+                            while ((line = br.readLine()) != null) {
+                                lineVals = splitLineIntoData(line,",");
+                                //the first value from the file = the primry key value to check against this food
+                                if (foodPrimaryKeyValue.equals(lineVals[0])) {
+                                    //we found the line to append
+                                    //leave the loop to begin appending
+                                    break;
+                                }
+                            }
+
+                            //code reaching here means we found this food's right line to append; do that
+                            //  we assume that each food has a corresponding entry
+                            //skip the first column because its the primary key, append the others
+                            for (int i = 1; i < lineVals.length; i++) {
+                                //add the column
+                                existingFood.vals.cols.add(lineColumns[i]);
+                                //add the data, making sure if its null to make it an empty str at least
+                                fileData = lineVals[i] == null ? "" : lineVals[i];
+                                existingFood.vals.data.add(fileData);
+                            }
+
+
+                        }
+                    }
+
+                    //this food now has its columns appended, go onto the next one
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void swapColumns(){
+        //
+    }
+    /**
+     * For each food, loop through each column and remove the corresponding column/data entries
+     * @param columnsToKeep
+     */
+    public void replaceColumns(String[] columnsToKeep) {
+
+        Iterator<String> foodColumn;
+        Iterator<String> foodValue;
+        String curColumn;
+        boolean keepThis;
+
+
+        Iterator<Foods> it;
+        it = Foods.entries.iterator();
+        Foods thisFood;
+        while (it.hasNext()) {
+            thisFood = it.next();
+            //for each column/heading, remove the ones that aren' relevant
+            foodColumn = thisFood.vals.cols.iterator();
+            foodValue = thisFood.vals.data.iterator();
+            //loop through each column
+            while (foodColumn.hasNext() && foodValue.hasNext()) {
+                //Store the column to compare it to the accepted ones
+                curColumn = foodColumn.next();
+                //advance the value iterator; doesnt matter what its value is, we will remove it regardless
+                foodValue.next();
+                //see if this column exists in the columns to keep
+                keepThis = false;
+                for (int i = 0; i < columnsToKeep.length; i++) {
+                    if (curColumn.equalsIgnoreCase(columnsToKeep[i])) {
+                        //if this currently checking column is equal to ANY of the allowed ones, stop checking
+                        keepThis = true;
+                        break;
+                    }
+                }
+
+                if (!keepThis) {
+                    //this column wasnt in the ones to keep, so remove the iterator values
+                    foodColumn.remove();
+                    foodValue.remove();
+                }
+
+            }
+        }
+    }
+
+    public void swapArrayListElements(ArrayList<String> arrayList, int indexA, int indexB) {
+        String temp = arrayList.get(indexA);
+        arrayList.set(indexA,arrayList.get(indexB));
+        arrayList.set(indexB,temp);
+    }
+
+    public void swapCorrespondingColumnAndValue(ArrayList<String> listA, ArrayList<String> listB, int indexA, int indexB) {
+        swapArrayListElements(listA, indexA, indexB);
+        swapArrayListElements(listB, indexA, indexB);
+    }
+
+    public void changeNutrientColumnNames() {
+        //since nutrient amount table is read first, nutrientID and nutrientValue exist before the
+        //  nutrient names. But they appear in the exact sequential order aferwards.
+        //  Algorithm:
+        //      DO
+            //      Use two integers, A and B
+            //      Per NutrientID, let its index be A, find the corresponding NutrientCode at index B (sequentially)
+            //      A+1 index == NutrientValue. Swap this with Nutrient Code at B
+            //          ie swap (A+1, B)
+            //      B + 3 == NutrientName column. Swap NutrientName with NutrientValue so nutrientName comes first
+            //          this will simplify subsequent steps
+            //          ie swap (B, B+3)
+        //          Data[B] now equals the column name.
+        //              Do
+        //                  replace the Nutrient part of the column name with the tag name
+        //                  the tagname exists at B+5
+        //              while Col[B] != NutrientCode
+        //      Loop until no more nutrientIDs found
+
+        int a;
+        int b;
+        int i;
+        for (Foods f : Foods.entries) {
+            a = -1;
+            b = -1;
+            while (a < f.vals.cols.size()) {
+                for (i = a+1; i < f.vals.cols.size() &&
+                        !f.vals.cols.get(a).equalsIgnoreCase("NutrientID"); i++) {}
+                a = i;
+                for (i = b+1; i < f.vals.cols.size() &&
+                        !f.vals.cols.get(a).equalsIgnoreCase("NutrientCode"); i++) {}
+                b = i;
+                swapCorrespondingColumnAndValue(f.vals.cols,f.vals.data,a+1,b);
+                swapCorrespondingColumnAndValue(f.vals.cols,f.vals.data,b,b+3);
+                do {
+                    f.vals.cols.get(b).replace("Nutrient",
+                            f.vals.cols.get(b+5));
+                    b++;
+                } while (f.vals.cols.get(b).equalsIgnoreCase("NutrientCode"));
+                //subtract B to offset the b+1 in the for loop
+                b--;
+            }
+        }
+    }
+    //delete all columns containing a string
+    public void deleteColumnsWithString(String pattern) {
+        for (Foods f : Foods.entries) {
+            //delete them backwards so it doesnt affect the remaining elements
+            for (int i = f.vals.cols.size() - 1; i > 0; i--) {
+                if (f.vals.cols.get(i).equalsIgnoreCase(pattern)) {
+                    //delete these columns from the corresponding tables
+                    f.vals.cols.remove(i);
+                    f.vals.data.remove(i);
+                    //i will now point to the element AFTER i, so no adjusting is needed
+                }
+            }
+        }
+    }
+
+    public void deleteCorrespondingArrayElements(ArrayList<String> a, ArrayList<String> b, int index) {
+        a.remove(index);
+        b.remove(index);
+    }
+    //delete all nutrients that do not fit in the accepted pattern
+    public void deleteNonInterestingNutrients(String[] nutrientsToKeep) {
+        boolean acceptThisNutrient;
+        //delete them backwards so it doesnt affect the remaining elements
+        for (Foods f : Foods.entries)
+            for (int i = f.vals.data.size() - 1; i > 0; i--) {
+                //check only if this is NutrientName column
+                if (!f.vals.cols.get(i).equalsIgnoreCase("NutrientName")) continue;
+                //code reaching here means this a NutrientName column
+                //check its value
+                acceptThisNutrient = false;
+                for (int j = 0; j < nutrientsToKeep.length; j++) {
+                    if (f.vals.data.get(i).equalsIgnoreCase(nutrientsToKeep[j])) {
+                        //accept this
+                        acceptThisNutrient = true;
+                        break;
+                    }
+                }
+                if (!acceptThisNutrient) {
+                    //delete this nutrient if it did not match any patterns
+                    //Here is a sample of the nutrient output
+//                    Column: NutrientCode                  Val: 508
+//                    Column: NutrientSymbol                Val: PHE
+//                    Column: NutrientUnit                  Val: g
+//                    Column: NutrientName                  Val: PHENYLALANINE
+//                    Column: NutrientNameF                 Val: PH�NYLALANINE
+//                    Column: Tagname                       Val: PHE
+//                    Column: NutrientDecimals              Val: 3
+                    //we assume that nutrientName has been swapped with NutrientCode
+                    //we are currently at the index position of nutrientName, which is the first element
+                    // of this series of 7 things to delete
+                    //since the index falls forward to the next element, delete this index i 7 times
+                    for (int k = 0; k < 7; k++) {
+                        deleteCorrespondingArrayElements(f.vals.cols,f.vals.data,i);
+                    }
+                }
+            }
+    }
 }

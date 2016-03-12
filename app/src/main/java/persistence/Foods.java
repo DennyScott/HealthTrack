@@ -1,6 +1,7 @@
 package persistence;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Deny Raaen on 20/02/2016.
@@ -49,7 +50,7 @@ public class Foods {
      */
     public int hasFood(ArrayList<String> filecols, String[] data) {
         //check the global set of food entries
-        int indexOfFood = 0;
+        int indexOfFood;
         //...if the food exists in there already
         indexOfFood = Foods.foodExists(filecols,data);
         if (indexOfFood != -1) {
@@ -90,6 +91,35 @@ public class Foods {
         //if code reaches here, all data entries were checked and this data does not exist in there
         return -1;
     }
+    public static void pickOnlyWantedFoods(String[] patterns){
+        //go through the entries list and remove foods that do not match this pattern
+        String foodname;
+        boolean matchFound;
+        Iterator<Foods> it = entries.iterator();
+        while (it.hasNext()) {
+            Foods food = it.next();
+            //find the food name through the food description column
+            foodname = food.vals.data.get(food.vals.cols.indexOf("FoodDescription"));
+            //check if the patterns have this element corresponding
+            matchFound = false;
+            for (int i = 0; i < patterns.length; i++) {
+                if (foodname.toLowerCase().contains(patterns[i].toLowerCase())) {
+                    //this is a match, skip it
+                    matchFound = true;
+                    break;
+                } else {
+                    //this did not match, keep checking
+                }
+            }
+            if (!matchFound) {
+                //this food was non-existent, remove it
+                it.remove();
+            } else {
+//                System.out.println("potato");
+            }
+        }
+    }
+
 
     /**
      * If the first few files opened were the nutrient-related files, we
