@@ -61,7 +61,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:hint="@string/weight_submission_hint"
         android:ems="10"
         android:id="@+id/weightTextEntry"
@@ -74,7 +74,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:hint="Height (cm)"
         android:ems="10"
         android:id="@+id/heightTextEntry"

@@ -1,5 +1,7 @@
 package business;
 
+import club.glamajestic.healthtrack.MainActivity;
+
 /**
  * Created by Wilson on 3/11/2016.
  */
@@ -21,6 +23,7 @@ public class BMR implements Calculator{
     final double AGE_MULTIPLIER = 5;
     final int MALE_CONST = 5;
     final int FEMALE_CONST = -161;
+    UserDataAccess user = new UserDataAccess(this);
 
     @Override
     public int calculate() {
