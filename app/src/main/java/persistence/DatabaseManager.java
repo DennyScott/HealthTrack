@@ -22,10 +22,7 @@ public class DatabaseManager  {
 
     static final String foodsPattern[] = {
             "apple",
-            "banana",
-            "cheese",
-            "fish",
-            "pancake"
+            "cheese"
     };
     static final String[] filenames = {"extdb/FOOD NAME.csv",
             "extdb/NUTRIENT AMOUNT.csv",
@@ -124,7 +121,7 @@ public class DatabaseManager  {
             "VITAMIN B-6",
             "VITAMIN C",
             "VITAMIN D (D2 + D3)",
-            "VITAMIN D (INTERNATIONAL UNITS)",
+//            "VITAMIN D (INTERNATIONAL UNITS)",
             "VITAMIN D2, ERGOCALCIFEROL",
             "VITAMIN K",
             "ZINC"
@@ -141,20 +138,25 @@ public class DatabaseManager  {
 //        converter.chooseOutColumns();
         //ready to read objects
         converter.readObjects();
-        //replace the IDs with teh relevant files (n^2 search)
+        //replace the IDs with teh relevant files
         converter.replaceIDs(idReplacements);
         //now remove the columns that aren't wanted
         converter.replaceColumns(columnsToKeep);
+        //converter.listFoods();
         //do some rearranging of the columns
         //  want to change the multiple "NutrientName" columns to <Nutrient>Name eg ProteinName
         converter.changeNutrientColumnNames();
+
         //delete the remaining nutrient-columns as they are unneeded
         converter.deleteColumnsWithString("Nutrient");
+        converter.listFoods("deleteBeforeNutrients.txt");
+
         //delete the remaining columns that arent of the desired vitamins/minerals
-        converter.deleteNonInterestingNutrients(nutrientsToKeep);
+        //converter.deleteNonInterestingNutrients(nutrientsToKeep);
 
         //THE FOODS ARE NOW READY
-        converter.listFoods();
+        converter.listFoods("final.txt");
+
         //at this time, all the foods are parsed and ready to turn into SQL queries
         //but which columns do we choose?
 //        converter.listFoods();

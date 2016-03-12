@@ -57,12 +57,12 @@ public class CsvConverter {
         //      data entry point:
     }
 
-    public void listFoods() {
+    public void listFoods(String filename) {
         int i;
         BufferedWriter bufferedWriter;
         try {
-            File file = new File("out.txt");
-            if (!file.exists()) file.createNewFile();
+            File file = new File(filename);
+            //if (!file.exists()) file.createNewFile();
             bufferedWriter = new BufferedWriter(new FileWriter(file));
             for (Foods f : Foods.entries) {
                 //print out the columns and entries
@@ -110,7 +110,7 @@ public class CsvConverter {
                 while ((line = filein.readLine()) != null) {
                     data = splitLineIntoData(line, ",");
                     //skip if this line is empty
-                    if (data.length == 0) continue;
+                    if (data.length == 0) break;
 
                     if (firstFile) {
                         //if its the first file, add the food directly because
@@ -351,6 +351,7 @@ public class CsvConverter {
                             foodPrimaryKeyValue = existingFood.vals.data.get(indexOfkey);
 
                             //reset the file marker
+                            br.close();
                             br = new BufferedReader(new FileReader(file));
                             //skip the first line since its just columns
                             br.readLine();
@@ -473,23 +474,40 @@ public class CsvConverter {
         int a;
         int b;
         int i;
+        int tagpos;
         for (Foods f : Foods.entries) {
             a = -1;
             b = -1;
             while (a < f.vals.cols.size()) {
-                for (i = a+1; i < f.vals.cols.size() &&
-                        !f.vals.cols.get(a).equalsIgnoreCase("NutrientID"); i++) {}
+                i = ++a;
+                while (i < f.vals.cols.size()) {
+                    if (f.vals.cols.get(i).equalsIgnoreCase("NutrientID")) {
+                        break;
+                    }
+                    i++;
+                }
                 a = i;
-                for (i = b+1; i < f.vals.cols.size() &&
-                        !f.vals.cols.get(a).equalsIgnoreCase("NutrientCode"); i++) {}
+                if (a >= f.vals.cols.size()) break;
+
+                i = ++b;
+                while (i < f.vals.cols.size()) {
+                    if (f.vals.cols.get(i).equalsIgnoreCase("NutrientCode")) {
+                        break;
+                    }
+                    i++;
+                }
+                if (b >= f.vals.cols.size()) break;
                 b = i;
                 swapCorrespondingColumnAndValue(f.vals.cols,f.vals.data,a+1,b);
                 swapCorrespondingColumnAndValue(f.vals.cols,f.vals.data,b,b+3);
+                tagpos = b+5;
+                f.vals.cols.set(b,f.vals.data.get(tagpos));
+                b++;
                 do {
-                    f.vals.cols.get(b).replace("Nutrient",
-                            f.vals.cols.get(b+5));
+                    f.vals.cols.set(b,f.vals.cols.get(b).replace("Nutrient",
+                            f.vals.data.get(tagpos)));
                     b++;
-                } while (f.vals.cols.get(b).equalsIgnoreCase("NutrientCode"));
+                } while (b < f.vals.cols.size() && !f.vals.cols.get(b).equalsIgnoreCase("NutrientCode"));
                 //subtract B to offset the b+1 in the for loop
                 b--;
             }
@@ -500,7 +518,7 @@ public class CsvConverter {
         for (Foods f : Foods.entries) {
             //delete them backwards so it doesnt affect the remaining elements
             for (int i = f.vals.cols.size() - 1; i > 0; i--) {
-                if (f.vals.cols.get(i).equalsIgnoreCase(pattern)) {
+                if (f.vals.cols.get(i).contains(pattern)) {
                     //delete these columns from the corresponding tables
                     f.vals.cols.remove(i);
                     f.vals.data.remove(i);
@@ -511,17 +529,20 @@ public class CsvConverter {
     }
 
     public void deleteCorrespondingArrayElements(ArrayList<String> a, ArrayList<String> b, int index) {
+        System.out.println("removing :" + a.get(index) + " and " + b.get(index));
         a.remove(index);
         b.remove(index);
     }
     //delete all nutrients that do not fit in the accepted pattern
+    //TOO BUGGED
     public void deleteNonInterestingNutrients(String[] nutrientsToKeep) {
         boolean acceptThisNutrient;
+        int i;
         //delete them backwards so it doesnt affect the remaining elements
-        for (Foods f : Foods.entries)
-            for (int i = f.vals.data.size() - 1; i > 0; i--) {
+        for (Foods f : Foods.entries) {
+            for (i = 0; i < f.vals.cols.size(); i++) {
                 //check only if this is NutrientName column
-                if (!f.vals.cols.get(i).equalsIgnoreCase("NutrientName")) continue;
+                if (!f.vals.cols.get(i).equalsIgnoreCase(f.vals.data.get(i + 5))) continue;
                 //code reaching here means this a NutrientName column
                 //check its value
                 acceptThisNutrient = false;
@@ -535,21 +556,22 @@ public class CsvConverter {
                 if (!acceptThisNutrient) {
                     //delete this nutrient if it did not match any patterns
                     //Here is a sample of the nutrient output
-//                    Column: NutrientCode                  Val: 508
-//                    Column: NutrientSymbol                Val: PHE
+//                    Column: NutrientCode                  Val: 203
+//                    Column: NutrientSymbol                Val: PROT
 //                    Column: NutrientUnit                  Val: g
-//                    Column: NutrientName                  Val: PHENYLALANINE
-//                    Column: NutrientNameF                 Val: PH�NYLALANINE
-//                    Column: Tagname                       Val: PHE
-//                    Column: NutrientDecimals              Val: 3
+//                    Column: NutrientName                  Val: PROTEIN
+//                    Column: NutrientNameF                 Val: PROT�INES
+//                    Column: Tagname                       Val: PROCNT
+//                    Column: NutrientDecimals              Val: 2
                     //we assume that nutrientName has been swapped with NutrientCode
                     //we are currently at the index position of nutrientName, which is the first element
                     // of this series of 7 things to delete
                     //since the index falls forward to the next element, delete this index i 7 times
                     for (int k = 0; k < 7; k++) {
-                        deleteCorrespondingArrayElements(f.vals.cols,f.vals.data,i);
+                        deleteCorrespondingArrayElements(f.vals.cols, f.vals.data, i);
                     }
                 }
             }
+        }
     }
 }
