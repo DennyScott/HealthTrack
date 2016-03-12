@@ -23,13 +23,14 @@ public class BMR implements Calculator{
     final double AGE_MULTIPLIER = 5;
     final int MALE_CONST = 5;
     final int FEMALE_CONST = -161;
-    final double LB_TO_KG = 0.453592; // temporary until unit conversion implementation
 
     UserDataAccess user = new UserDataAccess();
 
     @Override
     public double calculate() {
-        weight = user.getWeight() * LB_TO_KG;
+        UnitConverter uc = new UnitConverter();
+
+        weight = uc.lbToKg(user.getWeight());
         height = user.getHeight();
         age = user.getAge();
         gender = user.getGender();
