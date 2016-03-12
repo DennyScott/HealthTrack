@@ -96,29 +96,4 @@ public class GoalsSubmission extends Activity implements View.OnClickListener {
             e.printStackTrace();
         }
     }
-
-    /*
-    This is only here as a reminder of how to retrieve the user's input from internal storage,
-    and that it works. It's temporary.
-    Requires plain text view widget and a load button.
-     */
-    public void readMessage(View view) {
-        try {
-            String message;
-            FileInputStream fileInputStream = openFileInput("userGoal");
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            StringBuffer stringBuffer = new StringBuffer();
-            while ((message=bufferedReader.readLine())!=null) {
-                stringBuffer.append(message + "\n");
-            }
-            textView.setText(stringBuffer.toString());
-            textView.setVisibility(View.VISIBLE);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

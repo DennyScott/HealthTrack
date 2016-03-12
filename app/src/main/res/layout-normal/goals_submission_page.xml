@@ -66,26 +66,4 @@
         android:layout_alignRight="@+id/settingsButton"
         android:layout_alignEnd="@+id/settingsButton" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/targetWeeksTextEntry"
-        android:layout_alignLeft="@+id/targetWeeksTextEntry"
-        android:layout_alignStart="@+id/targetWeeksTextEntry"
-        android:layout_marginTop="32dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/test_load"
-        android:id="@+id/loadButton2"
-        android:onClick="readMessage"
-        android:layout_above="@+id/saveButton"
-        android:layout_alignLeft="@+id/saveButton"
-        android:layout_alignStart="@+id/saveButton"
-        android:layout_alignRight="@+id/saveButton"
-        android:layout_alignEnd="@+id/saveButton" />
-
 </RelativeLayout>
