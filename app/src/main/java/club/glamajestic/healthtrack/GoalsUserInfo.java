@@ -65,7 +65,7 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
     }
 
     private void saveClicked() {
-        Output.toastMessage(this, "Changes updated.", Output.SHORT_TOAST);
+
         saveText();
     }
     public void male(View view) {
@@ -85,6 +85,7 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
             if(!name.equals("") && !age.equals( "") && !weight.equals("") && !height.equals( "")){
                 user.setAll(name,Integer.parseInt(age),Integer.parseInt(height),Integer.parseInt(weight),gender);
                 user.save();
+                Output.toastMessage(this, "Changes updated.", Output.SHORT_TOAST);
                 Intent gameMode = new Intent(this, mainStats.class);
                 startActivity(gameMode);
                 finish();

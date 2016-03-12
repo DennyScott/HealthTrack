@@ -32,7 +32,7 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
         setContentView(R.layout.activity_main_stats);
         boolean soundEnabled = true;
         if(soundEnabled) {
-            backgroundMusic = MediaPlayer.create(this, R.raw.sandstorm);
+            backgroundMusic = MediaPlayer.create(this, R.raw.delta);
             backgroundMusic.setLooping( true );
             backgroundMusic.start();
         }

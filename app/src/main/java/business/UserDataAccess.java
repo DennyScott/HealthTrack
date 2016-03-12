@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -29,6 +28,7 @@ public class UserDataAccess implements Serializable {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     public UserDataAccess(Activity ctx){
         this.ctx = ctx;
+        verifyStoragePermissions(ctx);
         File userInfo = new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userInfo.ser");
         if (userInfo.exists()) {
             try {
