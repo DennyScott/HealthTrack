@@ -22,10 +22,7 @@ public class DatabaseManager  {
 
     static final String foodsPattern[] = {
             "apple",
-            "banana",
-            "cheese",
-            "fish",
-            "pancake"
+            "cheese"
     };
     static final String[] filenames = {"extdb/FOOD NAME.csv",
             "extdb/NUTRIENT AMOUNT.csv",
@@ -120,11 +117,11 @@ public class DatabaseManager  {
             "SUGARS, TOTAL",
             "THIAMIN",
             "VITAMIN B-12",
-            "VITAMIN B12, ADDED",
+//            "VITAMIN B12, ADDED", no tag
             "VITAMIN B-6",
             "VITAMIN C",
             "VITAMIN D (D2 + D3)",
-            "VITAMIN D (INTERNATIONAL UNITS)",
+//            "VITAMIN D (INTERNATIONAL UNITS)",
             "VITAMIN D2, ERGOCALCIFEROL",
             "VITAMIN K",
             "ZINC"
@@ -141,24 +138,50 @@ public class DatabaseManager  {
 //        converter.chooseOutColumns();
         //ready to read objects
         converter.readObjects();
-        //replace the IDs with teh relevant files (n^2 search)
+        //replace the IDs with teh relevant files
         converter.replaceIDs(idReplacements);
         //now remove the columns that aren't wanted
         converter.replaceColumns(columnsToKeep);
+        //converter.listFoods();
         //do some rearranging of the columns
         //  want to change the multiple "NutrientName" columns to <Nutrient>Name eg ProteinName
         converter.changeNutrientColumnNames();
+
         //delete the remaining nutrient-columns as they are unneeded
         converter.deleteColumnsWithString("Nutrient");
+        //converter.listFoods("deleteBeforeNutrients.txt");
+
+        //remove the trailing quotation marks per value
+        converter.trimQuotationMarks();
+
+        //the 2nd column is scientific name, last is measure description. swap them
+        //  to delete later
+        converter.swapScientificNameMeasureNameCols();
         //delete the remaining columns that arent of the desired vitamins/minerals
         converter.deleteNonInterestingNutrients(nutrientsToKeep);
 
-        //THE FOODS ARE NOW READY
-        converter.listFoods();
-        //at this time, all the foods are parsed and ready to turn into SQL queries
-        //but which columns do we choose?
-//        converter.listFoods();
+        converter.listFoods("nutrientsAfterDeletion.txt");
 
+        //finally, remove the columns matching the patterns:
+        //  Column: PROCNT                        Val: PROTEIN
+//        Column: PROCNTSymbol                  Val: PROT
+//        Column: PROCNTNameF                   Val: PROT�INES
+//        Column: Tagname                       Val: PROCNT
+//        Column: PROCNTDecimals                Val: 2
+        converter.deleteColumnsWithString("Symbol");
+        converter.deleteColumnsWithString("NameF");
+        converter.deleteColumnsWithString("Tagname");
+        converter.deleteColumnsWithString("Decimals");
+
+        converter.listFoods("removalOfSymbolFrenchTagDecimal.txt");
+
+        //generate SQL queries for the foods
+
+        //create the java class object for it
+        converter.outputJavaObjectToText("DataExternalFoodDb","DataNutrientTable");
+
+        //output to SQL
+        converter.createSQLiteDatabase("external_db","ExternalFoods");
     }
 
 
