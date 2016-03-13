@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -20,10 +19,6 @@ import java.io.Serializable;
  * Created by Khaled on 3/11/2016.
  */
 public class UserDataAccess implements Serializable {
-    String name;
-    int age;
-    int weight;
-    int height;
     Activity ctx;
     UserData user;
     private static String[] PERMISSIONS_STORAGE = {
@@ -31,8 +26,24 @@ public class UserDataAccess implements Serializable {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    public UserDataAccess(){
+        File userInfo = new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userInfo.ser");
+        if (userInfo.exists()) {
+            try {
+                ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(userInfo)));
+                user = (UserData) ois.readObject();
+                ois.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else{
+            user = new UserData();
+        }
+    }
     public UserDataAccess(Activity ctx){
         this.ctx = ctx;
+        verifyStoragePermissions(ctx);
         File userInfo = new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userInfo.ser");
         if (userInfo.exists()) {
             try {
@@ -50,6 +61,9 @@ public class UserDataAccess implements Serializable {
     public String getName(){
         return user.name;
     }
+    public int getGender(){
+        return user.gender;
+    }
     public int getAge(){
         return user.age;
     }
@@ -62,11 +76,12 @@ public class UserDataAccess implements Serializable {
     public boolean isSet(){
         return user.set;
     }
-    public void setAll(String name, int age, int height, int weight){
+    public void setAll(String name, int age, int height, int weight,int gender){
         user.name = name;
         user.age = age;
         user.height = height;
         user.weight = weight;
+        user.gender = gender;
         user.set = true;
     }
     public void save(){
@@ -102,6 +117,7 @@ class UserData implements Serializable{
     int age;
     int weight;
     int height;
+    int gender;//0 male, 1 female
     boolean set;
     UserData(){
         set = false;
@@ -109,5 +125,6 @@ class UserData implements Serializable{
         age = 0;
         weight=0;
         height=0;
+        gender=1;
     }
 }

@@ -1,5 +1,6 @@
 package club.glamajestic.healthtrack;
 
+import business.ClickSound;
 import business.InitPieChart;
 import business.Stats;
 import android.app.Activity;
@@ -29,6 +30,7 @@ public class StatsGui extends Activity {
     private float[] yData;
     private String[] xData;
     InitPieChart pie;
+    ClickSound playSound;
 
 
     /**
@@ -42,7 +44,7 @@ public class StatsGui extends Activity {
         yData = StatsBus.getValues();
         xData = StatsBus.getKeys();
         setContentView(R.layout.stats);
-
+        playSound = new ClickSound(this);
         final TabHost host = (TabHost) findViewById(R.id.tabHost);
         host.setup();
         //Tab 1
@@ -91,6 +93,8 @@ public class StatsGui extends Activity {
     public void onBackPressed() {
         //Intent gameMode = new Intent(this, mainStats.class);
         //startActivity(gameMode);
+        playSound.play();
+
         finish();
     }
 
@@ -99,10 +103,6 @@ public class StatsGui extends Activity {
      *
      * @param view Unused.
      */
-    public void settingsButton(View view) {
-        Intent gameMode = new Intent(this, SettingsActivity.class);
-        startActivity(gameMode);
-    }
 
     /**
      * When the day button is clicked, the <code>PieChart</code> is updated to show the data
@@ -120,6 +120,7 @@ public class StatsGui extends Activity {
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.4f);
         pie.addData(yData, xData,mode);
+        playSound.play();
     }
 
     /**
@@ -138,6 +139,7 @@ public class StatsGui extends Activity {
         weekButton.setAlpha(0.8f);
         monthButton.setAlpha(0.4f);
         pie.addData(yData, xData,mode);
+        playSound.play();
     }
 
     /**
@@ -156,6 +158,7 @@ public class StatsGui extends Activity {
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.8f);
         pie.addData(yData, xData,mode);
+        playSound.play();
     }
     public void setTabColor(TabHost tabhost) {
 

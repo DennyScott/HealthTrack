@@ -1,5 +1,7 @@
 package business;
 
+import club.glamajestic.healthtrack.MainActivity;
+
 /**
  * Created by Wilson on 3/11/2016.
  */
@@ -12,32 +14,38 @@ BMR = 10 x kg weight + 6.25 x cm height – 5 x age + z where z is 5 if male and
  */
 public class BMR implements Calculator{
     double bmr;
-    double weight;
-    double height;
+    double weight; // kg
+    double height; // cm
     int age;
-    boolean isMale;
+    int gender;
     final double WEIGHT_MULTIPLIER = 10;
     final double HEIGHT_MULTIPLIER = 6.25;
     final double AGE_MULTIPLIER = 5;
     final int MALE_CONST = 5;
     final int FEMALE_CONST = -161;
 
+    UserDataAccess user = new UserDataAccess();
+
     @Override
-    public int calculate() {
-        weight = UserInfo.getWeight();
-        height = UserInfo.getHeight();
-        age = UserInfo.getAge();
-        isMale = UserInfo.isMale();
+    public double calculate() {
+        UnitConverter uc = new UnitConverter();
+
+        weight = uc.lbToKg(user.getWeight());
+        height = user.getHeight();
+        age = user.getAge();
+        gender = user.getGender();
 
         bmr = WEIGHT_MULTIPLIER * weight;
         bmr = bmr + HEIGHT_MULTIPLIER * height;
         bmr = bmr - AGE_MULTIPLIER * age;
 
-        if (isMale)
+        if (gender==0)
             bmr = bmr + MALE_CONST;
         else
             bmr = bmr + FEMALE_CONST;
 
-        return 0;
+        bmr = (int) Math.round(bmr);
+
+        return bmr;
     }
 }

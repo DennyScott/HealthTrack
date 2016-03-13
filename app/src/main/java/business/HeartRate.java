@@ -7,31 +7,45 @@ package business;
 /*
 Heart rate information found at:
 http://www.heart.org/HEARTORG/HealthyLiving/PhysicalActivity/FitnessBasics/Target-Heart-Rates_UCM_434341_Article.jsp#.VuLNt5wrK9I
+
+Can calculate max heart rate, optimal heart rate for moderate activites, and optimal heart rate for high intensity (hard) activites
  */
 
 public class HeartRate implements Calculator {
-    double lowerRate;
-    double upperRate;
+    double lowerBound;
+    double upperBound;
     int max;
     final int MAX_HR = 220;
-    final double LOWER_MULTIPLIER = 0.5;
-    final double UPPER_MULTIPLIER = 0.85;
-
+    final double MOD_LOWER_BOUND = 0.5;
+    final double MOD_UPPER_BOUND = 0.69;
+    final double HARD_LOWER_BOUND = 0.7;
+    final double HARD_UPPER_BOUND = 0.89;
+    UserDataAccess user = new UserDataAccess();
 
     @Override
-    public int calculate() {
-        max = MAX_HR - UserInfo.getAge();
-        lowerRate = max * LOWER_MULTIPLIER;
-        upperRate = max * UPPER_MULTIPLIER;
+    public double calculate() {
+        max = MAX_HR - user.getAge();
 
-        return 0;
+        return max;
     }
 
-    public double getLowerRate() {
-        return lowerRate;
+    public int getModLowerRate() {
+        lowerBound = calculate() * MOD_LOWER_BOUND;
+        return (int) Math.round(lowerBound);
     }
 
-    public double getUpperRate() {
-        return upperRate;
+    public int getModUpperRate() {
+        upperBound = calculate() * MOD_UPPER_BOUND;
+        return (int) Math.round(upperBound);
+    }
+
+    public int getHardLowerRate() {
+        lowerBound = calculate() * HARD_LOWER_BOUND;
+        return (int) Math.round(lowerBound);
+    }
+
+    public int getHardUpperRate() {
+        upperBound = calculate() * HARD_UPPER_BOUND;
+        return (int) Math.round(upperBound);
     }
 }
