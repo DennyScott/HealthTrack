@@ -80,3 +80,20 @@ WT,3939800367d33a71bfa6960c99c2cec2becb2194,3/12/2016,Setting Goals,0.5,0.5,Refa
 WT,No commit,3/12/2016,Health Calculations,1,1,"Research weight maintenance, gain, and loss with respect to calories count"
 WT,c685f041e575dd81f58fa46b76d6de2132153854,3/12/2016,Health Calculations,1,1,"Implemented calculations for maintaining, gaining, and losing weight"
 WT,564edb8d7ecc8c9f6f7bc8b35066c041fe41413d,3/13/2016,Health Calculations,0.25,0.25,Quick fix to accuracy of weight change equation
+KES,,3/9/2016,,,,Created a new business class for instantiating the pichart to be used by the main class and the stats class.
+KES,,3/9/2016,,,,"Added pichart to main screen, if clicked will go to stats activity for more options"
+KES,,3/9/2016,,,,Changed Color scheme to make things more readable.
+KES,,3/9/2016,,,,Removed Nutraints from pie slices to make it less cluttered (shows in legend)
+KES,,3/9/2016,,,,"Removed settings buttons from stats screen (we should only have it on the main screen, adds too much clutter."
+KES,,3/9/2016,,,,Added tab view for future bar graph Implementation
+KES,,3/9/2016,,,,Added onclick go to list view( shows details of each pie slice) for pie Chart
+KES,,3/9/2016,,,,"Added logic fot stats, and properly stubbed database, Stats is now fully functional!"
+KES,,3/9/2016,,,10hrs total,"Fixed huge memory leak, was creating new instance of main activity everytime back was pressed.."
+KES,,3/11/2016,,,,"Rewrote user info submission, now loads when app starts right after the splash screen for the first time."
+KES,,3/11/2016,,,,Wont load again after wards.
+KES,,3/11/2016,,,,"Saves using object serialization, user data can now be loaded using the UserDataAccess class."
+KES,,3/11/2016,,,,Created a splash screen
+KES,,3/11/2016,,,,Added height feild to user info screen
+KES,,3/11/2016,,,,Cut the delta background music from 70mb to 3.
+KES,,3/11/2016,,,,"Added a male and femal selection option,as per wilsons previous design, the only reason we are going with design, is because obect serializtion is way easier, but willsons edition of the code was just as good, we happeend to write the same thing at the same time. That is all."
+KES,,3/11/2016,,,8hrs total,"Added Button sounds, (needs to be implemented in all classes) already implemented in stats class."
