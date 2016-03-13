@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -14,6 +16,10 @@ public class Ate extends Activity {
 
     private Button foodEntryButton;
     private Button customFoodButton;
+
+    // private Button saveButton;
+    //private EditText editText;
+    //private TextView textView;
 
     /**
      * {@inheritDoc}
@@ -26,6 +32,13 @@ public class Ate extends Activity {
         //foodEntryButton.setOnClickListener(this);
         customFoodButton = (Button)findViewById(R.id.goalsSubmissionButton);
         //customFoodButton.setOnClickListener(this);
+
+        //////////entry
+        //saveButton = (Button)findViewById(R.id.saveButton);
+        //saveButton.setOnClickListener(this);
+        //editText = (EditText)findViewById(R.id.targetWeightTextEntry);
+        //textView = (TextView)findViewById(R.id.textView2);
+        //textView.setVisibility(View.GONE);
     }
 
     public void onBackPressed() {
@@ -48,21 +61,21 @@ public class Ate extends Activity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.foodEntryButton:
-               // goalsUserInfoClick();
+                foodEntryClick();
                 break;
             case R.id.customFoodButton:
-               // goalsUserSubmissionClick();
+                customFoodClick();
                 break;
         }
     }
 
-    private void goalsUserInfoClick() {
-        Intent gameMode = new Intent(this, GoalsUserInfo.class);
-        startActivity(gameMode);
+    private void foodEntryClick() {
+//        Intent gameMode = new Intent(this, foodEntry.class);
+//        startActivity(gameMode);
     }
 
-    private void goalsUserSubmissionClick() {
-        Intent gameMode = new Intent(this, GoalsSubmission.class);
-        startActivity(gameMode);
+    private void customFoodClick() {
+//       Intent gameMode = new Intent(this, customFood.class);
+//        startActivity(gameMode);
     }
 }
