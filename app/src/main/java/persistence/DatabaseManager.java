@@ -160,13 +160,28 @@ public class DatabaseManager  {
         //delete the remaining columns that arent of the desired vitamins/minerals
         converter.deleteNonInterestingNutrients(nutrientsToKeep);
 
-        //THE FOODS ARE NOW READY
         converter.listFoods("nutrientsAfterDeletion.txt");
 
-        //at this time, all the foods are parsed and ready to turn into SQL queries
-        //but which columns do we choose?
-//        converter.listFoods();
+        //finally, remove the columns matching the patterns:
+        //  Column: PROCNT                        Val: PROTEIN
+//        Column: PROCNTSymbol                  Val: PROT
+//        Column: PROCNTNameF                   Val: PROT�INES
+//        Column: Tagname                       Val: PROCNT
+//        Column: PROCNTDecimals                Val: 2
+        converter.deleteColumnsWithString("Symbol");
+        converter.deleteColumnsWithString("NameF");
+        converter.deleteColumnsWithString("Tagname");
+        converter.deleteColumnsWithString("Decimals");
 
+        converter.listFoods("removalOfSymbolFrenchTagDecimal.txt");
+
+        //generate SQL queries for the foods
+
+        //create the java class object for it
+        converter.outputJavaObjectToText("DataExternalFoodDb","DataNutrientTable");
+
+        //output to SQL
+        converter.createSQLiteDatabase("external_db","ExternalFoods");
     }
 
 
