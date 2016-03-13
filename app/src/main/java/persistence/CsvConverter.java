@@ -594,7 +594,8 @@ public class CsvConverter {
                         while (!col.contains("Decimals")) {
                             colIt.remove();
                             valsIt.remove();
-                            colIt.next();
+
+                            col = colIt.next();
                             valsIt.next();
                         }
 //                        remove the decimals column now
