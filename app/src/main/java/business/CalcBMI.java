@@ -11,9 +11,17 @@ public class CalcBMI implements Calculator, ApplicationConstants {
     private double weight;
     private double height;
 
-    private UserDataAccess user = new UserDataAccess();
+    private UserDataAccess user;
+
+    public CalcBMI(double bmi, double weight, double height, UserDataAccess user) {
+        this.bmi = bmi;
+        this.weight = weight;
+        this.height = height;
+        this.user = new UserDataAccess();
+    }
 
     @Override
+
     public double calculate() {
         UnitConverter uc = new UnitConverter();
 

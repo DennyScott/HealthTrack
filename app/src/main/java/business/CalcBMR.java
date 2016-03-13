@@ -17,13 +17,27 @@ public class CalcBMR implements Calculator, ApplicationConstants{
     private double height; // cm
     private int age;
     private int gender;
+    private UserDataAccess user;
     private final double WEIGHT_MULTIPLIER = 10;
     private final double HEIGHT_MULTIPLIER = 6.25;
-    private final double AGE_MULTIPLIER = 5;
-    private final int MALE_CONST = 5;
-    private final int FEMALE_CONST = -161;
 
-    private UserDataAccess user = new UserDataAccess();
+    private final double AGE_MULTIPLIER = 5;
+
+    public CalcBMR() {
+
+    }
+
+    public CalcBMR(double bmr, double weight, double height, int age, int gender, UserDataAccess user) {
+        this.bmr = bmr;
+        this.weight = weight;
+        this.height = height;
+        this.age = age;
+        this.gender = gender;
+        this.user = new UserDataAccess();
+    }
+    private final int MALE_CONST = 5;
+
+    private final int FEMALE_CONST = -161;
 
     @Override
     public double calculate() {

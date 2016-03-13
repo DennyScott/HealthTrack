@@ -11,21 +11,28 @@ http://www.heart.org/HEARTORG/HealthyLiving/PhysicalActivity/FitnessBasics/Targe
 Can calculate max heart rate, optimal heart rate for moderate activites, and optimal heart rate for high intensity (hard) activites
  */
 
-public class CalcHeartRate implements Calculator, ApplicationConstants  {
+public class CalcHeartRate implements Calculator, ApplicationConstants {
+    private static final int MAX_HR = 220;
+    private static final double MOD_LOWER_BOUND = 0.5;
+    private static final double MOD_UPPER_BOUND = 0.69;
+    private static final double HARD_LOWER_BOUND = 0.7;
+    private static final double HARD_UPPER_BOUND = 0.89;
     private double lowerBound;
     private double upperBound;
     private int max;
-    private final int MAX_HR = 220;
-    private final double MOD_LOWER_BOUND = 0.5;
-    private final double MOD_UPPER_BOUND = 0.69;
-    private final double HARD_LOWER_BOUND = 0.7;
-    private final double HARD_UPPER_BOUND = 0.89;
+
     private UserDataAccess user = new UserDataAccess();
+
+    public CalcHeartRate(double lowerBound, double upperBound, int max) {
+        this.lowerBound = lowerBound;
+        this.upperBound = upperBound;
+        this.max = max;
+        user = new UserDataAccess();
+    }
 
     @Override
     public double calculate() {
         setMax(getMAX_HR() - getUser().getAge());
-
         return getMax();
     }
 
