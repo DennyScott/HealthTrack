@@ -101,13 +101,3 @@ public class GoalsAccess implements Serializable, ApplicationConstants {
     }
 
 }
-class Goals implements Serializable, ApplicationConstants {
-    int targetWeight;
-    int targetWeeks;
-    boolean set;
-    Goals(){
-        set = false;
-        targetWeight = 0;
-        targetWeeks = 0;
-    }
-}
