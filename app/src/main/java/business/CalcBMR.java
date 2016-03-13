@@ -6,14 +6,14 @@ import club.glamajestic.healthtrack.MainActivity;
  * Created by Wilson on 3/11/2016.
  */
 /*
-BMR is basal metabolic rate.
+CalcBMR is basal metabolic rate.
 Formulas found here:
 http://dailyburn.com/life/health/how-to-calculate-bmr/
 
 It's the amount of calories your body burns in 24 hours while resting.
-BMR = 10 x kg weight + 6.25 x cm height – 5 x age + z where z is 5 if male and (-161) if female
+CalcBMR = 10 x kg weight + 6.25 x cm height – 5 x age + z where z is 5 if male and (-161) if female
  */
-public class BMR implements Calculator, ApplicationConstants{
+public class CalcBMR implements Calculator, ApplicationConstants{
     double bmr;
     double weight; // kg
     double height; // cm

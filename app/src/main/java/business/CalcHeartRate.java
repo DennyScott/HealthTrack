@@ -11,7 +11,7 @@ http://www.heart.org/HEARTORG/HealthyLiving/PhysicalActivity/FitnessBasics/Targe
 Can calculate max heart rate, optimal heart rate for moderate activites, and optimal heart rate for high intensity (hard) activites
  */
 
-public class HeartRate implements Calculator, ApplicationConstants  {
+public class CalcHeartRate implements Calculator, ApplicationConstants  {
     double lowerBound;
     double upperBound;
     int max;
