@@ -137,16 +137,24 @@ public class DatabaseManager  {
         //pick which columns to keep
 //        converter.chooseOutColumns();
         //ready to read objects
+        timeStart("Reading Objects");
         converter.readObjects();
+        timeEnd();
         //replace the IDs with teh relevant files
+        timeStart("Replacing IDs");
         converter.replaceIDs(idReplacements);
+        timeEnd();
         //now remove the columns that aren't wanted
+        timeStart("Removnig unwatned columns");
         converter.replaceColumns(columnsToKeep);
+        timeEnd();
         //converter.listFoods();
         //do some rearranging of the columns
         //  want to change the multiple "NutrientName" columns to <Nutrient>Name eg ProteinName
-        converter.changeNutrientColumnNames();
 
+        timeStart("Changing nutrient column names");
+        converter.changeNutrientColumnNames();
+        timeEnd();
         //delete the remaining nutrient-columns as they are unneeded
         converter.deleteColumnsWithString("Nutrient");
         //converter.listFoods("deleteBeforeNutrients.txt");
@@ -184,6 +192,18 @@ public class DatabaseManager  {
         converter.createSQLiteDatabase("external_db","ExternalFoods");
     }
 
+    private static void timeEnd() {
+        System.out.println("Finished '" + timeStartMessage + "'; Time: " +
+                (System.currentTimeMillis() - timeStart));
+    }
+
+    static String timeStartMessage;
+    static long timeStart;
+    private static void timeStart(String s) {
+        timeStartMessage = s;
+        timeStart = System.currentTimeMillis();
+        System.out.println(s);
+    }
 
 
 
