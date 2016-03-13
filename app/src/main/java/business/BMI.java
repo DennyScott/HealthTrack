@@ -7,25 +7,22 @@ package business;
  Calculates body mass index which is weight in kg divided by height in m^2
   */
 public class BMI implements Calculator {
-    double bmiDouble;
-    int bmi;
+    double bmi;
+    double weight;
+    double height;
+
+    UserDataAccess user = new UserDataAccess();
 
     @Override
-    public int calculate() {
-        double weight;
-        double height;
-        weight = UserInfo.getWeight();
-        height = UserInfo.getHeight();
-        /*
-        TO DO: convert weight to kg and height to m^2
-         */
-        bmiDouble = weight/height;
-        bmi = (int)bmiDouble;
+    public double calculate() {
+        UnitConverter uc = new UnitConverter();
 
-        return 0;
-    }
+        weight = uc.lbToKg(user.getWeight());
+        height = uc.cmToM2(user.getHeight());
 
-    public int getBmi() {
+        bmi = weight/height;
+        bmi = Math.round(bmi*10)/10.0;
+
         return bmi;
     }
 }

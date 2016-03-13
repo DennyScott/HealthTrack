@@ -65,14 +65,18 @@ public class Foods {
         //data is a comma separated line of numbers, values, etc
         //  filecols tells us what each comma-separated data entry means (column headings)
         //for this food, check its data entry vals
+        String existingDataValue;
+        String checkingDataValue;
+        int indexOfColumn;
         for (Foods f : entries) {
             for (String c : filecols) {
                 //find a primary key heading for this new data first
                 if (f.isCommonCol(c)) {
                     //this is a unique column.
                     // check if the data of this line is exactly equal
-                    String existingDataValue = f.vals.data.get(f.vals.cols.indexOf(c));
-                    String checkingDataValue = data[filecols.indexOf(c)];
+                    indexOfColumn = f.vals.cols.indexOf(c);
+                    existingDataValue = f.vals.data.get(indexOfColumn);
+                    checkingDataValue = data[0];
                     //check if it is equal to:
                     // the corresponding parameter data array index val
                     //this food exists in the table already

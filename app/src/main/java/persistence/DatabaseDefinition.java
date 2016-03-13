@@ -62,17 +62,17 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     //for all tables
     private static final String DATABASE_NAME  = "HEALTHTRACK_DB";
     private static final int DATABASE_VERSION = 1;
-    private final String CREATE_TABLE   = "CREATE TABLE";
-    private final String IF_NOT_EXISTS  = " IF NOT EXISTS ";
+    public static final String CREATE_TABLE   = "CREATE TABLE";
+    public static final String IF_NOT_EXISTS  = " IF NOT EXISTS ";
 
-    private final String DATATYPE_INT   = " INTEGER";
-    private final String DATATYPE_TEXT  = " TEXT";
-    private final String OPT_NOT_NULL   = " NOT NULL";
-    private final String OPT_PRIM_KEY   = " PRIMARY KEY";
-    private final String OPT_DEFAULT    = " DEFAULT";
-    private final String OPT_UNIQUE     = " UNIQUE (";
+    public static final String DATATYPE_INT   = " INTEGER";
+    public static final String DATATYPE_TEXT  = " TEXT";
+    public static final String OPT_NOT_NULL   = " NOT NULL";
+    public static final String OPT_PRIM_KEY   = " PRIMARY KEY";
+    public static final String OPT_DEFAULT    = " DEFAULT";
+    public static final String OPT_UNIQUE     = " UNIQUE (";
 
-    private final String OPT_COMMA      = ",";
+    public static final String OPT_COMMA      = ",";
 
     //tables
     public final String TABLE_PERS_INFO        = " PersonalInformation(";

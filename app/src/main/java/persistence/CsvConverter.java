@@ -1,18 +1,22 @@
 package persistence;
 
+import java.sql.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class CsvConverter {
+    private static final int COLUMNS_BEFORE_NUTRIENT_DATA = 4;
     ArrayList<String> commonCols;
     ArrayList<String> allCols;
     ArrayList<String> outCols;
     ArrayList<String> files;
     Foods foods;
     String[] foodsPattern;
+    ArrayList<String> allPossibleCols;
     //    String[] filenames = {
 //            "extdb/FOOD NAME.csv",
 //            "extdb/FOOD SOURCE.csv",
@@ -57,12 +61,12 @@ public class CsvConverter {
         //      data entry point:
     }
 
-    public void listFoods() {
+    public void listFoods(String filename) {
         int i;
         BufferedWriter bufferedWriter;
         try {
-            File file = new File("out.txt");
-            if (!file.exists()) file.createNewFile();
+            File file = new File(filename);
+            //if (!file.exists()) file.createNewFile();
             bufferedWriter = new BufferedWriter(new FileWriter(file));
             for (Foods f : Foods.entries) {
                 //print out the columns and entries
@@ -110,7 +114,7 @@ public class CsvConverter {
                 while ((line = filein.readLine()) != null) {
                     data = splitLineIntoData(line, ",");
                     //skip if this line is empty
-                    if (data.length == 0) continue;
+                    if (data.length == 0) break;
 
                     if (firstFile) {
                         //if its the first file, add the food directly because
@@ -351,6 +355,7 @@ public class CsvConverter {
                             foodPrimaryKeyValue = existingFood.vals.data.get(indexOfkey);
 
                             //reset the file marker
+                            br.close();
                             br = new BufferedReader(new FileReader(file));
                             //skip the first line since its just columns
                             br.readLine();
@@ -473,23 +478,40 @@ public class CsvConverter {
         int a;
         int b;
         int i;
+        int tagpos;
         for (Foods f : Foods.entries) {
             a = -1;
             b = -1;
             while (a < f.vals.cols.size()) {
-                for (i = a+1; i < f.vals.cols.size() &&
-                        !f.vals.cols.get(a).equalsIgnoreCase("NutrientID"); i++) {}
+                i = ++a;
+                while (i < f.vals.cols.size()) {
+                    if (f.vals.cols.get(i).equalsIgnoreCase("NutrientID")) {
+                        break;
+                    }
+                    i++;
+                }
                 a = i;
-                for (i = b+1; i < f.vals.cols.size() &&
-                        !f.vals.cols.get(a).equalsIgnoreCase("NutrientCode"); i++) {}
+                if (a >= f.vals.cols.size()) break;
+
+                i = ++b;
+                while (i < f.vals.cols.size()) {
+                    if (f.vals.cols.get(i).equalsIgnoreCase("NutrientCode")) {
+                        break;
+                    }
+                    i++;
+                }
+                if (b >= f.vals.cols.size()) break;
                 b = i;
                 swapCorrespondingColumnAndValue(f.vals.cols,f.vals.data,a+1,b);
                 swapCorrespondingColumnAndValue(f.vals.cols,f.vals.data,b,b+3);
+                tagpos = b+5;
+                f.vals.cols.set(b,f.vals.data.get(tagpos));
+                b++;
                 do {
-                    f.vals.cols.get(b).replace("Nutrient",
-                            f.vals.cols.get(b+5));
+                    f.vals.cols.set(b,f.vals.cols.get(b).replace("Nutrient",
+                            f.vals.data.get(tagpos)));
                     b++;
-                } while (f.vals.cols.get(b).equalsIgnoreCase("NutrientCode"));
+                } while (b < f.vals.cols.size() && !f.vals.cols.get(b).equalsIgnoreCase("NutrientCode"));
                 //subtract B to offset the b+1 in the for loop
                 b--;
             }
@@ -500,7 +522,7 @@ public class CsvConverter {
         for (Foods f : Foods.entries) {
             //delete them backwards so it doesnt affect the remaining elements
             for (int i = f.vals.cols.size() - 1; i > 0; i--) {
-                if (f.vals.cols.get(i).equalsIgnoreCase(pattern)) {
+                if (f.vals.cols.get(i).contains(pattern)) {
                     //delete these columns from the corresponding tables
                     f.vals.cols.remove(i);
                     f.vals.data.remove(i);
@@ -511,45 +533,239 @@ public class CsvConverter {
     }
 
     public void deleteCorrespondingArrayElements(ArrayList<String> a, ArrayList<String> b, int index) {
+        System.out.println("removing :" + a.get(index) + " and " + b.get(index));
         a.remove(index);
         b.remove(index);
     }
     //delete all nutrients that do not fit in the accepted pattern
+    //TOO BUGGED
     public void deleteNonInterestingNutrients(String[] nutrientsToKeep) {
-        boolean acceptThisNutrient;
-        //delete them backwards so it doesnt affect the remaining elements
-        for (Foods f : Foods.entries)
-            for (int i = f.vals.data.size() - 1; i > 0; i--) {
-                //check only if this is NutrientName column
-                if (!f.vals.cols.get(i).equalsIgnoreCase("NutrientName")) continue;
-                //code reaching here means this a NutrientName column
-                //check its value
-                acceptThisNutrient = false;
-                for (int j = 0; j < nutrientsToKeep.length; j++) {
-                    if (f.vals.data.get(i).equalsIgnoreCase(nutrientsToKeep[j])) {
-                        //accept this
-                        acceptThisNutrient = true;
-                        break;
+        /*
+            Algorithm:
+                The 5th array element = first nutrient
+                Adding 7 brings you to the next nutrient
+                    starting from here
+                    if this food matches any of the string patterns, keep it
+                    if it doesnt
+                        delete this and the next 7 elements
+
+         */
+        int i;
+        ListIterator<String> colIt;
+        ListIterator<String> valsIt;
+
+        String col;
+        String val;
+        boolean match;
+        for (Foods f : Foods.entries) {
+            colIt = f.vals.cols.listIterator();
+            valsIt = f.vals.data.listIterator();
+
+            /*
+            Previous delete attempts were met with index issues
+                Algorithm:
+                    To delete a sequence of nutrients, find the Symbol part of the name
+                    Go back one
+                    Delete until <>Decimals
+                    Delete <>Decimal
+                    Continue
+             */
+
+            while (colIt.hasNext()) {
+                col = colIt.next();
+                val = valsIt.next();
+                //check if this is a symbol, reverse one
+                if (col.contains("Symbol")) {
+                    //this is a symbol, go back one
+                    col = colIt.previous();
+                    val = valsIt.previous();
+
+                    //now check if its in th list of keeping nutrients
+                    match = false;
+                    for (i = 0; i < nutrientsToKeep.length; i++) {
+                        if (val.equalsIgnoreCase(nutrientsToKeep[i])){
+                            match = true;
+                            break;
+                        }
                     }
-                }
-                if (!acceptThisNutrient) {
-                    //delete this nutrient if it did not match any patterns
-                    //Here is a sample of the nutrient output
-//                    Column: NutrientCode                  Val: 508
-//                    Column: NutrientSymbol                Val: PHE
-//                    Column: NutrientUnit                  Val: g
-//                    Column: NutrientName                  Val: PHENYLALANINE
-//                    Column: NutrientNameF                 Val: PH�NYLALANINE
-//                    Column: Tagname                       Val: PHE
-//                    Column: NutrientDecimals              Val: 3
-                    //we assume that nutrientName has been swapped with NutrientCode
-                    //we are currently at the index position of nutrientName, which is the first element
-                    // of this series of 7 things to delete
-                    //since the index falls forward to the next element, delete this index i 7 times
-                    for (int k = 0; k < 7; k++) {
-                        deleteCorrespondingArrayElements(f.vals.cols,f.vals.data,i);
+
+                    if (!match) {
+                        //dont keep this nutrient, delete until "Decimals"
+                        while (!col.contains("Decimals")) {
+                            colIt.remove();
+                            valsIt.remove();
+                            colIt.next();
+                            valsIt.next();
+                        }
+//                        remove the decimals column now
+                        colIt.remove();
+                        valsIt.remove();
                     }
                 }
             }
+        }
+    }
+
+    private void advanceIterators(Iterator<String> it1, Iterator<String> it2, int numToAdvance) {
+        for (int i = 0; i < numToAdvance && it1.hasNext() && it2.hasNext(); i++) {
+            it1.next();
+            it2.next();
+        }
+    }
+
+    public void trimQuotationMarks() {
+        for (Foods f : Foods.entries) {
+            for (int i = 0; i < f.vals.data.size(); i++) {
+                String thisData = f.vals.data.get(i);
+                if (thisData.length() > 0) {
+                    if (thisData.substring(0, 1).equals("\"")) {
+                        //this value has leading/trailing quotes. remove them
+                        thisData = thisData.substring(1, thisData.length() - 1);
+                        f.vals.data.set(i, thisData);
+                    }
+                }
+            }
+        }
+    }
+
+    public void swapScientificNameMeasureNameCols() {
+        for (Foods f : Foods.entries) {
+            swapCorrespondingColumnAndValue(f.vals.cols,f.vals.data,1, f.vals.cols.size() - 1);
+        }
+    }
+
+    public void outputJavaObjectToText(String masterObjectClassName, String nutrientClassName) {
+        //make a master list of column headings, containing all possible columns
+        allPossibleCols = new ArrayList<String>();
+        for (Foods f : Foods.entries) {
+            for (int i = 0; i < f.vals.cols.size(); i++) {
+                //check if this column exists and add if not
+                if (!allPossibleCols.contains(f.vals.cols.get((i)))) {
+                    allPossibleCols.add(f.vals.cols.get(i));
+                }
+            }
+        }
+
+        //Assume allPossibleCols are table headings
+        //
+        String masterBuffer = "class " + masterObjectClassName + "{\n";
+        String nutrientBuffer = "class " + nutrientClassName + "{\n";
+        //add the ID primary key to the buffer
+        masterBuffer += "int mId;\n";
+        //add the rest of the columns (4 of them) until the first nutrient as method headings
+        for (int i = 0; i < COLUMNS_BEFORE_NUTRIENT_DATA; i++) {
+            masterBuffer += "String m" + allPossibleCols.get(i) + ";\n";
+        }
+        //add the nutrient class association
+        masterBuffer += nutrientClassName + " m" + nutrientClassName + ";\n";
+
+        //create the nutrient class object's string parameters
+
+        for (int i = COLUMNS_BEFORE_NUTRIENT_DATA; i < allPossibleCols.size(); i++) {
+            nutrientBuffer += "String m" + allPossibleCols.get(i) + ";\n";
+        }
+
+        //close the braces
+        masterBuffer += "}";
+        nutrientBuffer += "}";
+
+        //assume the user will do the refractoring, encapsulation, etc
+
+        //output the to text files
+        writeToFile(masterBuffer, masterObjectClassName + ".java");
+        writeToFile(nutrientBuffer, nutrientClassName + ".java");
+
+    }
+
+    public void writeToFile(String buffer, String filename) {
+        BufferedWriter bufferedWriter;
+        try {
+            File file = new File(filename);
+            //if (!file.exists()) file.createNewFile();
+            bufferedWriter = new BufferedWriter(new FileWriter(file));
+            bufferedWriter.write(buffer);
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createSQLiteDatabase(String external_db, String tableName) {
+
+        Connection connection = null;
+        //for sending statements to the db
+        Statement statement = null;
+        try {
+            //ties with the included ilbrary sqlite-jdbc by Google for creating sqlite dbases
+            Class.forName("org.sqlite.JDBC");
+
+            //create the database file to hold the data
+            connection = DriverManager.getConnection("jdbc:sqlite:" + external_db + ".db");
+
+            //generate the table queries
+            statement= connection.createStatement();
+            String sql =
+                    "CREATE TABLE " + tableName + "(" +
+                            "_id " + DatabaseDefinition.DATATYPE_INT + DatabaseDefinition.OPT_PRIM_KEY + DatabaseDefinition.OPT_COMMA;
+            //create the table headings for the rest of the columns
+            //while we're at it, append the columns for making the insertions (ie INSERTS INTO (col1,col2,...)
+            String columns = "_id,";
+            for (int i = 0; i < allPossibleCols.size(); i++) {
+                sql += allPossibleCols.get(i) + DatabaseDefinition.DATATYPE_TEXT + DatabaseDefinition.OPT_COMMA;
+                columns += allPossibleCols.get(i) + ",";
+            }
+
+            //remove the trailing comma
+            sql = sql.substring(0,sql.length() - 1);
+            columns = columns.substring(0,columns.length() - 1);
+
+            //execute the statement to make the sql table. use excuteUpdate because it returns nothing
+            statement.executeUpdate(sql);
+
+            //now do the insertions
+
+            String valuesSQL;
+            String foodValue;
+            String insertSQLPart = "INSERT INTO " + tableName + " (" +
+                    columns + ") ";
+            int id = 1;
+            for (Foods f : Foods.entries) {
+                valuesSQL = "VALUES ( " + id++ + ",";
+                for (int i = 0; i < allPossibleCols.size(); i++) {
+                    //extract the food's value by
+                    //  getting the data at position X
+                    //      where X = index of column Y
+                    //          and y = the current allPossibleColumnValue
+                    foodValue = f.vals.data.get(
+                            f.vals.cols.indexOf(
+                                    allPossibleCols.get(i)
+                            )
+                    );
+                    //check for null
+                    if (foodValue == null) foodValue = "";
+                    valuesSQL += foodValue + ",";
+                }
+                //replace the trailing comma with a bracket
+                valuesSQL = valuesSQL.substring(0,valuesSQL.length()-1) + ");";
+                //sql query ready to insert
+                statement.executeUpdate(insertSQLPart + valuesSQL);
+            }
+
+            statement.close();
+            connection.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        System.out.println("Table created successfully");
     }
 }
+
+
+
+
+
+
+
+
+

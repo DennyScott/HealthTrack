@@ -16,6 +16,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import business.BMR;
+import business.CaloriesPerDay;
+import business.GoalsAccess;
+
 /**
  * <code>GoalsSubmission</code> is an <code>Activity</code> that allows users to create
  * health-related goals.
@@ -23,8 +27,9 @@ import java.io.InputStreamReader;
 public class GoalsSubmission extends Activity implements View.OnClickListener {
 
     private Button saveButton;
-    private EditText editText;
-    private TextView textView;
+    private EditText targetWeightText;
+    private EditText targetWeeksText;
+    private GoalsAccess goals;
     /**
      * {@inheritDoc}
      */
@@ -34,9 +39,9 @@ public class GoalsSubmission extends Activity implements View.OnClickListener {
         setContentView(R.layout.goals_submission_page);
         saveButton = (Button)findViewById(R.id.saveButton);
         saveButton.setOnClickListener(this);
-        editText = (EditText)findViewById(R.id.targetWeightTextEntry);
-        textView = (TextView)findViewById(R.id.textView2);
-        textView.setVisibility(View.GONE);
+        targetWeightText = (EditText)findViewById(R.id.targetWeightTextEntry);
+        targetWeeksText = (EditText)findViewById(R.id.targetWeeksTextEntry);
+        goals = new GoalsAccess(this);
     }
 
     /**
@@ -71,54 +76,27 @@ public class GoalsSubmission extends Activity implements View.OnClickListener {
     }
 
     private void saveClicked() {
-        Output.toastMessage(this, "Changes updated.", Output.SHORT_TOAST);
         saveText();
     }
 
-    // Saves info in a string: "Target weight, Target num weeks to complete goal"
-    private void saveText(){
-        String message = editText.getText().toString();
-        String fileName = "userGoal";
-        try {
-            FileOutputStream fileOutputStream = openFileOutput(fileName,MODE_PRIVATE);
-            fileOutputStream.write(message.getBytes());
-            editText.setText("");
-
-            editText = (EditText)findViewById(R.id.targetWeeksTextEntry);
-            message = ", " + editText.getText().toString();
-            fileOutputStream.write(message.getBytes());
-
-            fileOutputStream.close();
-            editText.setText("");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /*
-    This is only here as a reminder of how to retrieve the user's input from internal storage,
-    and that it works. It's temporary.
-    Requires plain text view widget and a load button.
-     */
-    public void readMessage(View view) {
-        try {
-            String message;
-            FileInputStream fileInputStream = openFileInput("userGoal");
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            StringBuffer stringBuffer = new StringBuffer();
-            while ((message=bufferedReader.readLine())!=null) {
-                stringBuffer.append(message + "\n");
+    private void saveText() {
+        String targetWeight = targetWeightText.getText().toString();
+        String targetWeeks = targetWeeksText.getText().toString();
+        if (targetWeight!=null && targetWeeks!=null) {
+            if (!targetWeight.equals("") && !targetWeeks.equals("")) {
+                goals.setAll(Integer.parseInt(targetWeight),Integer.parseInt(targetWeeks));
+                goals.save();
+                Output.toastMessage(this, "Changes updated.", Output.SHORT_TOAST);
+                Intent gameMode = new Intent(this, mainStats.class);
+                startActivity(gameMode);
+                finish();
             }
-            textView.setText(stringBuffer.toString());
-            textView.setVisibility(View.VISIBLE);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            else {
+                Output.toastMessage(this, "Please fill in all fields", Output.SHORT_TOAST);
+            }
+        }
+        else {
+            Output.toastMessage(this, "Please fill in all fields", Output.SHORT_TOAST);
         }
     }
-
 }

@@ -66,6 +66,17 @@ SW,No commit - Wiki,2/21/2016,Wiki,2,4,"Learn Markdown, create developer tasks p
 AR,No commit - Wiki,2/21/2016,Wiki,3,3,Described Java packages and applied proper markup
 WT,No commit,3/1/2016,Setting Goals,4,4,Research different ways to store user input
 WT,5897767dfd8e8419d3e246474b57472bfdb7703f,3/5/2016,Setting Goals,0.25,0.25,Changed user input boxes to include hint instead of actual text
-WT,c87070d82d548a6999efe3100ebc599b640aa332,3/5/2016,Setting Goals,6,8,Save user input from user information submission page to internal storage and learn to access saved data
-WT,bff78641ca84d153619e9cff10bbbd4a4bef89c7,3/5/2016,Add Flexible Goals,0.5,0.5,Save user input from goals submission page to internal storage
+WT,c87070d82d548a6999efe3100ebc599b640aa332,3/5/2016,User Information Submission Form,6,8,Save user input from user information submission page to internal storage and learn to access saved data
+WT,bff78641ca84d153619e9cff10bbbd4a4bef89c7,3/5/2016,User Information Submission Form,0.5,0.5,Save user input from goals submission page to internal storage
 WT,401b132115fbf7a7d29985a959f07749564588c7,3/9/2016,Coding Standards,0.25,0.25,Replaced various hardcoded strings with  extracted string resources
+WT,No Commit,3/10/2016,Health Calculations,2,1.5,"Researched BMI, heartrate, BMR calculations"
+WT,87ef4a358cffc38bc3dde85f85530d5055c80cbf,3/11/2016,User Information Submission Form,0.25,0.25,Added height as new parameter
+WT,2ca4cc877aff31520561bd37d14a63cd47c8da62,3/11/2016,Health Calculations,3,2,Implemented BMI and heartrate calculations using hardcoded user data and created Calculator interface
+WT,ba60fa8aac62f7356d7a536a5033c5a882ff6984,3/11/2016,User Information Submission Form,1,1,Researched spinners and used to implement gender input
+WT,87bb40f3028ac7375d44837eea4521f4bafc7057,3/11/2016,User Information Submission Form,1,1,Created a class to put user info into
+WT,ac598d919400623322d52e18c048b436dae6fe3a,3/12/2016,Health Calculations,2,2,"Finished BMI, BMR, Heart rate calculations using refactored user submission information"
+WT,c76259567f1f536109c6af1d7e1914c90a47fbe7,3/12/2016,Health Calculations,1,1,Refactored calculations through UnitConverter to eliminate repeated code
+WT,3939800367d33a71bfa6960c99c2cec2becb2194,3/12/2016,Setting Goals,0.5,0.5,Refactored goals submission page
+WT,No commit,3/12/2016,Health Calculations,1,1,"Research weight maintenance, gain, and loss with respect to calories count"
+WT,c685f041e575dd81f58fa46b76d6de2132153854,3/12/2016,Health Calculations,1,1,"Implemented calculations for maintaining, gaining, and losing weight"
+WT,564edb8d7ecc8c9f6f7bc8b35066c041fe41413d,3/13/2016,Health Calculations,0.25,0.25,Quick fix to accuracy of weight change equation
