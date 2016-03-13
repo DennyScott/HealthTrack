@@ -50,11 +50,6 @@ public class MainActivity extends Activity {
         startActivity(gameMode);
     }
 
-    /**
-     * Creates a new <code>Intent</code> and starts <code>SettingsActivity</code>.
-     *
-     * @param view Unused.
-     */
     public void settingsButton(View view) {
         Intent gameMode = new Intent(this, SettingsActivity.class);
         startActivity(gameMode);

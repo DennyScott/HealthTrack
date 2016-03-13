@@ -114,12 +114,9 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         playSound.play();
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -131,11 +128,10 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         playSound.play();
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
 
         if (id == R.id.nav_goals) {
-            // Handle the goals
             Intent gameMode = new Intent(this, Goals.class);
             startActivity(gameMode);
             //finish();

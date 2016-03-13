@@ -19,7 +19,7 @@ public class StatsDataAccess {
     public static String[] getFoodUnits(int mode, String nutrient){
         return new String[] {"grams","grams","grams","grams"};
     }
-    ////////////////////////////////////////////////////////////////////Get Nutrients Consumed given mode, again day/week/month = 0/1/2 today, last 7 days, last 30 days
+
     public static String[] getNutrientsNames(int mode){
         return new String[]{"Cholesterol", "Sodium", "Sugar", "Protein", "Fat", "Fiber", "Calcium", "Carbs"};
     }
@@ -29,5 +29,4 @@ public class StatsDataAccess {
     public static String[] getNutrientsUnits(int mode){
         return new String[] {"mg","mg","grams","grams","grams","grams","grams","grams"};
     }
-    // The above is all that is needed to get stats fully operational
 }

@@ -86,10 +86,7 @@ public class StatsGui extends Activity {
 
 
     }
-    /**
-     * Calls <code>finish()</code> to close this <code>Activity</code>, returning to previous
-     * <code>Activity</code> on the stack.
-     */
+
     public void onBackPressed() {
         //Intent gameMode = new Intent(this, mainStats.class);
         //startActivity(gameMode);
@@ -98,19 +95,6 @@ public class StatsGui extends Activity {
         finish();
     }
 
-    /**
-     * Creates a new <code>Intent</code> and starts <code>SettingsActivity</code>.
-     *
-     * @param view Unused.
-     */
-
-    /**
-     * When the day button is clicked, the <code>PieChart</code> is updated to show the data
-     * for the user's day.
-     *
-     * @param view View that has been clicked.
-     * @see PieChart
-     */
     public void dayButton(View view) {
         mode = 0;
         StatsBus.init(mode);
@@ -123,13 +107,6 @@ public class StatsGui extends Activity {
         playSound.play();
     }
 
-    /**
-     * When the week button is clicked, the <code>PieChart</code> is updated to show the data
-     * for the user's week.
-     *
-     * @param view View that has been clicked.
-     * @see PieChart
-     */
     public void weekButton(View view) {
         mode = 1;
         StatsBus.init(mode);
@@ -142,13 +119,6 @@ public class StatsGui extends Activity {
         playSound.play();
     }
 
-    /**
-     * When the month button is clicked, the <code>PieChart</code> is updated to show the data
-     * for the user's month.
-     *
-     * @param view View that has been clicked.
-     * @see PieChart
-     */
     public void monthButton(View view) {
         mode = 2;
         StatsBus.init(mode);
