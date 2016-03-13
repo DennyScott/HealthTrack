@@ -26,6 +26,7 @@ public class Splash extends Activity{
         final Animation fdOut = AnimationUtils.loadAnimation(this,R.anim.fade_out);
         final Animation fdIn = AnimationUtils.loadAnimation(this,R.anim.fade_in);
 
+        splashText.startAnimation(fdIn);
         splashPic.startAnimation(rot);
         rot.setAnimationListener(new Animation.AnimationListener() {
             @Override

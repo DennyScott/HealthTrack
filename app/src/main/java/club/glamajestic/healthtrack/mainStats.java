@@ -106,7 +106,6 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        playSound.play();
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_stats, menu);
         return true;
