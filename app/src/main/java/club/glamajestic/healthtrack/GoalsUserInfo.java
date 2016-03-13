@@ -44,10 +44,6 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         user = new UserDataAccess(this);
     }
 
-    /**
-     * Calls <code>finish()</code> to close this <code>Activity</code>, returning to previous
-     * <code>Activity</code> on the stack.
-     */
     public void onBackPressed() {
         Output.toastMessage(this, "Returning to previous screen.", Output.LONG_TOAST);
         finish();
@@ -75,7 +71,6 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         gender= 1;
     }
 
-    // Saves info in a string: "Full Name, age, weight"
     private void saveText(){
         String name = nameText.getText().toString();
         String age = ageText.getText().toString();

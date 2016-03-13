@@ -20,20 +20,11 @@ public class Warnings extends Activity {
         setContentView(R.layout.warnings);
     }
 
-    /**
-     * Calls <code>finish()</code> to close this <code>Activity</code>, returning to previous
-     * <code>Activity</code> on the stack.
-     */
     public void onBackPressed() {
         Output.toastMessage(this, "Returning to previous screen.", Output.LONG_TOAST);
         finish();
     }
 
-    /**
-     * Creates a new <code>Intent</code> and starts <code>SettingsActivity</code>.
-     *
-     * @param view Unused.
-     */
     public void settingsButton(View view) {
         Intent gameMode = new Intent(this, SettingsActivity.class);
         startActivity(gameMode);

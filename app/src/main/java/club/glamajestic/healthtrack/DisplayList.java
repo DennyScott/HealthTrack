@@ -10,7 +10,6 @@ import business.CustomList;
  * Created by Khaled on 3/9/2016.
  */
 public class DisplayList extends Activity {
-    // Array of strings...
     String[] keys =  {"Nothing to show"};
     float[] values = {0};
     String[] units = {""};

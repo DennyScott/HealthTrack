@@ -9,6 +9,7 @@ import club.glamajestic.healthtrack.MainActivity;
 BMR is basal metabolic rate.
 Formulas found here:
 http://dailyburn.com/life/health/how-to-calculate-bmr/
+
 It's the amount of calories your body burns in 24 hours while resting.
 BMR = 10 x kg weight + 6.25 x cm height – 5 x age + z where z is 5 if male and (-161) if female
  */

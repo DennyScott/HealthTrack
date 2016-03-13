@@ -51,13 +51,11 @@ public class InitPieChart {
 
         pie = new PieChart(ctx);
 
-        // add pie chart to main layout
         f.addView(pie);
-        // configure pie chart
+
         pie.setUsePercentValues(true);
         pie.setDescription("");
 
-        // enable hole and configure
         pie.setDrawHoleEnabled(true);
         pie.setHoleColorTransparent(true);
         pie.setHoleRadius(24);
@@ -75,9 +73,9 @@ public class InitPieChart {
             pie.setCenterText("Month");
         }
 
-        // enable rotation of the chart by touch
-            pie.setRotationAngle(0);
-            pie.setRotationEnabled(true);
+
+        pie.setRotationAngle(0);
+        pie.setRotationEnabled(true);
 
         pie.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
@@ -108,27 +106,20 @@ public class InitPieChart {
         });
         addData(y,x,mode);
 
-        // customize legends
         Legend l = pie.getLegend();
         l.setTextColor(Color.parseColor("#ffffff"));
         l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
         l.setXEntrySpace(7);
         l.setYEntrySpace(5);
     }
-    /**
-     * Fills the <code>PieChart</code> with data.
-     *
-     * @see PieChart
-     */
+
     public void addData(float[] y, String[] x,int mode) {
         this.mode = mode;
-        if(mode == 0 ||mode == 3 ) {
+        if (mode == 0 || mode == 3) {
             pie.setCenterText("Day");
-        }
-        else if(mode == 1) {
+        } else if (mode == 1) {
             pie.setCenterText("Week");
-        }
-        else if(mode == 2) {
+        } else if (mode == 2) {
             pie.setCenterText("Month");
         }
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
@@ -143,12 +134,14 @@ public class InitPieChart {
             xVals.add(x[i]);
         }
 
-        // create pie data set
+        createPieDataSet(yVals1, xVals);
+    }
+
+    public void createPieDataSet(ArrayList<Entry> yVals1, ArrayList<String> xVals) {
         PieDataSet dataSet = new PieDataSet(yVals1, "Nutritional Elements");
         dataSet.setSliceSpace(3);
         dataSet.setSelectionShift(5);
 
-        // add many colors
         ArrayList<Integer> colors = new ArrayList<Integer>();
 
         for (int c : ColorTemplate.VORDIPLOM_COLORS) {
@@ -170,22 +163,23 @@ public class InitPieChart {
         colors.add(ColorTemplate.getHoloBlue());
         dataSet.setColors(colors);
 
-        // instantiate pie data object now
         PieData data = new PieData(xVals, dataSet);
         data.setValueFormatter(new PercentFormatter());
         data.setValueTextSize(15f);
         data.setValueTextColor(Color.parseColor("#111111"));
 
         pie.setData(data);
-        // undo all highlights
+
         pie.highlightValues(null);
-        // update pie chart
+
         pie.invalidate();
     }
+
     private void openStats(Context ctx){
         Intent gameMode = new Intent(ctx, StatsGui.class);
         ctx.startActivity(gameMode);
     }
+
     private void openList(Context ctx){
 
 
