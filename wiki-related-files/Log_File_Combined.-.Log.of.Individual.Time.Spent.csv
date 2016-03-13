@@ -76,3 +76,7 @@ WT,ba60fa8aac62f7356d7a536a5033c5a882ff6984,3/11/2016,User Information Submissio
 WT,87bb40f3028ac7375d44837eea4521f4bafc7057,3/11/2016,User Information Submission Form,1,1,Created a class to put user info into
 WT,ac598d919400623322d52e18c048b436dae6fe3a,3/12/2016,Health Calculations,2,2,"Finished BMI, BMR, Heart rate calculations using refactored user submission information"
 WT,c76259567f1f536109c6af1d7e1914c90a47fbe7,3/12/2016,Health Calculations,1,1,Refactored calculations through UnitConverter to eliminate repeated code
+WT,3939800367d33a71bfa6960c99c2cec2becb2194,3/12/2016,Setting Goals,0.5,0.5,Refactored goals submission page
+WT,No commit,3/12/2016,Health Calculations,1,1,"Research weight maintenance, gain, and loss with respect to calories count"
+WT,c685f041e575dd81f58fa46b76d6de2132153854,3/12/2016,Health Calculations,1,1,"Implemented calculations for maintaining, gaining, and losing weight"
+WT,564edb8d7ecc8c9f6f7bc8b35066c041fe41413d,3/13/2016,Health Calculations,0.25,0.25,Quick fix to accuracy of weight change equation
