@@ -8,17 +8,18 @@ Information from:
 http://www.calculator.net/calorie-calculator.html
 
 Calculates how much calories per day to intake in order to reach goals from goals submission
+NOTE: does not take into account user's physical activity levels from WeightSustain class yet
  */
 
 public class CaloriesPerDay implements Calculator {
     private GoalsAccess goals;
     private UserDataAccess user;
-    private BMR bmr;
+    private WeightSustain weightSustain;
     private int targetWeight;
     private int targetWeeks;
     private int weight;
     private int difference;
-    private double bmrValue;
+    private double weightSustainValue;
     private int targetCalories; // calories per day to gain/lose to reach goal
 
     private int CALORIES_PER_POUND = 3500;
@@ -28,11 +29,12 @@ public class CaloriesPerDay implements Calculator {
     public double calculate() {
         goals = new GoalsAccess();
         user = new UserDataAccess();
-        bmr = new BMR();
+        weightSustain = new WeightSustain();
 
         targetWeight = goals.getTargetWeight();
         targetWeeks = goals.getTargetWeeks();
         weight = user.getWeight();
+        weightSustainValue = weightSustain.calculate();
         difference = Math.abs(weight-targetWeight);
         targetCalories = difference * CALORIES_PER_POUND;
         targetCalories = targetCalories / targetWeeks;
@@ -49,8 +51,7 @@ public class CaloriesPerDay implements Calculator {
                 targetCalories = targetCalories * (-1);
         }
 
-        bmrValue = bmr.calculate();
-        targetCalories = targetCalories + (int)bmrValue;
+        targetCalories = targetCalories + (int)weightSustainValue;
 
         return targetCalories;
     }
