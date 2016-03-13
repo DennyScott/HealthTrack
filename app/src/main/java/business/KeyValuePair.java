@@ -4,7 +4,7 @@ package business;
  * Write Java Docs (basic description for class, and description for each
  * complicated method).
  */
-public class KeyValuePair implements Comparable<KeyValuePair> {
+public class KeyValuePair implements Comparable<KeyValuePair>, ApplicationConstants  {
     float value;
     String key;
     String unit;

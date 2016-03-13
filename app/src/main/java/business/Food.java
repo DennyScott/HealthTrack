@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Created by scott on 02/03/16.
  */
-public class Food {
+public class Food implements  ApplicationConstants {
     int FoodID;
     int FoodGroupID;
     String FoodDescription;

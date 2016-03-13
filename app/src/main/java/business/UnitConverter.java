@@ -3,7 +3,7 @@ package business;
 /**
  * Created by Wilson on 3/12/2016.
  */
-public class UnitConverter {
+public class UnitConverter implements  ApplicationConstants  {
     private final double LB_TO_KG = 0.453592;
     private final double KG_TO_LB = 2.20462;
     private final double CM_TO_M = 0.01;

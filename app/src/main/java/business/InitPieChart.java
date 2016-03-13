@@ -21,7 +21,7 @@ import club.glamajestic.healthtrack.StatsGui;
 /**
  * Created by Khaled on 3/9/2016.
  */
-public class InitPieChart {
+public class InitPieChart implements  ApplicationConstants {
     static private Stats StatsBus;
     Context ctx;
     FrameLayout f;

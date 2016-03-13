@@ -6,7 +6,7 @@ package business;
 /*
  Calculates body mass index which is weight in kg divided by height in m^2
   */
-public class BMI implements Calculator {
+public class BMI implements Calculator, ApplicationConstants {
     double bmi;
     double weight;
     double height;

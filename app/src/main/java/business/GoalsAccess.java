@@ -18,7 +18,7 @@ import java.io.Serializable;
 /**
  * Created by Wilson on 3/12/2016.
  */
-public class GoalsAccess implements Serializable {
+public class GoalsAccess implements Serializable, ApplicationConstants {
     Activity ctx;
     Goals goals;
     private static String[] PERMISSIONS_STORAGE = {
@@ -101,7 +101,7 @@ public class GoalsAccess implements Serializable {
     }
 
 }
-class Goals implements Serializable{
+class Goals implements Serializable, ApplicationConstants {
     int targetWeight;
     int targetWeeks;
     boolean set;

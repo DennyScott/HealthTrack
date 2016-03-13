@@ -6,7 +6,7 @@ import java.util.Collections;
 // 0 = day, 1 = week, 2 = month
 // day by default
 
-public class Stats {
+public class Stats implements  ApplicationConstants {
     private float[] values;
     private String[] keys;
     private String[] units;

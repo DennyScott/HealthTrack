@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import club.glamajestic.healthtrack.R;
 
-public class CustomList extends ArrayAdapter<String> {
+public class CustomList extends ArrayAdapter<String> implements ApplicationConstants{
 
     private final Activity context;
     private final String[] web;

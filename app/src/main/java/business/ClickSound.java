@@ -12,7 +12,7 @@ import club.glamajestic.healthtrack.R;
 /**
  * Created by Khaled on 3/11/2016.
  */
-public class ClickSound {
+public class ClickSound implements ApplicationConstants {
     protected SoundPool sp;
     protected  int play;
     protected int sound;

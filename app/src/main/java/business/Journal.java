@@ -12,7 +12,7 @@ import persistence.*;
 /**
  * Created by scott on 03/03/16.
  */
-public class Journal {
+public class Journal implements ApplicationConstants  {
 
     DatabaseDefinition dataDef;
     Map<Date, JournalEntry> journalEntryMap;

@@ -11,7 +11,7 @@ Calculates how much calories per day to intake in order to reach goals from goal
 NOTE: does not take into account user's physical activity levels from WeightSustain class yet
  */
 
-public class CaloriesPerDay implements Calculator {
+public class CaloriesPerDay implements Calculator, ApplicationConstants{
     private GoalsAccess goals;
     private UserDataAccess user;
     private WeightSustain weightSustain;

@@ -18,7 +18,7 @@ import java.io.Serializable;
 /**
  * Created by Khaled on 3/11/2016.
  */
-public class UserDataAccess implements Serializable {
+public class UserDataAccess implements Serializable, ApplicationConstants  {
     Activity ctx;
     UserData user;
     private static String[] PERMISSIONS_STORAGE = {
@@ -110,7 +110,7 @@ public class UserDataAccess implements Serializable {
     }
 
 }
-class UserData implements Serializable{
+class UserData implements Serializable, ApplicationConstants {
     String name;
     int age;
     int weight;

@@ -3,7 +3,7 @@ package business;
 /**
  * Created by Khaled on 3/9/2016.
  */
-public class StatsDataAccess {
+public class StatsDataAccess implements  ApplicationConstants {
     ////////////////////Given the name of a nutrient ex "fat" return a list of all foods that contribute to
     ////////////////////that nutrient , how many grams they contribute each, and what units these measurments are in
     ///////////////////mode 0 returns a list for the day, mode 1 for the week, mode 2 for the month
