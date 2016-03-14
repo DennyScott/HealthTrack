@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,11 +16,9 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import com.github.mikephil.charting.charts.PieChart;
 
-import business.ClickSound;
 import business.InitPieChart;
-import business.UserDataAccess;
 
-public class mainStats extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+public class StatsGuiActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout stats;
     private PieChart chart;
     private MediaPlayer backgroundMusic;
@@ -52,7 +49,7 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
             @Override
             public void onClick(View view) {
                 //playSound.play();
-                startActivity(new Intent(mainStats.this, Ate.class));
+                startActivity(new Intent(StatsGuiActivity.this, Ate.class));
             }
         });
 

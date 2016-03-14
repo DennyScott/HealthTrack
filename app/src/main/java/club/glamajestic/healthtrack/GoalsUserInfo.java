@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
+
 import business.UserDataAccess;
 
 /**
@@ -81,7 +81,7 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
                 user.setAll(name,Integer.parseInt(age),Integer.parseInt(height),Integer.parseInt(weight),gender);
                 user.save();
                 Output.toastMessage(this, "Changes updated.", Output.SHORT_TOAST);
-                Intent gameMode = new Intent(this, mainStats.class);
+                Intent gameMode = new Intent(this, StatsGuiActivity.class);
                 startActivity(gameMode);
                 finish();
             }else{

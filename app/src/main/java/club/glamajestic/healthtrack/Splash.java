@@ -2,7 +2,6 @@ package club.glamajestic.healthtrack;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.animation.Animation;
@@ -51,7 +50,7 @@ public class Splash extends Activity{
             }
             File userInfo = new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userInfo.ser");
             if (userInfo.exists()) {
-                Intent gameMode = new Intent(this, mainStats.class);
+                Intent gameMode = new Intent(this, StatsGuiActivity.class);
                 startActivity(gameMode);
                 finish();
 

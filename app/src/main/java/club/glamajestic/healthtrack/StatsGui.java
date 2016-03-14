@@ -88,7 +88,7 @@ public class StatsGui extends Activity {
     }
 
     public void onBackPressed() {
-        //Intent gameMode = new Intent(this, mainStats.class);
+        //Intent gameMode = new Intent(this, StatsGuiActivity.class);
         //startActivity(gameMode);
         //playSound.play();
 

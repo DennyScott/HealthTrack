@@ -29,7 +29,7 @@ public class Goals extends Activity implements View.OnClickListener {
     }
 
     public void onBackPressed() {
-        //Intent gameMode = new Intent(this, mainStats.class);
+        //Intent gameMode = new Intent(this, StatsGuiActivity.class);
         //startActivity(gameMode);
         finish();
     }

@@ -26,7 +26,7 @@
             android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".mainStats"
+            android:name=".StatsGuiActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="HealthTrack"
             android:theme="@style/AppTheme"></activity>
