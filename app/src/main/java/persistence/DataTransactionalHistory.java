@@ -22,8 +22,8 @@ public class DataTransactionalHistory {
     //          fats_eaten
 
     //Transactional History Table:
-    public static final String COLNAME_ID = "";     //reusable
-    public static final String COLNAME_FOODNAME = "";
+    public static final String COLNAME_ID = "_-d";     //reusable
+    public static final String COLNAME_FOODNAME = "FoodName";
     public static final String COLNAME_EATEN_DATE = "EatenDate";
     public static final String COLNAME_EATEN_TIME = "EatenTime";
     public static final String COLNAME_EATEN_CALORIES = "EatenCalories";

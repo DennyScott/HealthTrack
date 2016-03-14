@@ -8,6 +8,13 @@ public class DataCustomFoods {
     private int mCarbohydrates;
     private int mFats;
 
+    public static final String COLNAME_ID = "_id";
+    public static final String COLNAME_FOODNAME = "FoodName";
+    public static final String COLNAME_CALORIES = "Calories";
+    public static final String COLNAME_PROTEINS = "Proteins";
+    public static final String COLNAME_CARBOHYDRATES = "Carbohydrates";
+    public static final String COLNAME_FATS = "Fat";
+
     public DataCustomFoods(int mId, String mFoodName, int mCalories, int mProtein, int mCarbohydrates, int mFats) {
         this.mId = mId;
         this.mFoodName = mFoodName;

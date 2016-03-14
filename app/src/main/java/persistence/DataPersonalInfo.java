@@ -7,6 +7,12 @@ public class DataPersonalInfo {
     private int mAge;
     private int mWeight;
 
+    public static final String COLNAME_ID         = "_id";
+    public static final String COLNAME_NAME       = "Name";
+    public static final String COLNAME_GENDER     = "Gender";
+    public static final String COLNAME_AGE        = "Age";
+    public static final String COLNAME_WEIGHT     = "Weight";
+
     public DataPersonalInfo(int mId, String mName, String mGender, int mAge, int mWeight) {
         this.mId = mId;
         this.mName = mName;
