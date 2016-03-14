@@ -48,21 +48,21 @@ public class CalcBMITest extends TestCase {
 
     public void testCalculate() throws Exception {
         assertTrue("Testing negative weight",
-                (testNegativeWeight == ApplicationConstants.BAD_CALCULATION));
+                (testNegativeWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing zero weight",
-                (testZeroWeight == ApplicationConstants.BAD_CALCULATION));
+                (testZeroWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing max weight",
-                (testMaxWeight == ApplicationConstants.BAD_CALCULATION));
+                (testMaxWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing min weight",
-                (testMinWeight == ApplicationConstants.BAD_CALCULATION));
+                (testMinWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
 
         assertTrue("Testing negative height",
-                (testNegativeHeight == ApplicationConstants.BAD_CALCULATION));
+                (testNegativeHeight.calculate() == ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing zero height",
-                (testZeroHeight == ApplicationConstants.BAD_CALCULATION));
+                (testZeroHeight.calculate() == ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing max height",
-                (testMaxHeight == ApplicationConstants.BAD_CALCULATION));
+                (testMaxHeight.calculate() == ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing min height",
-                (testMinHeight == ApplicationConstants.BAD_CALCULATION));
+                (testMinHeight.calculate() == ApplicationConstants.BAD_CALCULATION));
     }
 }

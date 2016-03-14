@@ -134,44 +134,44 @@ public class CalcBMRTest extends TestCase {
 
     public void testCalculate() throws Exception {
         //testing weight
-        assertTrue("Testing NegativeWeight for Males",(testNegativeWeightMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing NegativeWeight for Females",(testNegativeWeightFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing NegativeWeight for Males",(testNegativeWeightMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing NegativeWeight for Females",(testNegativeWeightFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
-        assertTrue("Testing ZeroWeight for Males",(testZeroWeightMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing ZeroWeight for Females",(testZeroWeightFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing ZeroWeight for Males",(testZeroWeightMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing ZeroWeight for Females",(testZeroWeightFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
-        assertTrue("Testing MaxWeight for Males",(testMaxWeightMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing MaxWeight for Females",(testMaxWeightFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MaxWeight for Males",(testMaxWeightMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MaxWeight for Females",(testMaxWeightFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
-        assertTrue("Testing MinWeight for Males",(testMinWeightMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing MinWeight for Females",(testMinWeightFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MinWeight for Males",(testMinWeightMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MinWeight for Females",(testMinWeightFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
         //Testing height
-        assertTrue("Testing NegativeHeight for Males",(testNegativeHeightMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing NegativeHeight for Females",(testNegativeHeightFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing NegativeHeight for Males",(testNegativeHeightMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing NegativeHeight for Females",(testNegativeHeightFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
-        assertTrue("Testing ZeroHeight for Males",(testZeroHeightMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing ZeroHeight for Females",(testZeroHeightFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing ZeroHeight for Males",(testZeroHeightMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing ZeroHeight for Females",(testZeroHeightFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
-        assertTrue("Testing MaxHight for Males",(testMaxHightMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing MaxHeight for Females",(testMaxHeightFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MaxHight for Males",(testMaxHightMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MaxHeight for Females",(testMaxHeightFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
-        assertTrue("Testing MinHeight for Males",(testMinHeightMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing MinHeight for Females",(testMinHeightFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MinHeight for Males",(testMinHeightMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MinHeight for Females",(testMinHeightFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
 
         //testing age
-        assertTrue("Testing NegativeAge for Males",(testNegativeAgeMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing NegativeAge for Females",(testNegativeAgeFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing NegativeAge for Males",(testNegativeAgeMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing NegativeAge for Females",(testNegativeAgeFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
-        assertTrue("Testing ZeroAge for Males",(testZeroAgeMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing ZeroAge for Females",(testZeroAgeFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing ZeroAge for Males",(testZeroAgeMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing ZeroAge for Females",(testZeroAgeFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
-        assertTrue("Testing MaxAge for Males",(testMaxAgeMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing MaxAge for Females",(testMaxAgeFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MaxAge for Males",(testMaxAgeMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MaxAge for Females",(testMaxAgeFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
-        assertTrue("Testing MinAge for Males",(testMinAgeMale == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing MinAge for Females",(testMinAgeFemale == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MinAge for Males",(testMinAgeMale.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing MinAge for Females",(testMinAgeFemale.calculate() == ApplicationConstants.BAD_CALCULATION));
 
     }
 }

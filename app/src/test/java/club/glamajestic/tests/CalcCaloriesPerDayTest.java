@@ -38,28 +38,28 @@ public class CalcCaloriesPerDayTest extends TestCase {
         //now assert
 
         //testing weights
-        assertTrue("Testing testNegativeWeight",(testNegativeWeight == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testZeroWeight",(testZeroWeight == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testMaxWeight",(testMaxWeight == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testMinWeight",(testMinWeight == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testNegativeWeight",(testNegativeWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testZeroWeight",(testZeroWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testMaxWeight",(testMaxWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testMinWeight",(testMinWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
 
         //testing target weights
-        assertTrue("Testing testNegativeTargetWeights",(testNegativeTargetWeights == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testZeroTargetWeights",(testZeroTargetWeights == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testMaxTargetWeights",(testMaxTargetWeights == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testMinTargetWeights",(testMinTargetWeights == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testNegativeTargetWeights",(testNegativeTargetWeights.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testZeroTargetWeights",(testZeroTargetWeights.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testMaxTargetWeights",(testMaxTargetWeights.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testMinTargetWeights",(testMinTargetWeights.calculate() == ApplicationConstants.BAD_CALCULATION));
 
         //testing target weeks
-        assertTrue("Testing testNegativeTargetWeeks",(testNegativeTargetWeeks == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testZeroTargetWeeks",(testZeroTargetWeeks == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testMaxTargetWeeks",(testMaxTargetWeeks == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testMinTargetWeeks",(testMinTargetWeeks == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testNegativeTargetWeeks",(testNegativeTargetWeeks.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testZeroTargetWeeks",(testZeroTargetWeeks.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testMaxTargetWeeks",(testMaxTargetWeeks.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testMinTargetWeeks",(testMinTargetWeeks.calculate() == ApplicationConstants.BAD_CALCULATION));
 
         //testing target calories
-        assertTrue("Testing testNegativeTargetCalories",(testNegativeTargetCalories == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testZeroTargetCalories",(testZeroTargetCalories == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testMaxTargetCalories",(testMaxTargetCalories == ApplicationConstants.BAD_CALCULATION));
-        assertTrue("Testing testMinTargetCalories",(testMinTargetCalories == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testNegativeTargetCalories",(testNegativeTargetCalories.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testZeroTargetCalories",(testZeroTargetCalories.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testMaxTargetCalories",(testMaxTargetCalories.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Testing testMinTargetCalories",(testMinTargetCalories.calculate() == ApplicationConstants.BAD_CALCULATION));
 
 
 

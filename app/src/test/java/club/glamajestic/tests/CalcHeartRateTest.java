@@ -22,5 +22,16 @@ public class CalcHeartRateTest extends TestCase {
         CalcHeartRate testUpperBoundMax = new CalcHeartRate(10, Double.MAX_VALUE,10);
         CalcHeartRate testUpperBoundMin = new CalcHeartRate(10,Double.MIN_VALUE,10);
 
+        assertTrue("Running test: testLowerBoundNegative",(testLowerBoundNegative.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Running test: testLowerBoundZero",(testLowerBoundZero.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Running test: testLowerBoundMax",(testLowerBoundMax.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Running test: testLowerBoundMin",(testLowerBoundMin.calculate() == ApplicationConstants.BAD_CALCULATION));
+
+        assertTrue("Running test: testUpperBoundNegative",(testUpperBoundNegative.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Running test: testUpperBoundZero",(testUpperBoundZero.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Running test: testUpperBoundMax",(testUpperBoundMax.calculate() == ApplicationConstants.BAD_CALCULATION));
+        assertTrue("Running test: testUpperBoundMin",(testUpperBoundMin.calculate() == ApplicationConstants.BAD_CALCULATION));
+
+
     }
 }
