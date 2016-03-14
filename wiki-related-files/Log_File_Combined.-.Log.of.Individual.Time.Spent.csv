@@ -101,7 +101,7 @@ RS,09e735e91bf337934903954ff1d3035480743112,3/10/2016,External DB,4,12,Fixed con
 RS,6eff38ed4abc6de34e098a51926aebd9ef93a4d3,3/11/2016,External DB,6,9,Added nutrient elimination in external database
 RS,108d863f2ae26f06a3ad29bbf098c1b61dfe68c9,3/12/2016,Database,2,3,Implemented insertions and deletions in database
 RS,,3/13/2016,Project Submission,4,15,Refractoring and project administration/testing
-KB,,3/13/2016,Notifications,1,1,Fixed toast-notifications issue
+KB,d8516b3d892a282cf65faf3ebecdf6e57e9b80c1,3/13/2016,Notifications,1,1,Fixed toast-notifications issue
 ,,,,,,
 ,,,,,,
 ,,,,,,
