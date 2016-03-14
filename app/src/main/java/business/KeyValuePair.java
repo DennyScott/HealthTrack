@@ -6,7 +6,7 @@ public class KeyValuePair implements Comparable<KeyValuePair>, ApplicationConsta
     String key;
     String unit;
 
-    KeyValuePair(String key, float value, String unit) {
+    public KeyValuePair(String key, float value, String unit) {
         this.value = value;
         this.key = key;
         this.unit = unit;

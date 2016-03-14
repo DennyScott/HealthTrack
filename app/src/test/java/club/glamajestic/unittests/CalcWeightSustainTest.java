@@ -1,4 +1,4 @@
-package business;
+package club.glamajestic.unittests;
 
 import junit.framework.TestCase;
 

@@ -1,6 +1,8 @@
-package business;
+package club.glamajestic.unittests;
 
 import junit.framework.TestCase;
+
+import business.StatsDataAccess;
 
 
 public class StatsDataAccessTest extends TestCase {

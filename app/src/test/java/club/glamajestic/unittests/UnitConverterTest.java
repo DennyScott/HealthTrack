@@ -1,5 +1,4 @@
-package club.glamajestic.healthtrack.test;
-
+package club.glamajestic.unittests;
 import junit.framework.TestCase;
 
 import business.ApplicationConstants;

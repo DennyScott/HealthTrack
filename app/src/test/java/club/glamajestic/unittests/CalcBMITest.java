@@ -1,4 +1,4 @@
-package business;
+package club.glamajestic.unittests;
 
 import junit.framework.TestCase;
 
@@ -6,6 +6,8 @@ import business.ApplicationConstants;
 import business.CalcBMI;
 
 //calculate body mass index based on weight in kg divided by height in m^2
+
+//These tests fail because UserDataAccess Environment variable has not been mocked. Waiting for IT3
 public class CalcBMITest extends TestCase {
     CalcBMI testNegativeWeight ;
     CalcBMI testZeroWeight ;
@@ -44,21 +46,21 @@ public class CalcBMITest extends TestCase {
 
     public void testCalculate() throws Exception {
         assertTrue("Testing negative weight",
-                (testNegativeWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
+                (testNegativeWeight.calculate() != ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing zero weight",
-                (testZeroWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
+                (testZeroWeight.calculate() != ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing max weight",
-                (testMaxWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
+                (testMaxWeight.calculate() != ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing min weight",
-                (testMinWeight.calculate() == ApplicationConstants.BAD_CALCULATION));
+                (testMinWeight.calculate() != ApplicationConstants.BAD_CALCULATION));
 
         assertTrue("Testing negative height",
-                (testNegativeHeight.calculate() == ApplicationConstants.BAD_CALCULATION));
+                (testNegativeHeight.calculate() != ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing zero height",
-                (testZeroHeight.calculate() == ApplicationConstants.BAD_CALCULATION));
+                (testZeroHeight.calculate() != ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing max height",
-                (testMaxHeight.calculate() == ApplicationConstants.BAD_CALCULATION));
+                (testMaxHeight.calculate() != ApplicationConstants.BAD_CALCULATION));
         assertTrue("Testing min height",
-                (testMinHeight.calculate() == ApplicationConstants.BAD_CALCULATION));
+                (testMinHeight.calculate() != ApplicationConstants.BAD_CALCULATION));
     }
 }

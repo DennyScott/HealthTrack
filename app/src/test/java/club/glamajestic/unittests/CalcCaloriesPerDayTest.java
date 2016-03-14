@@ -1,17 +1,19 @@
-package business;
+package club.glamajestic.unittests;
 
 import junit.framework.TestCase;
 
+import business.ApplicationConstants;
 import business.CalcCaloriesPerDay;
+//These tests fail because UserDataAccess Environment variable has not been mocked. Waiting for IT3
 
 public class CalcCaloriesPerDayTest extends TestCase {
 
     public void testCalculate() throws Exception {
         //testing weights
         CalcCaloriesPerDay testNegativeWeight = new CalcCaloriesPerDay(-1,10,10,10,10);
-        CalcCaloriesPerDay testZeroWeight = new CalcCaloriesPerDay(0,10,10,10);
-        CalcCaloriesPerDay testMaxWeight = new CalcCaloriesPerDay(Integer.MAX_VALUE,10,10,10);
-        CalcCaloriesPerDay testMinWeight = new CalcCaloriesPerDay(Integer.MIN_VALUE,10,10,10);
+        CalcCaloriesPerDay testZeroWeight = new CalcCaloriesPerDay(0,10,10,10d,10);
+        CalcCaloriesPerDay testMaxWeight = new CalcCaloriesPerDay(Integer.MAX_VALUE,10,10,10d,10);
+        CalcCaloriesPerDay testMinWeight = new CalcCaloriesPerDay(Integer.MIN_VALUE,10,10,10d,10);
 
         //testing target weights
         CalcCaloriesPerDay testNegativeTargetWeights = new CalcCaloriesPerDay(10,-1,10,10,10);

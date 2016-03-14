@@ -1,48 +1,50 @@
-package business;
+package club.glamajestic.unittests;
 
 import junit.framework.TestCase;
 
+import business.ApplicationConstants;
 import business.CalcBMR;
+//These tests fail because UserDataAccess Environment variable has not been mocked. Waiting for IT3
 
 public class CalcBMRTest extends TestCase {
     //testing weight
-    testNegativeWeightMale ;
-    testNegativeWeightFemale ;
+    CalcBMR testNegativeWeightMale ;
+    CalcBMR testNegativeWeightFemale ;
 
-    testZeroWeightMale ;
-    testZeroWeightFemale ;
+    CalcBMR testZeroWeightMale ;
+    CalcBMR testZeroWeightFemale ;
 
-    testMaxWeightMale ;
-    testMaxWeightFemale ;
+    CalcBMR testMaxWeightMale ;
+    CalcBMR testMaxWeightFemale ;
 
-    testMinWeightMale ;
-    testMinWeightFemale ;
+    CalcBMR testMinWeightMale ;
+    CalcBMR testMinWeightFemale ;
 
-    //Testing height
-    testNegativeHeightMale ;
-    testNegativeHeightFemale ;
+    //CalcBMR testing height
+    CalcBMR testNegativeHeightMale ;
+    CalcBMR testNegativeHeightFemale ;
 
-    testZeroHeightMale ;
-    testZeroHeightFemale ;
+    CalcBMR testZeroHeightMale ;
+    CalcBMR testZeroHeightFemale ;
 
-    testMaxHightMale ;
-    testMaxHeightFemale ;
+    CalcBMR testMaxHightMale ;
+    CalcBMR testMaxHeightFemale ;
 
-    testMinHeightMale ;
-    testMinHeightFemale ;
+    CalcBMR testMinHeightMale ;
+    CalcBMR testMinHeightFemale ;
 
-    //testing age
-    testNegativeAgeMale ;
-    testNegativeAgeFemale ;
+    //CalcBMR testing age
+    CalcBMR testNegativeAgeMale ;
+    CalcBMR testNegativeAgeFemale ;
 
-    testZeroAgeMale ;
-    testZeroAgeFemale ;
+    CalcBMR testZeroAgeMale ;
+    CalcBMR testZeroAgeFemale ;
 
-    testMaxAgeMale ;
-    testMaxAgeFemale ;
+    CalcBMR testMaxAgeMale ;
+    CalcBMR testMaxAgeFemale ;
 
-    testMinAgeMale ;
-    testMinAgeFemale ;
+    CalcBMR testMinAgeMale ;
+    CalcBMR testMinAgeFemale ;
     public void setUp() throws Exception {
         super.setUp();
         //testing weight
@@ -77,13 +79,13 @@ public class CalcBMRTest extends TestCase {
         testNegativeAgeFemale = new CalcBMR(10,10,-1,CalcBMR.FEMALE_CONST);
 
         testZeroAgeMale = new CalcBMR(10,10,0,CalcBMR.MALE_CONST);
-        testZeroAgeFemale = new CalcBMR(10,10.0,CalcBMR.FEMALE_CONST);
+        testZeroAgeFemale = new CalcBMR(10,10,0,CalcBMR.FEMALE_CONST);
 
-        testMaxAgeMale = new CalcBMR(10,10,Double.MAX_VALUE,CalcBMR.MALE_CONST);
-        testMaxAgeFemale = new CalcBMR(10,10,Double.MAX_VALUE,CalcBMR.FEMALE_CONST);
+        testMaxAgeMale = new CalcBMR(10,10,Integer.MAX_VALUE,CalcBMR.MALE_CONST);
+        testMaxAgeFemale = new CalcBMR(10,10,Integer.MAX_VALUE,CalcBMR.FEMALE_CONST);
 
-        testMinAgeMale = new CalcBMR(10,10,Double.MIN_VALUE, CalcBMR.MALE_CONST);
-        testMinAgeFemale = new CalcBMR(10,10,Double.MIN_VALUE, CalcBMR.FEMALE_CONST);
+        testMinAgeMale = new CalcBMR(10,10,Integer.MIN_VALUE, CalcBMR.MALE_CONST);
+        testMinAgeFemale = new CalcBMR(10,10,Integer.MIN_VALUE, CalcBMR.FEMALE_CONST);
         
     }
 
