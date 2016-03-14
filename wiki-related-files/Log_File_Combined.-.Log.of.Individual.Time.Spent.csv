@@ -97,3 +97,4 @@ KES,,3/11/2016,,,,Added height feild to user info screen
 KES,,3/11/2016,,,,Cut the delta background music from 70mb to 3.
 KES,,3/11/2016,,,,"Added a male and femal selection option,as per wilsons previous design, the only reason we are going with design, is because obect serializtion is way easier, but willsons edition of the code was just as good, we happeend to write the same thing at the same time. That is all."
 KES,,3/11/2016,,,8hrs total,"Added Button sounds, (needs to be implemented in all classes) already implemented in stats class."
+WT,4ff8a2ccb666dc48fad08ef8fec835a6ed3fe1ed,3/13/2016,Refactoring,2,2,Refactored various commented code blocks
