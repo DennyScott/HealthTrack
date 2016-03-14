@@ -7,6 +7,8 @@ public interface ApplicationConstants {
     //...................CALCULATION CONSTANTS...................
     int BAD_CALCULATION = -1;
     double MAX_FLOAT_VARIATION = 0.1;
+    double MIN_CONVERSION_VAL = 0;
+    double MAX_CONVERSION_VAL = 1000000;
 
     //field constants
     double MIN_WEIGHT = 1;
