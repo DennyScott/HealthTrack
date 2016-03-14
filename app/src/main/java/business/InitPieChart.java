@@ -21,8 +21,9 @@ import club.glamajestic.healthtrack.StatsGui;
 /**
  * Created by Khaled on 3/9/2016.
  */
+//Testing of this class
 public class InitPieChart implements  ApplicationConstants {
-    static private Stats StatsBus;
+    private static Stats STATS_BUS;
     Context ctx;
     FrameLayout f;
     PieChart pie;
@@ -34,7 +35,7 @@ public class InitPieChart implements  ApplicationConstants {
     String[] x;
     ClickSound playSound;
     public InitPieChart(final Context ctx, FrameLayout f, PieChart pie, final int charInitMode){
-        StatsBus = new Stats();
+        STATS_BUS = new Stats();
         this.ctx = ctx;
         this.f = f;
         this.pie = pie;
@@ -44,10 +45,9 @@ public class InitPieChart implements  ApplicationConstants {
 
     }
     private void initChart(float[] y, String[] x){
-        this.
-        StatsBus.init(0);
-        y = StatsBus.getValues();
-        x = StatsBus.getKeys();
+        STATS_BUS.init(0);
+        y = STATS_BUS.getValues();
+        x = STATS_BUS.getKeys();
 
         pie = new PieChart(ctx);
 
@@ -84,15 +84,15 @@ public class InitPieChart implements  ApplicationConstants {
                 if (mode == 3) {
                     openStats(ctx);
                 } else {
-                    if(StatsBus.getKeys()[e.getXIndex()].equals("Other")){
-                        putKeys = StatsBus.getOtherKeys();
-                        putUnits = StatsBus.getOtherUnits();
-                        putValues = StatsBus.getOtherValues();
+                    if(STATS_BUS.getKeys()[e.getXIndex()].equals("Other")){
+                        putKeys = STATS_BUS.getOtherKeys();
+                        putUnits = STATS_BUS.getOtherUnits();
+                        putValues = STATS_BUS.getOtherValues();
                     }
                     else{
-                        putKeys = StatsDataAccess.getFoodNames(mode,StatsBus.getKeys()[e.getXIndex()]);
-                        putUnits = StatsDataAccess.getFoodUnits(mode, StatsBus.getKeys()[e.getXIndex()]);
-                        putValues = StatsDataAccess.getFoodValues(mode, StatsBus.getKeys()[e.getXIndex()]);
+                        putKeys = StatsDataAccess.getFoodNames(mode, STATS_BUS.getKeys()[e.getXIndex()]);
+                        putUnits = StatsDataAccess.getFoodUnits(mode, STATS_BUS.getKeys()[e.getXIndex()]);
+                        putValues = StatsDataAccess.getFoodValues(mode, STATS_BUS.getKeys()[e.getXIndex()]);
                     }
                     openList(ctx);
                 }

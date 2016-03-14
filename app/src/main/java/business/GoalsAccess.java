@@ -26,6 +26,7 @@ public class GoalsAccess implements Serializable, ApplicationConstants {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
+
     public GoalsAccess(){
         File userGoals = new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userGoals.ser");
         if (userGoals.exists()) {
@@ -77,7 +78,16 @@ public class GoalsAccess implements Serializable, ApplicationConstants {
         if(isSet()) {
             verifyStoragePermissions(ctx);
             try {
-                ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userGoals.ser"))));
+                ObjectOutputStream oos = new ObjectOutputStream(
+                        new BufferedOutputStream(
+                                new FileOutputStream(
+                                        new File(
+                                                Environment.getExternalStorageDirectory().getPath() +
+                                                        "/HealthTrack/userGoals.ser"
+                                        )
+                                )
+                        )
+                );
                 oos.writeObject(goals);
                 oos.flush();
                 oos.close();
