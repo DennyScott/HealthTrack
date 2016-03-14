@@ -40,9 +40,11 @@ public class CalcBMR implements Calculator, ApplicationConstants {
     public double calculate() {
 
         //check if the weights are in a valid range
-        if (weight == 0 || weight < MIN_WEIGHT || weight > MAX_WEIGHT) {
+        if (weight == 0 || height == 0 || weight < MIN_WEIGHT || weight > MAX_WEIGHT) {
             return BAD_CALCULATION;
         }
+
+
 
         UnitConverter uc = new UnitConverter();
 

@@ -24,19 +24,16 @@ public class CalcCaloriesPerDay implements Calculator, ApplicationConstants {
     private double weightSustainValue;
     private int targetCalories;
 
-    public CalcCaloriesPerDay(GoalsAccess goals, UserDataAccess user, CalcWeightSustain calcWeightSustain, int targetWeight, int targetWeeks, int weight, int difference, double weightSustainValue, int targetCalories) {
+    public CalcCaloriesPerDay(GoalsAccess goals, int targetWeight, int targetWeeks, int weight, double weightSustainValue, int targetCalories) {
         this.goals = goals;
-        this.user = user;
-        this.calcWeightSustain = calcWeightSustain;
         this.targetWeight = targetWeight;
         this.targetWeeks = targetWeeks;
         this.weight = weight;
-        this.difference = difference;
         this.weightSustainValue = weightSustainValue;
         this.targetCalories = targetCalories;
     }
 
-    public CalcCaloriesPerDay(int targetWeight, int targetWeeks, int weight, int difference, double weightSustainValue, int targetCalories) {
+    public CalcCaloriesPerDay(int targetWeight, int targetWeeks, int weight, double weightSustainValue, int targetCalories) {
         this.targetWeight = targetWeight;
         this.targetWeeks = targetWeeks;
         this.weight = weight;
@@ -54,7 +51,17 @@ public class CalcCaloriesPerDay implements Calculator, ApplicationConstants {
         targetWeight = goals.getTargetWeight();
         targetWeeks = goals.getTargetWeeks();
         weight = user.getWeight();
+
+        //check if the weights are in a valid range
+        if (weight == 0 || weight < MIN_WEIGHT || weight > MAX_WEIGHT ||
+                targetWeight < MIN_WEIGHT || targetWeight > MAX_WEIGHT ||
+                targetWeeks < MIN_WEEKS || targetWeeks > MAX_WEEKS  ||
+                targetCalories < MIN_CALORIES || targetCalories > MAX_CALORIES) {
+            return BAD_CALCULATION;
+        }
+
         weightSustainValue = calcWeightSustain.calculate();
+
         difference = Math.abs(weight - targetWeight);
         targetCalories = difference * CALORIES_PER_POUND;
         targetCalories = targetCalories / targetWeeks;

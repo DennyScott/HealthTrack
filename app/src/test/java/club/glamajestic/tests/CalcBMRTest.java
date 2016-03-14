@@ -8,48 +8,85 @@ import business.CalcBMR;
  * Created by Robby on 3/13/2016.
  */
 public class CalcBMRTest extends TestCase {
+    //testing weight
+    testNegativeWeightMale ;
+    testNegativeWeightFemale ;
 
+    testZeroWeightMale ;
+    testZeroWeightFemale ;
+
+    testMaxWeightMale ;
+    testMaxWeightFemale ;
+
+    testMinWeightMale ;
+    testMinWeightFemale ;
+
+    //Testing height
+    testNegativeHeightMale ;
+    testNegativeHeightFemale ;
+
+    testZeroHeightMale ;
+    testZeroHeightFemale ;
+
+    testMaxHightMale ;
+    testMaxHeightFemale ;
+
+    testMinHeightMale ;
+    testMinHeightFemale ;
+
+    //testing age
+    testNegativeAgeMale ;
+    testNegativeAgeFemale ;
+
+    testZeroAgeMale ;
+    testZeroAgeFemale ;
+
+    testMaxAgeMale ;
+    testMaxAgeFemale ;
+
+    testMinAgeMale ;
+    testMinAgeFemale ;
     public void setUp() throws Exception {
         super.setUp();
         //testing weight
-        CalcBMR testNegativeWeightMale = new CalcBMR(-1,10,10,CalcBMR.MALE_CONST);
-        CalcBMR testNegativeWeightFemale = new CalcBMR(-1,10,10,CalcBMR.FEMALE_CONST);
+        testNegativeWeightMale = new CalcBMR(-1,10,10,CalcBMR.MALE_CONST);
+        testNegativeWeightFemale = new CalcBMR(-1,10,10,CalcBMR.FEMALE_CONST);
 
-        CalcBMR testZeroWeightMale = new CalcBMR(0,10,10,CalcBMR.MALE_CONST);
-        CalcBMR testZeroWeightFemale = new CalcBMR(0,10,10,CalcBMR.FEMALE_CONST);
+        testZeroWeightMale = new CalcBMR(0,10,10,CalcBMR.MALE_CONST);
+        testZeroWeightFemale = new CalcBMR(0,10,10,CalcBMR.FEMALE_CONST);
 
-        CalcBMR testMaxWeightMale = new CalcBMR(Double.MAX_VALUE, 10,10,CalcBMR.MALE_CONST);
-        CalcBMR testMaxWeightFemale = new CalcBMR(Double.MAX_VALUE, 10,10,CalcBMR.FEMALE_CONST);
+        testMaxWeightMale = new CalcBMR(Double.MAX_VALUE, 10,10,CalcBMR.MALE_CONST);
+        testMaxWeightFemale = new CalcBMR(Double.MAX_VALUE, 10,10,CalcBMR.FEMALE_CONST);
 
-        CalcBMR testMinWeightMale = new CalcBMR(Double.MIN_VALUE, 10, 10, CalcBMR.MALE_CONST);
-        CalcBMR testMinWeightFemale = new CalcBMR(Double.MIN_VALUE, 10, 10, CalcBMR.FEMALE_CONST);
+        testMinWeightMale = new CalcBMR(Double.MIN_VALUE, 10, 10, CalcBMR.MALE_CONST);
+        testMinWeightFemale = new CalcBMR(Double.MIN_VALUE, 10, 10, CalcBMR.FEMALE_CONST);
 
         //Testing height
-        CalcBMR testNegativeHeightMale = new CalcBMR(10,-1,10,CalcBMR.MALE_CONST);
-        CalcBMR testNegativeHeightFemale = new CalcBMR(10,-1,10,CalcBMR.FEMALE_CONST);
+        testNegativeHeightMale = new CalcBMR(10,-1,10,CalcBMR.MALE_CONST);
+        testNegativeHeightFemale = new CalcBMR(10,-1,10,CalcBMR.FEMALE_CONST);
 
-        CalcBMR testZeroHeightMale = new CalcBMR(10,0,10,CalcBMR.MALE_CONST);
-        CalcBMR testZeroHeightFemale = new CalcBMR(10,0,10,CalcBMR.FEMALE_CONST);
+        testZeroHeightMale = new CalcBMR(10,0,10,CalcBMR.MALE_CONST);
+        testZeroHeightFemale = new CalcBMR(10,0,10,CalcBMR.FEMALE_CONST);
 
-        CalcBMR testMaxHightMale = new CalcBMR(10,Double.MAX_VALUE,10,CalcBMR.MALE_CONST);
-        CalcBMR testMaxHeightFemale = new CalcBMR(10,Double.MAX_VALUE,10,CalcBMR.FEMALE_CONST);
+        testMaxHightMale = new CalcBMR(10,Double.MAX_VALUE,10,CalcBMR.MALE_CONST);
+        testMaxHeightFemale = new CalcBMR(10,Double.MAX_VALUE,10,CalcBMR.FEMALE_CONST);
 
-        CalcBMR testMinHeightMale = new CalcBMR(10,Double.MIN_VALUE, 10, CalcBMR.MALE_CONST);
-        CalcBMR testMinHeightFemale = new CalcBMR(10, Double.MIN_VALUE, 10, CalcBMR.FEMALE_CONST);
+        testMinHeightMale = new CalcBMR(10,Double.MIN_VALUE, 10, CalcBMR.MALE_CONST);
+        testMinHeightFemale = new CalcBMR(10, Double.MIN_VALUE, 10, CalcBMR.FEMALE_CONST);
 
 
         //testing age
-        CalcBMR testNegativeAgeMale = new CalcBMR(10,10,-1,CalcBMR.MALE_CONST);
-        CalcBMR testNegativeAgeFemale = new CalcBMR(10,10,-1,CalcBMR.FEMALE_CONST);
+        testNegativeAgeMale = new CalcBMR(10,10,-1,CalcBMR.MALE_CONST);
+        testNegativeAgeFemale = new CalcBMR(10,10,-1,CalcBMR.FEMALE_CONST);
 
-        CalcBMR testZeroAgeMale = new CalcBMR(10,10,0,CalcBMR.MALE_CONST);
-        CalcBMR testZeroAgeFemale = new CalcBMR(10,10.0,CalcBMR.FEMALE_CONST);
+        testZeroAgeMale = new CalcBMR(10,10,0,CalcBMR.MALE_CONST);
+        testZeroAgeFemale = new CalcBMR(10,10.0,CalcBMR.FEMALE_CONST);
 
-        CalcBMR testMaxAgeMale = new CalcBMR(10,10,Double.MAX_VALUE,CalcBMR.MALE_CONST);
-        CalcBMR testMaxAgeFemale = new CalcBMR(10,10,Double.MAX_VALUE,CalcBMR.FEMALE_CONST);
+        testMaxAgeMale = new CalcBMR(10,10,Double.MAX_VALUE,CalcBMR.MALE_CONST);
+        testMaxAgeFemale = new CalcBMR(10,10,Double.MAX_VALUE,CalcBMR.FEMALE_CONST);
 
-        CalcBMR testMinAgeMale = new CalcBMR(10,10,Double.MIN_VALUE, CalcBMR.MALE_CONST);
-        CalcBMR testMinAgeFemale = new CalcBMR(10,10,Double.MIN_VALUE, CalcBMR.FEMALE_CONST);
+        testMinAgeMale = new CalcBMR(10,10,Double.MIN_VALUE, CalcBMR.MALE_CONST);
+        testMinAgeFemale = new CalcBMR(10,10,Double.MIN_VALUE, CalcBMR.FEMALE_CONST);
         
     }
 
@@ -79,7 +116,7 @@ public class CalcBMRTest extends TestCase {
 
         testMinHeightMale = null;
         testMinHeightFemale = null;
-        
+
         //testing age
         testNegativeAgeMale = null;
         testNegativeAgeFemale = null;

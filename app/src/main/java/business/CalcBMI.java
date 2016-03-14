@@ -23,11 +23,12 @@ public class CalcBMI implements Calculator, ApplicationConstants {
     public double calculate() {
         UnitConverter uc = new UnitConverter();
         //check if the weights are in a valid range
-        if (weight == 0 || weight < MIN_WEIGHT || weight > MAX_WEIGHT) {
+        if (weight == 0 || height == 0 || weight < MIN_WEIGHT || weight > MAX_WEIGHT) {
             return BAD_CALCULATION;
         }
 
-            setWeight(uc.lbToKg(getUser().getWeight()));
+
+        setWeight(uc.lbToKg(getUser().getWeight()));
         setHeight(uc.cmToM2(getUser().getHeight()));
 
         setBmi(getWeight() / getHeight());

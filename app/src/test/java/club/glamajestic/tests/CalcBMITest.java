@@ -11,31 +11,38 @@ import business.CalcBMI;
  */
 //calculate body mass index based on weight in kg divided by height in m^2
 public class CalcBMITest extends TestCase {
+    CalcBMI testNegativeWeight ;
+    CalcBMI testZeroWeight ;
+    CalcBMI testMaxWeight ;
+    CalcBMI testMinWeight ;
 
+    CalcBMI testNegativeHeight ;
+    CalcBMI testZeroHeight ;
+    CalcBMI testMaxHeight ;
+    CalcBMI testMinHeight ;
     public void setUp() throws Exception {
         super.setUp();
-        CalcBMI testNegativeWeight = new CalcBMI(-1,10);
-        CalcBMI testZeroWeight = new CalcBMI(0,10);
-        CalcBMI testMaxWeight = new CalcBMI(Double.MAX_VALUE, 10);
-        CalcBMI testMinWeight = new CalcBMI(Double.MIN_VALUE, 10);
+        testNegativeWeight = new CalcBMI(-1,10);
+        testZeroWeight = new CalcBMI(0,10);
+        testMaxWeight = new CalcBMI(Double.MAX_VALUE, 10);
+        testMinWeight = new CalcBMI(Double.MIN_VALUE, 10);
 
-        CalcBMI testNegativeHeight = new CalcBMI(10,-1);
-        CalcBMI testZeroHeight = new CalcBMI(10,0);
-        CalcBMI testMaxHeight = new CalcBMI(10, Double.MAX_VALUE);
-        CalcBMI testMinHeight = new CalcBMI(10, Double.MIN_VALUE);
-
+        testNegativeHeight = new CalcBMI(10,-1);
+        testZeroHeight = new CalcBMI(10,0);
+        testMaxHeight = new CalcBMI(10, Double.MAX_VALUE);
+        testMinHeight = new CalcBMI(10, Double.MIN_VALUE);
     }
 
     public void tearDown() throws Exception {
-        CalcBMI testNegativeWeight = null;
-        CalcBMI testZeroWeight = null;
-        CalcBMI testMaxWeight = null;
-        CalcBMI testMinWeight = null;
+        testNegativeWeight = null;
+        testZeroWeight = null;
+        testMaxWeight = null;
+        testMinWeight = null;
 
-        CalcBMI testNegativeHeight = null;
-        CalcBMI testZeroHeight = null;
-        CalcBMI testMaxHeight = null;
-        CalcBMI testMinHeight = null;
+        testNegativeHeight = null;
+        testZeroHeight = null;
+        testMaxHeight = null;
+        testMinHeight = null;
 
     }
 
