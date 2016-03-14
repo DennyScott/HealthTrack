@@ -1,13 +1,15 @@
-package business;
+package club.glamajestic.healthtrack;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import business.ApplicationConstants;
 import club.glamajestic.healthtrack.R;
 
-public class CustomList extends ArrayAdapter<String> implements ApplicationConstants{
+public class CustomList extends ArrayAdapter<String> implements ApplicationConstants {
 
     private final Activity context;
     private final String[] web;

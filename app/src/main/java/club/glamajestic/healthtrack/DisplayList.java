@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ListView;
-import business.CustomList;
 
 /**
  * Created by Khaled on 3/9/2016.
