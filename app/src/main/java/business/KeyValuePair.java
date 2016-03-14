@@ -1,9 +1,6 @@
 package business;
 
-/**
- * Write Java Docs (basic description for class, and description for each
- * complicated method).
- */
+
 public class KeyValuePair implements Comparable<KeyValuePair>, ApplicationConstants  {
     float value;
     String key;
@@ -20,7 +17,8 @@ public class KeyValuePair implements Comparable<KeyValuePair>, ApplicationConsta
         if (!other.getClass().getName().equals(KeyValuePair.class.getName())) return false;
         boolean retVal = false;
         if (other == this && this.key.toLowerCase().equals(((KeyValuePair) other).key.toLowerCase())
-                && this.value ==(((KeyValuePair)other).value)) retVal = true;
+                && Math.abs(this.value - (((KeyValuePair) other).value)) < MAX_FLOAT_VARIATION)
+            retVal = true;
         return retVal;
     }
 
