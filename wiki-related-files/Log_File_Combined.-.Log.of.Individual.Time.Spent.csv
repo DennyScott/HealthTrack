@@ -1,4 +1,3 @@
-<<<<<<< HEAD:wiki-related-files/Log_File_Combined.-.Log.of.Individual.Time.Spent.csv
 Author,Commit,Date,Task Assignment,Estimated Hours Needed,Actual Hours Spent,Description
 SW,No commit - Research,1/3/2016,Notifications,4,4,"Research Notification builder, creating a generic notification object"
 SW,No commit - Research,1/7/2016,IDE Setup,4,4,"Installed Android Studio, connected GitHub VCS"
@@ -191,4 +190,3 @@ KB,ef782a9b208826db88e517dbd14ebb33c6d68c2b,3/13/2016,Bug Fix,1,2,Commented out 
 KB,ae89be54d5979bf9d6af0a0ead58d8964ecd6295,3/13/2016,Bug Fix,2,2,Linked up fab on mainscreen with Ate.class
 SW,e839f1866f0a56f602975fa879ff78b9f304497b,3/13/2016,,6,2,Added Tests and Journal Object Database access
 SW,c5164bf6cd778a8da440ef9c6a59523c1cb6b509,3/13/2016,,3,4,Updated Architectural Diagram
->>>>>>> origin/master:wiki-related-files/Log_File_Combined.xlsx - Log of Individual Time Spent.csv
