@@ -45,7 +45,7 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
     }
 
     public void onBackPressed() {
-        Output.toastMessage(this, "Returning to previous screen.", Output.LONG_TOAST);
+
         finish();
     }
     /**
