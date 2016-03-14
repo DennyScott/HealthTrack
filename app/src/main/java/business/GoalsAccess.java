@@ -59,19 +59,19 @@ public class GoalsAccess implements Serializable, ApplicationConstants {
         }
     }
     public int getTargetWeight(){
-        return goals.targetWeight;
+        return goals.getTargetWeight();
     }
     public int getTargetWeeks(){
-        return goals.targetWeeks;
+        return goals.getTargetWeeks();
     }
 
     public boolean isSet(){
-        return goals.set;
+        return goals.isSet();
     }
     public void setAll(int targetWeight ,int targetWeeks){
-        goals.targetWeight = targetWeight;
-        goals.targetWeeks = targetWeeks;
-        goals.set = true;
+        goals.setTargetWeight(targetWeight);
+        goals.setTargetWeeks(targetWeeks);
+        goals.setSet(true);
     }
     public void save(){
         if(isSet()) {

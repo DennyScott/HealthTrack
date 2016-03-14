@@ -6,12 +6,36 @@ import java.io.Serializable;
  * Created by Robby on 3/13/2016.
  */
 class Goals implements Serializable, ApplicationConstants {
-    int targetWeight;
-    int targetWeeks;
-    boolean set;
+    private int targetWeight;
+    private int targetWeeks;
+    private boolean set;
     Goals(){
-        set = false;
-        targetWeight = 0;
-        targetWeeks = 0;
+        setSet(false);
+        setTargetWeight(0);
+        setTargetWeeks(0);
+    }
+
+    public int getTargetWeight() {
+        return targetWeight;
+    }
+
+    public void setTargetWeight(int targetWeight) {
+        this.targetWeight = targetWeight;
+    }
+
+    public int getTargetWeeks() {
+        return targetWeeks;
+    }
+
+    public void setTargetWeeks(int targetWeeks) {
+        this.targetWeeks = targetWeeks;
+    }
+
+    public boolean isSet() {
+        return set;
+    }
+
+    public void setSet(boolean set) {
+        this.set = set;
     }
 }
