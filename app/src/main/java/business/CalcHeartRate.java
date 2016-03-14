@@ -23,15 +23,19 @@ public class CalcHeartRate implements Calculator, ApplicationConstants {
 
     private UserDataAccess user = new UserDataAccess();
 
-    public CalcHeartRate(double lowerBound, double upperBound, int max) {
+    public CalcHeartRate(double lowerBound, double upperBound) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
-        this.max = max;
         user = new UserDataAccess();
     }
 
     @Override
     public double calculate() {
+        if (lowerBound < MOD_LOWER_BOUND || lowerBound > HARD_UPPER_BOUND ||
+                upperBound < MOD_LOWER_BOUND || upperBound > HARD_UPPER_BOUND ||
+                (upperBound - lowerBound < 0)){
+            return BAD_CALCULATION;
+        }
         setMax(getMAX_HR() - getUser().getAge());
         return getMax();
     }

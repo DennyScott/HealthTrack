@@ -9,9 +9,7 @@ import android.os.Build;
 
 import club.glamajestic.healthtrack.R;
 
-/**
- * Created by Khaled on 3/11/2016.
- */
+//TOO BUGGED, disabling for this itearation
 public class ClickSound implements ApplicationConstants {
 //    protected SoundPool sp;
 //    protected  int play;
