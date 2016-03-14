@@ -25,7 +25,7 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
     private FrameLayout stats;
     private PieChart chart;
     private MediaPlayer backgroundMusic;
-    ClickSound playSound;
+    //ClickSound playSound;
     boolean soundEnabled;
     int charInitMode;
 
@@ -33,8 +33,8 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_stats);
-        playSound = new ClickSound(this);
-        boolean soundEnabled = true;
+        //playSound = new ClickSound(this);
+        boolean soundEnabled = false;
         if(soundEnabled) {
             backgroundMusic = MediaPlayer.create(this, R.raw.delta);
             backgroundMusic.setLooping( true );
@@ -51,7 +51,7 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playSound.play();
+                //playSound.play();
                 Snackbar.make(view, "Add Food Item", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -68,7 +68,7 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
     }
     @Override
     public void onBackPressed() {
-        playSound.play();
+        //playSound.play();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -113,7 +113,7 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        playSound.play();
+        //playSound.play();
 
         int id = item.getItemId();
 
@@ -127,7 +127,7 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        playSound.play();
+        //playSound.play();
 
         int id = item.getItemId();
 

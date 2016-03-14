@@ -40,7 +40,7 @@ public class InitPieChart implements  ApplicationConstants {
         this.pie = pie;
         this.mode = charInitMode;
         initChart(y,x);
-        playSound = new ClickSound(ctx);
+        //playSound = new ClickSound(ctx);
 
     }
     private void initChart(float[] y, String[] x){
@@ -80,7 +80,7 @@ public class InitPieChart implements  ApplicationConstants {
         pie.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                playSound.play();
+                //playSound.play();
                 if (mode == 3) {
                     openStats(ctx);
                 } else {
