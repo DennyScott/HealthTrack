@@ -28,9 +28,11 @@ public class CalcWeightSustain implements Calculator, ApplicationConstants  {
 
     @Override
     public double calculate() {
-        CalcBMR calcBmr = new CalcBMR();
+        if (Double.MAX_VALUE / VERY_LIGHT_ACTIVE < calories ||
+                calories < MIN_CALORIES || calories > MAX_CALORIES)
+            return ApplicationConstants.BAD_CALCULATION;
 
-        calories = calcBmr.calculate() * VERY_LIGHT_ACTIVE;
+        calories = calories * VERY_LIGHT_ACTIVE;
 
         return calories;
     }
