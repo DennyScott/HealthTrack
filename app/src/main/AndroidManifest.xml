@@ -67,7 +67,7 @@
             android:label="List View"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <instrumentation android:name="android.support.test.runner.AndroidJUnitRunner"
-            android:targetPackage="club.glamajestic.tests.StatsTest"
+            android:targetPackage="club.glamajestic.tests.StatsDataAccessTest"
             android:label="Tests for Stats"/>
     </application>
 

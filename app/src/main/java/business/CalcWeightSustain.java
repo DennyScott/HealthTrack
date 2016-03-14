@@ -20,7 +20,7 @@ public class CalcWeightSustain implements Calculator, ApplicationConstants  {
     private double calories;
 
     public CalcWeightSustain() {
-        
+
     }
     public CalcWeightSustain(double calories) {
         this.calories = calories;
