@@ -15,9 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-/**
- * Created by Wilson on 3/12/2016.
- */
+
 public class GoalsAccess implements Serializable, ApplicationConstants {
     Activity ctx;
     Goals goals;

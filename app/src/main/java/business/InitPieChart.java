@@ -18,9 +18,7 @@ import java.util.ArrayList;
 import club.glamajestic.healthtrack.DisplayList;
 import club.glamajestic.healthtrack.StatsGui;
 
-/**
- * Created by Khaled on 3/9/2016.
- */
+
 //Testing of this class
 public class InitPieChart implements  ApplicationConstants {
     private static Stats STATS_BUS;

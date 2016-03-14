@@ -3,9 +3,7 @@ package persistence;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
- * Created by Deny Raaen on 20/02/2016.
- */
+
 public class Foods {
     static ArrayList<Foods> entries;
     static ArrayList<Foods> nutrients;

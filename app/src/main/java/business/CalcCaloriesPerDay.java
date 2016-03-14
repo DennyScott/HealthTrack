@@ -1,8 +1,6 @@
 package business;
 
-/**
- * Created by Wilson on 3/12/2016.
- */
+
 /*
 Information from:
 http://www.calculator.net/calorie-calculator.html

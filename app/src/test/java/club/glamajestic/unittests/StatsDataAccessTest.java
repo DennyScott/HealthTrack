@@ -2,9 +2,7 @@ package business;
 
 import junit.framework.TestCase;
 
-/**
- * Created by scott on 13/03/16.
- */
+
 public class StatsDataAccessTest extends TestCase {
     String[] foodNames, foodUnits, nutrientNames, nutrientUnits;
     float[] foodValues, nutrientValues;

@@ -1,8 +1,6 @@
 package business;
 
-/**
- * Created by Wilson on 3/11/2016.
- */
+
 
 /*
 Heart rate information found at:

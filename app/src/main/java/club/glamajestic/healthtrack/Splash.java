@@ -12,9 +12,7 @@ import android.widget.TextView;
 
 import java.io.File;
 
-/**
- * Created by Khaled on 3/11/2016.
- */
+
 public class Splash extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,9 +4,6 @@ import junit.framework.TestCase;
 
 import business.CalcBMR;
 
-/**
- * Created by Robby on 3/13/2016.
- */
 public class CalcBMRTest extends TestCase {
     //testing weight
     testNegativeWeightMale ;

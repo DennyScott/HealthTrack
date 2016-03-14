@@ -5,9 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ListView;
 
-/**
- * Created by Khaled on 3/9/2016.
- */
+
 public class DisplayList extends Activity {
     String[] keys =  {"Nothing to show"};
     float[] values = {0};

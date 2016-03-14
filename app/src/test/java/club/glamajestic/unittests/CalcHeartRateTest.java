@@ -4,9 +4,7 @@ import junit.framework.TestCase;
 
 import business.CalcHeartRate;
 
-/**
- * Created by Robby on 3/13/2016.
- */
+
 public class CalcHeartRateTest extends TestCase {
 
     public void testCalculate() throws Exception {

@@ -1,8 +1,6 @@
 package business;
 
-/**
- * Created by Khaled on 3/9/2016.
- */
+
 public class StatsDataAccess implements  ApplicationConstants {
     ////////////////////Given the name of a nutrient ex "fat" return a list of all foods that contribute to
     ////////////////////that nutrient , how many grams they contribute each, and what units these measurments are in

@@ -1,8 +1,6 @@
 package business;
 
-/**
- * Created by Wilson on 3/11/2016.
- */
+
 /*
  Calculates body mass index which is weight in kg divided by height in m^2
   */

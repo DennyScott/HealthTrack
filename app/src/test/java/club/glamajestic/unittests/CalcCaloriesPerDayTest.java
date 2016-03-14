@@ -4,9 +4,6 @@ import junit.framework.TestCase;
 
 import business.CalcCaloriesPerDay;
 
-/**
- * Created by Robby on 3/13/2016.
- */
 public class CalcCaloriesPerDayTest extends TestCase {
 
     public void testCalculate() throws Exception {

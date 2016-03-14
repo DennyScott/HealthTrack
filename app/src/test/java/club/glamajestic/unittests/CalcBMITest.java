@@ -5,10 +5,6 @@ import junit.framework.TestCase;
 import business.ApplicationConstants;
 import business.CalcBMI;
 
-
-/**
- * Created by Robby on 3/13/2016.
- */
 //calculate body mass index based on weight in kg divided by height in m^2
 public class CalcBMITest extends TestCase {
     CalcBMI testNegativeWeight ;

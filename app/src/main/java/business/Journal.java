@@ -12,9 +12,7 @@ import java.util.Map;
 import persistence.*;
 
 
-/**
- * Created by scott on 03/03/16.
- */
+
 public class Journal implements ApplicationConstants  {
 
     DatabaseDefinition dataDef;

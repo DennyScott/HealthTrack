@@ -2,9 +2,7 @@ package business;
 
 import java.util.Map;
 
-/**
- * Created by scott on 02/03/16.
- */
+
 public class Food implements  ApplicationConstants {
     private int FoodID;
     private int FoodGroupID;

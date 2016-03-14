@@ -2,9 +2,7 @@ package business;
 
 import java.io.Serializable;
 
-/**
- * Created by Robby on 3/13/2016.
- */
+
 class UserData implements Serializable, ApplicationConstants {
     String name;
     int age;

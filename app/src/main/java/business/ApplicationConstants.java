@@ -1,8 +1,6 @@
 package business;
 
-/**
- * Created by Robby on 3/13/2016.
- */
+
 public interface ApplicationConstants {
     boolean USE_STUB_DATABASE = true;
     int APPLICATION_ERROR = -1;

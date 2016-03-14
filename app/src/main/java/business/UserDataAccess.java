@@ -15,9 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-/**
- * Created by Khaled on 3/11/2016.
- */
+
 public class UserDataAccess implements Serializable, ApplicationConstants  {
     Activity ctx;
     UserData user;
