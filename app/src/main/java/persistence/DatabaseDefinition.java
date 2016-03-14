@@ -457,6 +457,44 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return retrievedData;
     }
 
+    public DataTransactionalHistory getSumTransactionalHistory(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //SELECT * FROM TABLE_ WHERE _id = id
+        Cursor cursor = db.query(
+                TABLE_TRANS_HIST,
+                null,
+                "_id=?",
+                new String[] {Integer.toString(id)},
+                null,
+                null,
+                null);
+        //retreieve the data in the assumed order:
+        //        transactional history (eaten)
+        //          id
+        //          food_name
+        //          eaten_date
+        //          eaten_time
+        //          portion_size
+        //          calories_eaten
+        //          protein_eaten
+        //          carbohydrdates_eaten
+        //          fats_eaten
+        DataTransactionalHistory retrievedData = new DataTransactionalHistory(
+                cursor.getInt(0), //int _id is always the first column
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(2),
+                cursor.getInt(3),
+                cursor.getInt(4),
+                cursor.getInt(5),
+                cursor.getInt(6),
+                cursor.getInt(7)
+        );
+
+        return retrievedData;
+    }
+
     /////////////////END DATABASE SINGLE ID RETRIEVALS////////////////////////
 
     //***************DATABASE SINGLE ID DELETIONS******************************

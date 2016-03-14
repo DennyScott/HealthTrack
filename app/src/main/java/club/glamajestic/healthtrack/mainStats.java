@@ -52,8 +52,7 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
             @Override
             public void onClick(View view) {
                 //playSound.play();
-                Snackbar.make(view, "Add Food Item", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(mainStats.this, Ate.class));
             }
         });
 
@@ -74,6 +73,7 @@ public class mainStats extends AppCompatActivity  implements NavigationView.OnNa
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            finish();
         }
     }
 
