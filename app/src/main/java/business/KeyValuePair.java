@@ -25,6 +25,7 @@ public class KeyValuePair implements Comparable<KeyValuePair>, ApplicationConsta
     @Override
     public int compareTo(KeyValuePair other) {
         int retVal = 0;
+        if (Math.abs(other.value - this.value) < MAX_FLOAT_VARIATION) return retVal;
         if(other.value > this.value){
             retVal = 1;
         }
