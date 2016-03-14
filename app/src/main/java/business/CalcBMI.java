@@ -13,19 +13,21 @@ public class CalcBMI implements Calculator, ApplicationConstants {
 
     private UserDataAccess user;
 
-    public CalcBMI(double bmi, double weight, double height, UserDataAccess user) {
-        this.bmi = bmi;
+    public CalcBMI(double weight, double height) {
         this.weight = weight;
         this.height = height;
         this.user = new UserDataAccess();
     }
 
     @Override
-
     public double calculate() {
         UnitConverter uc = new UnitConverter();
+        //check if the weights are in a valid range
+        if (weight == 0 || weight < MIN_WEIGHT || weight > MAX_WEIGHT) {
+            return BAD_CALCULATION;
+        }
 
-        setWeight(uc.lbToKg(getUser().getWeight()));
+            setWeight(uc.lbToKg(getUser().getWeight()));
         setHeight(uc.cmToM2(getUser().getHeight()));
 
         setBmi(getWeight() / getHeight());
@@ -33,6 +35,7 @@ public class CalcBMI implements Calculator, ApplicationConstants {
 
         return getBmi();
     }
+
 
     public double getBmi() {
         return bmi;

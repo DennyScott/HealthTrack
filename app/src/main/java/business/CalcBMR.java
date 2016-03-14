@@ -18,10 +18,10 @@ public class CalcBMR implements Calculator, ApplicationConstants{
     private int age;
     private int gender;
     private UserDataAccess user;
-    private final double WEIGHT_MULTIPLIER = 10;
-    private final double HEIGHT_MULTIPLIER = 6.25;
+    private static final double WEIGHT_MULTIPLIER = 10;
+    private static final double HEIGHT_MULTIPLIER = 6.25;
 
-    private final double AGE_MULTIPLIER = 5;
+    private static final double AGE_MULTIPLIER = 5;
 
     public CalcBMR() {
 
