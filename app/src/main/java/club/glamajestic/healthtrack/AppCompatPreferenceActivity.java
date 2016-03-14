@@ -28,7 +28,7 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
         getDelegate().installViewFactory();
         getDelegate().onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
-        playSound = new ClickSound(this);
+        //playSound = new ClickSound(this);
     }
 
     @Override
