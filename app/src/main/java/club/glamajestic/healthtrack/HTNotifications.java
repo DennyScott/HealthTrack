@@ -15,12 +15,12 @@ import persistence.*;
  * @see NotificationCompat
  * @see NotificationManager
  */
-public class htNotification {
+public class HTNotifications {
 
     private String type;
     private double amount;
 
-    public htNotification(String type, double amount) {
+    public HTNotifications(String type, double amount) {
         this.type = type;
         this.amount = amount;
     }
