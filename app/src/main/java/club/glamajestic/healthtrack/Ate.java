@@ -17,7 +17,7 @@ public class Ate extends Activity {
     private Button foodEntryButton;
     private Button customFoodButton;
 
-    // private Button saveButton;
+    //private Button saveButton;
     //private EditText editText;
     //private TextView textView;
 
