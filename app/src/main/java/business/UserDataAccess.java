@@ -57,30 +57,30 @@ public class UserDataAccess implements Serializable, ApplicationConstants  {
         }
     }
     public String getName(){
-        return user.name;
+        return user.getName();
     }
     public int getGender(){
-        return user.gender;
+        return user.getGender();
     }
     public int getAge(){
-        return user.age;
+        return user.getAge();
     }
     public int getWeight(){
-        return user.weight;
+        return user.getWeight();
     }
     public int getHeight(){
-        return user.height;
+        return user.getHeight();
     }
     public boolean isSet(){
-        return user.set;
+        return user.isSet();
     }
     public void setAll(String name, int age, int height, int weight,int gender){
-        user.name = name;
-        user.age = age;
-        user.height = height;
-        user.weight = weight;
-        user.gender = gender;
-        user.set = true;
+        user.setName(name);
+        user.setAge(age);
+        user.setHeight(height);
+        user.setWeight(weight);
+        user.setGender(gender);
+        user.setSet(true);
     }
     public void save(){
         if(isSet()) {
