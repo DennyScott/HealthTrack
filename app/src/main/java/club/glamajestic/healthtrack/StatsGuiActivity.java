@@ -16,13 +16,14 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import com.github.mikephil.charting.charts.PieChart;
 
+import business.ClickSound;
 import business.InitPieChart;
 
 public class StatsGuiActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout stats;
     private PieChart chart;
     private MediaPlayer backgroundMusic;
-    //ClickSound playSound;
+    ClickSound playSound;
     boolean soundEnabled;
     int charInitMode;
 
@@ -30,7 +31,7 @@ public class StatsGuiActivity extends AppCompatActivity  implements NavigationVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_stats);
-        //playSound = new ClickSound(this);
+        playSound = new ClickSound(this);
         boolean soundEnabled = false;
         if(soundEnabled) {
             backgroundMusic = MediaPlayer.create(this, R.raw.delta);
@@ -48,7 +49,7 @@ public class StatsGuiActivity extends AppCompatActivity  implements NavigationVi
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //playSound.play();
+                playSound.play();
                 startActivity(new Intent(StatsGuiActivity.this, Ate.class));
             }
         });
@@ -64,7 +65,7 @@ public class StatsGuiActivity extends AppCompatActivity  implements NavigationVi
     }
     @Override
     public void onBackPressed() {
-        //playSound.play();
+        playSound.play();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -78,7 +79,9 @@ public class StatsGuiActivity extends AppCompatActivity  implements NavigationVi
     protected void onPause() {
         super.onPause();
         if (this.isFinishing()){
-            backgroundMusic.stop();
+            if(backgroundMusic != null) {
+                backgroundMusic.stop();
+            }
         }
     }
     @Override
@@ -110,7 +113,7 @@ public class StatsGuiActivity extends AppCompatActivity  implements NavigationVi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //playSound.play();
+        playSound.play();
 
         int id = item.getItemId();
 
@@ -124,7 +127,7 @@ public class StatsGuiActivity extends AppCompatActivity  implements NavigationVi
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        //playSound.play();
+        playSound.play();
 
         int id = item.getItemId();
 

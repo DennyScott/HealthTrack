@@ -30,7 +30,7 @@ public class StatsGui extends Activity {
     private float[] yData;
     private String[] xData;
     InitPieChart pie;
-    //ClickSound playSound;
+    ClickSound playSound;
 
 
     /**
@@ -44,7 +44,7 @@ public class StatsGui extends Activity {
         yData = StatsBus.getValues();
         xData = StatsBus.getKeys();
         setContentView(R.layout.stats);
-        //playSound = new ClickSound(this);
+        playSound = new ClickSound(this);
         final TabHost host = (TabHost) findViewById(R.id.tabHost);
         host.setup();
         //Tab 1
@@ -90,7 +90,7 @@ public class StatsGui extends Activity {
     public void onBackPressed() {
         //Intent gameMode = new Intent(this, StatsGuiActivity.class);
         //startActivity(gameMode);
-        //playSound.play();
+        playSound.play();
 
         finish();
     }
@@ -104,7 +104,7 @@ public class StatsGui extends Activity {
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.4f);
         pie.addData(yData, xData,mode);
-        //playSound.play();
+        playSound.play();
     }
 
     public void weekButton(View view) {
@@ -116,7 +116,7 @@ public class StatsGui extends Activity {
         weekButton.setAlpha(0.8f);
         monthButton.setAlpha(0.4f);
         pie.addData(yData, xData,mode);
-        //playSound.play();
+        playSound.play();
     }
 
     public void monthButton(View view) {
@@ -128,7 +128,7 @@ public class StatsGui extends Activity {
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.8f);
         pie.addData(yData, xData,mode);
-        //playSound.play();
+        playSound.play();
     }
     public void setTabColor(TabHost tabhost) {
 
