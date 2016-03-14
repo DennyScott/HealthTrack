@@ -17,6 +17,7 @@ public class KeyValuePair implements Comparable<KeyValuePair>, ApplicationConsta
 
     @Override
     public boolean equals(Object other) {
+        if (!other.getClass().getName().equals(KeyValuePair.class.getName())) return false;
         boolean retVal = false;
         if (other == this && this.key.toLowerCase().equals(((KeyValuePair) other).key.toLowerCase())
                 && this.value ==(((KeyValuePair)other).value)) retVal = true;
