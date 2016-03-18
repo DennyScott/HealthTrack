@@ -6,16 +6,26 @@ android {
 
     defaultConfig {
         applicationId "club.glamajestic.healthtrack"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        testApplicationId "club.glamajestic.healthtrack.test"
+        testHandleProfiling true
+        testFunctionalTest true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets{
+        main{
+            java.srcDirs = ['src/main/java']
+        }
+        androidTest{
+            java.srcDirs = ['src/androidTest/java']
         }
     }
 
@@ -24,8 +34,13 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.jayway.android.robotium:robotium:5.5.4'
     compile files('../libs/mpandroidchartlibrary-2-1-6.jar')
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:support-v4:23.1.1'
+}
+
+dependencies{
+    androidTestCompile fileTree(dir: 'libs', include: ['robotium-solo-5.5.3.jar'])
 }
