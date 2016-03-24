@@ -1,4 +1,5 @@
 package business;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
@@ -17,30 +18,30 @@ import java.io.Serializable;
 
 
 public class GoalsAccess implements Serializable, ApplicationConstants {
-    Activity ctx;
-    Goals goals;
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    Activity ctx;
+    Goals goals;
 
-    public GoalsAccess(){
+    public GoalsAccess() {
         File userGoals = new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userGoals.ser");
         if (userGoals.exists()) {
             try {
                 ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(userGoals)));
                 goals = (Goals) ois.readObject();
                 ois.close();
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else{
+        } else {
             goals = new Goals();
         }
     }
-    public GoalsAccess(Activity ctx){
+
+    public GoalsAccess(Activity ctx) {
         this.ctx = ctx;
         verifyStoragePermissions(ctx);
         File userGoals = new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userGoals.ser");
@@ -49,31 +50,48 @@ public class GoalsAccess implements Serializable, ApplicationConstants {
                 ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(userGoals)));
                 goals = (Goals) ois.readObject();
                 ois.close();
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else{
+        } else {
             goals = new Goals();
         }
     }
-    public int getTargetWeight(){
+
+    public static void verifyStoragePermissions(Activity activity) {
+
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
+    }
+
+    public int getTargetWeight() {
         return goals.getTargetWeight();
     }
-    public int getTargetWeeks(){
+
+    public int getTargetWeeks() {
         return goals.getTargetWeeks();
     }
 
-    public boolean isSet(){
+    public boolean isSet() {
         return goals.isSet();
     }
-    public void setAll(int targetWeight ,int targetWeeks){
+
+    public void setAll(int targetWeight, int targetWeeks) {
         goals.setTargetWeight(targetWeight);
         goals.setTargetWeeks(targetWeeks);
         goals.setSet(true);
     }
-    public void save(){
-        if(isSet()) {
+
+    public void save() {
+        if (isSet()) {
             verifyStoragePermissions(ctx);
             try {
                 ObjectOutputStream oos = new ObjectOutputStream(
@@ -92,19 +110,6 @@ public class GoalsAccess implements Serializable, ApplicationConstants {
             } catch (IOException r) {
                 r.printStackTrace();
             }
-        }
-    }
-    public static void verifyStoragePermissions(Activity activity) {
-
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
         }
     }
 

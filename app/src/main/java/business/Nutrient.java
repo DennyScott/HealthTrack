@@ -1,7 +1,7 @@
 package business;
 
 
-public class Nutrient implements  ApplicationConstants  {
+public class Nutrient implements ApplicationConstants {
     private int NutrientID;
     private String NutrientSymbol;
     private String NutrientUnit;

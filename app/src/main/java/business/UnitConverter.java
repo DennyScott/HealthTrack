@@ -1,7 +1,7 @@
 package business;
 
 
-public class UnitConverter implements  ApplicationConstants  {
+public class UnitConverter implements ApplicationConstants {
     private static final double LB_TO_KG = 0.453592;
     private static final double KG_TO_LB = 2.20462;
     private static final double CM_TO_M = 0.01;

@@ -3,7 +3,7 @@ package business;
 import java.util.Map;
 
 
-public class Food implements  ApplicationConstants {
+public class Food implements ApplicationConstants {
     private int FoodID;
     private int FoodGroupID;
     private String FoodDescription;
