@@ -140,35 +140,46 @@ public class DatabaseManager  {
         timeStart("Reading Objects");
         converter.readObjects();
         timeEnd();
+//        converter.listFoods("1rawObjects.txt");
         //replace the IDs with teh relevant files
         timeStart("Replacing IDs");
         converter.replaceIDs(idReplacements);
         timeEnd();
+//        converter.listFoods("2replacedId.txt");
         //now remove the columns that aren't wanted
-        timeStart("Removnig unwatned columns");
+        timeStart("Removing unwanted columns");
         converter.replaceColumns(columnsToKeep);
         timeEnd();
-        //converter.listFoods();
+//        converter.listFoods("3removedUnwantedColumns.txt");
         //do some rearranging of the columns
         //  want to change the multiple "NutrientName" columns to <Nutrient>Name eg ProteinName
 
         timeStart("Changing nutrient column names");
         converter.changeNutrientColumnNames();
         timeEnd();
+//        converter.listFoods("4changedNutrientColumnNames.txt");
+        //safe to delete tagnames
+        converter.deleteColumnsWithString("Tagname");
         //delete the remaining nutrient-columns as they are unneeded
         converter.deleteColumnsWithString("Nutrient");
-        //converter.listFoods("deleteBeforeNutrients.txt");
 
         //remove the trailing quotation marks per value
         converter.trimQuotationMarks();
+//        converter.listFoods("5deletedTagnameNutrientQuotes.txt");
 
         //the 2nd column is scientific name, last is measure description. swap them
         //  to delete later
         converter.swapScientificNameMeasureNameCols();
+        converter.listFoods("51isThereStillDecimals.txt");
+        //now delete
+        converter.deleteColumnsWithString("ScientificName");
+        converter.listFoods("52isThereStillDecimals.txt");
         //delete the remaining columns that arent of the desired vitamins/minerals
+        timeStart("Deleting non-interesting nutrients");
         converter.deleteNonInterestingNutrients(nutrientsToKeep);
+        timeEnd();
 
-        converter.listFoods("nutrientsAfterDeletion.txt");
+        converter.listFoods("6nutrientsAfterDeletion.txt");
 
         //finally, remove the columns matching the patterns:
         //  Column: PROCNT                        Val: PROTEIN
@@ -178,10 +189,13 @@ public class DatabaseManager  {
 //        Column: PROCNTDecimals                Val: 2
         converter.deleteColumnsWithString("Symbol");
         converter.deleteColumnsWithString("NameF");
-        converter.deleteColumnsWithString("Tagname");
         converter.deleteColumnsWithString("Decimals");
 
-        converter.listFoods("removalOfSymbolFrenchTagDecimal.txt");
+        converter.deleteColumnsWithExactString("");
+        converter.deleteColumnsWithExactString("Unit");
+        converter.deleteColumnsWithExactString("Value");
+
+        converter.listFoods("7removalOfSymbolFrenchDecimal.txt");
 
         //generate SQL queries for the foods
 

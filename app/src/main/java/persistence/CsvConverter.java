@@ -447,8 +447,8 @@ public class CsvConverter {
 
     public void swapArrayListElements(ArrayList<String> arrayList, int indexA, int indexB) {
         String temp = arrayList.get(indexA);
-        arrayList.set(indexA,arrayList.get(indexB));
-        arrayList.set(indexB,temp);
+        arrayList.set(indexA, arrayList.get(indexB));
+        arrayList.set(indexB, temp);
     }
 
     public void swapCorrespondingColumnAndValue(ArrayList<String> listA, ArrayList<String> listB, int indexA, int indexB) {
@@ -532,6 +532,21 @@ public class CsvConverter {
         }
     }
 
+    //delete all columns MATCHING the string
+    public void deleteColumnsWithExactString(String pattern) {
+        for (Foods f : Foods.entries) {
+            //delete them backwards so it doesnt affect the remaining elements
+            for (int i = f.vals.cols.size() - 1; i > 0; i--) {
+                if (f.vals.cols.get(i).equals(pattern)) {
+                    //delete these columns from the corresponding tables
+                    f.vals.cols.remove(i);
+                    f.vals.data.remove(i);
+                    //i will now point to the element AFTER i, so no adjusting is needed
+                }
+            }
+        }
+    }
+
     public void deleteCorrespondingArrayElements(ArrayList<String> a, ArrayList<String> b, int index) {
         System.out.println("removing :" + a.get(index) + " and " + b.get(index));
         a.remove(index);
@@ -551,15 +566,22 @@ public class CsvConverter {
 
          */
         int i;
-        ListIterator<String> colIt;
-        ListIterator<String> valsIt;
+        Iterator<String> colIt;
+        Iterator<String> valsIt;
+        int indexOfPrev;
+        String checkNutrientName;
+        ArrayList<Integer> removeValues;
+        int removeValsSize;
+        int thisIndexToRemove;
 
         String col;
         String val;
         boolean match;
         for (Foods f : Foods.entries) {
-            colIt = f.vals.cols.listIterator();
-            valsIt = f.vals.data.listIterator();
+            //create new instances of the removals
+            removeValues = new ArrayList<Integer>();
+            colIt = f.vals.cols.iterator();
+            valsIt = f.vals.data.iterator();
 
             /*
             Previous delete attempts were met with index issues
@@ -574,35 +596,50 @@ public class CsvConverter {
             while (colIt.hasNext()) {
                 col = colIt.next();
                 val = valsIt.next();
-                //check if this is a symbol, reverse one
-                if (col.contains("Symbol")) {
-                    //this is a symbol, go back one
-                    col = colIt.previous();
-                    val = valsIt.previous();
 
-                    //now check if its in th list of keeping nutrients
+                if (col.contains("Symbol")) {
+                    //this is a symbol, go back one to get the nutrient name
+                    indexOfPrev = f.vals.cols.indexOf(col) - 1;
+                    checkNutrientName = f.vals.data.get(indexOfPrev);
+
+                    //now check if its in the list of keeping nutrients
                     match = false;
                     for (i = 0; i < nutrientsToKeep.length; i++) {
-                        if (val.equalsIgnoreCase(nutrientsToKeep[i])){
+                        if (checkNutrientName.equalsIgnoreCase(nutrientsToKeep[i])){
                             match = true;
                             break;
                         }
                     }
 
                     if (!match) {
-                        //dont keep this nutrient, delete until "Decimals"
+                        //dont keep this nutrient, ADD ALL TO DELETE LIST until "Decimals"
+                        removeValues.add(indexOfPrev++);
                         while (!col.contains("Decimals")) {
-                            colIt.remove();
-                            valsIt.remove();
-
+                            //add the remaining columns until the next nutrient
                             col = colIt.next();
-                            valsIt.next();
+                            val = valsIt.next();
+                            removeValues.add(indexOfPrev++);
                         }
-//                        remove the decimals column now
-                        colIt.remove();
-                        valsIt.remove();
+                        //remove the decimals column now
+                        if ((!col.contains("Decimals"))) throw new AssertionError();
+                        if (col.contains("Decimals")) {
+                            removeValues.add(indexOfPrev);
+                        }
                     }
                 }
+            }
+            //now we have an array list of columns to remove from this food. do that
+            //for the values to be removed, we need to iterate through them backwards since multiple
+            // values can still exist
+            //store the size so it doesnt change
+
+            removeValsSize = removeValues.size();
+            for (int j = 0; j < removeValsSize; j++) {
+                //get the last index and remove it
+                thisIndexToRemove = removeValues.get(removeValues.size() - 1);
+                removeValues.remove(removeValues.size() -1);
+                f.vals.cols.remove(thisIndexToRemove);
+                f.vals.data.remove(thisIndexToRemove);
             }
         }
     }
@@ -631,7 +668,9 @@ public class CsvConverter {
 
     public void swapScientificNameMeasureNameCols() {
         for (Foods f : Foods.entries) {
-            swapCorrespondingColumnAndValue(f.vals.cols,f.vals.data,1, f.vals.cols.size() - 1);
+            if (f.vals.cols.get(f.vals.cols.size() - 1).equals("MeasureDescription")) {
+                swapCorrespondingColumnAndValue(f.vals.cols, f.vals.data, 1, f.vals.cols.size() - 1);
+            }
         }
     }
 
