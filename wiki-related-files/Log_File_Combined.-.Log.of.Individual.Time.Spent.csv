@@ -190,3 +190,4 @@ KB,ae89be54d5979bf9d6af0a0ead58d8964ecd6295,3/13/2016,Bug Fix,2,2,Linked up fab 
 SW,e839f1866f0a56f602975fa879ff78b9f304497b,3/13/2016,,6,2,Added Tests and Journal Object Database access
 SW,c5164bf6cd778a8da440ef9c6a59523c1cb6b509,3/13/2016,,3,4,Updated Architectural Diagram
 SW,4127e011b06eb3d4d614db747944e4a7b8a60b0a,3/18/2016,UI Tests,4,5,"Researched Robotium, troubleshoot test runners and gradle issues, added first UI test of Ate Activity"
+AR,7a65108c0bb6013eec1ed7718d9cdc5b66b2027a,3/24/2016,Bug Fix,1,1,"Copied layout-normal files to layout-large so that no elements were missing"
