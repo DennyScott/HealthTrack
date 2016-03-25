@@ -10,62 +10,61 @@
     android:id="@+id/main_screen">
 
     <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/ateButton"
-        android:layout_marginLeft="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="38dp"
         android:background="@drawable/ate_button_action"
+
+        android:layout_marginTop="15dp"
         android:onClick="ateButton"
+        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp"
         android:layout_below="@+id/title"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/statsButton"
         android:background="@drawable/stat_button_action"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
+        android:onClick="statsButton"
         android:layout_below="@+id/ateButton"
         android:layout_alignLeft="@+id/ateButton"
-        android:layout_alignStart="@+id/ateButton"
-        android:onClick="statsButton" />
+        android:layout_alignStart="@+id/ateButton" />
 
     <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/goalsButton"
         android:background="@drawable/rewards_button_action"
-        android:layout_marginTop="30dp"
+        android:onClick="goalsButton"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/statsButton"
         android:layout_alignLeft="@+id/statsButton"
-        android:layout_alignStart="@+id/statsButton"
-        android:onClick="goalsButton" />
+        android:layout_alignStart="@+id/statsButton" />
 
     <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/warningButton"
         android:background="@drawable/warning_button_action"
-        android:layout_marginTop="29dp"
         android:onClick="warningsButton"
         android:layout_below="@+id/goalsButton"
-        android:layout_alignLeft="@+id/goalsButton" />
+        android:layout_alignLeft="@+id/goalsButton"
+        android:layout_marginTop="20dp" />
 
     <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="55dp"
+        android:layout_width="@dimen/settings_button_normal_width"
+        android:layout_height="@dimen/settings_button_normal_height"
         android:id="@+id/settingsButton"
         android:background="@drawable/settings_button_action"
+        android:onClick="settingsButton"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="46dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="41dp"
-        android:onClick="settingsButton" />
+        android:layout_alignRight="@+id/warningsText"
+        android:layout_alignEnd="@+id/warningsText"
+        android:layout_margin="@dimen/settings_button_margin" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -73,11 +72,11 @@
         android:id="@+id/title"
         android:text="@string/app_name"
         android:textStyle="bold"
-        android:textSize="70sp"
+        android:textSize="@dimen/title_normal"
         android:textColor="#ffffff"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp" />
+        android:textIsSelectable="false" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -85,7 +84,7 @@
         android:id="@+id/ateText"
         android:text="@string/ate_main_screen"
         android:textColor="#ffffff"
-        android:textSize="40dp"
+        android:textSize="25sp"
         android:textAlignment="center"
         android:layout_alignTop="@+id/ateButton"
         android:layout_toRightOf="@+id/ateButton"
@@ -97,7 +96,7 @@
         android:id="@+id/statsText"
         android:text="@string/stats_main_screen"
         android:textColor="#ffffff"
-        android:textSize="40dp"
+        android:textSize="25sp"
         android:textAlignment="center"
         android:layout_alignTop="@+id/statsButton"
         android:layout_toRightOf="@+id/statsButton"
@@ -109,7 +108,7 @@
         android:id="@+id/goalsText"
         android:text="@string/goals_main_screen"
         android:textColor="#ffffff"
-        android:textSize="40dp"
+        android:textSize="25sp"
         android:textAlignment="center"
         android:layout_alignTop="@+id/goalsButton"
         android:layout_toRightOf="@+id/goalsButton"
@@ -121,9 +120,10 @@
         android:id="@+id/warningsText"
         android:text="@string/warnings_main_screen"
         android:textColor="#ffffff"
-        android:textSize="40dp"
+        android:textSize="25sp"
         android:textAlignment="center"
         android:layout_alignTop="@+id/warningButton"
         android:layout_toRightOf="@+id/warningButton"
         android:layout_toEndOf="@+id/warningButton" />
+
 </RelativeLayout>

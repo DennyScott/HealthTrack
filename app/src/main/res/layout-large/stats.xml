@@ -39,14 +39,13 @@
                     <FrameLayout
                         android:id="@+id/chartFrame"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="537dp"
                         android:largeHeap="true"
                         android:layout_alignRight="@+id/monthButton"
                         android:layout_alignEnd="@+id/monthButton"
                         android:layout_above="@+id/dayButton"
                         android:layout_marginTop="25dp"
-                        android:paddingBottom="10dp"
-                        android:layout_marginBottom="20dp">
+                        android:paddingBottom="10dp">
 
                     </FrameLayout>
                 </LinearLayout>
