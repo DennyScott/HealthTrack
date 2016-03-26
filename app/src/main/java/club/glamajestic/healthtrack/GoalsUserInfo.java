@@ -23,7 +23,7 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
     private EditText heightText;
     private UserDataAccess user;
     private RadioButton male, female;
-    int gender;
+    private int gender;
 
     /**
      * {@inheritDoc}
@@ -61,9 +61,9 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
     }
 
     private void saveClicked() {
-
         saveText();
     }
+
     public void male(View view) {
         gender= 0;
     }
@@ -76,22 +76,22 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         String age = ageText.getText().toString();
         String weight = weightText.getText().toString();
         String height = heightText.getText().toString();
+
         if(name != null && age != null && weight != null && height != null) {
             if(!name.equals("") && !age.equals( "") && !weight.equals("") && !height.equals( "")){
                 user.setAll(name,Integer.parseInt(age),Integer.parseInt(height),Integer.parseInt(weight),gender);
                 user.save();
+
                 Output.toastMessage(this, "Changes updated.", Output.SHORT_TOAST);
-                Intent gameMode = new Intent(this, StatsGuiActivity.class);
+
+                Intent gameMode = new Intent(this, MainActivity.class);
                 startActivity(gameMode);
                 finish();
-            }else{
+            } else {
                 Output.toastMessage(this, "Please fill in all fields", Output.SHORT_TOAST);
             }
-        }
-        else{
+        } else {
             Output.toastMessage(this, "Please fill in all fields", Output.SHORT_TOAST);
         }
-
-
     }
 }

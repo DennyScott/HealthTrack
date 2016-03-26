@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 
-public class StatsGui extends Activity {
+public class StatsActivity extends Activity {
 
     // 0 = day, 1 = week, 2 = month
     // day by default
@@ -88,7 +88,7 @@ public class StatsGui extends Activity {
     }
 
     public void onBackPressed() {
-        //Intent gameMode = new Intent(this, StatsGuiActivity.class);
+        //Intent gameMode = new Intent(this, MainActivity.class);
         //startActivity(gameMode);
         playSound.play();
 

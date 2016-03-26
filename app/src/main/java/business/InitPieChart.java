@@ -16,7 +16,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 
 import club.glamajestic.healthtrack.DisplayList;
-import club.glamajestic.healthtrack.StatsGui;
+import club.glamajestic.healthtrack.StatsActivity;
 
 
 //Testing of this class
@@ -174,7 +174,7 @@ public class InitPieChart implements  ApplicationConstants {
     }
 
     private void openStats(Context ctx){
-        Intent gameMode = new Intent(ctx, StatsGui.class);
+        Intent gameMode = new Intent(ctx, StatsActivity.class);
         ctx.startActivity(gameMode);
     }
 

@@ -2,19 +2,27 @@ package persistence;
 
 public class DataExternalFoods {
     private int mId;
-    private String mFoodDescription;
-    private String mMeasureDescription;
-    private String mConversionFactorValue;
-    private String mFoodGroupName;
-    private DataNutrientTable mDataNutrientTable;
+    private String mFoodName;
+    private int mCalories;
+    private int mProtein;
+    private int mCarbohydrates;
+    private int mFats;
 
-    public static final String COLNAME_ID = "_id";     //reusable
+    public static final String COLNAME_ID = "_id";
     public static final String COLNAME_FOODNAME = "FoodName";
     public static final String COLNAME_CALORIES = "Calories";
     public static final String COLNAME_PROTEINS = "Proteins";
     public static final String COLNAME_CARBOHYDRATES = "Carbohydrates";
     public static final String COLNAME_FATS = "Fat";
 
+    public DataExternalFoods(int mId, String mFoodName, int mCalories, int mProtein, int mCarbohydrates, int mFats) {
+        this.mId = mId;
+        this.mFoodName = mFoodName;
+        this.mCalories = mCalories;
+        this.mProtein = mProtein;
+        this.mCarbohydrates = mCarbohydrates;
+        this.mFats = mFats;
+    }
 
     public int getmId() {
         return mId;
@@ -24,43 +32,43 @@ public class DataExternalFoods {
         this.mId = mId;
     }
 
-    public String getmFoodDescription() {
-        return mFoodDescription;
+    public String getmFoodName() {
+        return mFoodName;
     }
 
-    public void setmFoodDescription(String mFoodDescription) {
-        this.mFoodDescription = mFoodDescription;
+    public void setmFoodName(String mFoodName) {
+        this.mFoodName = mFoodName;
     }
 
-    public String getmMeasureDescription() {
-        return mMeasureDescription;
+    public int getmCalories() {
+        return mCalories;
     }
 
-    public void setmMeasureDescription(String mMeasureDescription) {
-        this.mMeasureDescription = mMeasureDescription;
+    public void setmCalories(int mCalories) {
+        this.mCalories = mCalories;
     }
 
-    public String getmConversionFactorValue() {
-        return mConversionFactorValue;
+    public int getmProtein() {
+        return mProtein;
     }
 
-    public void setmConversionFactorValue(String mConversionFactorValue) {
-        this.mConversionFactorValue = mConversionFactorValue;
+    public void setmProtein(int mProtein) {
+        this.mProtein = mProtein;
     }
 
-    public String getmFoodGroupName() {
-        return mFoodGroupName;
+    public int getmCarbohydrates() {
+        return mCarbohydrates;
     }
 
-    public void setmFoodGroupName(String mFoodGroupName) {
-        this.mFoodGroupName = mFoodGroupName;
+    public void setmCarbohydrates(int mCarbohydrates) {
+        this.mCarbohydrates = mCarbohydrates;
     }
 
-    public DataNutrientTable getmDataNutrientTable() {
-        return mDataNutrientTable;
+    public int getmFats() {
+        return mFats;
     }
 
-    public void setmDataNutrientTable(DataNutrientTable mDataNutrientTable) {
-        this.mDataNutrientTable = mDataNutrientTable;
+    public void setmFats(int mFats) {
+        this.mFats = mFats;
     }
 }

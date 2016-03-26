@@ -399,7 +399,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
                 null,
                 null,
                 null);
-        //retreieve the data in the assumed order:
+        //retrieve the data in the assumed order:
         //        external foods
         //          id
         //          food_name
