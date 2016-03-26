@@ -775,14 +775,15 @@ public class CsvConverter {
             //add the bracket
             sql += ");";
             //execute the statement to make the sql table. use excuteUpdate because it returns nothing
-//            statement.executeUpdate(sql);
+            //GENERATE THE SQL TABLE
+            writeToFile(sql,"SQLQuery_CreateFoodsSQLTable.txt");
+            statement.executeUpdate(sql);
 
             //now do the insertions
-
-            String valuesSQL;
-            String foodValue;
             String insertSQLPart = "INSERT INTO " + tableName + " (" +
                     columns + ") ";
+            writeToFile(columns,"SQLQuery_FoodsColumns.txt");
+            writeToFile(insertSQLPart, "SQLQuery_InsertsIntoQuery.txt");
             int id = 1;
             String thisColumnName;
             int theCorrespondingIndex;
@@ -792,10 +793,8 @@ public class CsvConverter {
             PreparedStatement pstate;
             //replace the columns with questionmarks (all strings not , with questoin mark)
             String preparedStatementSQL = insertSQLPart + " VALUES (" + columns.replaceAll("[^,]+","?") + ");";
+            writeToFile(preparedStatementSQL, "SQLQuery_FoodsPreparedStatement.txt");
             pstate = connection.prepareStatement(preparedStatementSQL);
-            int currId;
-            String[] values = new String[allPossibleCols.size()];
-            boolean successfulInsert;
             for (Foods f : Foods.entries) {
                 //make the first value an integer
                 pstate.setInt(1, id++);
@@ -804,7 +803,7 @@ public class CsvConverter {
                     theCorrespondingIndex = f.vals.cols.indexOf(thisColumnName);
 
                     if (theCorrespondingIndex != -1) {
-                        //offset 1 to account for ID
+                        //offset 2 to account for ID + starting at 1
                         pstate.setString(i+2, f.vals.data.get(theCorrespondingIndex));
                     } else {
                         //insert null here

@@ -1,5 +1,7 @@
 package persistence;
 
+import java.util.ArrayList;
+
 public class DataFoods {
     private int mId;
     private String mFoodDescription;
@@ -8,7 +10,7 @@ public class DataFoods {
     private String mFoodGroupName;
     private DataNutrientTable mDataNutrientTable;
 
-    public static final String COLNAME_ID = "_id";     //reusable
+    public static final String COLNAME_ID = "_id";
     public static final String COLNAME_FOODNAME = "FoodName";
     public static final String COLNAME_CALORIES = "Calories";
     public static final String COLNAME_PROTEINS = "Proteins";
@@ -62,5 +64,56 @@ public class DataFoods {
 
     public void setmDataNutrientTable(DataNutrientTable mDataNutrientTable) {
         this.mDataNutrientTable = mDataNutrientTable;
+    }
+
+
+    /*
+    Valid Nutrients:
+            "ALCOHOL",
+            "CAFFEINE",
+            "CALCIUM",
+            "CARBOHYDRATE, TOTAL (BY DIFFERENCE)",
+            "CHOLESTEROL",
+            "ENERGY (KILOCALORIES)",
+            "ENERGY (KILOJOULES)",
+            "FAT (TOTAL LIPIDS)",
+            "FATTY ACIDS, MONOUNSATURATED, TOTAL",
+            "FATTY ACIDS, POLYUNSATURATED, TOTAL",
+            "FATTY ACIDS, SATURATED, TOTAL",
+            "FATTY ACIDS, TRANS, TOTAL",
+            "FIBRE, TOTAL DIETARY",
+            "FOLIC ACID",
+            "FRUCTOSE",
+            "GALACTOSE",
+            "GLUCOSE",
+            "IRON",
+            "LACTOSE",
+            "MAGNESIUM",
+            "MANGANESE",
+            "MOISTURE",
+            "NATURALLY OCCURRING FOLATE",
+            "OXALIC ACID",
+            "PHOSPHORUS",
+            "POTASSIUM",
+            "PROTEIN",
+            "RIBOFLAVIN",
+            "SODIUM",
+            "STARCH",
+            "SUCROSE",
+            "SUGARS, TOTAL",
+            "THIAMIN",
+            "VITAMIN B-12",
+//            "VITAMIN B12, ADDED", no tag
+            "VITAMIN B-6",
+            "VITAMIN C",
+//            "VITAMIN D (D2 + D3)",        //has a weird tagname, VITD_ �G , messed up the SQL injection
+//            "VITAMIN D (INTERNATIONAL UNITS)",
+            "VITAMIN D2, ERGOCALCIFEROL",
+            "VITAMIN K",
+            "ZINC"
+     */
+    public ArrayList<String> getAllNutrients() {
+        ArrayList<String> nutrients = new ArrayList<String>();
+        return null;
     }
 }

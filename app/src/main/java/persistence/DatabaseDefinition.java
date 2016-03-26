@@ -143,20 +143,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         );
 
         */
-//        personal information
-//          _id
-//          name
-//          gender
-//          age
-//          weight
-        db.execSQL(
-                CREATE_TABLE + IF_NOT_EXISTS + TABLE_PERS_INFO +
-                        COLNAME_ID      + DATATYPE_INT  + OPT_PRIM_KEY + OPT_COMMA +
-                        COLNAME_NAME    + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_GENDER  + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_AGE     + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_WEIGHT  + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA
-        );
 
 //        custom foods
 //              id
@@ -169,11 +155,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         db.execSQL(
                 CREATE_TABLE + IF_NOT_EXISTS + TABLE_CUST_FOODS +
                         COLNAME_ID              + DATATYPE_INT  + OPT_PRIM_KEY + OPT_COMMA +
-                        COLNAME_FOODNAME        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_CALORIES        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_PROTEINS        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_CARBOHYDRATES   + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_FATS            + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA
+                        getFoodsTableParamaters()
         );
 
 //        external foods
@@ -218,10 +200,13 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         );
     }
 
+    private String getFoodsTableParamaters() {
+        return null;
+    }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERS_INFO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUST_FOODS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXT_FOODS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRANS_HIST);
@@ -230,25 +215,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 
 
     //*************DATABASE INSERTIONS*************************
-
-    public long createPersonalInfo(DataPersonalInfo data) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues vals = new ContentValues();
-        //        personal information
-        //          _id
-        //          name
-        //          gender
-        //          age
-        //          weight
-        vals.put(COLNAME_ID, data.getmId());
-        vals.put(COLNAME_NAME, data.getmName());
-        vals.put(COLNAME_GENDER, data.getmGender());
-        vals.put(COLNAME_AGE, data.getmAge());
-        vals.put(COLNAME_WEIGHT, data.getmWeight());
-
-        //get the ID of the resulting insertion
-        return db.insert(TABLE_PERS_INFO, null, vals);
-    }
 
     public long createCustomFoods(DataCustomFoods data) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -322,37 +288,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     /////////////////END DATABASE INSERTIONS////////////////////////
 
     //***************DATABASE SINGLE ID RETRIEVALS****************************
-
-    public DataPersonalInfo getPersonalInfo(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        //SELECT * FROM TABLE_ (because it SHOULD HAVE only 1 entry)
-        //ToDo possibility to change this to personal preferences file vs sqlite database
-        Cursor cursor = db.query(
-                TABLE_PERS_INFO,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
-        //retreieve the data in the assumed order:
-        //        personal information
-        //          _id
-        //          name
-        //          gender
-        //          age
-        //          weight
-        DataPersonalInfo retrievedData = new DataPersonalInfo(
-                cursor.getInt(0), //int _id is always the first column
-                cursor.getString(1),
-                cursor.getString(2),
-                cursor.getInt(2),
-                cursor.getInt(3)
-        );
-
-        return retrievedData;
-    }
 
     public DataCustomFoods getCustomFood(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -498,16 +433,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 
     //***************DATABASE SINGLE ID DELETIONS******************************
 
-    public void deletePersonalInfo(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(
-                TABLE_PERS_INFO,
-                "_id=?",
-                new String[] {Integer.toString(id)}
-        );
-        db.close();
-    }
-
     public void deleteCustomFood(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(
@@ -540,26 +465,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     /////////////////END DATABASE SINGLE ID DELETIONS//////////////////////////
 
     //***************DATABASE SINGLE ID UPDATES******************************
-
-    public int updatePersonalInfo(DataPersonalInfo newRecord) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues vals = new ContentValues();
-        //update the data in the assumed order:
-        //        personal information
-        //          _id
-        //          name
-        //          gender
-        //          age
-        //          weight
-        vals.put(COLNAME_ID, newRecord.getmId());
-        vals.put(COLNAME_NAME, newRecord.getmName());
-        vals.put(COLNAME_GENDER, newRecord.getmGender());
-        vals.put(COLNAME_AGE, newRecord.getmAge());
-        vals.put(COLNAME_WEIGHT, newRecord.getmWeight());
-
-        //returns the number of rows affected
-        return db.update(TABLE_PERS_INFO,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
-    }
 
     public int updateCustomFood(DataCustomFoods newRecord) {
         SQLiteDatabase db = this.getWritableDatabase();
