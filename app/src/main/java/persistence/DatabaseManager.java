@@ -14,9 +14,7 @@ public class DatabaseManager  {
 //            "extdb/CONVERSION FACTOR.csv",
 //            "extdb/MEASURE NAME.csv",
 //            "extdb/REFUSE AMOUNT.csv",
-//            "extdb/REFUSE NAME.csv",
-//            "extdb/YIELD AMOUNT.csv",
-//            "extdb/YIELD NAME.csv"
+//            "extdb/REFUSE NAME.csv"
 //    };
 
 
@@ -120,66 +118,65 @@ public class DatabaseManager  {
 //            "VITAMIN B12, ADDED", no tag
             "VITAMIN B-6",
             "VITAMIN C",
-            "VITAMIN D (D2 + D3)",
+//            "VITAMIN D (D2 + D3)",        //has a weird tagname, VITD_ �G , messed up the SQL injection
 //            "VITAMIN D (INTERNATIONAL UNITS)",
             "VITAMIN D2, ERGOCALCIFEROL",
             "VITAMIN K",
             "ZINC"
     };
+    private static final boolean LIST_FOODS = false;
 
     public static void main(String[] args) {
         //testing the converter
         CsvConverter converter = new CsvConverter(foodsPattern);
 
         converter.getFiles(filenames);
-        //reorganize columns
-        //converter.reorderColumns();
-        //pick which columns to keep
-//        converter.chooseOutColumns();
+
         //ready to read objects
         timeStart("Reading Objects");
         converter.readObjects();
         timeEnd();
-//        converter.listFoods("1rawObjects.txt");
+        if (LIST_FOODS) converter.listFoods("1rawObjects.txt");
+
         //replace the IDs with teh relevant files
         timeStart("Replacing IDs");
         converter.replaceIDs(idReplacements);
         timeEnd();
-//        converter.listFoods("2replacedId.txt");
+        if (LIST_FOODS) converter.listFoods("2replacedId.txt");
+
         //now remove the columns that aren't wanted
         timeStart("Removing unwanted columns");
         converter.replaceColumns(columnsToKeep);
         timeEnd();
-//        converter.listFoods("3removedUnwantedColumns.txt");
+        if (LIST_FOODS) converter.listFoods("3removedUnwantedColumns.txt");
+
         //do some rearranging of the columns
         //  want to change the multiple "NutrientName" columns to <Nutrient>Name eg ProteinName
-
         timeStart("Changing nutrient column names");
         converter.changeNutrientColumnNames();
         timeEnd();
-//        converter.listFoods("4changedNutrientColumnNames.txt");
+        if (LIST_FOODS) converter.listFoods("4changedNutrientColumnNames.txt");
+
         //safe to delete tagnames
         converter.deleteColumnsWithString("Tagname");
-        //delete the remaining nutrient-columns as they are unneeded
+        //delete the remaining nutrient-columns as they are unneeded (nutrientcode., id)
         converter.deleteColumnsWithString("Nutrient");
 
         //remove the trailing quotation marks per value
         converter.trimQuotationMarks();
-//        converter.listFoods("5deletedTagnameNutrientQuotes.txt");
+        if (LIST_FOODS) converter.listFoods("5deletedTagnameNutrientQuotes.txt");
 
         //the 2nd column is scientific name, last is measure description. swap them
         //  to delete later
         converter.swapScientificNameMeasureNameCols();
-        converter.listFoods("51isThereStillDecimals.txt");
         //now delete
         converter.deleteColumnsWithString("ScientificName");
-        converter.listFoods("52isThereStillDecimals.txt");
         //delete the remaining columns that arent of the desired vitamins/minerals
         timeStart("Deleting non-interesting nutrients");
         converter.deleteNonInterestingNutrients(nutrientsToKeep);
         timeEnd();
 
-        converter.listFoods("6nutrientsAfterDeletion.txt");
+        if (LIST_FOODS) converter.listFoods("6nutrientsAfterDeletion.txt");
 
         //finally, remove the columns matching the patterns:
         //  Column: PROCNT                        Val: PROTEIN
@@ -195,7 +192,7 @@ public class DatabaseManager  {
         converter.deleteColumnsWithExactString("Unit");
         converter.deleteColumnsWithExactString("Value");
 
-        converter.listFoods("7removalOfSymbolFrenchDecimal.txt");
+        if (LIST_FOODS) converter.listFoods("7removalOfSymbolFrenchDecimal.txt");
 
         //generate SQL queries for the foods
 
