@@ -261,12 +261,11 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //              carbohydrdates
         //              fats
         vals.put(COLNAME_ID, data.getmId());
-        vals.put(COLNAME_FOODNAME, data.getmFoodName());
-        vals.put(COLNAME_CALORIES, data.getmCalories());
-        vals.put(COLNAME_PROTEINS, data.getmProtein());
-        vals.put(COLNAME_CARBOHYDRATES, data.getmCarbohydrates());
-        vals.put(COLNAME_FATS, data.getmFats());
-
+        vals.put(COLNAME_FOODNAME, data.getmFoodDescription());
+        vals.put(COLNAME_CALORIES, data.getmDataNutrientTable().getmENERC_KCALValue());
+        vals.put(COLNAME_PROTEINS, data.getmDataNutrientTable().getmPROCNTValue());
+        vals.put(COLNAME_CARBOHYDRATES, data.getmDataNutrientTable().getmCHOCDFValue());
+        vals.put(COLNAME_FATS, data.getmDataNutrientTable().getmFATValue());
 
         //get the ID of the resulting insertion
         return db.insert(TABLE_CUST_FOODS, null, vals);
@@ -283,11 +282,11 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //          carbohydrdates
         //          fats
         vals.put(COLNAME_ID, data.getmId());
-        vals.put(COLNAME_FOODNAME, data.getmFoodName());
-        vals.put(COLNAME_CALORIES, data.getmCalories());
-        vals.put(COLNAME_PROTEINS, data.getmProtein());
-        vals.put(COLNAME_CARBOHYDRATES, data.getmCarbohydrates());
-        vals.put(COLNAME_FATS, data.getmFats());
+        vals.put(COLNAME_FOODNAME, data.getmFoodDescription());
+        vals.put(COLNAME_CALORIES, data.getmDataNutrientTable().getmENERC_KCALValue());
+        vals.put(COLNAME_PROTEINS, data.getmDataNutrientTable().getmPROCNTValue());
+        vals.put(COLNAME_CARBOHYDRATES, data.getmDataNutrientTable().getmCHOCDFValue());
+        vals.put(COLNAME_FATS, data.getmDataNutrientTable().getmFATValue());
 
 
         //get the ID of the resulting insertion
@@ -574,11 +573,11 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //              carbohydrdates
         //              fats
         vals.put(COLNAME_ID, newRecord.getmId());
-        vals.put(COLNAME_FOODNAME, newRecord.getmFoodName());
-        vals.put(COLNAME_CALORIES, newRecord.getmCalories());
-        vals.put(COLNAME_PROTEINS, newRecord.getmProtein());
-        vals.put(COLNAME_CARBOHYDRATES, newRecord.getmCarbohydrates());
-        vals.put(COLNAME_FATS, newRecord.getmFats());
+        vals.put(COLNAME_FOODNAME, newRecord.getmFoodDescription());
+        vals.put(COLNAME_CALORIES, newRecord.getmDataNutrientTable().getmENERC_KCALValue());
+        vals.put(COLNAME_PROTEINS, newRecord.getmDataNutrientTable().getmPROCNTValue());
+        vals.put(COLNAME_CARBOHYDRATES, newRecord.getmDataNutrientTable().getmCHOCDFValue());
+        vals.put(COLNAME_FATS, newRecord.getmDataNutrientTable().getmFATValue());
 
         //returns the number of rows affected
         return db.update(TABLE_CUST_FOODS,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
@@ -596,11 +595,11 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //          carbohydrdates
         //          fats
         vals.put(COLNAME_ID, newRecord.getmId());
-        vals.put(COLNAME_FOODNAME, newRecord.getmFoodName());
-        vals.put(COLNAME_CALORIES, newRecord.getmCalories());
-        vals.put(COLNAME_PROTEINS, newRecord.getmProtein());
-        vals.put(COLNAME_CARBOHYDRATES, newRecord.getmCarbohydrates());
-        vals.put(COLNAME_FATS, newRecord.getmFats());
+        vals.put(COLNAME_FOODNAME, newRecord.getmFoodDescription());
+        vals.put(COLNAME_CALORIES, newRecord.getmDataNutrientTable().getmENERC_KCALValue());
+        vals.put(COLNAME_PROTEINS, newRecord.getmDataNutrientTable().getmPROCNTValue());
+        vals.put(COLNAME_CARBOHYDRATES, newRecord.getmDataNutrientTable().getmCHOCDFValue());
+        vals.put(COLNAME_FATS, newRecord.getmDataNutrientTable().getmFATValue());
 
         //returns the number of rows affected
         return db.update(TABLE_EXT_FOODS,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
