@@ -38,7 +38,7 @@
         android:layout_below="@+id/multiAutoCompleteTextView"
         android:layout_alignRight="@+id/multiAutoCompleteTextView"
         android:layout_alignEnd="@+id/multiAutoCompleteTextView"
-        android:text="@string/food_entry_nutrient_amount_calories" />
+        android:hint="@string/food_entry_nutrient_amount_calories" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
         android:layout_below="@+id/editCals"
         android:layout_alignRight="@+id/editCals"
         android:layout_alignEnd="@+id/editCals"
-        android:text="@string/food_entry_nutrient_carbs" />
+        android:hint="@string/food_entry_nutrient_carbs" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -57,10 +57,10 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editFat"
-        android:text="@string/food_entry_nutrient_fat"
         android:layout_below="@+id/editCarbs"
         android:layout_alignLeft="@+id/editCarbs"
-        android:layout_alignStart="@+id/editCarbs" />
+        android:layout_alignStart="@+id/editCarbs"
+        android:hint="@string/food_entry_nutrient_fat" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
         android:layout_below="@+id/editFat"
         android:layout_alignRight="@+id/editFat"
         android:layout_alignEnd="@+id/editFat"
-        android:text="@string/food_entry_nutrient_protein" />
+        android:hint="@string/food_entry_nutrient_protein" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
         android:layout_below="@+id/editProtein"
         android:layout_alignRight="@+id/editProtein"
         android:layout_alignEnd="@+id/editProtein"
-        android:text="@string/food_entry_nutrient_cholesterol" />
+        android:hint="@string/food_entry_nutrient_cholesterol" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
         android:layout_below="@+id/editCholesterol"
         android:layout_alignRight="@+id/editCholesterol"
         android:layout_alignEnd="@+id/editCholesterol"
-        android:text="@string/food_entry_nutient_sodium" />
+        android:hint="@string/food_entry_nutient_sodium" />
 
     <SearchView
         android:layout_width="wrap_content"
@@ -103,21 +103,23 @@
         android:layout_toRightOf="@+id/multiAutoCompleteTextView"
         android:layout_toEndOf="@+id/multiAutoCompleteTextView" />
 
-    <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true" />
-
     <DatePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/datePicker"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/editCals"
         android:layout_toLeftOf="@+id/editCals"
         android:layout_toStartOf="@+id/editCals" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="@string/food_entry_serving_hint" />
 
 </RelativeLayout>

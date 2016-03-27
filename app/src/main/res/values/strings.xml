@@ -109,6 +109,7 @@
     <string name="food_entry_nutrient_protein">Protein (g)</string>
     <string name="food_entry_nutrient_cholesterol">Cholsterol (mg)</string>
     <string name="food_entry_nutient_sodium">Sodium (mg)</string>
+    <string name="food_entry_serving_hint">Servings</string>
 
 
 </resources>
