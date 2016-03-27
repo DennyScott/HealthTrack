@@ -729,7 +729,7 @@ public class CsvConverter {
 
     }
 
-    public void writeToFile(String buffer, String filename) {
+    public static void writeToFile(String buffer, String filename) {
         BufferedWriter bufferedWriter;
         try {
             //if (!file.exists()) file.createNewFile();
@@ -763,10 +763,14 @@ public class CsvConverter {
             //create the table headings for the rest of the columns
             //while we're at it, append the columns for making the insertions (ie INSERTS INTO (col1,col2,...)
             String columns = "_id,";
+
+            //add the final custom column, which is the CustomFood column
+            allPossibleCols.add("CustomFood");
             for (int i = 0; i < allPossibleCols.size(); i++) {
                 sql += allPossibleCols.get(i) + DatabaseDefinition.DATATYPE_TEXT + DatabaseDefinition.OPT_COMMA;
                 columns += allPossibleCols.get(i) + ",";
             }
+
 
             //remove the trailing comma
             sql = sql.substring(0,sql.length() - 1);
@@ -780,8 +784,7 @@ public class CsvConverter {
             statement.executeUpdate(sql);
 
             //now do the insertions
-            String insertSQLPart = "INSERT INTO " + tableName + " (" +
-                    columns + ") ";
+            String insertSQLPart = "INSERT INTO '" + tableName + "' ";
             writeToFile(columns,"SQLQuery_FoodsColumns.txt");
             writeToFile(insertSQLPart, "SQLQuery_InsertsIntoQuery.txt");
             int id = 1;
@@ -800,19 +803,30 @@ public class CsvConverter {
                 pstate.setInt(1, id++);
                 for (int i = 0; i < allPossibleCols.size(); i++) {
                     thisColumnName = allPossibleCols.get(i);
-                    theCorrespondingIndex = f.vals.cols.indexOf(thisColumnName);
+                    //if this is the customfoods column, set it to no
+                    if (thisColumnName.equalsIgnoreCase("CustomFood")) {
+                        pstate.setString(i + 2, "no");
+                    }
+                    else {
+                        theCorrespondingIndex = f.vals.cols.indexOf(thisColumnName);
 
-                    if (theCorrespondingIndex != -1) {
-                        //offset 2 to account for ID + starting at 1
-                        pstate.setString(i+2, f.vals.data.get(theCorrespondingIndex));
-                    } else {
-                        //insert null here
-                        pstate.setString(i+2,NULL_STRING);
+                        if (theCorrespondingIndex != -1) {
+                            //offset 2 to account for ID + starting at 1
+                            pstate.setString(i + 2, f.vals.data.get(theCorrespondingIndex));
+                        } else {
+                            //insert null here
+                            pstate.setString(i + 2, NULL_STRING);
+                        }
                     }
                 }
                 //ready to execute the statement
                 pstate.executeUpdate();
             }
+
+
+            //create the android_metadata required table
+            statement.executeUpdate("CREATE TABLE 'android_metadata' ('locale' TEXT DEFAULT 'en_US');");
+            statement.executeUpdate("INSERT INTO 'android_metadata' VALUES ('en_US');");
 
             statement.close();
             connection.close();

@@ -1,6 +1,8 @@
 package club.glamajestic.healthtrack;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,8 +18,11 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import com.github.mikephil.charting.charts.PieChart;
 
+import business.ApplicationConstants;
 import business.ClickSound;
 import business.InitPieChart;
+import persistence.CsvConverter;
+import persistence.DatabaseDefinition;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout stats;
@@ -62,6 +67,31 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //TEST THE DATABASE
+        if (ApplicationConstants.USE_STUB_DATABASE) {
+            DatabaseDefinition newDb = new DatabaseDefinition(this.getApplicationContext());
+            newDb.createDatabase();
+            SQLiteDatabase db = newDb.getReadableDatabase();
+            //get a cursor and loop through all the contents, printing to output
+            Cursor c = db.query(DatabaseDefinition.TABLE_NAME_FOODS, null, null, null, null, null, null);
+            String cursorval;
+            int numrows = c.getCount();
+            int numcols = c.getColumnCount();
+            c.moveToFirst();
+            String buffer = "";
+            for (int i = 0; i < numrows; i++) {
+                for (int j = 0; j < numcols; j++) {
+                    buffer += c.getString(j);
+
+                }
+                buffer += "\n";
+                c.moveToNext();
+            }
+            c.close();
+            CsvConverter.writeToFile(buffer, "Output of main activity database load.txt");
+        }
     }
     @Override
     public void onBackPressed() {
