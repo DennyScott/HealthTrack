@@ -103,4 +103,21 @@
         android:layout_toRightOf="@+id/multiAutoCompleteTextView"
         android:layout_toEndOf="@+id/multiAutoCompleteTextView" />
 
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/editCals"
+        android:layout_toLeftOf="@+id/editCals"
+        android:layout_toStartOf="@+id/editCals" />
+
 </RelativeLayout>
