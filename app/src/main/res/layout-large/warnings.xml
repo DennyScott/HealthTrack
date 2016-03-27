@@ -9,28 +9,27 @@
     android:id="@+id/warnings"
     android:background="@drawable/background">
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="55dp"
-        android:id="@+id/settingsButton"
-        android:background="@drawable/settings_button_action"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="46dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="41dp"
-        android:onClick="settingsButton" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title"
         android:text="@string/warnings_title"
         android:textStyle="bold"
-        android:textSize="70sp"
+        android:textSize="@dimen/title_normal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="#403c3c" />
+        android:textColor="#ffffff"
+        android:paddingTop="20dp" />
+
+    <ImageButton
+        android:layout_width="@dimen/settings_button_normal_width"
+        android:layout_height="@dimen/settings_button_normal_height"
+        android:id="@+id/settingsButton"
+        android:background="@drawable/settings_button_action"
+        android:onClick="settingsButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/settings_button_margin" />
 
 </RelativeLayout>

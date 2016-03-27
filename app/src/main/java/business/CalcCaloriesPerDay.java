@@ -53,7 +53,7 @@ public class CalcCaloriesPerDay implements Calculator, ApplicationConstants {
         //check if the weights are in a valid range
         if (weight == 0 || weight < MIN_WEIGHT || weight > MAX_WEIGHT ||
                 targetWeight < MIN_WEIGHT || targetWeight > MAX_WEIGHT ||
-                targetWeeks < MIN_WEEKS || targetWeeks > MAX_WEEKS  ||
+                targetWeeks < MIN_WEEKS || targetWeeks > MAX_WEEKS ||
                 targetCalories < MIN_CALORIES || targetCalories > MAX_CALORIES) {
             return BAD_CALCULATION;
         }

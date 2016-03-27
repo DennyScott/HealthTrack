@@ -13,10 +13,10 @@ public class JournalEntry implements ApplicationConstants {
     Food food;
     int servings;
 
-    public JournalEntry (Date dateEaten, Time timeEaten, Food foodEaten, int servingEaten){
-        this.date=dateEaten;
-        this.time=timeEaten;
-        this.food=foodEaten;
-        this.servings=servingEaten;
+    public JournalEntry(Date dateEaten, Time timeEaten, Food foodEaten, int servingEaten) {
+        this.date = dateEaten;
+        this.time = timeEaten;
+        this.food = foodEaten;
+        this.servings = servingEaten;
     }
 }

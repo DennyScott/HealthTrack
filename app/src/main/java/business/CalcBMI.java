@@ -30,7 +30,7 @@ public class CalcBMI implements Calculator, ApplicationConstants {
         setHeight(uc.cmToM2(getUser().getHeight()));
 
         setBmi(getWeight() / getHeight());
-        setBmi(Math.round(getBmi() *10)/10.0);
+        setBmi(Math.round(getBmi() * 10) / 10.0);
 
         return getBmi();
     }

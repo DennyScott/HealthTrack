@@ -36,6 +36,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.jayway.android.robotium:robotium:5.5.4'
     compile files('../libs/mpandroidchartlibrary-2-1-6.jar')
+    compile files('../libs/sqlite-jdbc-3.8.11.2.jar')
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:support-v4:23.1.1'

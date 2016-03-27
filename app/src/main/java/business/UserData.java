@@ -10,7 +10,8 @@ class UserData implements Serializable, ApplicationConstants {
     private int height;
     private int gender;//0 male, 1 female
     private boolean set;
-    UserData(){
+
+    UserData() {
         setSet(false);
         setName("");
         setAge(0);

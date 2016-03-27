@@ -10,11 +10,11 @@ It's the amount of calories your body burns in 24 hours while resting.
 CalcBMR = 10 x kg weight + 6.25 x cm height – 5 x age + z where z is 5 if male and (-161) if female
  */
 public class CalcBMR implements Calculator, ApplicationConstants {
+    public static final int MALE_CONST = 5;
+    public static final int FEMALE_CONST = -161;
     private static final double WEIGHT_MULTIPLIER = 10;
     private static final double HEIGHT_MULTIPLIER = 6.25;
     private static final double AGE_MULTIPLIER = 5;
-    public  static final int MALE_CONST = 5;
-    public  static final int FEMALE_CONST = -161;
     private double bmr;
     private double weight; // kg
     private double height; // cm
@@ -41,7 +41,6 @@ public class CalcBMR implements Calculator, ApplicationConstants {
         if (weight == 0 || height == 0 || weight < MIN_WEIGHT || weight > MAX_WEIGHT) {
             return BAD_CALCULATION;
         }
-
 
 
         UnitConverter uc = new UnitConverter();

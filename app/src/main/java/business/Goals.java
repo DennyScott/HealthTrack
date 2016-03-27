@@ -7,7 +7,8 @@ class Goals implements Serializable, ApplicationConstants {
     private int targetWeight;
     private int targetWeeks;
     private boolean set;
-    Goals(){
+
+    Goals() {
         setSet(false);
         setTargetWeight(0);
         setTargetWeeks(0);

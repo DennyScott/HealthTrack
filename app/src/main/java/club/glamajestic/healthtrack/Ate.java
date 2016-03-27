@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * <code>Ate</code> is an <code>Activity</code> that shows information on what the user has eaten.
@@ -43,7 +40,7 @@ public class Ate extends Activity {
 
     public void onBackPressed() {
 
-        //Intent gameMode = new Intent(this, StatsGuiActivity.class);
+        //Intent gameMode = new Intent(this, MainActivity.class);
         //startActivity(gameMode);
         finish();
     }
@@ -70,8 +67,9 @@ public class Ate extends Activity {
     }
 
     private void foodEntryClick() {
-//        Intent gameMode = new Intent(this, foodEntry.class);
-//        startActivity(gameMode);
+        Intent gameMode = new Intent(this, FoodEntry.class);
+        startActivity(gameMode);
+        finish();
     }
 
     private void customFoodClick() {

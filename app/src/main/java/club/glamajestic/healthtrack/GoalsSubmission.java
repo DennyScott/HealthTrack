@@ -67,7 +67,7 @@ public class GoalsSubmission extends Activity implements View.OnClickListener {
                 goals.setAll(Integer.parseInt(targetWeight),Integer.parseInt(targetWeeks));
                 goals.save();
                 Output.toastMessage(this, "Changes updated.", Output.SHORT_TOAST);
-                Intent gameMode = new Intent(this, StatsGuiActivity.class);
+                Intent gameMode = new Intent(this, MainActivity.class);
                 startActivity(gameMode);
                 finish();
             }

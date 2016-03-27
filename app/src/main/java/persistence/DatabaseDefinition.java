@@ -2,47 +2,25 @@ package persistence;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
-
-/*
-    TODO
-        Add more columns to the food tables
-            Sodium
-
-
- */
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 
 public class DatabaseDefinition extends SQLiteOpenHelper {
 
-    //for
     private static final String LOG  = "DatabaseDefinitionTest";
     /*
-        SQL Tables (refer to classes for final data member order):
-            personal information
-                _id
-                name
-                gender
-                age
-                weight
-            custom foods
-                id
-                food_name
-                calories
-                proteins
-                carbohydrdates
-                fats
-            external foods
-                id
-                food_name
-                calories
-                proteins
-                carbohydrdates
-                fats
+            foods
             transactional history (eaten)
                 id
                 food_name
@@ -53,14 +31,14 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
                 protein_eaten
                 carbohydrdates_eaten
                 fats_eaten
-            Goals table
-                id
-                date
-                < >
      */
 
     //for all tables
     private static final String DATABASE_NAME  = "HEALTHTRACK_DB";
+    private static String EXTERNAL_DATABASE_PATH = "extdb/external_db.db";
+    private static final int BUFFER_SIZE = 1024;
+    private static String DATABASE_PATH = ""; //updated in constructor
+
     private static final int DATABASE_VERSION = 1;
     public static final String CREATE_TABLE   = "CREATE TABLE";
     public static final String IF_NOT_EXISTS  = " IF NOT EXISTS ";
@@ -73,47 +51,41 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     public static final String OPT_UNIQUE     = " UNIQUE (";
 
     public static final String OPT_COMMA      = ",";
+    private static final String FOODS_TABLE_CREATE_QUERY_PART = "_id  INTEGER PRIMARY KEY,FoodDescription TEXT,MeasureDescription TEXT,ConversionFactorValue TEXT,FoodGroupName TEXT,PROCNT TEXT,PROCNTUnit TEXT,PROCNTValue TEXT,FAT TEXT,FATUnit TEXT,FATValue TEXT,CHOCDF TEXT,CHOCDFUnit TEXT,CHOCDFValue TEXT,ENERC_KCAL TEXT,ENERC_KCALUnit TEXT,ENERC_KCALValue TEXT,ALC TEXT,ALCUnit TEXT,ALCValue TEXT,WATER TEXT,WATERUnit TEXT,WATERValue TEXT,CAFFN TEXT,CAFFNUnit TEXT,CAFFNValue TEXT,ENERC_KJ TEXT,ENERC_KJUnit TEXT,ENERC_KJValue TEXT,SUGAR TEXT,SUGARUnit TEXT,SUGARValue TEXT,FIBTG TEXT,FIBTGUnit TEXT,FIBTGValue TEXT,CA TEXT,CAUnit TEXT,CAValue TEXT,FE TEXT,FEUnit TEXT,FEValue TEXT,MG TEXT,MGUnit TEXT,MGValue TEXT,P TEXT,PUnit TEXT,PValue TEXT,K TEXT,KUnit TEXT,KValue TEXT,NA TEXT,NAUnit TEXT,NAValue TEXT,ZN TEXT,ZNUnit TEXT,ZNValue TEXT,MN TEXT,MNUnit TEXT,MNValue TEXT,VITC TEXT,VITCUnit TEXT,VITCValue TEXT,THIA TEXT,THIAUnit TEXT,THIAValue TEXT,RIBF TEXT,RIBFUnit TEXT,RIBFValue TEXT,VITB6A TEXT,VITB6AUnit TEXT,VITB6AValue TEXT,VITB12 TEXT,VITB12Unit TEXT,VITB12Value TEXT,VITK TEXT,VITKUnit TEXT,VITKValue TEXT,FOLAC TEXT,FOLACUnit TEXT,FOLACValue TEXT,CHOLE TEXT,CHOLEUnit TEXT,CHOLEValue TEXT,FATRN TEXT,FATRNUnit TEXT,FATRNValue TEXT,FASAT TEXT,FASATUnit TEXT,FASATValue TEXT,FAMS TEXT,FAMSUnit TEXT,FAMSValue TEXT,FAPU TEXT,FAPUUnit TEXT,FAPUValue TEXT,FOLFD TEXT,FOLFDUnit TEXT,FOLFDValue TEXT,ERGCAL TEXT,ERGCALUnit TEXT,ERGCALValue TEXT,SUCS TEXT,SUCSUnit TEXT,SUCSValue TEXT,GLUS TEXT,GLUSUnit TEXT,GLUSValue TEXT,FRUS TEXT,FRUSUnit TEXT,FRUSValue TEXT,LACS TEXT,LACSUnit TEXT,LACSValue TEXT,GALS TEXT,GALSUnit TEXT,GALSValue TEXT,STARCH TEXT,STARCHUnit TEXT,STARCHValue TEXT,F6D0 TEXT,F6D0Unit TEXT,F6D0Value TEXT,F8D0 TEXT,F8D0Unit TEXT,F8D0Value TEXT,F10D0 TEXT,F10D0Unit TEXT,F10D0Value TEXT,F24D0 TEXT,F24D0Unit TEXT,F24D0Value TEXT,MNSAC TEXT,MNSACUnit TEXT,MNSACValue TEXT";
+    private static final String FOODS_TABLE_COLUMNS = "_id,FoodDescription,MeasureDescription,ConversionFactorValue,FoodGroupName,PROCNT,PROCNTUnit,PROCNTValue,FAT,FATUnit,FATValue,CHOCDF,CHOCDFUnit,CHOCDFValue,ENERC_KCAL,ENERC_KCALUnit,ENERC_KCALValue,ALC,ALCUnit,ALCValue,WATER,WATERUnit,WATERValue,CAFFN,CAFFNUnit,CAFFNValue,ENERC_KJ,ENERC_KJUnit,ENERC_KJValue,SUGAR,SUGARUnit,SUGARValue,FIBTG,FIBTGUnit,FIBTGValue,CA,CAUnit,CAValue,FE,FEUnit,FEValue,MG,MGUnit,MGValue,P,PUnit,PValue,K,KUnit,KValue,NA,NAUnit,NAValue,ZN,ZNUnit,ZNValue,MN,MNUnit,MNValue,VITC,VITCUnit,VITCValue,THIA,THIAUnit,THIAValue,RIBF,RIBFUnit,RIBFValue,VITB6A,VITB6AUnit,VITB6AValue,VITB12,VITB12Unit,VITB12Value,VITK,VITKUnit,VITKValue,FOLAC,FOLACUnit,FOLACValue,CHOLE,CHOLEUnit,CHOLEValue,FATRN,FATRNUnit,FATRNValue,FASAT,FASATUnit,FASATValue,FAMS,FAMSUnit,FAMSValue,FAPU,FAPUUnit,FAPUValue,FOLFD,FOLFDUnit,FOLFDValue,ERGCAL,ERGCALUnit,ERGCALValue,SUCS,SUCSUnit,SUCSValue,GLUS,GLUSUnit,GLUSValue,FRUS,FRUSUnit,FRUSValue,LACS,LACSUnit,LACSValue,GALS,GALSUnit,GALSValue,STARCH,STARCHUnit,STARCHValue,F6D0,F6D0Unit,F6D0Value,F8D0,F8D0Unit,F8D0Value,F10D0,F10D0Unit,F10D0Value,F24D0,F24D0Unit,F24D0Value,MNSAC,MNSACUnit,MNSACValue";
+    private static final String CUSTOM_FOOD_CREATE_QUERY_PART = ", CustomFood TEXT";
 
-    //tables
-    public final String TABLE_PERS_INFO        = " PersonalInformation(";
-    public final String TABLE_CUST_FOODS       = " CustomFoods(";
-    public final String TABLE_EXT_FOODS        = " ExternalFoods(";
-    public final String TABLE_TRANS_HIST       = " TransactionalHistory(";
+    //table creations, for when creating queries
+    public static final String TABLE_CREATE_FOODS = " Foods(";
+    public static final String TABLE_CREATE_TRANS_HIST = " TransactionalHistory(";
+
+
+    //actual table names
+    public static final String TABLE_NAME_FOODS = "ExternalFoods";
 
     //*table values
     //PersInfo Table:
-    private final String COLNAME_ID         = "_id";
-    private final String COLNAME_NAME       = "Name";
-    private final String COLNAME_GENDER     = "Gender";
-    private final String COLNAME_AGE        = "Age";
-    private final String COLNAME_WEIGHT     = "Weight";
+    private static final String COLNAME_ID         = "_id";
+    private static final String COLNAME_NAME       = "Name";
+    private static final String COLNAME_GENDER     = "Gender";
+    private static final String COLNAME_AGE        = "Age";
+    private static final String COLNAME_WEIGHT     = "Weight";
 
     //CustFoods Table:
     //private final String COLNAME_ID = "";     //reusable
-    private final String COLNAME_FOODNAME = "FoodName";
-    private final String COLNAME_CALORIES = "Calories";
-    private final String COLNAME_PROTEINS = "Proteins";
-    private final String COLNAME_CARBOHYDRATES = "Carbohydrates";
-    private final String COLNAME_FATS = "Fat";
-
-    //ExtFoods Table (reused from CustFoods):
-//    private final String COLNAME_ID = "";     //reusable
-//    private final String COLNAME_FOODNAME = "";
-//    private final String COLNAME_CALORIES = "";
-//    private final String COLNAME_PROTEINS = "";
-//    private final String COLNAME_CARBOHYDRATES = "";
-//    private final String COLNAME_FATS = "";
+    private static final String COLNAME_FOODNAME = "FoodName";
+    private static final String COLNAME_CALORIES = "Calories";
+    private static final String COLNAME_PROTEINS = "Proteins";
+    private static final String COLNAME_CARBOHYDRATES = "Carbohydrates";
+    private static final String COLNAME_FATS = "Fat";
 
     //Transactional History Table:
 //    public final String COLNAME_ID = "";     //reusable
 //    public final String COLNAME_FOODNAME = "";
     public final String COLNAME_EATEN_DATE = "EatenDate";
     public final String COLNAME_EATEN_TIME = "EatenTime";
-    public final String COLNAME_EATEN_CALORIES = "EatenCalories";
-    public final String COLNAME_EATEN_PROTEINS = "EatenProteins";
-    public final String COLNAME_EATEN_CARBS = "EatenCarbohydrates";
-    public final String COLNAME_EATEN_FATS = "EatenFats";
     public final String COLNAME_PORTIONSIZE = "PortionSize";
+    private static final String COLNAME_FOODTABLE_ID = "FoodTableID";
 
 
     private Context dbContext;
@@ -124,131 +96,141 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         super(context, name, factory, version, errorHandler);
         cursorFactory = factory;
         dbContext = context;
+        loadDatabasePath();
     }
 
+    private void loadDatabasePath() {
+        if (android.os.Build.VERSION.SDK_INT >= 17) {
+            DATABASE_PATH = dbContext.getApplicationInfo().dataDir + "/databases/";
+        } else {
+            DATABASE_PATH = "/data/data/" + dbContext.getPackageName() + "/databases/";
+        }
+        AssetManager assets = dbContext.getAssets();
+        try {
+            String[] files = assets.list("");
+            for (String f : files) {
+                if (f.contains("external_db.db")) {
+                    EXTERNAL_DATABASE_PATH = f;
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public DatabaseDefinition(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, null);
         dbContext = context;
+        loadDatabasePath();
+    }
+
+    public boolean checkDatabase() {
+        SQLiteDatabase checkDB = null;
+
+        try{
+            String myPath = DATABASE_PATH + DATABASE_NAME;
+            checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        }catch(SQLiteException ignored){
+
+        }
+
+        if(checkDB != null){
+            checkDB.close();
+        }
+
+        return checkDB != null;
+    }
+
+    /**
+     * Call this to create the database as it will check if there is an existing file
+     * to import as well as calling onCreate as needed.
+     */
+    public void createDatabase() {
+        //first try to load the external database file external_db.db
+        //  this file contains the CNF data entries generated from the ExternalDatabaseGenerator
+
+        boolean extDbExist = checkDatabase();
+
+        if (extDbExist) {
+            //database already exists
+            SQLiteDatabase.deleteDatabase(new File(DATABASE_PATH + DATABASE_NAME));
+            createDatabase();
+        }
+        else {
+            //call the oncreate method to create the db
+            SQLiteDatabase db = this.getReadableDatabase();
+            try {
+                //copy database will overwrite any database created by android for this app
+                copyDatabase();
+                //create the transcational history database
+
+
+                //        transactional history (eaten)
+                //          id
+                //          food_name
+                //          eaten_date
+                //          eaten_time
+                //          portion_size
+                //  FoodTableID
+                //  The strategy is look up the food eaten, multiple it by the portion size, and then return
+                //  that value in that date range only
+                //week-month2016
+                db.execSQL(
+                        CREATE_TABLE + IF_NOT_EXISTS + TABLE_CREATE_TRANS_HIST +
+                                COLNAME_ID              + DATATYPE_INT  + OPT_PRIM_KEY + OPT_COMMA +
+                                COLNAME_FOODNAME        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
+                                COLNAME_EATEN_DATE      + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
+                                COLNAME_EATEN_TIME      + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
+                                COLNAME_PORTIONSIZE     + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
+                                COLNAME_FOODTABLE_ID    + DATATYPE_INT + OPT_NOT_NULL + ");"
+                );
+
+            }
+            catch (IOException e) {
+                throw new Error("Error copying external database");
+            }
+        }
+
+    }
+
+    private void copyDatabase() throws IOException {
+        //open the external database
+        InputStream extDbInput = dbContext.getAssets().open(EXTERNAL_DATABASE_PATH);
+        //create the local database
+        OutputStream dbOutput = new FileOutputStream(DATABASE_PATH + DATABASE_NAME);
+
+        //do a byte transfer
+        byte[] buffer = new byte[BUFFER_SIZE];
+        int buffer_length;
+        while ((buffer_length = extDbInput.read(buffer)) > 0) {
+            dbOutput.write(buffer,0,buffer_length);
+        }
+        //close the streams
+        dbOutput.flush();
+        dbOutput.close();
+        extDbInput.close();
     }
 
     //only called when the database is FIRST created (by getWritable/ReadableDatabase )
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /*create the tables:
-        General layout of command:
-        CREATE TABLE IF NOT EXISTS TestTable1 (
-                _id INTEGER primary key             <--- ID needs an underscore before it
-                COLNAME TEXT not null,
-        );
+        //does nothing as its handled by createDatabase()
+    }
 
-        */
-//        personal information
-//          _id
-//          name
-//          gender
-//          age
-//          weight
-        db.execSQL(
-                CREATE_TABLE + IF_NOT_EXISTS + TABLE_PERS_INFO +
-                        COLNAME_ID      + DATATYPE_INT  + OPT_PRIM_KEY + OPT_COMMA +
-                        COLNAME_NAME    + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_GENDER  + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_AGE     + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_WEIGHT  + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA
-        );
-
-//        custom foods
-//              id
-//              food_name
-//              calories
-//              proteins
-//              carbohydrdates
-//              fats
-
-        db.execSQL(
-                CREATE_TABLE + IF_NOT_EXISTS + TABLE_CUST_FOODS +
-                        COLNAME_ID              + DATATYPE_INT  + OPT_PRIM_KEY + OPT_COMMA +
-                        COLNAME_FOODNAME        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_CALORIES        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_PROTEINS        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_CARBOHYDRATES   + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_FATS            + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA
-        );
-
-//        external foods
-//          id
-//          food_name
-//          calories
-//          proteins
-//          carbohydrdates
-//          fats
-        db.execSQL(
-                CREATE_TABLE + IF_NOT_EXISTS + TABLE_EXT_FOODS +
-                        COLNAME_ID              + DATATYPE_INT  + OPT_PRIM_KEY + OPT_COMMA +
-                        COLNAME_FOODNAME        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_CALORIES        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_PROTEINS        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_CARBOHYDRATES   + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_FATS            + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA
-        );
-
-//        transactional history (eaten)
-//          id
-//          food_name
-//          eaten_date
-//          eaten_time
-//          portion_size
-//          calories_eaten
-//          protein_eaten
-//          carbohydrdates_eaten
-//          fats_eaten
-        //week-month2016
-        db.execSQL(
-                CREATE_TABLE + IF_NOT_EXISTS + TABLE_TRANS_HIST +
-                        COLNAME_ID              + DATATYPE_INT  + OPT_PRIM_KEY + OPT_COMMA +
-                        COLNAME_FOODNAME        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_EATEN_DATE      + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_EATEN_TIME      + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_PORTIONSIZE     + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_EATEN_CALORIES  + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_EATEN_PROTEINS  + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_EATEN_CARBS     + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                        COLNAME_EATEN_FATS      + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA
-        );
+    private String getFoodsTableParamaters() {
+        return FOODS_TABLE_CREATE_QUERY_PART;
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERS_INFO);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUST_FOODS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXT_FOODS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRANS_HIST);
-        onCreate(db);
+        //unlikely the database will ever be updated
+        // override to null
     }
 
 
     //*************DATABASE INSERTIONS*************************
-
-    public long createPersonalInfo(DataPersonalInfo data) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues vals = new ContentValues();
-        //        personal information
-        //          _id
-        //          name
-        //          gender
-        //          age
-        //          weight
-        vals.put(COLNAME_ID, data.getmId());
-        vals.put(COLNAME_NAME, data.getmName());
-        vals.put(COLNAME_GENDER, data.getmGender());
-        vals.put(COLNAME_AGE, data.getmAge());
-        vals.put(COLNAME_WEIGHT, data.getmWeight());
-
-        //get the ID of the resulting insertion
-        return db.insert(TABLE_PERS_INFO, null, vals);
-    }
 
     public long createCustomFoods(DataCustomFoods data) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -261,37 +243,14 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //              carbohydrdates
         //              fats
         vals.put(COLNAME_ID, data.getmId());
-        vals.put(COLNAME_FOODNAME, data.getmFoodName());
-        vals.put(COLNAME_CALORIES, data.getmCalories());
-        vals.put(COLNAME_PROTEINS, data.getmProtein());
-        vals.put(COLNAME_CARBOHYDRATES, data.getmCarbohydrates());
-        vals.put(COLNAME_FATS, data.getmFats());
-
-
-        //get the ID of the resulting insertion
-        return db.insert(TABLE_CUST_FOODS, null, vals);
-    }
-
-    public long createExternalFoods(DataExternalFoods data) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues vals = new ContentValues();
-        //        external foods
-        //          id
-        //          food_name
-        //          calories
-        //          proteins
-        //          carbohydrdates
-        //          fats
-        vals.put(COLNAME_ID, data.getmId());
-        vals.put(COLNAME_FOODNAME, data.getmFoodName());
-        vals.put(COLNAME_CALORIES, data.getmCalories());
-        vals.put(COLNAME_PROTEINS, data.getmProtein());
-        vals.put(COLNAME_CARBOHYDRATES, data.getmCarbohydrates());
-        vals.put(COLNAME_FATS, data.getmFats());
-
+        vals.put(COLNAME_FOODNAME, data.getmFoodDescription());
+        vals.put(COLNAME_CALORIES, data.getmDataNutrientTable().getmENERC_KCALValue());
+        vals.put(COLNAME_PROTEINS, data.getmDataNutrientTable().getmPROCNTValue());
+        vals.put(COLNAME_CARBOHYDRATES, data.getmDataNutrientTable().getmCHOCDFValue());
+        vals.put(COLNAME_FATS, data.getmDataNutrientTable().getmFATValue());
 
         //get the ID of the resulting insertion
-        return db.insert(TABLE_EXT_FOODS, null, vals);
+        return db.insert(TABLE_CREATE_FOODS, null, vals);
     }
 
     public long createTransactionalHistory(DataTransactionalHistory data) {
@@ -303,64 +262,28 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //          eaten_date
         //          eaten_time
         //          portion_size
-        //          calories_eaten
-        //          protein_eaten
-        //          carbohydrdates_eaten
-        //          fats_eaten
+        //          food_id
         vals.put(COLNAME_ID, data.getmId());
         vals.put(COLNAME_FOODNAME, data.getmFoodName());
         vals.put(COLNAME_EATEN_DATE, data.getmEatendate());
         vals.put(COLNAME_EATEN_TIME, data.getmEatentime());
         vals.put(COLNAME_PORTIONSIZE, data.getmPortionSize());
-        vals.put(COLNAME_EATEN_CALORIES, data.getmEatenCalories());
-        vals.put(COLNAME_EATEN_PROTEINS, data.getmEatenProtein());
-        vals.put(COLNAME_EATEN_FATS, data.getmEatenFats());
+        vals.put(COLNAME_FOODTABLE_ID, data.getmFoodTableID());
 
         //get the ID of the resulting insertion
-        return db.insert(TABLE_TRANS_HIST, null, vals);
+        return db.insert(TABLE_CREATE_TRANS_HIST, null, vals);
     }
 
     /////////////////END DATABASE INSERTIONS////////////////////////
 
     //***************DATABASE SINGLE ID RETRIEVALS****************************
 
-    public DataPersonalInfo getPersonalInfo(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        //SELECT * FROM TABLE_ (because it SHOULD HAVE only 1 entry)
-        //ToDo possibility to change this to personal preferences file vs sqlite database
-        Cursor cursor = db.query(
-                TABLE_PERS_INFO,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
-        //retreieve the data in the assumed order:
-        //        personal information
-        //          _id
-        //          name
-        //          gender
-        //          age
-        //          weight
-        DataPersonalInfo retrievedData = new DataPersonalInfo(
-                cursor.getInt(0), //int _id is always the first column
-                cursor.getString(1),
-                cursor.getString(2),
-                cursor.getInt(2),
-                cursor.getInt(3)
-        );
-
-        return retrievedData;
-    }
-
     public DataCustomFoods getCustomFood(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         //SELECT * FROM TABLE_ WHERE _id = Id
         Cursor cursor = db.query(
-                TABLE_CUST_FOODS,
+                TABLE_CREATE_FOODS,
                 null,
                 "_id=?",
                 new String[] {Integer.toString(id)},
@@ -387,44 +310,12 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return retrievedData;
     }
 
-    public DataExternalFoods getExternalFood(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        //SELECT * FROM TABLE_ WHERE _id = Id
-        Cursor cursor = db.query(
-                TABLE_EXT_FOODS,
-                null,
-                "_id=?",
-                new String[] {Integer.toString(id)},
-                null,
-                null,
-                null);
-        //retreieve the data in the assumed order:
-        //        external foods
-        //          id
-        //          food_name
-        //          calories
-        //          proteins
-        //          carbohydrdates
-        //          fats
-        DataExternalFoods retrievedData = new DataExternalFoods(
-                cursor.getInt(0), //int _id is always the first column
-                cursor.getString(1),
-                cursor.getInt(2),
-                cursor.getInt(2),
-                cursor.getInt(3),
-                cursor.getInt(4)
-        );
-
-        return retrievedData;
-    }
-
     public DataTransactionalHistory getTransactionalHistory(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         //SELECT * FROM TABLE_ WHERE _id = id
         Cursor cursor = db.query(
-                TABLE_TRANS_HIST,
+                TABLE_CREATE_TRANS_HIST,
                 null,
                 "_id=?",
                 new String[] {Integer.toString(id)},
@@ -438,20 +329,14 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //          eaten_date
         //          eaten_time
         //          portion_size
-        //          calories_eaten
-        //          protein_eaten
-        //          carbohydrdates_eaten
-        //          fats_eaten
+        //          foodTableID
         DataTransactionalHistory retrievedData = new DataTransactionalHistory(
                 cursor.getInt(0), //int _id is always the first column
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getString(2),
-                cursor.getInt(3),
-                cursor.getInt(4),
-                cursor.getInt(5),
-                cursor.getInt(6),
-                cursor.getInt(7)
+                cursor.getString(3),
+                cursor.getInt(4)
         );
 
         return retrievedData;
@@ -462,7 +347,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 
         //SELECT * FROM TABLE_ WHERE _id = id
         Cursor cursor = db.query(
-                TABLE_TRANS_HIST,
+                TABLE_CREATE_TRANS_HIST,
                 null,
                 "_id=?",
                 new String[] {Integer.toString(id)},
@@ -485,11 +370,8 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getString(2),
-                cursor.getInt(3),
-                cursor.getInt(4),
-                cursor.getInt(5),
-                cursor.getInt(6),
-                cursor.getInt(7)
+                cursor.getString(3),
+                cursor.getInt(4)
         );
 
         return retrievedData;
@@ -499,30 +381,10 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 
     //***************DATABASE SINGLE ID DELETIONS******************************
 
-    public void deletePersonalInfo(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(
-                TABLE_PERS_INFO,
-                "_id=?",
-                new String[] {Integer.toString(id)}
-        );
-        db.close();
-    }
-
     public void deleteCustomFood(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(
-                TABLE_CUST_FOODS,
-                "_id=?",
-                new String[] {Integer.toString(id)}
-        );
-        db.close();
-    }
-
-    public void deleteExternalFood(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(
-                TABLE_EXT_FOODS,
+                TABLE_CREATE_FOODS,
                 "_id=?",
                 new String[] {Integer.toString(id)}
         );
@@ -532,7 +394,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     public void deleteTransHistoryRecord(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(
-                TABLE_TRANS_HIST,
+                TABLE_CREATE_TRANS_HIST,
                 "_id=?",
                 new String[]{Integer.toString(id)}
         );
@@ -541,26 +403,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     /////////////////END DATABASE SINGLE ID DELETIONS//////////////////////////
 
     //***************DATABASE SINGLE ID UPDATES******************************
-
-    public int updatePersonalInfo(DataPersonalInfo newRecord) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues vals = new ContentValues();
-        //update the data in the assumed order:
-        //        personal information
-        //          _id
-        //          name
-        //          gender
-        //          age
-        //          weight
-        vals.put(COLNAME_ID, newRecord.getmId());
-        vals.put(COLNAME_NAME, newRecord.getmName());
-        vals.put(COLNAME_GENDER, newRecord.getmGender());
-        vals.put(COLNAME_AGE, newRecord.getmAge());
-        vals.put(COLNAME_WEIGHT, newRecord.getmWeight());
-
-        //returns the number of rows affected
-        return db.update(TABLE_PERS_INFO,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
-    }
 
     public int updateCustomFood(DataCustomFoods newRecord) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -574,36 +416,14 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //              carbohydrdates
         //              fats
         vals.put(COLNAME_ID, newRecord.getmId());
-        vals.put(COLNAME_FOODNAME, newRecord.getmFoodName());
-        vals.put(COLNAME_CALORIES, newRecord.getmCalories());
-        vals.put(COLNAME_PROTEINS, newRecord.getmProtein());
-        vals.put(COLNAME_CARBOHYDRATES, newRecord.getmCarbohydrates());
-        vals.put(COLNAME_FATS, newRecord.getmFats());
+        vals.put(COLNAME_FOODNAME, newRecord.getmFoodDescription());
+        vals.put(COLNAME_CALORIES, newRecord.getmDataNutrientTable().getmENERC_KCALValue());
+        vals.put(COLNAME_PROTEINS, newRecord.getmDataNutrientTable().getmPROCNTValue());
+        vals.put(COLNAME_CARBOHYDRATES, newRecord.getmDataNutrientTable().getmCHOCDFValue());
+        vals.put(COLNAME_FATS, newRecord.getmDataNutrientTable().getmFATValue());
 
         //returns the number of rows affected
-        return db.update(TABLE_CUST_FOODS,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
-    }
-
-    public int updateExternalFood(DataExternalFoods newRecord) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues vals = new ContentValues();
-        //update the data in the assumed order:
-        //        external foods
-        //          id
-        //          food_name
-        //          calories
-        //          proteins
-        //          carbohydrdates
-        //          fats
-        vals.put(COLNAME_ID, newRecord.getmId());
-        vals.put(COLNAME_FOODNAME, newRecord.getmFoodName());
-        vals.put(COLNAME_CALORIES, newRecord.getmCalories());
-        vals.put(COLNAME_PROTEINS, newRecord.getmProtein());
-        vals.put(COLNAME_CARBOHYDRATES, newRecord.getmCarbohydrates());
-        vals.put(COLNAME_FATS, newRecord.getmFats());
-
-        //returns the number of rows affected
-        return db.update(TABLE_EXT_FOODS,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
+        return db.update(TABLE_CREATE_FOODS,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
     }
 
     public int updateTransaHistoryRecord(DataTransactionalHistory newRecord) {
@@ -625,12 +445,10 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         vals.put(COLNAME_EATEN_DATE, newRecord.getmEatendate());
         vals.put(COLNAME_EATEN_TIME, newRecord.getmEatentime());
         vals.put(COLNAME_PORTIONSIZE, newRecord.getmPortionSize());
-        vals.put(COLNAME_EATEN_CALORIES, newRecord.getmEatenCalories());
-        vals.put(COLNAME_EATEN_PROTEINS, newRecord.getmEatenProtein());
-        vals.put(COLNAME_EATEN_FATS, newRecord.getmEatenFats());
+        vals.put(COLNAME_FOODTABLE_ID, newRecord.getmFoodTableID());
 
         //returns the number of rows affected
-        return db.update(TABLE_TRANS_HIST,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
+        return db.update(TABLE_CREATE_TRANS_HIST,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
     }
 
     /////////////////END DATABASE SINGLE ID UPDATES//////////////////////////

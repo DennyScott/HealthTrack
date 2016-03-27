@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="club.glamajestic.healthtrack.FoodEntry">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/food_entry_save"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <MultiAutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/food_entry_food_name"
+        android:id="@+id/multiAutoCompleteTextView"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/button"
+        android:layout_toStartOf="@+id/button"
+        android:dropDownWidth="match_parent"
+        android:dropDownHeight="match_parent" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editCals"
+        android:layout_below="@+id/multiAutoCompleteTextView"
+        android:layout_alignRight="@+id/multiAutoCompleteTextView"
+        android:layout_alignEnd="@+id/multiAutoCompleteTextView"
+        android:hint="@string/food_entry_nutrient_amount_calories" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editCarbs"
+        android:layout_below="@+id/editCals"
+        android:layout_alignRight="@+id/editCals"
+        android:layout_alignEnd="@+id/editCals"
+        android:hint="@string/food_entry_nutrient_carbs" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editFat"
+        android:layout_below="@+id/editCarbs"
+        android:layout_alignLeft="@+id/editCarbs"
+        android:layout_alignStart="@+id/editCarbs"
+        android:hint="@string/food_entry_nutrient_fat" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editProtein"
+        android:layout_below="@+id/editFat"
+        android:layout_alignRight="@+id/editFat"
+        android:layout_alignEnd="@+id/editFat"
+        android:hint="@string/food_entry_nutrient_protein" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editCholesterol"
+        android:layout_below="@+id/editProtein"
+        android:layout_alignRight="@+id/editProtein"
+        android:layout_alignEnd="@+id/editProtein"
+        android:hint="@string/food_entry_nutrient_cholesterol" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editSodium"
+        android:layout_below="@+id/editCholesterol"
+        android:layout_alignRight="@+id/editCholesterol"
+        android:layout_alignEnd="@+id/editCholesterol"
+        android:hint="@string/food_entry_nutient_sodium" />
+
+    <SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/foodSearchView"
+        android:layout_alignBottom="@+id/multiAutoCompleteTextView"
+        android:layout_toRightOf="@+id/multiAutoCompleteTextView"
+        android:layout_toEndOf="@+id/multiAutoCompleteTextView" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker"
+        android:layout_alignTop="@+id/editCals"
+        android:layout_toLeftOf="@+id/editCals"
+        android:layout_toStartOf="@+id/editCals" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="@string/food_entry_serving_hint" />
+
+</RelativeLayout>

@@ -101,6 +101,15 @@
     <string name="day_button">Day</string>
     <string name="week_button">Week</string>
     <string name="month_button">Month</string>
+    <string name="food_entry_save">Save</string>
+    <string name="food_entry_food_name">Food Name</string>
+    <string name="food_entry_nutrient_amount_calories">Calories (Cal)</string>
+    <string name="food_entry_nutrient_carbs">Carbohydrates (g)</string>
+    <string name="food_entry_nutrient_fat">Fat (g)</string>
+    <string name="food_entry_nutrient_protein">Protein (g)</string>
+    <string name="food_entry_nutrient_cholesterol">Cholsterol (mg)</string>
+    <string name="food_entry_nutient_sodium">Sodium (mg)</string>
+    <string name="food_entry_serving_hint">Servings</string>
 
 
 </resources>
