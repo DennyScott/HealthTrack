@@ -98,6 +98,7 @@ public class StatsActivity extends Activity {
     }
     public void setGoalsTab(ArrayList<GoalsType> list){
         LinearLayout tab2 =(LinearLayout)findViewById(R.id.barChartTabLinear);
+        tab2.setPadding(10,10,10,10);
         title = new TextView(this);
         title.setTextSize(40);
         title.setTextColor(Color.parseColor("#ffffff"));

@@ -18,7 +18,8 @@
         android:textSize="@dimen/title_normal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/title_colour" />
+        android:textColor="#ffffff"
+        android:paddingTop="20dp" />
 
     <ImageButton
         android:layout_width="@dimen/settings_button_normal_width"

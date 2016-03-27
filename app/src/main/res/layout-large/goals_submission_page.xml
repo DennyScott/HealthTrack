@@ -16,9 +16,10 @@
         android:text="@string/goals_submission_title"
         android:textStyle="bold"
         android:textSize="@dimen/title_normal"
-        android:textColor="@color/title_colour"
+        android:textColor="#ffffff"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:paddingTop="30dp" />
 
     <ImageButton
         android:layout_width="@dimen/settings_button_normal_width"
@@ -37,7 +38,8 @@
         android:text="@string/save_changes_button"
         android:id="@+id/saveButton"
         android:layout_above="@+id/settingsButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="#FFFFBC59" />
 
     <EditText
         android:layout_width="wrap_content"

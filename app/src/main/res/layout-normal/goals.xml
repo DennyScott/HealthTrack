@@ -7,7 +7,9 @@
     android:background="@drawable/background"
     android:orientation="vertical"
     android:keepScreenOn="true"
-    android:id="@+id/rewards">
+    android:id="@+id/rewards"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,10 +18,10 @@
         android:text="@string/goals_title"
         android:textStyle="bold"
         android:textSize="@dimen/title_normal"
+        android:textColor="#ffffff"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="#ffffff"
-        android:layout_marginTop="20dp" />
+        android:paddingTop="10dp" />
 
     <ImageButton
         android:layout_width="@dimen/settings_button_normal_width"
@@ -40,7 +42,8 @@
         android:id="@+id/goalsUserInfoButton"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp" />
+        android:layout_marginTop="44dp"
+        android:background="#FFFFBC59" />
 
     <Button
         android:layout_width="fill_parent"
@@ -49,6 +52,7 @@
         android:id="@+id/goalsSubmissionButton"
         android:layout_below="@+id/goalsUserInfoButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="44dp"
+        android:background="#FFFFBC59" />
 
 </RelativeLayout>
