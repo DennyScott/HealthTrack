@@ -29,16 +29,13 @@ public class Journal implements ApplicationConstants {
     public ArrayList<JournalEntry> getJournalEntriesByDate(Date searchDate) {
         SQLiteDatabase db = dataDef.getReadableDatabase();
         Cursor result = db.query(
-                dataDef.TABLE_TRANS_HIST,
+                dataDef.TABLE_CREATE_TRANS_HIST,
                 new String[]{
                         DataTransactionalHistory.COLNAME_EATEN_DATE,
                         DataTransactionalHistory.COLNAME_EATEN_TIME,
                         DataTransactionalHistory.COLNAME_FOODNAME,
                         DataTransactionalHistory.COLNAME_PORTIONSIZE,
-                        DataTransactionalHistory.COLNAME_EATEN_CALORIES,
-                        DataTransactionalHistory.COLNAME_EATEN_CARBS,
-                        DataTransactionalHistory.COLNAME_EATEN_FATS,
-                        DataTransactionalHistory.COLNAME_EATEN_PROTEINS
+                        DataTransactionalHistory.COLNAME_FOODTABLE_ID
                 },
                 (DataTransactionalHistory.COLNAME_EATEN_DATE + " = ?"),
                 new String[]{

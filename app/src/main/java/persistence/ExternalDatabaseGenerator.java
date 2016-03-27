@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 
-public class DatabaseManager  {
+public class ExternalDatabaseGenerator {
 
 
 //    String[] filenames = {
@@ -197,7 +197,7 @@ public class DatabaseManager  {
         //generate SQL queries for the foods
 
         //create the java class object for it
-        if (LIST_FOODS) converter.outputJavaObjectToText("DataExternalFoodDb","DataNutrientTable");
+        converter.outputJavaObjectToText("DataExternalFoodDb","DataNutrientTable");
 
         //output to SQL
         converter.createSQLiteDatabase("external_db","ExternalFoods");

@@ -5,43 +5,32 @@ public class DataTransactionalHistory {
     private String mFoodName;
     private String mEatendate;  //TODO change this to a date object later
     private String mEatentime;
-    private int  mPortionSize;
-    private int mEatenCalories;
-    private int mEatenProtein;
-    private int mEatenCarohydrates;
-    private int mEatenFats;
+    private String  mPortionSize;
+    private int mFoodTableID;
+
     //        transactional history (eaten)
     //          id
     //          food_name
     //          eaten_date
     //          eaten_time
     //          portion_size
-    //          calories_eaten
-    //          protein_eaten
-    //          carbohydrdates_eaten
-    //          fats_eaten
+    //          foodTableId
 
     //Transactional History Table:
-    public static final String COLNAME_ID = "_-d";     //reusable
+    public static final String COLNAME_ID = "_id";     //reusable
     public static final String COLNAME_FOODNAME = "FoodName";
     public static final String COLNAME_EATEN_DATE = "EatenDate";
     public static final String COLNAME_EATEN_TIME = "EatenTime";
-    public static final String COLNAME_EATEN_CALORIES = "EatenCalories";
-    public static final String COLNAME_EATEN_PROTEINS = "EatenProteins";
-    public static final String COLNAME_EATEN_CARBS = "EatenCarbohydrates";
-    public static final String COLNAME_EATEN_FATS = "EatenFats";
     public static final String COLNAME_PORTIONSIZE = "PortionSize";
+    public static final String COLNAME_FOODTABLE_ID = "FoodTableID";
 
-    public DataTransactionalHistory(int mId, String mFoodName, String mEatendate, String mEatentime, int mPortionSize, int mEatenCalories, int mEatenProtein, int mEatenCarohydrates, int mEatenFats) {
+    public DataTransactionalHistory(int mId, String mFoodName, String mEatendate, String mEatentime, String mPortionSize, int mFoodTableID) {
         this.mId = mId;
         this.mFoodName = mFoodName;
         this.mEatendate = mEatendate;
         this.mEatentime = mEatentime;
         this.mPortionSize = mPortionSize;
-        this.mEatenCalories = mEatenCalories;
-        this.mEatenProtein = mEatenProtein;
-        this.mEatenCarohydrates = mEatenCarohydrates;
-        this.mEatenFats = mEatenFats;
+        this.mFoodTableID = mFoodTableID;
     }
 
     public int getmId() {
@@ -76,43 +65,19 @@ public class DataTransactionalHistory {
         this.mEatentime = mEatentime;
     }
 
-    public int getmPortionSize() {
+    public String getmPortionSize() {
         return mPortionSize;
     }
 
-    public void setmPortionSize(int mPortionSize) {
+    public void setmPortionSize(String mPortionSize) {
         this.mPortionSize = mPortionSize;
     }
 
-    public int getmEatenCalories() {
-        return mEatenCalories;
+    public int getmFoodTableID() {
+        return mFoodTableID;
     }
 
-    public void setmEatenCalories(int mEatenCalories) {
-        this.mEatenCalories = mEatenCalories;
-    }
-
-    public int getmEatenProtein() {
-        return mEatenProtein;
-    }
-
-    public void setmEatenProtein(int mEatenProtein) {
-        this.mEatenProtein = mEatenProtein;
-    }
-
-    public int getmEatenFats() {
-        return mEatenFats;
-    }
-
-    public void setmEatenFats(int mEatenFats) {
-        this.mEatenFats = mEatenFats;
-    }
-
-    public int getmEatenCarohydrates() {
-        return mEatenCarohydrates;
-    }
-
-    public void setmEatenCarohydrates(int mEatenCarohydrates) {
-        this.mEatenCarohydrates = mEatenCarohydrates;
+    public void setmFoodTableID(int mFoodTableID) {
+        this.mFoodTableID = mFoodTableID;
     }
 }
