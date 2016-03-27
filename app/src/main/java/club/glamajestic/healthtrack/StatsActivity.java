@@ -20,7 +20,7 @@ import com.github.mikephil.charting.charts.PieChart;
 
 import java.util.ArrayList;
 
-public class StatsGui extends Activity {
+public class StatsActivity extends Activity {
 
     // 0 = day, 1 = week, 2 = month
     // day by default
