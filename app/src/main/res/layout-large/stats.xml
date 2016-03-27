@@ -50,11 +50,16 @@
                     </FrameLayout>
                 </LinearLayout>
 
-                <LinearLayout
+                <ScrollView
                     android:id="@+id/barChartTab"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"></LinearLayout>
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:id="@+id/barChartTabLinear"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"></LinearLayout>
+                </ScrollView>
 
             </FrameLayout>
         </LinearLayout>

@@ -1,19 +1,24 @@
 package club.glamajestic.healthtrack;
 
 import business.ClickSound;
+import business.GetGoals;
+import business.GoalsType;
 import business.InitPieChart;
 import business.Stats;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
+
+import java.util.ArrayList;
 
 public class StatsActivity extends Activity {
 
@@ -29,6 +34,9 @@ public class StatsActivity extends Activity {
     private Button monthButton;
     private float[] yData;
     private String[] xData;
+    private ProgressBar bars;
+    private TextView barTitles;
+    private TextView title;
     InitPieChart pie;
     ClickSound playSound;
 
@@ -62,6 +70,8 @@ public class StatsActivity extends Activity {
         spec.setIndicator("Goals");
         host.addTab(spec);
 
+        setGoalsTab(GetGoals.loadGoalsFromDBDay());
+
         x = (TextView) host.getTabWidget().getChildAt(1).findViewById(android.R.id.title);
         x.setTextSize(30);
 
@@ -86,9 +96,37 @@ public class StatsActivity extends Activity {
 
 
     }
+    public void setGoalsTab(ArrayList<GoalsType> list){
+        LinearLayout tab2 =(LinearLayout)findViewById(R.id.barChartTabLinear);
+        tab2.setPadding(10,10,10,10);
+        title = new TextView(this);
+        title.setTextSize(40);
+        title.setTextColor(Color.parseColor("#ffffff"));
+        title.setText("Your Progress");
+        tab2.addView(title);
+
+        for(int aa = 0; aa< list.size(); aa++) {
+            bars = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+            bars.setPadding(5, 10, 10, 5);
+            int progress = list.get(aa).progress;
+            int max = list.get(aa).max;
+            String title = list.get(aa).title;
+            bars.setMax(max);
+            bars.setProgress(progress);
+            barTitles = new TextView(this);
+            barTitles.setText(title+": " + progress + "/" +max);
+            tab2.addView(bars);
+            tab2.addView(barTitles);
+        }
+
+    }
+    public void clearGoalsTab(){
+        LinearLayout tab2 =(LinearLayout)findViewById(R.id.barChartTabLinear);
+        tab2.removeAllViews();
+    }
 
     public void onBackPressed() {
-        //Intent gameMode = new Intent(this, MainActivity.class);
+        //Intent gameMode = new Intent(this, StatsGuiActivity.class);
         //startActivity(gameMode);
         playSound.play();
 
@@ -103,8 +141,10 @@ public class StatsActivity extends Activity {
         dayButton.setAlpha(0.8f);
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.4f);
-        pie.addData(yData, xData,mode);
+        pie.addData(yData, xData, mode);
         playSound.play();
+        clearGoalsTab();
+        setGoalsTab(GetGoals.loadGoalsFromDBDay());
     }
 
     public void weekButton(View view) {
@@ -115,8 +155,10 @@ public class StatsActivity extends Activity {
         dayButton.setAlpha(0.4f);
         weekButton.setAlpha(0.8f);
         monthButton.setAlpha(0.4f);
-        pie.addData(yData, xData,mode);
+        pie.addData(yData, xData, mode);
         playSound.play();
+        clearGoalsTab();
+        setGoalsTab(GetGoals.loadGoalsFromDBWeek());
     }
 
     public void monthButton(View view) {
@@ -127,8 +169,10 @@ public class StatsActivity extends Activity {
         dayButton.setAlpha(0.4f);
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.8f);
-        pie.addData(yData, xData,mode);
+        pie.addData(yData, xData, mode);
         playSound.play();
+        clearGoalsTab();
+        setGoalsTab(GetGoals.loadGoalsFromDBMonth());
     }
     public void setTabColor(TabHost tabhost) {
 
