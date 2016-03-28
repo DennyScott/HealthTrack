@@ -43,7 +43,8 @@
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
-        android:background="#FFFFBC59" />
+        android:background="#FFFFBC59"
+        android:onClick="onClick" />
 
     <Button
         android:layout_width="fill_parent"
@@ -53,7 +54,8 @@
         android:layout_below="@+id/foodEntryButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
-        android:background="#FFFFBC59" />
+        android:background="#FFFFBC59"
+        android:onClick="onClick" />
 
 
 </RelativeLayout>

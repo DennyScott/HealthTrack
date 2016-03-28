@@ -3,6 +3,7 @@ package persistence;
 import java.util.ArrayList;
 
 public class DataFoods {
+    public static final String TABLE_NAME_FOODS = "ExternalFoods";
     private int mId;
     private String mFoodDescription;
     private String mMeasureDescription;
@@ -11,11 +12,14 @@ public class DataFoods {
     private DataNutrientTable mDataNutrientTable;
 
     public static final String COLNAME_ID = "_id";
-    public static final String COLNAME_FOODNAME = "FoodName";
-    public static final String COLNAME_CALORIES = "Calories";
-    public static final String COLNAME_PROTEINS = "Proteins";
-    public static final String COLNAME_CARBOHYDRATES = "Carbohydrates";
-    public static final String COLNAME_FATS = "Fat";
+    public static final String COLNAME_FOODNAME = "FoodDescription";
+    public static final String COLNAME_CALORIES = "ENERC_KCALValue";
+    public static final String COLNAME_PROTEINS = "PROCNTValue";
+    public static final String COLNAME_CARBOHYDRATES = "CHOCDFValue";
+    public static final String COLNAME_FATS = "FATValue";
+    public static final String COLNAME_CHOLESTROL = "CHOLEValue";
+    public static final String COLNAME_SODIUM = "NAValue";
+
 
 
     public int getmId() {

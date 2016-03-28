@@ -61,7 +61,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 
 
     //actual table names
-    public static final String TABLE_NAME_FOODS = "ExternalFoods";
+    public static final String  TABLE_NAME_FOODS = "ExternalFoods";
 
     //*table values
     //PersInfo Table:
@@ -153,9 +153,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         boolean extDbExist = checkDatabase();
 
         if (extDbExist) {
-            //database already exists
-            SQLiteDatabase.deleteDatabase(new File(DATABASE_PATH + DATABASE_NAME));
-            createDatabase();
+
         }
         else {
             //call the oncreate method to create the db

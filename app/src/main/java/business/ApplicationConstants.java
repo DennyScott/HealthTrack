@@ -20,5 +20,4 @@ public interface ApplicationConstants {
     double MIN_CALORIES = 1;
     double MAX_CALORIES = 10000;
     ////////////////////END CALCULATION CONSTANTS//////////////
-
 }
