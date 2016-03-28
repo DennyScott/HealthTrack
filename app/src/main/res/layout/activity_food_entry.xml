@@ -18,16 +18,25 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <MultiAutoCompleteTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/food_entry_food_name"
-        android:id="@+id/multiAutoCompleteTextView"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/button"
-        android:layout_toStartOf="@+id/button"
-        android:dropDownWidth="match_parent"
-        android:dropDownHeight="match_parent" />
+    <!--<MultiAutoCompleteTextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/multiAutoCompleteTextView"-->
+        <!--android:dropDownWidth="match_parent"-->
+        <!--android:dropDownHeight="match_parent"-->
+        <!--android:hint="@string/food_entry_food_name"-->
+        <!--android:clickable="false"-->
+        <!--android:enabled="false"-->
+        <!--android:labelFor="@id/foodSearchView"-->
+        <!--android:layout_alignRight="@+id/button"-->
+        <!--android:layout_alignEnd="@+id/button"-->
+        <!--android:maxLines="6"-->
+        <!--android:nestedScrollingEnabled="false"-->
+        <!--android:layout_above="@+id/datePicker"-->
+        <!--android:layout_toEndOf="@+id/editFat"-->
+        <!--android:layout_alignTop="@+id/editFat"-->
+        <!--android:layout_toRightOf="@+id/editFat" />-->
+
 
     <EditText
         android:layout_width="wrap_content"
@@ -35,10 +44,10 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editCals"
-        android:layout_below="@+id/multiAutoCompleteTextView"
-        android:layout_alignRight="@+id/multiAutoCompleteTextView"
-        android:layout_alignEnd="@+id/multiAutoCompleteTextView"
-        android:hint="@string/food_entry_nutrient_amount_calories" />
+        android:hint="@string/food_entry_nutrient_amount_calories"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/editCarbs"
+        android:layout_alignStart="@+id/editCarbs" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -46,10 +55,10 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editCarbs"
+        android:hint="@string/food_entry_nutrient_carbs"
         android:layout_below="@+id/editCals"
-        android:layout_alignRight="@+id/editCals"
-        android:layout_alignEnd="@+id/editCals"
-        android:hint="@string/food_entry_nutrient_carbs" />
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -57,10 +66,9 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editFat"
+        android:hint="@string/food_entry_nutrient_fat"
         android:layout_below="@+id/editCarbs"
-        android:layout_alignLeft="@+id/editCarbs"
-        android:layout_alignStart="@+id/editCarbs"
-        android:hint="@string/food_entry_nutrient_fat" />
+        android:layout_alignRight="@+id/button" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -68,10 +76,9 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editProtein"
+        android:hint="@string/food_entry_nutrient_protein"
         android:layout_below="@+id/editFat"
-        android:layout_alignRight="@+id/editFat"
-        android:layout_alignEnd="@+id/editFat"
-        android:hint="@string/food_entry_nutrient_protein" />
+        android:layout_alignRight="@+id/button" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -79,10 +86,9 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editCholesterol"
+        android:hint="@string/food_entry_nutrient_cholesterol"
         android:layout_below="@+id/editProtein"
-        android:layout_alignRight="@+id/editProtein"
-        android:layout_alignEnd="@+id/editProtein"
-        android:hint="@string/food_entry_nutrient_cholesterol" />
+        android:layout_alignRight="@+id/button" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -90,36 +96,141 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editSodium"
+        android:hint="@string/food_entry_nutient_sodium"
         android:layout_below="@+id/editCholesterol"
-        android:layout_alignRight="@+id/editCholesterol"
-        android:layout_alignEnd="@+id/editCholesterol"
-        android:hint="@string/food_entry_nutient_sodium" />
+        android:layout_alignRight="@+id/button" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/foodsSearchListView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/button"
+        android:layout_toStartOf="@+id/button"
+        android:layout_below="@+id/foodNameTextView"
+        android:layout_toLeftOf="@+id/button" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/foodNameTextView"
+        android:enabled="false"
+        android:hint="Food Name"
+        android:layout_below="@+id/editSodium"
+        android:layout_alignLeft="@+id/editSodium"
+        android:layout_alignStart="@+id/editSodium"
+        android:layout_alignRight="@+id/editSodium"
+        android:layout_alignEnd="@+id/editSodium" />
 
     <SearchView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/foodSearchView"
-        android:layout_alignBottom="@+id/multiAutoCompleteTextView"
-        android:layout_toRightOf="@+id/multiAutoCompleteTextView"
-        android:layout_toEndOf="@+id/multiAutoCompleteTextView" />
-
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePicker"
-        android:layout_alignTop="@+id/editCals"
-        android:layout_toLeftOf="@+id/editCals"
-        android:layout_toStartOf="@+id/editCals" />
+        android:clickable="true"
+        android:focusable="true"
+        android:queryHint="enter food name"
+        android:layout_below="@+id/foodNameTextView"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:layout_alignRight="@+id/foodNameTextView"
+        android:layout_alignEnd="@+id/foodNameTextView" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/editText"
-        android:layout_alignParentTop="true"
+        android:id="@+id/editCalsLabel"
+        android:hint="@string/food_entry_nutrient_amount_calories"
+        android:layout_alignTop="@+id/editCals"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint="@string/food_entry_serving_hint" />
+        android:layout_toLeftOf="@+id/editCals"
+        android:layout_toStartOf="@+id/editCals"
+        android:text="Calories (kCal)"
+        android:enabled="false" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editFatLabel"
+        android:enabled="false"
+        android:text="Fat (g)"
+        android:layout_alignTop="@+id/editFat"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/editFat"
+        android:layout_toStartOf="@+id/editFat" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editCholLabel"
+        android:hint="@string/food_entry_nutrient_carbs"
+        android:layout_below="@+id/editProteinLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/editCholesterol"
+        android:layout_toStartOf="@+id/editCholesterol"
+        android:text="Cholestrol (mg)"
+        android:enabled="false" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editSodiumLabel"
+        android:hint="@string/food_entry_nutrient_fat"
+        android:layout_below="@+id/editCholLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/editCholesterol"
+        android:layout_toStartOf="@+id/editCholesterol"
+        android:text="Sodium (g)"
+        android:enabled="false" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editProteinLabel"
+        android:hint="@string/food_entry_nutrient_protein"
+        android:layout_below="@+id/editFatLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/editFat"
+        android:layout_toStartOf="@+id/editFat"
+        android:text="Protein (g)"
+        android:enabled="false" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editCarbsLabel"
+        android:hint="@string/food_entry_nutrient_cholesterol"
+        android:layout_below="@+id/editCalsLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/editCals"
+        android:layout_toStartOf="@+id/editCals"
+        android:text="Carbs (g)"
+        android:enabled="false" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editFoodNameLabel"
+        android:hint="@string/food_entry_nutient_sodium"
+        android:layout_below="@+id/editSodiumLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/foodNameTextView"
+        android:layout_toStartOf="@+id/foodNameTextView"
+        android:text="Food Name"
+        android:enabled="false" />
 
 </RelativeLayout>
