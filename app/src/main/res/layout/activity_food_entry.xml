@@ -45,7 +45,6 @@
         android:ems="10"
         android:id="@+id/editCals"
         android:hint="@string/food_entry_nutrient_amount_calories"
-        android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/editCarbs"
         android:layout_alignStart="@+id/editCarbs" />
 
@@ -104,12 +103,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/foodsSearchListView"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/button"
-        android:layout_toStartOf="@+id/button"
         android:layout_below="@+id/foodNameTextView"
-        android:layout_toLeftOf="@+id/button" />
+        android:layout_toLeftOf="@+id/foodNameTextView"
+        android:layout_toStartOf="@+id/foodNameTextView" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -122,19 +121,6 @@
         android:layout_alignStart="@+id/editSodium"
         android:layout_alignRight="@+id/editSodium"
         android:layout_alignEnd="@+id/editSodium" />
-
-    <SearchView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/foodSearchView"
-        android:clickable="true"
-        android:focusable="true"
-        android:queryHint="enter food name"
-        android:layout_below="@+id/foodNameTextView"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:layout_alignRight="@+id/foodNameTextView"
-        android:layout_alignEnd="@+id/foodNameTextView" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -232,5 +218,18 @@
         android:layout_toStartOf="@+id/foodNameTextView"
         android:text="Food Name"
         android:enabled="false" />
+
+    <SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/foodSearchView"
+        android:clickable="true"
+        android:focusable="true"
+        android:queryHint="enter food name"
+        android:layout_below="@+id/foodNameTextView"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button"
+        android:layout_alignLeft="@+id/foodNameTextView"
+        android:layout_alignStart="@+id/foodNameTextView" />
 
 </RelativeLayout>

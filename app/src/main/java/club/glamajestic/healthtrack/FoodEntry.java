@@ -50,12 +50,6 @@ public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryT
         if (!foodname.equals("")) {
             String[] to =  {
                     DataFoods.COLNAME_FOODNAME,
-                    DataFoods.COLNAME_CALORIES,
-                    DataFoods.COLNAME_FATS,
-                    DataFoods.COLNAME_PROTEINS,
-                    DataFoods.COLNAME_CHOLESTROL,
-                    DataFoods.COLNAME_SODIUM,
-                    DataFoods.COLNAME_CARBOHYDRATES
             };
             String[] columns = {
                     DataFoods.COLNAME_ID,
@@ -68,13 +62,7 @@ public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryT
                     DataFoods.COLNAME_CARBOHYDRATES
             };
             int[] idsOfVIews = {
-                    R.id.editFoodNameLabel,
-                    R.id.editCalsLabel,
-                    R.id.editFatLabel,
-                    R.id.editProteinLabel,
-                    R.id.editCholLabel,
-                    R.id.editSodiumLabel,
-                    R.id.editCarbsLabel
+                    R.id.svFoodNameText
             };
             db = df.getReadableDatabase();
             final Cursor cursor = db.query(
@@ -88,7 +76,7 @@ public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryT
             );
             SimpleCursorAdapter foods = null;
             try {
-                foods = new SimpleCursorAdapter(this.getApplicationContext(), R.layout.activity_food_entry, cursor, to, idsOfVIews, 0);
+                foods = new SimpleCursorAdapter(this, R.layout.search_list_view, cursor, to, idsOfVIews, 0);
             }
             catch (RuntimeException e) {
                 Log.e("ok",e.toString(),e);
