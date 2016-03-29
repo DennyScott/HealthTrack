@@ -2,14 +2,14 @@ package club.glamajestic.healthtrack;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CursorAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -23,6 +23,8 @@ public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryT
     ListView multiListView;
     TextView tvFoodname, tvCalories, tvProteins, tvFats, tvSodium, tvChole, tvCarbs;
     SearchView searchView;
+    private Button saveButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,14 @@ public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryT
         tvSodium= (TextView) findViewById(R.id.editSodium);
         tvChole = (TextView) findViewById(R.id.editCholesterol);
         tvCarbs = (TextView) findViewById(R.id.editCarbs);
+
+        saveButton = (Button) findViewById(R.id.saveButton);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               onSavePressed(v);
+            }
+        });
     }
 
     private void doQuery(String foodname) {
@@ -149,5 +159,23 @@ public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryT
     public boolean onQueryTextChange(String newText) {
         doQuery(newText);
         return false;
+    }
+
+
+
+
+    /**
+     * The user is attempting to close the SearchView.
+     *
+     * @return true if the listener wants to override the default behavior of clearing the
+     * text field and dismissing it, false otherwise.
+     */
+    public void onSavePressed(View v) {
+        HTNotifications sodiumNotifer = new HTNotifications("Sodium",9000);
+        final EditText nameField = (EditText) findViewById(R.id.editSodium);
+        String name = nameField.getText().toString();
+        if(Integer.parseInt(name)>9000){
+            sodiumNotifer.throwNotification("Sodium",null,v.getContext());
+        }
     }
 }

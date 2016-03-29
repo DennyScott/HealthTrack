@@ -13,10 +13,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/food_entry_save"
-        android:id="@+id/button"
+        android:id="@+id/saveButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="club.glamajestic.healthtrack.FoodEntry.onClick"
+        android:nestedScrollingEnabled="false" />
 
     <!--<MultiAutoCompleteTextView-->
         <!--android:layout_width="wrap_content"-->
@@ -56,8 +58,8 @@
         android:id="@+id/editCarbs"
         android:hint="@string/food_entry_nutrient_carbs"
         android:layout_below="@+id/editCals"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_alignRight="@+id/saveButton"
+        android:layout_alignEnd="@+id/saveButton" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -67,7 +69,7 @@
         android:id="@+id/editFat"
         android:hint="@string/food_entry_nutrient_fat"
         android:layout_below="@+id/editCarbs"
-        android:layout_alignRight="@+id/button" />
+        android:layout_alignRight="@+id/saveButton" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -77,7 +79,7 @@
         android:id="@+id/editProtein"
         android:hint="@string/food_entry_nutrient_protein"
         android:layout_below="@+id/editFat"
-        android:layout_alignRight="@+id/button" />
+        android:layout_alignRight="@+id/saveButton" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -87,7 +89,7 @@
         android:id="@+id/editCholesterol"
         android:hint="@string/food_entry_nutrient_cholesterol"
         android:layout_below="@+id/editProtein"
-        android:layout_alignRight="@+id/button" />
+        android:layout_alignRight="@+id/saveButton" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -97,7 +99,7 @@
         android:id="@+id/editSodium"
         android:hint="@string/food_entry_nutient_sodium"
         android:layout_below="@+id/editCholesterol"
-        android:layout_alignRight="@+id/button" />
+        android:layout_alignRight="@+id/saveButton" />
 
     <ListView
         android:layout_width="wrap_content"
