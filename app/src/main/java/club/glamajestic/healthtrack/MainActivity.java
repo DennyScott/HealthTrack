@@ -125,6 +125,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+
+            Intent gameMode = new Intent(this, SettingsActivity.class);
+            startActivity(gameMode);
             return true;
         }
 
