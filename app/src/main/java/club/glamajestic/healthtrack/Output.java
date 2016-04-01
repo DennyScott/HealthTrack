@@ -20,6 +20,6 @@ public class Output {
         }
 
         Toast info = new Toast(context);
-        info.makeText(context, message, length).show();
+        Toast.makeText(context, message, length).show();
     }
 }

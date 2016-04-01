@@ -21,20 +21,13 @@ import business.InitPieChart;
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout stats;
     private PieChart chart;
-    private MediaPlayer backgroundMusic;
-    boolean soundEnabled;
     int charInitMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_stats);
-        boolean soundEnabled = false;
-        if(soundEnabled) {
-            backgroundMusic = MediaPlayer.create(this, R.raw.delta);
-            backgroundMusic.setLooping( true );
-            backgroundMusic.start();
-        }
+
         stats = (FrameLayout) findViewById(R.id.chartMainScreen);
         charInitMode = 3;
         InitPieChart pie = new InitPieChart(this, stats, chart, charInitMode);
@@ -75,30 +68,16 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @Override
     protected void onPause() {
         super.onPause();
-        if (this.isFinishing()){
-            if(backgroundMusic != null) {
-                backgroundMusic.stop();
-            }
-        }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-            if (backgroundMusic != null) {
-                if (backgroundMusic.isPlaying()) {
-                    backgroundMusic.pause();
-                }
-            }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(backgroundMusic != null){
-            if(!backgroundMusic.isPlaying()){
-                backgroundMusic.start();
-            }
-        }
     }
 
     @Override
