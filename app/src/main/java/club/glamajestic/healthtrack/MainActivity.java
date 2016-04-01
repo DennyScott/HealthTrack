@@ -1,8 +1,6 @@
 package club.glamajestic.healthtrack;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,17 +16,12 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import com.github.mikephil.charting.charts.PieChart;
 
-import business.ApplicationConstants;
-import business.ClickSound;
 import business.InitPieChart;
-import persistence.CsvConverter;
-import persistence.DatabaseDefinition;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout stats;
     private PieChart chart;
     private MediaPlayer backgroundMusic;
-    ClickSound playSound;
     boolean soundEnabled;
     int charInitMode;
 
@@ -36,7 +29,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_stats);
-        playSound = new ClickSound(this);
         boolean soundEnabled = false;
         if(soundEnabled) {
             backgroundMusic = MediaPlayer.create(this, R.raw.delta);
@@ -54,7 +46,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playSound.play();
                 startActivity(new Intent(MainActivity.this, Ate.class));
             }
         });
@@ -72,7 +63,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     @Override
     public void onBackPressed() {
-        playSound.play();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -120,8 +110,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        playSound.play();
-
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
@@ -137,8 +125,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        playSound.play();
-
         int id = item.getItemId();
 
         if (id == R.id.nav_goals) {

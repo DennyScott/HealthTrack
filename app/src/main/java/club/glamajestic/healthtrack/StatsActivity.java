@@ -1,6 +1,5 @@
 package club.glamajestic.healthtrack;
 
-import business.ClickSound;
 import business.GetGoals;
 import business.GoalsType;
 import business.InitPieChart;
@@ -38,8 +37,6 @@ public class StatsActivity extends Activity {
     private TextView barTitles;
     private TextView title;
     InitPieChart pie;
-    ClickSound playSound;
-
 
     /**
      * {@inheritDoc}
@@ -52,7 +49,6 @@ public class StatsActivity extends Activity {
         yData = StatsBus.getValues();
         xData = StatsBus.getKeys();
         setContentView(R.layout.stats);
-        playSound = new ClickSound(this);
         final TabHost host = (TabHost) findViewById(R.id.tabHost);
         host.setup();
         //Tab 1
@@ -118,8 +114,8 @@ public class StatsActivity extends Activity {
             tab2.addView(bars);
             tab2.addView(barTitles);
         }
-
     }
+
     public void clearGoalsTab(){
         LinearLayout tab2 =(LinearLayout)findViewById(R.id.barChartTabLinear);
         tab2.removeAllViews();
@@ -128,8 +124,6 @@ public class StatsActivity extends Activity {
     public void onBackPressed() {
         //Intent gameMode = new Intent(this, StatsGuiActivity.class);
         //startActivity(gameMode);
-        playSound.play();
-
         finish();
     }
 
@@ -142,7 +136,7 @@ public class StatsActivity extends Activity {
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.4f);
         pie.addData(yData, xData, mode);
-        playSound.play();
+
         clearGoalsTab();
         setGoalsTab(GetGoals.loadGoalsFromDBDay());
     }
@@ -156,7 +150,7 @@ public class StatsActivity extends Activity {
         weekButton.setAlpha(0.8f);
         monthButton.setAlpha(0.4f);
         pie.addData(yData, xData, mode);
-        playSound.play();
+
         clearGoalsTab();
         setGoalsTab(GetGoals.loadGoalsFromDBWeek());
     }
@@ -170,7 +164,7 @@ public class StatsActivity extends Activity {
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.8f);
         pie.addData(yData, xData, mode);
-        playSound.play();
+
         clearGoalsTab();
         setGoalsTab(GetGoals.loadGoalsFromDBMonth());
     }
