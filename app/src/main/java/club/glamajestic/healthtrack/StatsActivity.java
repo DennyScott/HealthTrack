@@ -104,9 +104,9 @@ public class StatsActivity extends Activity {
         for(int aa = 0; aa< list.size(); aa++) {
             bars = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
             bars.setPadding(5, 10, 10, 5);
-            int progress = list.get(aa).progress;
-            int max = list.get(aa).max;
-            String title = list.get(aa).title;
+            int progress = list.get(aa).getProgress();
+            int max = list.get(aa).getMax();
+            String title = list.get(aa).getTitle();
             bars.setMax(max);
             bars.setProgress(progress);
             barTitles = new TextView(this);

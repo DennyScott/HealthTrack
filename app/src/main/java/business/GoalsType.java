@@ -1,15 +1,37 @@
 package business;
 
-/**
- * Created by Khaled on 3/26/2016.
- */
 public class GoalsType {
-    public int max;
-    public int progress;
-    public String title;
-    public GoalsType(int p, int m, String t){
-        max = m;
-        progress = p;
-        title = t;
+    private int max;
+    private int progress;
+    private String title;
+
+    public GoalsType(int progress, int max, String title){
+        this.max = max;
+        this.progress = progress;
+        this.title = title;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

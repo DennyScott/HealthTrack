@@ -3,41 +3,67 @@ package business;
 import java.util.ArrayList;
 
 /**
- * Created by Khaled on 3/26/2016.
+ * TODO
+ * Need to use values based on actual user goals and the foods they ate
  */
 public class GetGoals {
-    // to be done
-    // get from actual DB
-    // User sets monthly, the rest should just be interpoplates,
-    // as in week does the same thing as month but divides by 4
+    private static int DAY = 1;
+    private static int DAYS_IN_WEEK = 7;
+    private static int DAYS_IN_MONTH = 30;
+    private static int DEFAULT_DAILY_CALORIES = 2000;
+
     public static ArrayList<GoalsType> loadGoalsFromDBDay(){
-        ArrayList<GoalsType> goals = new ArrayList<GoalsType>();
-        goals.add(new GoalsType(70,200, "Daily protein intake"));
-        goals.add(new GoalsType(25,80, "Daily fat intake"));
-        goals.add(new GoalsType(30,600, "Daily carbs intake"));
-        goals.add(new GoalsType(45,60, "Daily sugar intake"));
-        goals.add(new GoalsType(2,8, "Daily iron intake"));
-        return goals;
-
+        return getGoals(DAY);
     }
+
     public static ArrayList<GoalsType> loadGoalsFromDBWeek(){
-        ArrayList<GoalsType> goals = new ArrayList<GoalsType>();
-        goals.add(new GoalsType(70,1400, "Weekly protein intake"));
-        goals.add(new GoalsType(25,560, "Weekly fat intake"));
-        goals.add(new GoalsType(30,4200, "Weekly carbs intake"));
-        goals.add(new GoalsType(45,420, "Weekly sugar intake"));
-        goals.add(new GoalsType(2,56, "Weekly iron intake"));
-        return goals;
-
+        return getGoals(DAYS_IN_WEEK);
     }
-    public static ArrayList<GoalsType> loadGoalsFromDBMonth(){
-        ArrayList<GoalsType> goals = new ArrayList<GoalsType>();
-        goals.add(new GoalsType(70,5600, "Monthly protein intake"));
-        goals.add(new GoalsType(25,2240, "Monthly fat intake"));
-        goals.add(new GoalsType(30,16800, "Monthly carbs intake"));
-        goals.add(new GoalsType(45,1680, "Monthly sugar intake"));
-        goals.add(new GoalsType(2,224, "Monthly iron intake"));
-        return goals;
 
+    public static ArrayList<GoalsType> loadGoalsFromDBMonth(){
+        return getGoals(DAYS_IN_MONTH);
+    }
+
+    private static ArrayList<GoalsType> getGoals(int numDays) {
+        ArrayList<GoalsType> goals = new ArrayList<GoalsType>();
+
+        goals.add(calorieGoal(numDays));
+
+        return goals;
+    }
+
+    private static GoalsType calorieGoal(int numDays) {
+        GoalsType gt;
+        CalcCaloriesPerDay ccpd;
+        int finalCalories;
+
+        String title;
+        switch(numDays) {
+            case 1:
+                title = "Daily calories intake";
+                break;
+            case 7:
+                title = "Weekly calories intake";
+                break;
+            case 30:
+                title = "Monthly calories intake";
+                break;
+            default:
+                title = "Invalid number of days";
+                break;
+        }
+
+        ccpd = new CalcCaloriesPerDay();
+        if(ccpd.calculate() <= 0) {
+            finalCalories = DEFAULT_DAILY_CALORIES * numDays;
+            title += ": Error calculating calorie intake, " +
+                    "used default intake value";
+        } else {
+            finalCalories = (int) ccpd.calculate() * numDays;
+        }
+
+        gt = new GoalsType(finalCalories/numDays, finalCalories, title);
+
+        return gt;
     }
 }

@@ -22,6 +22,10 @@ public class CalcCaloriesPerDay implements Calculator, ApplicationConstants {
     private double weightSustainValue;
     private int targetCalories;
 
+    public CalcCaloriesPerDay() {
+
+    }
+
     public CalcCaloriesPerDay(GoalsAccess goals, int targetWeight, int targetWeeks, int weight, double weightSustainValue, int targetCalories) {
         this.goals = goals;
         this.targetWeight = targetWeight;
@@ -78,4 +82,3 @@ public class CalcCaloriesPerDay implements Calculator, ApplicationConstants {
         return targetCalories;
     }
 }
-

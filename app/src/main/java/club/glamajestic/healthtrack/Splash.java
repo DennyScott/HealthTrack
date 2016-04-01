@@ -48,20 +48,18 @@ public class Splash extends Activity{
             if(!dir.exists()){
                 dir.mkdir();
             }
+
             File userInfo = new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userInfo.ser");
             if (userInfo.exists()) {
                 Intent gameMode = new Intent(this, MainActivity.class);
                 startActivity(gameMode);
-                finish();
-
             } else {
                 Intent gameMode = new Intent(this, GoalsUserInfo.class);
                 startActivity(gameMode);
-                finish();
             }
+
             finish();
-        }
-        catch(Exception e){
+        } catch(Exception e){
             e.printStackTrace();
         }
     }
