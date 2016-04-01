@@ -45,7 +45,7 @@ public class CalcBMR implements Calculator, ApplicationConstants {
 
         UnitConverter uc = new UnitConverter();
 
-        setWeight(UnitConverter.lbToKg(getUser().getWeight()));
+        setWeight(uc.lbToKg(getUser().getWeight()));
         setHeight(getUser().getHeight());
         setAge(getUser().getAge());
         setGender(getUser().getGender());

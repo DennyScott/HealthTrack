@@ -40,7 +40,7 @@ public class CsvConverter {
         outCols = new ArrayList<String>();
         files = new ArrayList<String>();
         foods = new Foods(commonCols, allCols, outCols, files);
-        CsvConverter.foodsPattern = foodsPattern;
+        this.foodsPattern = foodsPattern;
 //        getFiles();
         //reorganize columns
         //reorderColumns();
