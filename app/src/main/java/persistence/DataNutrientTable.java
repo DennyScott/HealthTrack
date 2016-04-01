@@ -1,135 +1,177 @@
 package persistence;
 
 public class DataNutrientTable {
-        private String mPROCNT;
-        private String mPROCNTUnit;
-        private String mPROCNTValue;
-        private String mFAT;
-        private String mFATUnit;
-        private String mFATValue;
-        private String mCHOCDF;
-        private String mCHOCDFUnit;
-        private String mCHOCDFValue;
-        private String mENERC_KCAL;
-        private String mENERC_KCALUnit;
-        private String mENERC_KCALValue;
-        private String mALC;
-        private String mALCUnit;
-        private String mALCValue;
-        private String mWATER;
-        private String mWATERUnit;
-        private String mWATERValue;
-        private String mCAFFN;
-        private String mCAFFNUnit;
-        private String mCAFFNValue;
-        private String mENERC_KJ;
-        private String mENERC_KJUnit;
-        private String mENERC_KJValue;
-        private String mSUGAR;
-        private String mSUGARUnit;
-        private String mSUGARValue;
-        private String mFIBTG;
-        private String mFIBTGUnit;
-        private String mFIBTGValue;
-        private String mCA;
-        private String mCAUnit;
-        private String mCAValue;
-        private String mFE;
-        private String mFEUnit;
-        private String mFEValue;
-        private String mMG;
-        private String mMGUnit;
-        private String mMGValue;
-        private String mP;
-        private String mPUnit;
-        private String mPValue;
-        private String mK;
-        private String mKUnit;
-        private String mKValue;
-        private String mNA;
-        private String mNAUnit;
-        private String mNAValue;
-        private String mZN;
-        private String mZNUnit;
-        private String mZNValue;
-        private String mMN;
-        private String mMNUnit;
-        private String mMNValue;
-        private String mVITC;
-        private String mVITCUnit;
-        private String mVITCValue;
-        private String mTHIA;
-        private String mTHIAUnit;
-        private String mTHIAValue;
-        private String mRIBF;
-        private String mRIBFUnit;
-        private String mRIBFValue;
-        private String mVITB6A;
-        private String mVITB6AUnit;
-        private String mVITB6AValue;
-        private String mVITB12;
-        private String mVITB12Unit;
-        private String mVITB12Value;
-        private String mVITK;
-        private String mVITKUnit;
-        private String mVITKValue;
-        private String mFOLAC;
-        private String mFOLACUnit;
-        private String mFOLACValue;
-        private String mCHOLE;
-        private String mCHOLEUnit;
-        private String mCHOLEValue;
-        private String mFATRN;
-        private String mFATRNUnit;
-        private String mFATRNValue;
-        private String mFASAT;
-        private String mFASATUnit;
-        private String mFASATValue;
-        private String mFAMS;
-        private String mFAMSUnit;
-        private String mFAMSValue;
-        private String mFAPU;
-        private String mFAPUUnit;
-        private String mFAPUValue;
-        private String mFOLFD;
-        private String mFOLFDUnit;
-        private String mFOLFDValue;
-        private String mERGCAL;
-        private String mERGCALUnit;
-        private String mERGCALValue;
-        private String mSUCS;
-        private String mSUCSUnit;
-        private String mSUCSValue;
-        private String mGLUS;
-        private String mGLUSUnit;
-        private String mGLUSValue;
-        private String mFRUS;
-        private String mFRUSUnit;
-        private String mFRUSValue;
-        private String mLACS;
-        private String mLACSUnit;
-        private String mLACSValue;
-        private String mGALS;
-        private String mGALSUnit;
-        private String mGALSValue;
-        private String mSTARCH;
-        private String mSTARCHUnit;
-        private String mSTARCHValue;
-        private String mF6D0;
-        private String mF6D0Unit;
-        private String mF6D0Value;
-        private String mF8D0;
-        private String mF8D0Unit;
-        private String mF8D0Value;
-        private String mF10D0;
-        private String mF10D0Unit;
-        private String mF10D0Value;
-        private String mF24D0;
-        private String mF24D0Unit;
-        private String mF24D0Value;
-        private String mMNSAC;
-        private String mMNSACUnit;
-        private String mMNSACValue;
+    private String mPROCNT;
+    private String mPROCNTUnit;
+    private String mPROCNTValue;
+    private String mFAT;
+    private String mFATUnit;
+    private String mFATValue;
+    private String mCHOCDF;
+    private String mCHOCDFUnit;
+    private String mCHOCDFValue;
+    private String mENERC_KCAL;
+    private String mENERC_KCALUnit;
+    private String mENERC_KCALValue;
+    private String mALC;
+    private String mALCUnit;
+    private String mALCValue;
+    private String mWATER;
+    private String mWATERUnit;
+    private String mWATERValue;
+    private String mCAFFN;
+    private String mCAFFNUnit;
+    private String mCAFFNValue;
+    private String mENERC_KJ;
+    private String mENERC_KJUnit;
+    private String mENERC_KJValue;
+    private String mSUGAR;
+    private String mSUGARUnit;
+    private String mSUGARValue;
+    private String mFIBTG;
+    private String mFIBTGUnit;
+    private String mFIBTGValue;
+    private String mCA;
+    private String mCAUnit;
+    private String mCAValue;
+    private String mFE;
+    private String mFEUnit;
+    private String mFEValue;
+    private String mMG;
+    private String mMGUnit;
+    private String mMGValue;
+    private String mP;
+    private String mPUnit;
+    private String mPValue;
+    private String mK;
+    private String mKUnit;
+    private String mKValue;
+    private String mNA;
+    private String mNAUnit;
+    private String mNAValue;
+    private String mZN;
+    private String mZNUnit;
+    private String mZNValue;
+    private String mMN;
+    private String mMNUnit;
+    private String mMNValue;
+    private String mVITC;
+    private String mVITCUnit;
+    private String mVITCValue;
+    private String mTHIA;
+    private String mTHIAUnit;
+    private String mTHIAValue;
+    private String mRIBF;
+    private String mRIBFUnit;
+    private String mRIBFValue;
+    private String mVITB6A;
+    private String mVITB6AUnit;
+    private String mVITB6AValue;
+    private String mVITB12;
+    private String mVITB12Unit;
+    private String mVITB12Value;
+    private String mVITK;
+    private String mVITKUnit;
+    private String mVITKValue;
+    private String mFOLAC;
+    private String mFOLACUnit;
+    private String mFOLACValue;
+    private String mCHOLE;
+    private String mCHOLEUnit;
+    private String mCHOLEValue;
+    private String mFATRN;
+    private String mFATRNUnit;
+    private String mFATRNValue;
+    private String mFASAT;
+    private String mFASATUnit;
+    private String mFASATValue;
+    private String mFAMS;
+    private String mFAMSUnit;
+    private String mFAMSValue;
+    private String mFAPU;
+    private String mFAPUUnit;
+    private String mFAPUValue;
+    private String mFOLFD;
+    private String mFOLFDUnit;
+    private String mFOLFDValue;
+    private String mERGCAL;
+    private String mERGCALUnit;
+    private String mERGCALValue;
+    private String mSUCS;
+    private String mSUCSUnit;
+    private String mSUCSValue;
+    private String mGLUS;
+    private String mGLUSUnit;
+    private String mGLUSValue;
+    private String mFRUS;
+    private String mFRUSUnit;
+    private String mFRUSValue;
+    private String mLACS;
+    private String mLACSUnit;
+    private String mLACSValue;
+    private String mGALS;
+    private String mGALSUnit;
+    private String mGALSValue;
+    private String mSTARCH;
+    private String mSTARCHUnit;
+    private String mSTARCHValue;
+    private String mF8D0;
+    private String mF8D0Unit;
+    private String mF8D0Value;
+    private String mF10D0;
+    private String mF10D0Unit;
+    private String mF10D0Value;
+    private String mF12D0;
+    private String mF12D0Unit;
+    private String mF12D0Value;
+    private String mVITA_RAE;
+    private String mVITA_RAEUnit;
+    private String mVITA_RAEValue;
+    private String mF18D1T;
+    private String mF18D1TUnit;
+    private String mF18D1TValue;
+    private String mF6D0;
+    private String mF6D0Unit;
+    private String mF6D0Value;
+    private String mF24D0;
+    private String mF24D0Unit;
+    private String mF24D0Value;
+    private String mF16D1T;
+    private String mF16D1TUnit;
+    private String mF16D1TValue;
+    private String mF4D0;
+    private String mF4D0Unit;
+    private String mF4D0Value;
+    private String mF17D0;
+    private String mF17D0Unit;
+    private String mF17D0Value;
+    private String mSITSTR;
+    private String mSITSTRUnit;
+    private String mSITSTRValue;
+    private String mMNSAC;
+    private String mMNSACUnit;
+    private String mMNSACValue;
+    private String mTOCPHD;
+    private String mTOCPHDUnit;
+    private String mTOCPHDValue;
+    private String mOXALAC;
+    private String mOXALACUnit;
+    private String mOXALACValue;
+    private String mFOLDFE;
+    private String mFOLDFEUnit;
+    private String mFOLDFEValue;
+    private String mF15D0;
+    private String mF15D0Unit;
+    private String mF15D0Value;
+    private String mF14D0;
+    private String mF14D0Unit;
+    private String mF14D0Value;
+    private String mDISAC;
+    private String mDISACUnit;
+    private String mDISACValue;
+    private String mF24D1C;
+    private String mF24D1CUnit;
+    private String mF24D1CValue;
 
     public String getmPROCNT() {
         return mPROCNT;
@@ -1161,5 +1203,341 @@ public class DataNutrientTable {
 
     public void setmMNSACValue(String mMNSACValue) {
         this.mMNSACValue = mMNSACValue;
+    }
+
+    public String getmF12D0() {
+        return mF12D0;
+    }
+
+    public void setmF12D0(String mF12D0) {
+        this.mF12D0 = mF12D0;
+    }
+
+    public String getmF12D0Unit() {
+        return mF12D0Unit;
+    }
+
+    public void setmF12D0Unit(String mF12D0Unit) {
+        this.mF12D0Unit = mF12D0Unit;
+    }
+
+    public String getmF12D0Value() {
+        return mF12D0Value;
+    }
+
+    public void setmF12D0Value(String mF12D0Value) {
+        this.mF12D0Value = mF12D0Value;
+    }
+
+    public String getmVITA_RAE() {
+        return mVITA_RAE;
+    }
+
+    public void setmVITA_RAE(String mVITA_RAE) {
+        this.mVITA_RAE = mVITA_RAE;
+    }
+
+    public String getmVITA_RAEUnit() {
+        return mVITA_RAEUnit;
+    }
+
+    public void setmVITA_RAEUnit(String mVITA_RAEUnit) {
+        this.mVITA_RAEUnit = mVITA_RAEUnit;
+    }
+
+    public String getmVITA_RAEValue() {
+        return mVITA_RAEValue;
+    }
+
+    public void setmVITA_RAEValue(String mVITA_RAEValue) {
+        this.mVITA_RAEValue = mVITA_RAEValue;
+    }
+
+    public String getmF18D1T() {
+        return mF18D1T;
+    }
+
+    public void setmF18D1T(String mF18D1T) {
+        this.mF18D1T = mF18D1T;
+    }
+
+    public String getmF18D1TUnit() {
+        return mF18D1TUnit;
+    }
+
+    public void setmF18D1TUnit(String mF18D1TUnit) {
+        this.mF18D1TUnit = mF18D1TUnit;
+    }
+
+    public String getmF18D1TValue() {
+        return mF18D1TValue;
+    }
+
+    public void setmF18D1TValue(String mF18D1TValue) {
+        this.mF18D1TValue = mF18D1TValue;
+    }
+
+    public String getmF16D1T() {
+        return mF16D1T;
+    }
+
+    public void setmF16D1T(String mF16D1T) {
+        this.mF16D1T = mF16D1T;
+    }
+
+    public String getmF16D1TUnit() {
+        return mF16D1TUnit;
+    }
+
+    public void setmF16D1TUnit(String mF16D1TUnit) {
+        this.mF16D1TUnit = mF16D1TUnit;
+    }
+
+    public String getmF16D1TValue() {
+        return mF16D1TValue;
+    }
+
+    public void setmF16D1TValue(String mF16D1TValue) {
+        this.mF16D1TValue = mF16D1TValue;
+    }
+
+    public String getmF4D0() {
+        return mF4D0;
+    }
+
+    public void setmF4D0(String mF4D0) {
+        this.mF4D0 = mF4D0;
+    }
+
+    public String getmF4D0Unit() {
+        return mF4D0Unit;
+    }
+
+    public void setmF4D0Unit(String mF4D0Unit) {
+        this.mF4D0Unit = mF4D0Unit;
+    }
+
+    public String getmF4D0Value() {
+        return mF4D0Value;
+    }
+
+    public void setmF4D0Value(String mF4D0Value) {
+        this.mF4D0Value = mF4D0Value;
+    }
+
+    public String getmF17D0() {
+        return mF17D0;
+    }
+
+    public void setmF17D0(String mF17D0) {
+        this.mF17D0 = mF17D0;
+    }
+
+    public String getmF17D0Unit() {
+        return mF17D0Unit;
+    }
+
+    public void setmF17D0Unit(String mF17D0Unit) {
+        this.mF17D0Unit = mF17D0Unit;
+    }
+
+    public String getmF17D0Value() {
+        return mF17D0Value;
+    }
+
+    public void setmF17D0Value(String mF17D0Value) {
+        this.mF17D0Value = mF17D0Value;
+    }
+
+    public String getmSITSTR() {
+        return mSITSTR;
+    }
+
+    public void setmSITSTR(String mSITSTR) {
+        this.mSITSTR = mSITSTR;
+    }
+
+    public String getmSITSTRUnit() {
+        return mSITSTRUnit;
+    }
+
+    public void setmSITSTRUnit(String mSITSTRUnit) {
+        this.mSITSTRUnit = mSITSTRUnit;
+    }
+
+    public String getmSITSTRValue() {
+        return mSITSTRValue;
+    }
+
+    public void setmSITSTRValue(String mSITSTRValue) {
+        this.mSITSTRValue = mSITSTRValue;
+    }
+
+    public String getmTOCPHD() {
+        return mTOCPHD;
+    }
+
+    public void setmTOCPHD(String mTOCPHD) {
+        this.mTOCPHD = mTOCPHD;
+    }
+
+    public String getmTOCPHDUnit() {
+        return mTOCPHDUnit;
+    }
+
+    public void setmTOCPHDUnit(String mTOCPHDUnit) {
+        this.mTOCPHDUnit = mTOCPHDUnit;
+    }
+
+    public String getmTOCPHDValue() {
+        return mTOCPHDValue;
+    }
+
+    public void setmTOCPHDValue(String mTOCPHDValue) {
+        this.mTOCPHDValue = mTOCPHDValue;
+    }
+
+    public String getmOXALAC() {
+        return mOXALAC;
+    }
+
+    public void setmOXALAC(String mOXALAC) {
+        this.mOXALAC = mOXALAC;
+    }
+
+    public String getmOXALACUnit() {
+        return mOXALACUnit;
+    }
+
+    public void setmOXALACUnit(String mOXALACUnit) {
+        this.mOXALACUnit = mOXALACUnit;
+    }
+
+    public String getmOXALACValue() {
+        return mOXALACValue;
+    }
+
+    public void setmOXALACValue(String mOXALACValue) {
+        this.mOXALACValue = mOXALACValue;
+    }
+
+    public String getmFOLDFE() {
+        return mFOLDFE;
+    }
+
+    public void setmFOLDFE(String mFOLDFE) {
+        this.mFOLDFE = mFOLDFE;
+    }
+
+    public String getmFOLDFEUnit() {
+        return mFOLDFEUnit;
+    }
+
+    public void setmFOLDFEUnit(String mFOLDFEUnit) {
+        this.mFOLDFEUnit = mFOLDFEUnit;
+    }
+
+    public String getmFOLDFEValue() {
+        return mFOLDFEValue;
+    }
+
+    public void setmFOLDFEValue(String mFOLDFEValue) {
+        this.mFOLDFEValue = mFOLDFEValue;
+    }
+
+    public String getmF15D0() {
+        return mF15D0;
+    }
+
+    public void setmF15D0(String mF15D0) {
+        this.mF15D0 = mF15D0;
+    }
+
+    public String getmF15D0Unit() {
+        return mF15D0Unit;
+    }
+
+    public void setmF15D0Unit(String mF15D0Unit) {
+        this.mF15D0Unit = mF15D0Unit;
+    }
+
+    public String getmF15D0Value() {
+        return mF15D0Value;
+    }
+
+    public void setmF15D0Value(String mF15D0Value) {
+        this.mF15D0Value = mF15D0Value;
+    }
+
+    public String getmF14D0() {
+        return mF14D0;
+    }
+
+    public void setmF14D0(String mF14D0) {
+        this.mF14D0 = mF14D0;
+    }
+
+    public String getmF14D0Unit() {
+        return mF14D0Unit;
+    }
+
+    public void setmF14D0Unit(String mF14D0Unit) {
+        this.mF14D0Unit = mF14D0Unit;
+    }
+
+    public String getmF14D0Value() {
+        return mF14D0Value;
+    }
+
+    public void setmF14D0Value(String mF14D0Value) {
+        this.mF14D0Value = mF14D0Value;
+    }
+
+    public String getmDISAC() {
+        return mDISAC;
+    }
+
+    public void setmDISAC(String mDISAC) {
+        this.mDISAC = mDISAC;
+    }
+
+    public String getmDISACUnit() {
+        return mDISACUnit;
+    }
+
+    public void setmDISACUnit(String mDISACUnit) {
+        this.mDISACUnit = mDISACUnit;
+    }
+
+    public String getmDISACValue() {
+        return mDISACValue;
+    }
+
+    public void setmDISACValue(String mDISACValue) {
+        this.mDISACValue = mDISACValue;
+    }
+
+    public String getmF24D1C() {
+        return mF24D1C;
+    }
+
+    public void setmF24D1C(String mF24D1C) {
+        this.mF24D1C = mF24D1C;
+    }
+
+    public String getmF24D1CUnit() {
+        return mF24D1CUnit;
+    }
+
+    public void setmF24D1CUnit(String mF24D1CUnit) {
+        this.mF24D1CUnit = mF24D1CUnit;
+    }
+
+    public String getmF24D1CValue() {
+        return mF24D1CValue;
+    }
+
+    public void setmF24D1CValue(String mF24D1CValue) {
+        this.mF24D1CValue = mF24D1CValue;
     }
 }

@@ -89,12 +89,10 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 
 
     private Context dbContext;
-    private SQLiteDatabase.CursorFactory cursorFactory;
 
 
     public DatabaseDefinition(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, DatabaseErrorHandler errorHandler) {
         super(context, name, factory, version, errorHandler);
-        cursorFactory = factory;
         dbContext = context;
         loadDatabasePath();
     }

@@ -12,8 +12,8 @@ public class DataExternalFoods extends DataFoods{
         //          fats
  */
     public DataExternalFoods(int id, String food_name, int calories, int proteins, int carbohydrates, int fats) {
+        super();
         this.setmId(id);
         this.setmFoodDescription(food_name);
-
     }
 }
