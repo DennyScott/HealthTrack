@@ -95,6 +95,7 @@ public class UserDataAccess implements Serializable, ApplicationConstants {
     }
 
     public void setAll(String name, int age, int height, int weight, int gender) {
+        if (user == null) user = new UserData();
         user.setName(name);
         user.setAge(age);
         user.setHeight(height);
