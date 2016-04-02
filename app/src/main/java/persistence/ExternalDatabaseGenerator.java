@@ -224,6 +224,32 @@ public class ExternalDatabaseGenerator {
 
         if (LIST_FOODS) converter.listFoods("7removalOfSymbolFrenchDecimal.txt");
 
+        //BUGFIX for SQL generation:
+        // for some reason, the following nutrients still bypass the deletion
+        //  `SITSTR`
+        converter.deleteColumnsWithString("SITSTR");
+        //  'F14D0'
+        converter.deleteColumnsWithString("F14D0");
+        //  'FOLDFE'
+        converter.deleteColumnsWithString("FOLDFE");
+        //  'F16D1T'
+        converter.deleteColumnsWithString("F16D1T");
+        //  'VITA_RAE'
+        converter.deleteColumnsWithString("VITA_RAE");
+        //  'F18D1T'
+        converter.deleteColumnsWithString("F18D1T");
+        //  'F4D0'
+        converter.deleteColumnsWithString("F4D0");
+        //  'F6D0'
+        converter.deleteColumnsWithString("F6D0");
+        //  'F12D0'
+        converter.deleteColumnsWithString("F12D0");
+        //  'F10D0'
+        converter.deleteColumnsWithString("F10D0");
+        //  'F8D0'
+        converter.deleteColumnsWithString("F8D0");
+
+
         //generate SQL queries for the foods
 
         //create the java class object for it

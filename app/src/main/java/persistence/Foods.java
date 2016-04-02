@@ -122,16 +122,6 @@ public class Foods {
         }
     }
 
-
-    /**
-     * If the first few files opened were the nutrient-related files, we
-     *  can transfer their contents over to the other array list to append their values later.
-     *  This is because the nutrients need their own colum headings
-     */
-    public void transferCurrentFoodsToNutrients() {
-
-    }
-
     public void addUniqueData(int indexOfFood, ArrayList<String> filecols, String[] data) {
         Foods oldFood = entries.get(indexOfFood);
         String fileData;

@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Scanner;
+//TODO fix last nutrient error
 
 public class CsvConverter {
     private static final int COLUMNS_BEFORE_NUTRIENT_DATA = 4;
@@ -575,7 +576,6 @@ public class CsvConverter {
                     if this food matches any of the string patterns, keep it
                     if it doesnt
                         delete this and the next 7 elements
-
          */
         int i;
         Iterator<String> colIt;
@@ -583,7 +583,7 @@ public class CsvConverter {
         int indexOfPrev;
         String checkNutrientName;
         ArrayList<Integer> removeValues;
-        int removeValsSize;
+
         int thisIndexToRemove;
 
         String col;
@@ -645,8 +645,7 @@ public class CsvConverter {
             // values can still exist
             //store the size so it doesnt change
 
-            removeValsSize = removeValues.size();
-            for (int j = 0; j < removeValsSize; j++) {
+            while (removeValues.size() > 0) {
                 //get the last index and remove it
                 thisIndexToRemove = removeValues.get(removeValues.size() - 1);
                 removeValues.remove(removeValues.size() -1);
