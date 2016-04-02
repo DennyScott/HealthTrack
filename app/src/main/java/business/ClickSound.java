@@ -19,7 +19,7 @@ public class ClickSound implements ApplicationConstants {
         }else{
             createOldSoundPool();
         }
-        play = sp.load(ctx, R.raw.onclick, 1);
+        play = sp.load(ctx, R.raw.blip, 1);
 
 
     }
