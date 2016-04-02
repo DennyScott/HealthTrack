@@ -29,9 +29,11 @@ public class InitPieChart implements  ApplicationConstants {
     String[] putKeys;
     String[] putUnits;
     float[] putValues;
+    String[] putString;
     float[] y;
     String[] x;
     ClickSound playSound;
+    StatsDataAccess dataAccess = new StatsDataAccess();
     public InitPieChart(final Context ctx, FrameLayout f, PieChart pie, final int charInitMode){
         STATS_BUS = new Stats();
         this.ctx = ctx;
@@ -86,11 +88,10 @@ public class InitPieChart implements  ApplicationConstants {
                         putKeys = STATS_BUS.getOtherKeys();
                         putUnits = STATS_BUS.getOtherUnits();
                         putValues = STATS_BUS.getOtherValues();
+                        putString = null;
                     }
                     else{
-                        putKeys = StatsDataAccess.getFoodNames(mode, STATS_BUS.getKeys()[e.getXIndex()]);
-                        putUnits = StatsDataAccess.getFoodUnits(mode, STATS_BUS.getKeys()[e.getXIndex()]);
-                        putValues = StatsDataAccess.getFoodValues(mode, STATS_BUS.getKeys()[e.getXIndex()]);
+                        putString = dataAccess.getFoods(mode, STATS_BUS.getKeys()[e.getXIndex()]);
                     }
                     openList(ctx);
                 }
@@ -183,6 +184,7 @@ public class InitPieChart implements  ApplicationConstants {
         gameMode.putExtra("keys",putKeys);
         gameMode.putExtra("units",putUnits);
         gameMode.putExtra("values",putValues);
+        gameMode.putExtra("foods",putString);
         ctx.startActivity(gameMode);
     }
 }
