@@ -17,6 +17,7 @@ public class Stats implements ApplicationConstants {
     private String[] otherUnits;
     private int amountOfOtherData;
     private int size = 0;
+    StatsDataAccess dataAccess;
 
     public Stats() {
         amountOfOtherData = 0;
@@ -24,6 +25,7 @@ public class Stats implements ApplicationConstants {
     }
 
     public void init(int mode) {
+        dataAccess = new StatsDataAccess();
         otherKeys = new String[]{"Nothing to Show"};
         otherValues = new float[]{0};
         units = new String[]{""};
@@ -115,17 +117,17 @@ public class Stats implements ApplicationConstants {
     }
 
     private String[] keysFromDB(int mode) {
-        String[] keys = StatsDataAccess.getNutrientsNames(mode);
+        String[] keys = dataAccess.getNutrientsNames(mode);
         return keys;
     }
 
     private float[] valuesFromDB(int mode) {
-        float[] values = StatsDataAccess.getNutrientsValues(mode);
+        float[] values = dataAccess.getNutrientsValues(mode);
         return values;
     }
 
     private String[] unitsFromDB(int mode) {
-        String[] values = StatsDataAccess.getNutrientsUnits(mode);
+        String[] values = dataAccess.getNutrientsUnits(mode);
         return values;
     }
 
