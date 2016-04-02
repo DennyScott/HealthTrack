@@ -118,25 +118,16 @@ public class Stats implements ApplicationConstants {
 
     private String[] keysFromDB(int mode) {
         String[] keys = dataAccess.getNutrientsNames(mode);
-        for(int x = 0; x < values.length;x++){
-            System.out.println("keys: " + values[x]);
-        }
         return keys;
     }
 
     private float[] valuesFromDB(int mode) {
         float[] values = dataAccess.getNutrientsValues(mode);
-        for(int x = 0; x < values.length;x++){
-            System.out.println("value: " + values[x]);
-        }
         return values;
     }
 
     private String[] unitsFromDB(int mode) {
         String[] values = dataAccess.getNutrientsUnits(mode);
-        for(int x = 0; x < values.length;x++){
-            System.out.println("units: " + values[x]);
-        }
         return values;
     }
 

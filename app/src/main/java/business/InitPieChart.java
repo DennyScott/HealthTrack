@@ -90,8 +90,12 @@ public class InitPieChart implements  ApplicationConstants {
                         putValues = STATS_BUS.getOtherValues();
                         putString = null;
                     }
-                    else{
+                    else {
+                        System.out.println("Getting: " + STATS_BUS.getKeys()[e.getXIndex()]);
                         putString = dataAccess.getFoods(mode, STATS_BUS.getKeys()[e.getXIndex()]);
+                        for (int x = 0; x < putString.length; x++){
+                            System.out.println("Got: " + putString[x]);
+                        }
                     }
                     openList(ctx);
                 }

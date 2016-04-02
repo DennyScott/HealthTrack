@@ -14,8 +14,8 @@ public class StatsFoodData {
         units = new ArrayList<String>();
         values = new ArrayList<Float>();
     }
-    public void addFoodData(String nutriennt,float value, String unit){
-            nutrientNames.add(nutriennt);
+    public void addFoodData(String nutrient,float value, String unit){
+            nutrientNames.add(nutrient);
             units.add(unit);
             values.add(value);
     }

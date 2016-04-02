@@ -19,6 +19,7 @@ public class DisplayList extends Activity {
         setContentView(R.layout.list_view);
 
         Bundle extras = getIntent().getExtras();
+        foods = extras.getStringArray("foods");
         if(foods != null) {
             adapter2 = new CustomList2(this, foods);
             ListView listView = (ListView) findViewById(R.id.listView);
@@ -26,7 +27,7 @@ public class DisplayList extends Activity {
             listView.setBackgroundColor(Color.parseColor("#ffffff"));
         }
         else {
-            foods = extras.getStringArray("foods");
+            keys = extras.getStringArray("keys");
             units = extras.getStringArray("units");
             values = extras.getFloatArray("values");
 
