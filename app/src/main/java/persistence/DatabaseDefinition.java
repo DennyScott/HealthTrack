@@ -157,7 +157,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
                 //          eaten_date
                 //          eaten_time
                 //          portion_size
-                //  FoodTableID
+                //          FoodTableID
                 //  The strategy is look up the food eaten, multiple it by the portion size, and then return
                 //  that value in that date range only
                 //week-month2016
@@ -401,10 +401,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //          eaten_date
         //          eaten_time
         //          portion_size
-        //          calories_eaten
-        //          protein_eaten
-        //          carbohydrdates_eaten
-        //          fats_eaten
+        //          foodTableId
         vals.put(COLNAME_ID, newRecord.getmId());
         vals.put(COLNAME_FOODNAME, newRecord.getmFoodName());
         vals.put(COLNAME_EATEN_DATE, newRecord.getmEatendate());

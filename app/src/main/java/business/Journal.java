@@ -18,8 +18,8 @@ public class Journal implements ApplicationConstants {
     DatabaseDefinition dataDef;
     ArrayList<JournalEntry> journalEntryList;
 
-    public Journal(Context currCont) {
-        dataDef = new DatabaseDefinition(currCont);
+    public Journal() {
+        journalEntryList = new ArrayList<>();
     }
 
     public Map<Date, JournalEntry> getJournalEntriesByDateRange(Date beginDate, Date endDate) {
@@ -28,7 +28,7 @@ public class Journal implements ApplicationConstants {
 
     public ArrayList<JournalEntry> getJournalEntriesByDate(Date searchDate) {
         SQLiteDatabase db = dataDef.getReadableDatabase();
-        Cursor result = db.query(
+        Cursor cursor = db.query(
                 DataTransactionalHistory.TABLE_NAME,
                 new String[]{
                         DataTransactionalHistory.COLNAME_FOODNAME,
@@ -42,24 +42,25 @@ public class Journal implements ApplicationConstants {
                         searchDate.toString()
                 },
                 null,
-                null, DataTransactionalHistory.COLNAME_EATEN_TIME   //order it by date THEN time
+                null,
+                DataTransactionalHistory.COLNAME_EATEN_TIME   //order it by date THEN time
         );
         db.close();
-        if (result != null) {
-            if (result.moveToFirst()) {
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
                 do {
                     journalEntryList.add(
                             new JournalEntry(
-                                    Date.valueOf(result.getString(result.getColumnIndex(DataTransactionalHistory.COLNAME_EATEN_DATE))),
-                                    Time.valueOf(result.getString(result.getColumnIndex(DataTransactionalHistory.COLNAME_EATEN_TIME))),
-                                    result.getInt(result.getColumnIndex(DataTransactionalHistory.COLNAME_PORTIONSIZE)),
-                                    result.getInt(result.getColumnIndex(DataTransactionalHistory.COLNAME_FOODTABLE_ID))
+                                    Date.valueOf(cursor.getString(cursor.getColumnIndex(DataTransactionalHistory.COLNAME_EATEN_DATE))),
+                                    Time.valueOf(cursor.getString(cursor.getColumnIndex(DataTransactionalHistory.COLNAME_EATEN_TIME))),
+                                    cursor.getInt(cursor.getColumnIndex(DataTransactionalHistory.COLNAME_PORTIONSIZE)),
+                                    cursor.getInt(cursor.getColumnIndex(DataTransactionalHistory.COLNAME_FOODTABLE_ID))
                                     )
                     );
-                } while (result.moveToNext());
+                } while (cursor.moveToNext());
             }
         }
-        result.close();
+
         return journalEntryList;
     }
 }
