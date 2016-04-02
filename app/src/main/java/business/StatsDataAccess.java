@@ -88,14 +88,12 @@ public class StatsDataAccess implements ApplicationConstants {
             }
         }
         else {
-            if (mode == 0) {
                 for (int x = 0; x < month.size(); x++) {
                     String temp;
                     if ((temp = month.get(x).hasNutrient(nutrient)) != null) {
                         foods.add(month.get(x).foodName + " " + temp);
                     }
                 }
-            }
         }
         return toStringl(foods);
     }

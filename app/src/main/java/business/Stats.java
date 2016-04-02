@@ -86,6 +86,7 @@ public class Stats implements ApplicationConstants {
         for (int x = 0; x < MAX_SIZE - 1; x++) {
             values[x] = array.get(x).value;
             keys[x] = array.get(x).key;
+            units[x] = array.get(x).unit;
         }
         if (amountOfOtherData > 0) {
             for (int x = MAX_SIZE - 1; x < size; x++) {

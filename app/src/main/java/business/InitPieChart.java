@@ -46,7 +46,7 @@ public class InitPieChart implements  ApplicationConstants {
     }
     private void initChart(float[] y, String[] x){
         STATS_BUS.init(0);
-        y = STATS_BUS.getValues();
+        y = allToGrams(STATS_BUS.getValues(), STATS_BUS.Units());
         x = STATS_BUS.getKeys();
 
         pie = new PieChart(ctx);
@@ -115,7 +115,23 @@ public class InitPieChart implements  ApplicationConstants {
         l.setXEntrySpace(7);
         l.setYEntrySpace(5);
     }
-
+    public float[] allToGrams(float[] x, String[] y){
+        float[] nexX = new float[x.length];
+        for(int a = 0; a < x.length;a++){
+            nexX[a] = x[a]*toGrams(y[a]);
+        }
+        return nexX;
+    }
+    public float toGrams(String y){
+        float val = 1;
+        if(y.equals("mg")){
+            val = 0.001f;
+        }
+        if(y.equals("ug")){
+            val = 0.000001f;
+        }
+        return val;
+    }
     public void addData(float[] y, String[] x,int mode) {
         this.mode = mode;
         if (mode == 0 || mode == 3) {
