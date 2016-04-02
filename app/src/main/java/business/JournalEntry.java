@@ -3,20 +3,23 @@ package business;
 import java.sql.Date;
 import java.sql.Time;
 
+import persistence.DataFoods;
+
 /**
  * Created by scott on 28/02/16.
  * Represents a single entry in the food journal
  */
 public class JournalEntry implements ApplicationConstants {
+
     Date date;
     Time time;
-    Food food;
+    DataFoods food;
     int servings;
 
-    public JournalEntry(Date dateEaten, Time timeEaten, Food foodEaten, int servingEaten) {
+    public JournalEntry(Date dateEaten, Time timeEaten, int portionSize, int foodTableId) {
         this.date = dateEaten;
         this.time = timeEaten;
-        this.food = foodEaten;
-        this.servings = servingEaten;
+        this.servings = portionSize;
+        this.food = new DataFoods(foodTableId);
     }
 }

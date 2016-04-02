@@ -1,5 +1,7 @@
 package persistence;
 
+import android.provider.ContactsContract;
+
 public class DataTransactionalHistory {
     private int mId;
     private String mFoodName;
@@ -17,12 +19,13 @@ public class DataTransactionalHistory {
     //          foodTableId
 
     //Transactional History Table:
-    public static final String COLNAME_ID = "_id";     //reusable
-    public static final String COLNAME_FOODNAME = "FoodName";
-    public static final String COLNAME_EATEN_DATE = "EatenDate";
-    public static final String COLNAME_EATEN_TIME = "EatenTime";
-    public static final String COLNAME_PORTIONSIZE = "PortionSize";
-    public static final String COLNAME_FOODTABLE_ID = "FoodTableID";
+    public static final String TABLE_NAME = DatabaseDefinition.TABLE_NAME_FOODS;
+    public static final String COLNAME_ID = "_id";
+    public static final String COLNAME_FOODNAME = DataFoods.COLNAME_FOODNAME;
+    public static final String COLNAME_EATEN_DATE = DatabaseDefinition.COLNAME_EATEN_DATE;
+    public static final String COLNAME_EATEN_TIME = DatabaseDefinition.COLNAME_EATEN_DATE;
+    public static final String COLNAME_PORTIONSIZE = DatabaseDefinition.COLNAME_PORTIONSIZE;
+    public static final String COLNAME_FOODTABLE_ID = DatabaseDefinition.COLNAME_FOODTABLE_ID;
 
     public DataTransactionalHistory(int mId, String mFoodName, String mEatendate, String mEatentime, String mPortionSize, int mFoodTableID) {
         this.mId = mId;

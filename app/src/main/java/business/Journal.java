@@ -29,18 +29,20 @@ public class Journal implements ApplicationConstants {
     public ArrayList<JournalEntry> getJournalEntriesByDate(Date searchDate) {
         SQLiteDatabase db = dataDef.getReadableDatabase();
         Cursor result = db.query(
-                dataDef.TABLE_CREATE_TRANS_HIST,
+                DataTransactionalHistory.TABLE_NAME,
                 new String[]{
+                        DataTransactionalHistory.COLNAME_FOODNAME,
                         DataTransactionalHistory.COLNAME_EATEN_DATE,
                         DataTransactionalHistory.COLNAME_EATEN_TIME,
-                        DataTransactionalHistory.COLNAME_FOODNAME,
                         DataTransactionalHistory.COLNAME_PORTIONSIZE,
                         DataTransactionalHistory.COLNAME_FOODTABLE_ID
                 },
                 (DataTransactionalHistory.COLNAME_EATEN_DATE + " = ?"),
                 new String[]{
                         searchDate.toString()
-                }, null, null, DataTransactionalHistory.COLNAME_EATEN_DATE
+                },
+                null,
+                null, DataTransactionalHistory.COLNAME_EATEN_TIME   //order it by date THEN time
         );
         db.close();
         if (result != null) {
@@ -50,9 +52,9 @@ public class Journal implements ApplicationConstants {
                             new JournalEntry(
                                     Date.valueOf(result.getString(result.getColumnIndex(DataTransactionalHistory.COLNAME_EATEN_DATE))),
                                     Time.valueOf(result.getString(result.getColumnIndex(DataTransactionalHistory.COLNAME_EATEN_TIME))),
-                                    new Food(),
-                                    result.getInt(result.getColumnIndex(DataTransactionalHistory.COLNAME_PORTIONSIZE))
-                            )
+                                    result.getInt(result.getColumnIndex(DataTransactionalHistory.COLNAME_PORTIONSIZE)),
+                                    result.getInt(result.getColumnIndex(DataTransactionalHistory.COLNAME_FOODTABLE_ID))
+                                    )
                     );
                 } while (result.moveToNext());
             }
