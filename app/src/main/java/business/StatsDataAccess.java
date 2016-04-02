@@ -200,10 +200,10 @@ public class StatsDataAccess implements ApplicationConstants {
         allValuesDay = toFloat(valuesDay);
         allUnitsDay = toStringl(unitsDay);
         allNutrientsWeek= toStringl(nutrientsWeek);
-        allValuesWeek = toFloat(valuesDay);
+        allValuesWeek = toFloat(valuesWeek);
         allUnitsWeek = toStringl(unitsWeek);
         allNutrientsMonth= toStringl(nutrientsMonth);
-        allValuesMonth = toFloat(valuesDay);
+        allValuesMonth = toFloat(valuesMonth);
         allUnitsMonth = toStringl(unitsMonth);
     }
     public float[] toFloat(ArrayList<Float> list){
