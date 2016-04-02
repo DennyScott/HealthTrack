@@ -1,5 +1,7 @@
 package persistence;
 
+import android.database.Cursor;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -29,9 +31,21 @@ public class DataFoods {
     private String mFoodGroupName;
     private DataNutrientTable mDataNutrientTable;
 
+    //when this food is being referenced/the rows are needed, just make a database query on the rows to extract
+    //  relevant columns
+    private int foodTableId;
+
     public DataFoods() {
         initializeMethodCalls();
     }
+
+    public DataFoods(int foodTableId) {
+        this();
+        //search the database for this food, save the record
+        this.foodTableId = foodTableId;
+    }
+
+
 
     public static void initializeMethodCalls() {
         if (allNutrientNamesGetCalls == null) allNutrientNamesGetCalls = getAllGetterNutrientCalls(new String[]{"Unit", "Value"}, false);
@@ -178,5 +192,10 @@ public class DataFoods {
             }
         }
         return (Method[]) calls.toArray();
+    }
+
+
+    public static DataFoods createFoodFromRow(Cursor cursor) {
+        return null;
     }
 }
