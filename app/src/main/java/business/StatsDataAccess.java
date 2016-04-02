@@ -33,12 +33,12 @@ public class StatsDataAccess implements ApplicationConstants {
 
         //For loop adds all content for day, add all contents to food, then push to list, iterate over all foods in transactional database
         StatsFoodData food = new StatsFoodData();
-        food.addFoodData("Cholesterol",5,"mg");
+        food.addFoodData("Cholesterol",5,"mg");// Add all elements of a single food item
         food.addFoodData("Sodium",10,"mg");
         food.addFoodData("Sugar",15,"g");
-        food.addFoodData("Protein",30,"g");
-        day.add(new StatsFood("Chocolate", food));
-
+        food.addFoodData("Protein", 30, "g");
+        day.add(new StatsFood("Chocolate", food));//Once all elements are added, push the food item in this case chocolate to the day, loop through all foods eaten that day, make sure
+        //to instantiate food every time we reset the loop ass seen on line 42 below
         food = new StatsFoodData();
         food.addFoodData("Fat",40,"g");
         food.addFoodData("Fiber",20,"g");
@@ -46,6 +46,7 @@ public class StatsDataAccess implements ApplicationConstants {
         food.addFoodData("Carbs",60,"g");
         day.add(new StatsFood("Pizza", food));
 
+        //Creata a loop that does the same as above but for whole week
         food = new StatsFoodData();
         food.addFoodData("Cholesterol",47,"mg");
         food.addFoodData("Sodium",100,"mg");
@@ -57,6 +58,7 @@ public class StatsDataAccess implements ApplicationConstants {
         food.addFoodData("Carbs", 5004, "g");
         week.add(new StatsFood("StirFry", food)); // yes this dude ate nothign but stir fry for a week
 
+        //Creata a loop that does the same as above but for whole month
         food = new StatsFoodData();
         food.addFoodData("Cholesterol", 1233, "mg");
         food.addFoodData("Sodium",1116,"mg");
