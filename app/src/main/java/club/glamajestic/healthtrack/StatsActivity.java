@@ -70,7 +70,7 @@ public class StatsActivity extends Activity {
         spec.setIndicator("Goals");
         host.addTab(spec);
 
-        //setGoalsTab(GetGoals.loadGoalsFromDBDay());
+        setGoalsTab(GetGoals.loadGoalsFromDBDay());
 
         x = (TextView) host.getTabWidget().getChildAt(1).findViewById(android.R.id.title);
         x.setTextSize(30);
@@ -144,7 +144,7 @@ public class StatsActivity extends Activity {
         pie.addData(yData, xData, mode);
         playSound.play();
         clearGoalsTab();
-        //setGoalsTab(GetGoals.loadGoalsFromDBDay());
+        setGoalsTab(GetGoals.loadGoalsFromDBDay());
     }
 
     public void weekButton(View view) {
@@ -158,7 +158,7 @@ public class StatsActivity extends Activity {
         pie.addData(yData, xData, mode);
         playSound.play();
         clearGoalsTab();
-        //setGoalsTab(GetGoals.loadGoalsFromDBWeek());
+        setGoalsTab(GetGoals.loadGoalsFromDBWeek());
     }
 
     public void monthButton(View view) {
@@ -172,7 +172,7 @@ public class StatsActivity extends Activity {
         pie.addData(yData, xData, mode);
         playSound.play();
         clearGoalsTab();
-        //setGoalsTab(GetGoals.loadGoalsFromDBMonth());
+        setGoalsTab(GetGoals.loadGoalsFromDBMonth());
     }
     public void setTabColor(TabHost tabhost) {
 

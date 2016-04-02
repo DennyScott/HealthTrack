@@ -78,11 +78,11 @@ public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryT
             final Cursor cursor = db.query(
                     DataFoods.TABLE_NAME_FOODS,
                     columns,
-                    DataFoods.COLNAME_FOODNAME + " LIKE '" + foodname + "%'",
+                    DataFoods.COLNAME_FOODNAME + " LIKE '%" + foodname + "%'",      //do pattern match on CONTAINING the string so %string%
                     null,
                     null,
                     null,
-                    null
+                    DataFoods.COLNAME_FOODNAME                  //find strings containing this pattern but order by this
             );
             SimpleCursorAdapter foods = null;
             try {
