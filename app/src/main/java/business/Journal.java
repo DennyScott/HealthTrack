@@ -59,7 +59,9 @@ public class Journal implements ApplicationConstants {
                     );
                 } while (cursor.moveToNext());
             }
+            cursor.close();
         }
+
 
         return journalEntryList;
     }

@@ -265,37 +265,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         return result;
     }
 
-    public DataCustomFoods getCustomFood(int id) {
-        SQLiteDatabase db = currentDatabase.getWritableDatabase();
-
-        //SELECT * FROM TABLE_ WHERE _id = Id
-        Cursor cursor = db.query(
-                TABLE_CREATE_FOODS,
-                null,
-                "_id=?",
-                new String[] {Integer.toString(id)},
-                null,
-                null,
-                null);
-        //retreieve the data in the assumed order:
-        //        custom foods
-        //              id
-        //              food_name
-        //              calories
-        //              proteins
-        //              carbohydrdates
-        //              fats
-        DataCustomFoods retrievedData = new DataCustomFoods(
-                cursor.getInt(0), //int _id is always the first column
-                cursor.getString(1),
-                cursor.getInt(2),
-                cursor.getInt(2),
-                cursor.getInt(3),
-                cursor.getInt(4)
-        );
-
-        return retrievedData;
-    }
 
     public DataTransactionalHistory getTransactionalHistory(int id) {
         SQLiteDatabase db = currentDatabase.getWritableDatabase();
