@@ -4,6 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
 
+import club.glamajestic.healthtrack.R;
 import club.glamajestic.healthtrack.Splash;
 
 
@@ -39,14 +40,45 @@ public class AteActivityTest extends ActivityInstrumentationTestCase2<Splash> {
 		assertTrue("club.glamajestic.healthtrack.Ate is not found!", solo.waitForActivity(club.glamajestic.healthtrack.Ate.class));
         //Click on Enter Food
 		solo.clickOnView(solo.getView(club.glamajestic.healthtrack.R.id.foodEntryButton));
+		//Wait for activity: 'club.glamajestic.healthtrack.Ate'
+		assertTrue("club.glamajestic.healthtrack.FoodEntry is not found!", solo.waitForActivity(club.glamajestic.healthtrack.FoodEntry.class));
+		//Click on first field
+		solo.clickOnEditText(0);
+		//Enter Test Name
+		solo.enterText(0, "One Hundred Sauce");
+		//Click on first field
+		solo.clickOnEditText(1);
+		//Enter Test Name
+		solo.enterText(1, "100");
+		//Click on first field
+		solo.clickOnEditText(2);
+		//Enter Test Name
+		solo.enterText(2, "100");
+		//Click on first field
+		solo.clickOnEditText(3);
+		//Enter Test Name
+		solo.enterText(3, "100");
+		//Click on first field
+		solo.clickOnEditText(4);
+		//Enter Test Name
+		solo.enterText(4, "100");
+		//Click on first field
+		solo.clickOnEditText(5);
+		//Enter Test Name
+		solo.enterText(5, "100");
+		//Click on first field
+		solo.clickOnEditText(7);
+		//Enter Test Name
+		solo.enterText(7, "100");
+
         //Click on Custom Food Entry
-		solo.clickOnView(solo.getView(club.glamajestic.healthtrack.R.id.customFoodButton));
-        //Click on ImageView
-		solo.clickOnView(solo.getView(club.glamajestic.healthtrack.R.id.settingsButton));
-        //Wait for activity: 'club.glamajestic.healthtrack.SettingsActivity'
-		assertTrue("club.glamajestic.healthtrack.SettingsActivity is not found!", solo.waitForActivity(club.glamajestic.healthtrack.SettingsActivity.class));
-        //Press menu back key
+		solo.clickOnView(solo.getView(R.id.saveButton));
+		//Press menu back key
 		solo.goBack();
+
+        //Wait for activity: 'club.glamajestic.healthtrack.SettingsActivity'
+		assertTrue("club.glamajestic.healthtrack.MainActivity is not found!", solo.waitForActivity(club.glamajestic.healthtrack.MainActivity.class));
+
         //Press menu back key
 		solo.goBack();
 	}
