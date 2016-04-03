@@ -85,6 +85,8 @@ public class GoalsAccess implements Serializable, ApplicationConstants {
     }
 
     public void setAll(int targetWeight, int targetWeeks) {
+        if (goals==null)
+            goals = new Goals();
         goals.setTargetWeight(targetWeight);
         goals.setTargetWeeks(targetWeeks);
         goals.setSet(true);

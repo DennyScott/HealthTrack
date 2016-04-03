@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import business.CalcCaloriesPerDay;
 import business.GoalsAccess;
 
 /**

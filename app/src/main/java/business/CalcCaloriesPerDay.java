@@ -39,7 +39,6 @@ public class CalcCaloriesPerDay implements Calculator, ApplicationConstants {
         this.targetWeight = targetWeight;
         this.targetWeeks = targetWeeks;
         this.weight = weight;
-        this.difference = difference;
         this.weightSustainValue = weightSustainValue;
         this.targetCalories = targetCalories;
     }
@@ -54,6 +53,13 @@ public class CalcCaloriesPerDay implements Calculator, ApplicationConstants {
         targetWeeks = goals.getTargetWeeks();
         weight = user.getWeight();
 
+        weightSustainValue = calcWeightSustain.calculate();
+
+        difference = Math.abs(weight - targetWeight);
+        targetCalories = difference * CALORIES_PER_POUND;
+        targetCalories = targetCalories / targetWeeks;
+        targetCalories = targetCalories / DAYS_PER_WEEK;
+
         //check if the weights are in a valid range
         if (weight == 0 || weight < MIN_WEIGHT || weight > MAX_WEIGHT ||
                 targetWeight < MIN_WEIGHT || targetWeight > MAX_WEIGHT ||
@@ -61,13 +67,6 @@ public class CalcCaloriesPerDay implements Calculator, ApplicationConstants {
                 targetCalories < MIN_CALORIES || targetCalories > MAX_CALORIES) {
             return BAD_CALCULATION;
         }
-
-        weightSustainValue = calcWeightSustain.calculate();
-
-        difference = Math.abs(weight - targetWeight);
-        targetCalories = difference * CALORIES_PER_POUND;
-        targetCalories = targetCalories / targetWeeks;
-        targetCalories = targetCalories / DAYS_PER_WEEK;
 
         if (weight > targetWeight) {
             if (targetCalories > 0)
