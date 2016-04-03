@@ -50,7 +50,13 @@ public class CalcCaloriesPerDay implements Calculator, ApplicationConstants {
         calcWeightSustain = new CalcWeightSustain();
 
         targetWeight = goals.getTargetWeight();
+        if(targetWeight < 0){
+            return BAD_CALCULATION;
+        }
         targetWeeks = goals.getTargetWeeks();
+        if(targetWeeks < 0){
+            return BAD_CALCULATION;
+        }
         weight = user.getWeight();
 
         weightSustainValue = calcWeightSustain.calculate();

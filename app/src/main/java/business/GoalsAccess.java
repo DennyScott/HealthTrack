@@ -73,11 +73,21 @@ public class GoalsAccess implements Serializable, ApplicationConstants {
     }
 
     public int getTargetWeight() {
-        return goals.getTargetWeight();
+        if (goals.isSet()){
+            return goals.getTargetWeight();
+        }
+        else{
+            return -1;
+        }
     }
 
     public int getTargetWeeks() {
-        return goals.getTargetWeeks();
+        if(goals.isSet()){
+            return goals.getTargetWeeks();
+        }
+        else{
+            return -1;
+        }
     }
 
     public boolean isSet() {
