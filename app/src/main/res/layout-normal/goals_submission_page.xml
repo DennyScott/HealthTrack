@@ -21,25 +21,15 @@
         android:layout_centerHorizontal="true"
         android:paddingTop="10dp" />
 
-    <ImageButton
-        android:layout_width="@dimen/settings_button_normal_width"
-        android:layout_height="@dimen/settings_button_normal_height"
-        android:id="@+id/settingsButton"
-        android:background="@drawable/settings_button_action"
-        android:onClick="settingsButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/settings_button_margin" />
-
     <Button
         android:layout_width="@dimen/save_changes_button_width"
         android:layout_height="@dimen/save_changes_button_height"
         android:text="@string/save_changes_button"
         android:id="@+id/saveButton"
-        android:layout_above="@+id/settingsButton"
+        android:background="#FFFFBC59"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="#FFFFBC59" />
+        android:layout_marginBottom="47dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -51,9 +41,7 @@
         android:layout_below="@+id/title"
         android:layout_alignLeft="@+id/title"
         android:layout_alignStart="@+id/title"
-        android:layout_marginTop="22dp"
-        android:layout_alignRight="@+id/settingsButton"
-        android:layout_alignEnd="@+id/settingsButton" />
+        android:layout_marginTop="22dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -64,8 +52,6 @@
         android:id="@+id/targetWeeksTextEntry"
         android:layout_below="@+id/targetWeightTextEntry"
         android:layout_alignLeft="@+id/targetWeightTextEntry"
-        android:layout_alignStart="@+id/targetWeightTextEntry"
-        android:layout_alignRight="@+id/settingsButton"
-        android:layout_alignEnd="@+id/settingsButton" />
+        android:layout_alignStart="@+id/targetWeightTextEntry" />
 
 </RelativeLayout>

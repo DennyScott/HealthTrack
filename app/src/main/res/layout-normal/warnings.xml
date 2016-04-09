@@ -21,15 +21,4 @@
         android:textColor="#ffffff"
         android:paddingTop="10dp" />
 
-    <ImageButton
-        android:layout_width="@dimen/settings_button_normal_width"
-        android:layout_height="@dimen/settings_button_normal_height"
-        android:id="@+id/settingsButton"
-        android:background="@drawable/settings_button_action"
-        android:onClick="settingsButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/settings_button_margin" />
-
 </RelativeLayout>
