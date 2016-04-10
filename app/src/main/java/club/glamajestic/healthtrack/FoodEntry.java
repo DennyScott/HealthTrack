@@ -1,29 +1,35 @@
 package club.glamajestic.healthtrack;
 
+import android.annotation.TargetApi;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import persistence.DataFoods;
 import persistence.DatabaseDefinition;
 
-public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryTextListener, SearchView.OnCloseListener {
+public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTextListener, SearchView.OnCloseListener {
+    ArrayList<Integer> alphabeticalNutrientNameTextIds;
+    ArrayList<Integer> alphabeticalNutrientValueTextIds;
     SQLiteDatabase db;
     DatabaseDefinition df;
     ListView multiListView;
-    TextView tvFoodname, tvCalories, tvProteins, tvFats, tvSodium, tvChole, tvCarbs;
     SearchView searchView;
-    private Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,40 +45,38 @@ public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryT
         multiListView = (ListView) findViewById(R.id.foodsSearchListView);
 
 
-        tvFoodname = (TextView) findViewById(R.id.foodNameTextView);
-        tvCalories= (TextView) findViewById(R.id.editCals);
-        tvProteins = (TextView) findViewById(R.id.editProtein);
-        tvFats = (TextView) findViewById(R.id.editFat);
-        tvSodium= (TextView) findViewById(R.id.editSodium);
-        tvChole = (TextView) findViewById(R.id.editCholesterol);
-        tvCarbs = (TextView) findViewById(R.id.editCarbs);
+//        tvFoodname = (TextView) findViewById(R.id.foodNameTextView);
+//        tvCalories= (TextView) findViewById(R.id.editCals);
+//        tvProteins = (TextView) findViewById(R.id.editProtein);
+//        tvFats = (TextView) findViewById(R.id.editFat);
+//        tvSodium= (TextView) findViewById(R.id.editSodium);
+//        tvChole = (TextView) findViewById(R.id.editCholesterol);
+//        tvCarbs = (TextView) findViewById(R.id.editCarbs);
 
-        saveButton = (Button) findViewById(R.id.saveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               onSavePressed(v);
-            }
-        });
+
+        //create the id set for holding the views
+        alphabeticalNutrientNameTextIds = new ArrayList<>();
+        alphabeticalNutrientValueTextIds = new ArrayList<>();
     }
 
     private void doQuery(String foodname) {
         if (!foodname.equals("")) {
-            String[] to =  {
+            String[] to = {
                     DataFoods.COLNAME_FOODNAME,
             };
-            String[] columns = {
-                    DataFoods.COLNAME_ID,
-                    DataFoods.COLNAME_FOODNAME,
-                    DataFoods.COLNAME_CALORIES,
-                    DataFoods.COLNAME_FATS,
-                    DataFoods.COLNAME_PROTEINS,
-                    DataFoods.COLNAME_CHOLESTROL,
-                    DataFoods.COLNAME_SODIUM,
-                    DataFoods.COLNAME_CARBOHYDRATES
-            };
-            int[] idsOfVIews = {
-                    R.id.svFoodNameText
+            //get all the columns and parse using cursor
+            String[] columns = null; //{
+//                    DataFoods.COLNAME_ID,
+//                    DataFoods.COLNAME_FOODNAME,
+//                    DataFoods.COLNAME_CALORIES,
+//                    DataFoods.COLNAME_FATS,
+//                    DataFoods.COLNAME_PROTEINS,
+//                    DataFoods.COLNAME_CHOLESTROL,
+//                    DataFoods.COLNAME_SODIUM,
+//                    DataFoods.COLNAME_CARBOHYDRATES
+//            };
+            int[] idsOfViews = {
+                    R.id.svFoodNameText //the View within the list view where the food name will go
             };
             db = df.getReadableDatabase();
             final Cursor cursor = db.query(
@@ -86,10 +90,9 @@ public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryT
             );
             SimpleCursorAdapter foods = null;
             try {
-                foods = new SimpleCursorAdapter(this, R.layout.search_list_view, cursor, to, idsOfVIews, 0);
-            }
-            catch (RuntimeException e) {
-                Log.e("ok",e.toString(),e);
+                foods = new SimpleCursorAdapter(this, R.layout.search_list_view, cursor, to, idsOfViews, 0);
+            } catch (RuntimeException e) {
+                Log.e("ok", e.toString(), e);
             }
             if (foods == null) return;
             multiListView.setAdapter(foods);
@@ -97,28 +100,47 @@ public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryT
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Cursor cpos = (Cursor) multiListView.getItemAtPosition(position);
-
-                    String foodname = cursor.getString(cursor.getColumnIndex(DataFoods.COLNAME_FOODNAME));
-                    String calories = cursor.getString(cursor.getColumnIndex(DataFoods.COLNAME_CALORIES));
-                    String fats = cursor.getString(cursor.getColumnIndex(DataFoods.COLNAME_FATS));
-                    String proteins = cursor.getString(cursor.getColumnIndex(DataFoods.COLNAME_PROTEINS));
-                    String cholestrol = cursor.getString(cursor.getColumnIndex(DataFoods.COLNAME_CHOLESTROL));
-                    String sodium = cursor.getString(cursor.getColumnIndex(DataFoods.COLNAME_SODIUM));
-                    String carbs = cursor.getString(cursor.getColumnIndex(DataFoods.COLNAME_CARBOHYDRATES));
-
-                    tvFoodname.setText(foodname);
-                    tvCalories.setText(calories);
-                    tvFats.setText(fats);
-                    tvProteins.setText(proteins);
-                    tvChole.setText(cholestrol);
-                    tvSodium.setText(sodium);
-                    tvCarbs.setText(carbs);
+                    populateUsingCursor(cpos);
 
                     searchView.setQuery("", true);
                 }
             });
         }
     }
+
+    /**
+     * Takes whatever the user clicked on and creates a
+     *
+     * @param cpos
+     */
+    @TargetApi(Build.VERSION_CODES.M)
+    private void populateUsingCursor(Cursor cpos) {
+        //using all the nutrient column names, generate a list of strings and corresponding values
+        ArrayList<String> nutrients = DataFoods.getAllNutrients();
+        String[] nutrientColumnNames = DataFoods.getAllNutrientColumnNames();
+
+        ListView layout = (ListView) findViewById(R.id.foodEntryScrollableLayout);
+        ArrayAdapter<String> adapter;
+        ArrayList<String> nutrientAndValArray= new ArrayList<>();
+
+        String nutrientName;
+        String nutrientValueAndUnits;
+        for (int i = 0; i < nutrients.size(); i++) {
+
+            nutrientName = nutrients.get(i);
+            nutrientValueAndUnits = cpos.getString(cpos.getColumnIndex(nutrientColumnNames[i] + "Value")) +
+                    cpos.getString(cpos.getColumnIndex(nutrientColumnNames[i] + "Unit"));
+            if (nutrientValueAndUnits.equals("")) nutrientValueAndUnits = "0mg";
+            nutrientAndValArray.add(nutrientName + ": " + nutrientValueAndUnits);
+
+        }
+        if (layout.getAdapter() != null) ((ArrayAdapter)layout.getAdapter()).clear();
+            layout.setAdapter(null);
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,android.R.id.text1,nutrientAndValArray);
+            layout.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+    }
+
     /**
      * The user is attempting to close the SearchView.
      *
@@ -161,21 +183,4 @@ public class FoodEntry extends AppCompatActivity  implements SearchView.OnQueryT
         return false;
     }
 
-
-
-
-    /**
-     * The user is attempting to close the SearchView.
-     *
-     * @return true if the listener wants to override the default behavior of clearing the
-     * text field and dismissing it, false otherwise.
-     */
-    public void onSavePressed(View v) {
-        HTNotifications sodiumNotifer = new HTNotifications("Sodium",9000);
-        final EditText nameField = (EditText) findViewById(R.id.editSodium);
-        String name = nameField.getText().toString();
-        if(Integer.parseInt(name)>9000){
-            sodiumNotifer.throwNotification("Sodium",null,v.getContext());
-        }
-    }
 }

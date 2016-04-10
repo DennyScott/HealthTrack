@@ -3,235 +3,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="horizontal"
+    android:weightSum="1.0"
     tools:context="club.glamajestic.healthtrack.FoodEntry">
 
-    <Button
-        android:layout_width="wrap_content"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/food_entry_save"
-        android:id="@+id/saveButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="club.glamajestic.healthtrack.FoodEntry.onClick"
-        android:nestedScrollingEnabled="false" />
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    <!--<MultiAutoCompleteTextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/multiAutoCompleteTextView"-->
-        <!--android:dropDownWidth="match_parent"-->
-        <!--android:dropDownHeight="match_parent"-->
-        <!--android:hint="@string/food_entry_food_name"-->
-        <!--android:clickable="false"-->
-        <!--android:enabled="false"-->
-        <!--android:labelFor="@id/foodSearchView"-->
-        <!--android:layout_alignRight="@+id/button"-->
-        <!--android:layout_alignEnd="@+id/button"-->
-        <!--android:maxLines="6"-->
-        <!--android:nestedScrollingEnabled="false"-->
-        <!--android:layout_above="@+id/datePicker"-->
-        <!--android:layout_toEndOf="@+id/editFat"-->
-        <!--android:layout_alignTop="@+id/editFat"-->
-        <!--android:layout_toRightOf="@+id/editFat" />-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:title="View Food Entry Values" />
 
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editCals"
-        android:hint="@string/food_entry_nutrient_amount_calories"
-        android:layout_alignLeft="@+id/editCarbs"
-        android:layout_alignStart="@+id/editCarbs" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editCarbs"
-        android:hint="@string/food_entry_nutrient_carbs"
-        android:layout_below="@+id/editCals"
-        android:layout_alignRight="@+id/saveButton"
-        android:layout_alignEnd="@+id/saveButton" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editFat"
-        android:hint="@string/food_entry_nutrient_fat"
-        android:layout_below="@+id/editCarbs"
-        android:layout_alignRight="@+id/saveButton" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editProtein"
-        android:hint="@string/food_entry_nutrient_protein"
-        android:layout_below="@+id/editFat"
-        android:layout_alignRight="@+id/saveButton" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editCholesterol"
-        android:hint="@string/food_entry_nutrient_cholesterol"
-        android:layout_below="@+id/editProtein"
-        android:layout_alignRight="@+id/saveButton" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editSodium"
-        android:hint="@string/food_entry_nutient_sodium"
-        android:layout_below="@+id/editCholesterol"
-        android:layout_alignRight="@+id/saveButton" />
+    </android.support.design.widget.AppBarLayout>
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="360dp"
+        android:layout_width="240dp"
+        android:layout_weight=".50"
         android:id="@+id/foodsSearchListView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/foodNameTextView"
-        android:layout_toLeftOf="@+id/foodNameTextView"
-        android:layout_toStartOf="@+id/foodNameTextView" />
+        android:layout_alignParentRight="true"
+        android:minWidth="160dp"
+        android:layout_below="@+id/app_bar" />
 
-    <EditText
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/foodEntryScrollableLayout"
+        layout="@layout/food_entry_details_scrollable"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/foodNameTextView"
-        android:enabled="false"
-        android:hint="Food Name"
-        android:layout_below="@+id/editSodium"
-        android:layout_alignLeft="@+id/editSodium"
-        android:layout_alignStart="@+id/editSodium"
-        android:layout_alignRight="@+id/editSodium"
-        android:layout_alignEnd="@+id/editSodium" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editCalsLabel"
-        android:hint="@string/food_entry_nutrient_amount_calories"
-        android:layout_alignTop="@+id/editCals"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/editCals"
-        android:layout_toStartOf="@+id/editCals"
-        android:text="Calories (kCal)"
-        android:enabled="false" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editFatLabel"
-        android:enabled="false"
-        android:text="Fat (g)"
-        android:layout_alignTop="@+id/editFat"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/editFat"
-        android:layout_toStartOf="@+id/editFat" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editCholLabel"
-        android:hint="@string/food_entry_nutrient_carbs"
-        android:layout_below="@+id/editProteinLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/editCholesterol"
-        android:layout_toStartOf="@+id/editCholesterol"
-        android:text="Cholestrol (mg)"
-        android:enabled="false" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editSodiumLabel"
-        android:hint="@string/food_entry_nutrient_fat"
-        android:layout_below="@+id/editCholLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/editCholesterol"
-        android:layout_toStartOf="@+id/editCholesterol"
-        android:text="Sodium (g)"
-        android:enabled="false" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editProteinLabel"
-        android:hint="@string/food_entry_nutrient_protein"
-        android:layout_below="@+id/editFatLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/editFat"
-        android:layout_toStartOf="@+id/editFat"
-        android:text="Protein (g)"
-        android:enabled="false" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editCarbsLabel"
-        android:hint="@string/food_entry_nutrient_cholesterol"
-        android:layout_below="@+id/editCalsLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/editCals"
-        android:layout_toStartOf="@+id/editCals"
-        android:text="Carbs (g)"
-        android:enabled="false" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editFoodNameLabel"
-        android:hint="@string/food_entry_nutient_sodium"
-        android:layout_below="@+id/editSodiumLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/foodNameTextView"
-        android:layout_toStartOf="@+id/foodNameTextView"
-        android:text="Food Name"
-        android:enabled="false" />
+        android:layout_alignParentBottom="false"
+        android:layout_below="@+id/foodsSearchListView" />
 
     <SearchView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
         android:id="@+id/foodSearchView"
         android:clickable="true"
         android:focusable="true"
         android:queryHint="enter food name"
-        android:layout_below="@+id/foodNameTextView"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button"
-        android:layout_alignLeft="@+id/foodNameTextView"
-        android:layout_alignStart="@+id/foodNameTextView" />
+        android:padding="10dp"
+        android:measureWithLargestChild="false"
+        android:layout_below="@+id/app_bar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/foodsSearchListView"
+        android:layout_toStartOf="@+id/foodsSearchListView" />
 
 </RelativeLayout>

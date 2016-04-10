@@ -2,9 +2,11 @@ package persistence;
 
 import android.database.Cursor;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 
 public class DataFoods {
@@ -18,6 +20,7 @@ public class DataFoods {
     public static final String COLNAME_CHOLESTROL = "CHOLEValue";
     public static final String COLNAME_SODIUM = "NAValue";
     private static final Method[] allNutrientTableMethods = DataNutrientTable.class.getDeclaredMethods();
+    public static String[] allNutrientNames;
     private static Method[] allNutrientNamesGetCalls;
     private static Method[] allNutrientValueGetCalls;
     private static Method[] allNutrientUnitGetCalls;
@@ -46,11 +49,13 @@ public class DataFoods {
     }
 
 
-
     public static void initializeMethodCalls() {
-        if (allNutrientNamesGetCalls == null) allNutrientNamesGetCalls = getAllGetterNutrientCalls(new String[]{"Unit", "Value"}, false);
-        if (allNutrientValueGetCalls == null) allNutrientValueGetCalls = getAllGetterNutrientCalls(new String[]{"Value"}, true);
-        if (allNutrientUnitGetCalls == null) allNutrientUnitGetCalls = getAllGetterNutrientCalls(new String[]{"Unit"}, true);
+        if (allNutrientNamesGetCalls == null)
+            allNutrientNamesGetCalls = getAllGetterNutrientCalls(new String[]{"Unit", "Value"}, false);
+        if (allNutrientValueGetCalls == null)
+            allNutrientValueGetCalls = getAllGetterNutrientCalls(new String[]{"Value"}, true);
+        if (allNutrientUnitGetCalls == null)
+            allNutrientUnitGetCalls = getAllGetterNutrientCalls(new String[]{"Unit"}, true);
     }
 
     public static Method[] getAllNutrientNamesGetCalls() {
@@ -67,6 +72,76 @@ public class DataFoods {
         if (allNutrientUnitGetCalls == null) initializeMethodCalls();
         return allNutrientUnitGetCalls;
     }
+
+    public static ArrayList<String> getAllNutrients() {
+
+        ArrayList<String> result = new ArrayList<String>();
+        for (int i = 0; i < allNutrientNames.length; i++) {
+            result.add(allNutrientNames[i]);
+        }
+        return result;
+    }
+
+    public static String[] getAllNutrientColumnNames() {
+        Method[] nutrientMethods;
+        if (allNutrientNamesGetCalls == null) initializeMethodCalls();
+        String[] result = new String[allNutrientNamesGetCalls.length];
+        String thisMethodName;
+        for (int i = 0; i < result.length; i++) {
+            thisMethodName = allNutrientNamesGetCalls[i].getName();
+            //all nutrient getter methods have getm<> infront of them. so start at position 4, after the getm
+            result[i] = thisMethodName.substring(4);
+        }
+        return result;
+    }
+
+    private static Method[] getAllGetterNutrientCalls(String[] patterns, boolean matchThese) {
+        ArrayList<Method> calls = new ArrayList<>();
+        String thisMethodName;
+        boolean x, y;
+        y = matchThese;
+        //loop through the existing methods and take the ones that are getters without any "unit" or "value" in their names
+        for (int i = 0; i < allNutrientTableMethods.length; i++) {
+            thisMethodName = allNutrientTableMethods[i].getName();
+            //only focus on getters
+            if (thisMethodName.contains("getm")) {
+
+                //using the matchThese boolean value, we change whether we allow a match or not
+                //this can be simplified with boolean algebra, done this way to minimize duplicated
+                //                      MATCH           NO MATCH
+                //  matchThese=True     True            False
+                //  matchThese=False    False           True
+                //  so for the if statrement to evaluate true:
+                //  let MATCH = X, NO MATCH = notX
+                //  let matchThese == true = Y, matchThese == false = notY
+                //  therefore, the logical boolean algebra simplification is:
+                //          X AND Y   OR    notX AND notY =
+                //          XY or !X!Y = 1
+                x = false;
+
+                for (int j = 0; j < patterns.length; j++) {
+                    //look for a match
+                    if (thisMethodName.contains(patterns[j])) {
+                        x = true;
+                        break;
+                    }
+                }
+                if ((x && y) || (!x && !y)) {
+                    calls.add(allNutrientTableMethods[i]);
+                }
+            }
+        }
+        Method[] result = new Method[calls.size()];
+        for (int i = 0; i < calls.size(); i++) {
+            result[i] = calls.get(i);
+        }
+        return result;
+    }
+
+    public static DataFoods createFoodFromRow(Cursor cursor) {
+        return null;
+    }
+
 
     public int getmId() {
         return mId;
@@ -116,20 +191,6 @@ public class DataFoods {
         this.mDataNutrientTable = mDataNutrientTable;
     }
 
-    public ArrayList<String> getAllNutrients() {
-        ArrayList<String> nutrients = new ArrayList<String>();
-        if (allNutrientNamesGetCalls == null) initializeMethodCalls();
-        for (int i = 0; i < allNutrientNamesGetCalls.length; i++) {
-            try {
-                nutrients.add((String)allNutrientNamesGetCalls[i].invoke(null));
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
-        Collections.sort(nutrients);
-        return nutrients;
-    }
-
     public ArrayList<String> getAllNutrientsAndValues(String separator) {
         ArrayList<String> nutrientsAndValues = new ArrayList<String>();
         if (allNutrientNamesGetCalls == null) initializeMethodCalls();
@@ -142,7 +203,7 @@ public class DataFoods {
                     // getm<TAG> and getm<TAG>Value
                     //  so the Value calls contain the getter ones
                     if (allNutrientValueGetCalls[j].getName().contains(allNutrientNamesGetCalls[i].getName())) {
-                        nutrientsAndValues.add((String)allNutrientNamesGetCalls[i].invoke(null) + separator + (String)allNutrientValueGetCalls[j].invoke(null));
+                        nutrientsAndValues.add((String) allNutrientNamesGetCalls[i].invoke(null) + separator + (String) allNutrientValueGetCalls[j].invoke(null));
                         //leave the search
                         break;
                     }
@@ -153,49 +214,5 @@ public class DataFoods {
         }
         Collections.sort(nutrientsAndValues);
         return nutrientsAndValues;
-    }
-
-    private static Method[] getAllGetterNutrientCalls(String[] patterns, boolean matchThese) {
-        ArrayList<Method> calls = new ArrayList<>();
-        String thisMethodName;
-        boolean x, y;
-        y = matchThese;
-        //loop through the existing methods and take the ones that are getters without any "unit" or "value" in their names
-        for (int i = 0; i < allNutrientTableMethods.length; i++) {
-            thisMethodName = allNutrientTableMethods[i].getName();
-            //only focus on getters
-            if (thisMethodName.contains("getm")) {
-
-                //using the matchThese boolean value, we change whether we allow a match or not
-                //this can be simplified with boolean algebra, done this way to minimize duplicated
-                //                      MATCH           NO MATCH
-                //  matchThese=True     True            False
-                //  matchThese=False    False           True
-                //  so for the if statrement to evaluate true:
-                //  let MATCH = X, NO MATCH = notX
-                //  let matchThese == true = Y, matchThese == false = notY
-                //  therefore, the logical boolean algebra simplification is:
-                //          X AND Y   OR    notX AND notY =
-                //          XY or !X!Y = 1
-                x = false;
-
-                for (int j = 0; j < patterns.length; j++) {
-                    //look for a match
-                    if (thisMethodName.contains(patterns[j])) {
-                        x = true;
-                        break;
-                    }
-                }
-                if ((x && y) || (!x && !y)) {
-                    calls.add(allNutrientTableMethods[i]);
-                }
-            }
-        }
-        return (Method[]) calls.toArray();
-    }
-
-
-    public static DataFoods createFoodFromRow(Cursor cursor) {
-        return null;
     }
 }

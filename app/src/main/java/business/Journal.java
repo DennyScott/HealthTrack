@@ -15,7 +15,6 @@ import persistence.DatabaseDefinition;
 
 public class Journal implements ApplicationConstants {
 
-    DatabaseDefinition dataDef;
     ArrayList<JournalEntry> journalEntryList;
 
     public Journal() {
@@ -27,7 +26,7 @@ public class Journal implements ApplicationConstants {
     }
 
     public ArrayList<JournalEntry> getJournalEntriesByDate(Date searchDate) {
-        SQLiteDatabase db = dataDef.getReadableDatabase();
+        SQLiteDatabase db = DatabaseDefinition.currentDatabase.getReadableDatabase();
         Cursor cursor = db.query(
                 DataTransactionalHistory.TABLE_NAME,
                 new String[]{

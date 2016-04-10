@@ -1,5 +1,6 @@
 package persistence;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -8,12 +9,14 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.v4.app.ActivityCompat;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 
 public class DatabaseDefinition extends SQLiteOpenHelper {
@@ -82,15 +85,61 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         super(context, name, factory, version, errorHandler);
         dbContext = context;
         loadDatabasePath();
+        createDatabase();
+        loadNutrientsStaticData();
+        currentDatabase = this;
+    }
+
+    /**
+     * Queries the database and fills the static info (nutrient name, nutrient units) of the DataFoods table.
+     */
+    private void loadNutrientsStaticData() {
+        SQLiteDatabase db = getReadableDatabase();
+        String[] nutrientColumnNames = DataFoods.getAllNutrientColumnNames();
+        ArrayList<String> allNutrientNames = new ArrayList<String>();
+        //get all the rows (so to find the one that has appropriate data)
+        Cursor cursor = db.query(TABLE_NAME_FOODS,nutrientColumnNames,null,null,null,null,null);
+
+        //algorith:
+        //  for each column, find a row containing a non "" value to store into the nutrient names
+        for (int i = 0; i < cursor.getColumnCount(); i++) {
+            //go to the first row to
+            cursor.moveToFirst();
+            while (cursor.getString(i).equals("")) {
+                //break if there is no more nexxts
+                if (!cursor.moveToNext()) break;
+            }
+            //at this point, cursor should have an actual string value, or else something went wrong
+            if (!cursor.getString(i).equals("")) {
+                allNutrientNames.add(cursor.getString(i));
+            }
+            else {
+                //something went wrong, no name for this nutrient
+                throw new Error("Column " + nutrientColumnNames[i] + "did not contain any valid entries");
+            }
+        }
+
+
+        db.close();
+        String[] result = new String[allNutrientNames.size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = allNutrientNames.get(i);
+        }
+        DataFoods.allNutrientNames = result;
+    }
+
+    public DatabaseDefinition(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION, null);
+        dbContext = context;
+        loadDatabasePath();
+        createDatabase();
+        loadNutrientsStaticData();
         currentDatabase = this;
     }
 
     private void loadDatabasePath() {
-        if (android.os.Build.VERSION.SDK_INT >= 17) {
-            DATABASE_PATH = dbContext.getApplicationInfo().dataDir + "/databases/";
-        } else {
-            DATABASE_PATH = "/data/data/" + dbContext.getPackageName() + "/databases/";
-        }
+        DATABASE_PATH = dbContext.getDatabasePath(DATABASE_NAME).getAbsolutePath();
+        //
         AssetManager assets = dbContext.getAssets();
         try {
             String[] files = assets.list("");
@@ -105,18 +154,12 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         }
     }
 
-    public DatabaseDefinition(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION, null);
-        dbContext = context;
-        loadDatabasePath();
-        currentDatabase = this;
-    }
 
     public boolean checkDatabase() {
         SQLiteDatabase checkDB = null;
 
         try{
-            String myPath = DATABASE_PATH + DATABASE_NAME;
+            String myPath = DATABASE_PATH;
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
         }catch(SQLiteException ignored){
 
@@ -136,18 +179,19 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     public void createDatabase() {
         //first try to load the external database file external_db.db
         //  this file contains the CNF data entries generated from the ExternalDatabaseGenerator
-        currentDatabase = this;
+
         boolean extDbExist = checkDatabase();
 
         if (extDbExist) {
 
         }
         else {
-            //call the oncreate method to create the db
-            SQLiteDatabase db = currentDatabase.getReadableDatabase();
             try {
                 //copy database will overwrite any database created by android for this app
                 copyDatabase();
+
+                //call the oncreate method to create the db
+                SQLiteDatabase db = currentDatabase.getReadableDatabase();
                 //create the transcational history database
 
 
@@ -170,10 +214,11 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
                                 COLNAME_PORTIONSIZE     + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
                                 COLNAME_FOODTABLE_ID    + DATATYPE_INT + OPT_NOT_NULL + ");"
                 );
+                currentDatabase = this;
 
             }
             catch (IOException e) {
-                throw new Error("Error copying external database");
+                throw new Error("Error copying external database: " + e.getMessage());
             }
         }
 
@@ -183,7 +228,8 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         //open the external database
         InputStream extDbInput = dbContext.getAssets().open(EXTERNAL_DATABASE_PATH);
         //create the local database
-        OutputStream dbOutput = new FileOutputStream(DATABASE_PATH + DATABASE_NAME);
+        SQLiteDatabase db = this.getReadableDatabase();
+        OutputStream dbOutput = new FileOutputStream(DATABASE_PATH);
 
         //do a byte transfer
         byte[] buffer = new byte[BUFFER_SIZE];
@@ -195,6 +241,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         dbOutput.flush();
         dbOutput.close();
         extDbInput.close();
+        currentDatabase = this;
     }
 
     //only called when the database is FIRST created (by getWritable/ReadableDatabase )

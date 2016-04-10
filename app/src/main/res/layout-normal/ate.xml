@@ -26,7 +26,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="70dp"
-        android:text="Enter Food"
+        android:text="View Existing Foods"
         android:id="@+id/foodEntryButton"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
@@ -37,7 +37,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="70dp"
-        android:text="Custom Food Entry"
+        android:text="New Food Entry"
         android:id="@+id/customFoodButton"
         android:layout_below="@+id/foodEntryButton"
         android:layout_centerHorizontal="true"
