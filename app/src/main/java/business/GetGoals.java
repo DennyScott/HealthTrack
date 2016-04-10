@@ -27,9 +27,9 @@ public class GetGoals {
     private static ArrayList<GoalsType> getGoals(int numDays) {
         ArrayList<GoalsType> goals = new ArrayList<GoalsType>();
 
-        goals.add(calorieGoal(numDays));
-
         GoalsAccess nutrientGoals = new GoalsAccess();
+        if (nutrientGoals.getTargetWeight()>0)
+            goals.add(nutrientGoal(numDays, 8));
         if (nutrientGoals.getTargetFat()>0)
             goals.add(nutrientGoal(numDays, 0));
         if (nutrientGoals.getTargetCarbs()>0)
@@ -48,41 +48,6 @@ public class GetGoals {
             goals.add(nutrientGoal(numDays, 7));
 
         return goals;
-    }
-
-    private static GoalsType calorieGoal(int numDays) {
-        GoalsType gt;
-        CalcCaloriesPerDay ccpd;
-        int finalCalories;
-
-        String title;
-        switch(numDays) {
-            case 1:
-                title = "Daily calories intake";
-                break;
-            case 7:
-                title = "Weekly calories intake";
-                break;
-            case 30:
-                title = "Monthly calories intake";
-                break;
-            default:
-                title = "Invalid number of days";
-                break;
-        }
-
-        ccpd = new CalcCaloriesPerDay();
-        if(ccpd.calculate() <= 0) {
-            finalCalories = DEFAULT_DAILY_CALORIES * numDays;
-            title += ": Error calculating calorie intake, " +
-                    "used default intake value";
-        } else {
-            finalCalories = (int) ccpd.calculate() * numDays;
-        }
-
-        gt = new GoalsType(finalCalories/numDays, finalCalories, title);
-
-        return gt;
     }
 
     private static GoalsType nutrientGoal(int numDays, int nutrient) {
@@ -133,15 +98,19 @@ public class GetGoals {
             case 7: title += "vitamin intake";
                 nutrientPerDay = goals.getTargetVitamin();
                 break;
+            case 8: title += "calorie intake";
+                CalcCaloriesPerDay ccpd = new CalcCaloriesPerDay();
+                nutrientPerDay = (int) ccpd.calculate();
+                break;
             default: nutrientPerDay = 0;
                 break;
         }
 
         if(nutrientPerDay <= 0 | goals.getTargetWeeks()<=0) {
             nutrientPerDay = DEFAULT_DAILY_CALORIES * numDays;
-            title += ": Error calculating fat intake, " +
+            title += ": Error calculating intake, " +
                     "used default intake value";
-        } else {
+        } else if (nutrient <=7) {
             nutrientPerDay = nutrientPerDay / (goals.getTargetWeeks()*7);
         }
 
