@@ -110,6 +110,16 @@
     <string name="food_entry_nutrient_cholesterol">Cholsterol (mg)</string>
     <string name="food_entry_nutient_sodium">Sodium (mg)</string>
     <string name="food_entry_serving_hint">Servings</string>
+    <string name="pref_header_user_info">User Info</string>
+    <string name="pref_default_age">Age</string>
+    <string name="pref_title_user_age">Age</string>
+    <string name="pref_default_user_age">Age</string>
+    <string name="example_name">Kakarotto</string>
+    <string name="pref_default_user_weight">Weight (lbs)</string>
+    <string name="pref_title_user_weight">Weight</string>
+    <string name="pref_title_user_gender">Gender</string>
+    <string name="pref_default_user_height">Height (cm)</string>
+    <string name="pref_title_user_height">Height</string>
 
 
 </resources>

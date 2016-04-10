@@ -131,8 +131,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             addPreferencesFromResource(R.xml.pref_general);
             setHasOptionsMenu(true);
 
-            bindPreferenceSummaryToValue(findPreference("example_text"));
-            bindPreferenceSummaryToValue(findPreference("example_list"));
+            bindPreferenceSummaryToValue(findPreference("user_name"));
+            bindPreferenceSummaryToValue(findPreference("user_age"));
+            bindPreferenceSummaryToValue(findPreference("user_height"));
+            bindPreferenceSummaryToValue(findPreference("user_weight"));
+            bindPreferenceSummaryToValue(findPreference("user_gender"));
+
+
+
         }
 
         @Override
