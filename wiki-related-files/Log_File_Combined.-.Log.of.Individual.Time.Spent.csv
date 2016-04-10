@@ -195,6 +195,8 @@ KES,multiple,3/26/2016,Progress Bars and UI,3,4,"Added progress bar generator to
 KES,multiple,4/2/2016,Stats,6,8,Improved stats business classes freatly to allow for easier database integration
 KES,e305598848258670681206fb6684de15f0e99711,4/9/2016,Stats,0.5,1.5,"Fixed issues with stats class, pie wont show 0.0% anymore"
 KES,014bde7ca55805696676205e8d448284c7da3555,4/9/2016,GUI,0.2,0.2,Removed all extra settings buttons
+WT,796c7f4a907f6f30e84ff2aa47a174b2bf2c8f75,4/3/2016,Goals Calculations,1,0.5,Fixed parameter checks for calories per day calculation
 WT,980136314808a9794818878c164e57c015ef2ec0,4/10/2016,Goals Calculations,2,2,Trace why program was returning -1 then fixed parameter checks which checked before instantiation for few Calc classes
 WT,1c49907d7d03ce3a15e66b1903fdd6cf70204cf5,4/10/2016,User Information Submission Form,2,2,Learn how to use and save spinner user input for level of physical activity on user info submission form
 WT,8c98706d7610ca5267de82a7fd0185bee36473dd,4/10/2016,Setting Goals,4,3,Incorporate nutrients to goals submission form and to Goals and GoalsAccess class
+WT,6affd9c5526f701794fcc64b921a2d38ce8d8901,4/10/2016,Goals,2,1,Refactored duplicate code smell in GetGoals class
