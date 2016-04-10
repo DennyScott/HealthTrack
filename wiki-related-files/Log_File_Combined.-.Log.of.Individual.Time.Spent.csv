@@ -200,3 +200,5 @@ WT,980136314808a9794818878c164e57c015ef2ec0,4/10/2016,Goals Calculations,2,2,Tra
 WT,1c49907d7d03ce3a15e66b1903fdd6cf70204cf5,4/10/2016,User Information Submission Form,2,2,Learn how to use and save spinner user input for level of physical activity on user info submission form
 WT,8c98706d7610ca5267de82a7fd0185bee36473dd,4/10/2016,Setting Goals,4,3,Incorporate nutrients to goals submission form and to Goals and GoalsAccess class
 WT,6affd9c5526f701794fcc64b921a2d38ce8d8901,4/10/2016,Goals,2,1,Refactored duplicate code smell in GetGoals class
+WT,6e681cc32955d164df62562e23c59a6b99bbf548,4/10/2016,Goals,1,1,Refactored for primitive obsession code smell by introducing Nutrient class and various subclasses
+WT,baeb0223a1f2a5ba400f7026b7662402b6fe01d3,4/10/2016,Goals,1,1,Added method to nutrient subclasses to support removal of switch statement code smells which used an integer code to determine nutrient type

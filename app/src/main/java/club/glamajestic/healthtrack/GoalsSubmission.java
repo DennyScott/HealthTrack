@@ -81,7 +81,7 @@ public class GoalsSubmission extends Activity implements View.OnClickListener {
         String targetWeeks = targetWeeksText.getText().toString();
 
         if (targetWeight!=null && targetWeeks!=null) {
-            if (!targetWeight.equals("") && !targetWeeks.equals("")) {
+            if (!targetWeight.equals("") && !targetWeeks.equals("") && Integer.parseInt(targetWeight)!=0 && Integer.parseInt(targetWeeks)!=0) {
 
                 // indices 0-7 inclusive are respectively fat, carbs, protein, sodium, potassium, fiber, iron, vitamin
                 int[] targetNutrients = nutrientsToInt();
