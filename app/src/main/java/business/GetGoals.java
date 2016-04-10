@@ -29,6 +29,24 @@ public class GetGoals {
 
         goals.add(calorieGoal(numDays));
 
+        GoalsAccess nutrientGoals = new GoalsAccess();
+        if (nutrientGoals.getTargetFat()>0)
+            goals.add(nutrientGoal(numDays, 0));
+        if (nutrientGoals.getTargetCarbs()>0)
+            goals.add(nutrientGoal(numDays, 1));
+        if (nutrientGoals.getTargetProtein()>0)
+            goals.add(nutrientGoal(numDays, 2));
+        if (nutrientGoals.getTargetSodium()>0)
+            goals.add(nutrientGoal(numDays, 3));
+        if (nutrientGoals.getTargetPotassium()>0)
+            goals.add(nutrientGoal(numDays, 4));
+        if (nutrientGoals.getTargetFiber()>0)
+            goals.add(nutrientGoal(numDays, 5));
+        if (nutrientGoals.getTargetIron()>0)
+            goals.add(nutrientGoal(numDays, 6));
+        if (nutrientGoals.getTargetVitamin()>0)
+            goals.add(nutrientGoal(numDays, 7));
+
         return goals;
     }
 
@@ -63,6 +81,72 @@ public class GetGoals {
         }
 
         gt = new GoalsType(finalCalories/numDays, finalCalories, title);
+
+        return gt;
+    }
+
+    private static GoalsType nutrientGoal(int numDays, int nutrient) {
+        GoalsType gt;
+        int nutrientPerDay;
+        int finalNutrient;
+
+        GoalsAccess goals = new GoalsAccess();
+
+        String title;
+        switch(numDays) {
+            case 1:
+                title = "Daily ";
+                break;
+            case 7:
+                title = "Weekly ";
+                break;
+            case 30:
+                title = "Monthly ";
+                break;
+            default:
+                title = "Invalid number of days";
+                break;
+        }
+
+        switch(nutrient) {
+            case 0: title += "fat intake";
+                nutrientPerDay = goals.getTargetFat();
+                break;
+            case 1: title += "carbohydrate intake";
+                nutrientPerDay = goals.getTargetCarbs();
+                break;
+            case 2: title += "protein intake";
+                nutrientPerDay = goals.getTargetProtein();
+                break;
+            case 3: title += "sodium intake";
+                nutrientPerDay = goals.getTargetSodium();
+                break;
+            case 4: title += "potassium intake";
+                nutrientPerDay = goals.getTargetPotassium();
+                break;
+            case 5: title += "fiber intake";
+                nutrientPerDay = goals.getTargetFiber();
+                break;
+            case 6: title += "iron intake";
+                nutrientPerDay = goals.getTargetIron();
+                break;
+            case 7: title += "vitamin intake";
+                nutrientPerDay = goals.getTargetVitamin();
+                break;
+            default: nutrientPerDay = 0;
+                break;
+        }
+
+        if(nutrientPerDay <= 0 | goals.getTargetWeeks()<=0) {
+            nutrientPerDay = DEFAULT_DAILY_CALORIES * numDays;
+            title += ": Error calculating fat intake, " +
+                    "used default intake value";
+        } else {
+            nutrientPerDay = nutrientPerDay / (goals.getTargetWeeks()*7);
+        }
+
+        finalNutrient = nutrientPerDay*numDays;
+        gt = new GoalsType(nutrientPerDay, finalNutrient, title);
 
         return gt;
     }

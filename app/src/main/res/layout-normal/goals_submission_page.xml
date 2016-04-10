@@ -38,10 +38,9 @@
         android:hint="@string/weight_goal_hint"
         android:ems="10"
         android:id="@+id/targetWeightTextEntry"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/requiredGoals"
         android:layout_alignLeft="@+id/title"
-        android:layout_alignStart="@+id/title"
-        android:layout_marginTop="22dp" />
+        android:layout_alignStart="@+id/title" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -53,5 +52,114 @@
         android:layout_below="@+id/targetWeightTextEntry"
         android:layout_alignLeft="@+id/targetWeightTextEntry"
         android:layout_alignStart="@+id/targetWeightTextEntry" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/required_goals"
+        android:id="@+id/requiredGoals"
+        android:layout_below="@+id/title"
+        android:layout_alignLeft="@+id/targetWeightTextEntry"
+        android:layout_alignStart="@+id/targetWeightTextEntry" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/optional_goals"
+        android:id="@+id/optionalGoals"
+        android:layout_below="@+id/targetWeeksTextEntry"
+        android:layout_alignLeft="@+id/targetWeeksTextEntry"
+        android:layout_alignStart="@+id/targetWeeksTextEntry"
+        android:layout_marginTop="37dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/fat_goal_hint"
+        android:ems="7"
+        android:id="@+id/fatTextEntry"
+        android:layout_below="@+id/optionalGoals"
+        android:layout_alignLeft="@+id/optionalGoals"
+        android:layout_alignStart="@+id/optionalGoals" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/potassium_goal_hint"
+        android:ems="7"
+        android:id="@+id/potassiumTextEntry"
+        android:layout_alignTop="@+id/fatTextEntry"
+        android:layout_alignRight="@+id/title"
+        android:layout_alignEnd="@+id/title" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/carbs_goal_hint"
+        android:ems="7"
+        android:id="@+id/carbsTextEntry"
+        android:layout_below="@+id/fatTextEntry"
+        android:layout_alignLeft="@+id/fatTextEntry"
+        android:layout_alignStart="@+id/fatTextEntry" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/fiber_goal_hint"
+        android:ems="7"
+        android:id="@+id/fiberTextEntry"
+        android:layout_alignBottom="@+id/carbsTextEntry"
+        android:layout_alignLeft="@+id/potassiumTextEntry"
+        android:layout_alignStart="@+id/potassiumTextEntry" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/protein_goal_hint"
+        android:ems="7"
+        android:id="@+id/proteinTextEntry"
+        android:layout_below="@+id/carbsTextEntry"
+        android:layout_alignLeft="@+id/carbsTextEntry"
+        android:layout_alignStart="@+id/carbsTextEntry" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/sodium_goal_hint"
+        android:ems="7"
+        android:id="@+id/sodiumTextEntry"
+        android:layout_below="@+id/proteinTextEntry"
+        android:layout_alignLeft="@+id/proteinTextEntry"
+        android:layout_alignStart="@+id/proteinTextEntry" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/iron_goal_hint"
+        android:ems="7"
+        android:id="@+id/ironTextEntry"
+        android:layout_below="@+id/fiberTextEntry"
+        android:layout_alignLeft="@+id/fiberTextEntry"
+        android:layout_alignStart="@+id/fiberTextEntry" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/vitamin_goal_hint"
+        android:ems="7"
+        android:id="@+id/vitaminTextEntry"
+        android:layout_below="@+id/ironTextEntry"
+        android:layout_alignLeft="@+id/ironTextEntry"
+        android:layout_alignStart="@+id/ironTextEntry" />
 
 </RelativeLayout>

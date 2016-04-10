@@ -90,15 +90,95 @@ public class GoalsAccess implements Serializable, ApplicationConstants {
         }
     }
 
+    public int getTargetFat() {
+        if(goals.isSet()){
+            return goals.getFat();
+        }
+        else{
+            return -1;
+        }
+    }
+
+    public int getTargetCarbs() {
+        if(goals.isSet()){
+            return goals.getCarbs();
+        }
+        else{
+            return -1;
+        }
+    }
+
+    public int getTargetProtein() {
+        if(goals.isSet()){
+            return goals.getProtein();
+        }
+        else{
+            return -1;
+        }
+    }
+
+    public int getTargetSodium() {
+        if(goals.isSet()){
+            return goals.getSodium();
+        }
+        else{
+            return -1;
+        }
+    }
+
+    public int getTargetPotassium() {
+        if(goals.isSet()){
+            return goals.getPotassium();
+        }
+        else{
+            return -1;
+        }
+    }
+
+    public int getTargetFiber() {
+        if(goals.isSet()){
+            return goals.getFiber();
+        }
+        else{
+            return -1;
+        }
+    }
+
+    public int getTargetIron() {
+        if(goals.isSet()){
+            return goals.getIron();
+        }
+        else{
+            return -1;
+        }
+    }
+
+    public int getTargetVitamin() {
+        if(goals.isSet()){
+            return goals.getVitamin();
+        }
+        else{
+            return -1;
+        }
+    }
+
     public boolean isSet() {
         return goals.isSet();
     }
 
-    public void setAll(int targetWeight, int targetWeeks) {
-        if (goals==null)
+    public void setAll(int targetWeight, int targetWeeks, int[] targetNutrients) {
+        if (goals ==null)
             goals = new Goals();
         goals.setTargetWeight(targetWeight);
         goals.setTargetWeeks(targetWeeks);
+        goals.setFat(targetNutrients[0]);
+        goals.setCarbs(targetNutrients[1]);
+        goals.setProtein(targetNutrients[2]);
+        goals.setSodium(targetNutrients[3]);
+        goals.setPotassium(targetNutrients[4]);
+        goals.setFiber(targetNutrients[5]);
+        goals.setIron(targetNutrients[6]);
+        goals.setVitamin(targetNutrients[7]);
         goals.setSet(true);
     }
 
