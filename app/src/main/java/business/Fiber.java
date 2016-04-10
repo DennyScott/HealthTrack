@@ -15,6 +15,10 @@ class Fiber extends Nutrient implements Serializable, ApplicationConstants {
         amount = 0;
     }
 
+    public int getGoalAmount() {
+        return goals.getTargetFiber();
+    }
+
     public int getDailyAmount() {
         amount = goals.getTargetFiber();
         if (goals.getTargetWeeks()>0) {

@@ -15,6 +15,10 @@ class Protein extends Nutrient implements Serializable, ApplicationConstants {
         amount = 0;
     }
 
+    public int getGoalAmount() {
+        return goals.getTargetProtein();
+    }
+
     public int getDailyAmount() {
         amount = goals.getTargetProtein();
         if (goals.getTargetWeeks()>0) {

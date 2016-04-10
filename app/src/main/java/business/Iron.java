@@ -15,6 +15,10 @@ class Iron extends Nutrient implements Serializable, ApplicationConstants {
         amount = 0;
     }
 
+    public int getGoalAmount() {
+        return goals.getTargetIron();
+    }
+
     public int getDailyAmount() {
         amount = goals.getTargetIron();
         if (goals.getTargetWeeks()>0) {

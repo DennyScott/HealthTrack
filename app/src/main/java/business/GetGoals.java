@@ -27,30 +27,39 @@ public class GetGoals {
     private static ArrayList<GoalsType> getGoals(int numDays) {
         ArrayList<GoalsType> goals = new ArrayList<GoalsType>();
 
-        GoalsAccess nutrientGoals = new GoalsAccess();
-        if (nutrientGoals.getTargetWeight()>0)
-            goals.add(nutrientGoal(numDays, 8));
-        if (nutrientGoals.getTargetFat()>0)
-            goals.add(nutrientGoal(numDays, 0));
-        if (nutrientGoals.getTargetCarbs()>0)
-            goals.add(nutrientGoal(numDays, 1));
-        if (nutrientGoals.getTargetProtein()>0)
-            goals.add(nutrientGoal(numDays, 2));
-        if (nutrientGoals.getTargetSodium()>0)
-            goals.add(nutrientGoal(numDays, 3));
-        if (nutrientGoals.getTargetPotassium()>0)
-            goals.add(nutrientGoal(numDays, 4));
-        if (nutrientGoals.getTargetFiber()>0)
-            goals.add(nutrientGoal(numDays, 5));
-        if (nutrientGoals.getTargetIron()>0)
-            goals.add(nutrientGoal(numDays, 6));
-        if (nutrientGoals.getTargetVitamin()>0)
-            goals.add(nutrientGoal(numDays, 7));
+        Fat fat = new Fat();
+        Carbohydrate carbs = new Carbohydrate();
+        Protein protein = new Protein();
+        Sodium sodium = new Sodium();
+        Potassium potassium = new Potassium();
+        Fiber fiber = new Fiber();
+        Iron iron = new Iron();
+        Vitamin vitamin = new Vitamin();
+        Nutrient calories = new Nutrient();
+
+        if (calories.getGoalAmount()>0)
+            goals.add(nutrientGoal(numDays, calories));
+        if (fat.getGoalAmount()>0)
+            goals.add(nutrientGoal(numDays, fat));
+        if (carbs.getGoalAmount()>0)
+            goals.add(nutrientGoal(numDays, carbs));
+        if (protein.getGoalAmount()>0)
+            goals.add(nutrientGoal(numDays, protein));
+        if (sodium.getGoalAmount()>0)
+            goals.add(nutrientGoal(numDays, sodium));
+        if (potassium.getGoalAmount()>0)
+            goals.add(nutrientGoal(numDays, potassium));
+        if (fiber.getGoalAmount()>0)
+            goals.add(nutrientGoal(numDays, fiber));
+        if (iron.getGoalAmount()>0)
+            goals.add(nutrientGoal(numDays, iron));
+        if (vitamin.getGoalAmount()>0)
+            goals.add(nutrientGoal(numDays, vitamin));
 
         return goals;
     }
 
-    private static GoalsType nutrientGoal(int numDays, int nutrient) {
+    private static GoalsType nutrientGoal(int numDays, Nutrient nutrient) {
         GoalsType gt;
         int nutrientPerDay;
         int finalNutrient;
@@ -73,48 +82,17 @@ public class GetGoals {
                 break;
         }
 
-        switch(nutrient) {
-            case 0: title += "fat intake";
-                nutrientPerDay = goals.getTargetFat();
-                break;
-            case 1: title += "carbohydrate intake";
-                nutrientPerDay = goals.getTargetCarbs();
-                break;
-            case 2: title += "protein intake";
-                nutrientPerDay = goals.getTargetProtein();
-                break;
-            case 3: title += "sodium intake";
-                nutrientPerDay = goals.getTargetSodium();
-                break;
-            case 4: title += "potassium intake";
-                nutrientPerDay = goals.getTargetPotassium();
-                break;
-            case 5: title += "fiber intake";
-                nutrientPerDay = goals.getTargetFiber();
-                break;
-            case 6: title += "iron intake";
-                nutrientPerDay = goals.getTargetIron();
-                break;
-            case 7: title += "vitamin intake";
-                nutrientPerDay = goals.getTargetVitamin();
-                break;
-            case 8: title += "calorie intake";
-                CalcCaloriesPerDay ccpd = new CalcCaloriesPerDay();
-                nutrientPerDay = (int) ccpd.calculate();
-                break;
-            default: nutrientPerDay = 0;
-                break;
-        }
+        title += nutrient.getName() + " Intake";
+        nutrientPerDay = nutrient.getDailyAmount();
 
         if(nutrientPerDay <= 0 | goals.getTargetWeeks()<=0) {
             nutrientPerDay = DEFAULT_DAILY_CALORIES * numDays;
             title += ": Error calculating intake, " +
                     "used default intake value";
-        } else if (nutrient <=7) {
-            nutrientPerDay = nutrientPerDay / (goals.getTargetWeeks()*7);
         }
 
         finalNutrient = nutrientPerDay*numDays;
+
         gt = new GoalsType(nutrientPerDay, finalNutrient, title);
 
         return gt;

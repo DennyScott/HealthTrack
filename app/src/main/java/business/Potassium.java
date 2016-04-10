@@ -15,6 +15,10 @@ class Potassium extends Nutrient implements Serializable, ApplicationConstants {
         amount = 0;
     }
 
+    public int getGoalAmount() {
+        return goals.getTargetPotassium();
+    }
+
     public int getDailyAmount() {
         amount = goals.getTargetPotassium();
         if (goals.getTargetWeeks()>0) {

@@ -15,6 +15,10 @@ class Fat extends Nutrient implements Serializable, ApplicationConstants {
         amount = 0;
     }
 
+    public int getGoalAmount() {
+        return goals.getTargetFat();
+    }
+
     public int getDailyAmount() {
         amount = goals.getTargetFat();
         if (goals.getTargetWeeks()>0) {

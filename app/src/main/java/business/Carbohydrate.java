@@ -15,6 +15,10 @@ class Carbohydrate extends Nutrient implements Serializable, ApplicationConstant
         amount = 0;
     }
 
+    public int getGoalAmount() {
+        return goals.getTargetCarbs();
+    }
+
     public int getDailyAmount() {
         amount = goals.getTargetCarbs();
         if (goals.getTargetWeeks()>0) {

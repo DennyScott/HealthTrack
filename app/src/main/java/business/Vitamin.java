@@ -15,6 +15,10 @@ class Vitamin extends Nutrient implements Serializable, ApplicationConstants {
         amount = 0;
     }
 
+    public int getGoalAmount() {
+        return goals.getTargetVitamin();
+    }
+
     public int getDailyAmount() {
         amount = goals.getTargetVitamin();
         if (goals.getTargetWeeks()>0) {

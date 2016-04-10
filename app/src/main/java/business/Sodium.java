@@ -15,6 +15,10 @@ class Sodium extends Nutrient implements Serializable, ApplicationConstants {
         amount = 0;
     }
 
+    public int getGoalAmount() {
+        return goals.getTargetSodium();
+    }
+
     public int getDailyAmount() {
         amount = goals.getTargetSodium();
         if (goals.getTargetWeeks()>0) {
