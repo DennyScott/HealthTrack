@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import club.glamajestic.healthtrack.DisplayList;
 import club.glamajestic.healthtrack.StatsActivity;
+import business.StatsUtils;
 
 
 //Testing of this class
@@ -30,12 +31,14 @@ public class InitPieChart implements  ApplicationConstants {
     String[] putUnits;
     float[] putValues;
     String[] putString;
+    StatsUtils utils;
     float[] y;
     String[] x;
     ClickSound playSound;
     StatsDataAccess dataAccess = new StatsDataAccess();
     public InitPieChart(final Context ctx, FrameLayout f, PieChart pie, final int charInitMode){
         STATS_BUS = new Stats();
+        utils = new StatsUtils();
         this.ctx = ctx;
         this.f = f;
         this.pie = pie;
@@ -46,9 +49,9 @@ public class InitPieChart implements  ApplicationConstants {
     }
     private void initChart(float[] y, String[] x){
         STATS_BUS.init(0);
-        y = allToGrams(STATS_BUS.getValues(), STATS_BUS.Units());
-        x = STATS_BUS.getKeys();
-
+        utils.RemoveZeroTerms(STATS_BUS.getKeys(), utils.allToGrams(STATS_BUS.getValues(), STATS_BUS.Units()));
+        y = utils.y;
+        x = utils.x;
         pie = new PieChart(ctx);
 
         f.addView(pie);
@@ -84,15 +87,15 @@ public class InitPieChart implements  ApplicationConstants {
                 if (mode == 3) {
                     openStats(ctx);
                 } else {
-                    if(STATS_BUS.getKeys()[e.getXIndex()].equals("Other")){
+                    if(returnCurrentX(e.getXIndex()).equals("Other")){
                         putKeys = STATS_BUS.getOtherKeys();
                         putUnits = STATS_BUS.getOtherUnits();
                         putValues = STATS_BUS.getOtherValues();
                         putString = null;
                     }
                     else {
-                        System.out.println("Getting: " + STATS_BUS.getKeys()[e.getXIndex()]);
-                        putString = dataAccess.getFoods(mode, STATS_BUS.getKeys()[e.getXIndex()]);
+                        System.out.println("Getting: " + returnCurrentX(e.getXIndex()));
+                        putString = dataAccess.getFoods(mode, returnCurrentX(e.getXIndex()));
                         for (int x = 0; x < putString.length; x++){
                             System.out.println("Got: " + putString[x]);
                         }
@@ -115,24 +118,9 @@ public class InitPieChart implements  ApplicationConstants {
         l.setXEntrySpace(7);
         l.setYEntrySpace(5);
     }
-    public float[] allToGrams(float[] x, String[] y){
-        float[] nexX = new float[x.length];
-        for(int a = 0; a < x.length;a++){
-            nexX[a] = x[a]*toGrams(y[a]);
-        }
-        return nexX;
-    }
-    public float toGrams(String y){
-        float val = 1;
-        if(y.equals("mg")){
-            val = 0.001f;
-        }
-        if(y.equals("ug")){
-            val = 0.000001f;
-        }
-        return val;
-    }
     public void addData(float[] y, String[] x,int mode) {
+        this.x = x;
+        this.y = y;
         this.mode = mode;
         if (mode == 0 || mode == 3) {
             pie.setCenterText("Day");
@@ -206,5 +194,8 @@ public class InitPieChart implements  ApplicationConstants {
         gameMode.putExtra("values",putValues);
         gameMode.putExtra("foods",putString);
         ctx.startActivity(gameMode);
+    }
+    String returnCurrentX(int a){
+       return  x[a];
     }
 }

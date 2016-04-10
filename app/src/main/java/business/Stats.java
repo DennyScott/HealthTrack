@@ -18,6 +18,8 @@ public class Stats implements ApplicationConstants {
     private int amountOfOtherData;
     private int size = 0;
     StatsDataAccess dataAccess;
+    StatsUtils utils;
+
 
     public Stats() {
         amountOfOtherData = 0;
@@ -25,6 +27,7 @@ public class Stats implements ApplicationConstants {
     }
 
     public void init(int mode) {
+        utils = new StatsUtils();
         dataAccess = new StatsDataAccess();
         otherKeys = new String[]{"Nothing to Show"};
         otherValues = new float[]{0};
@@ -90,7 +93,7 @@ public class Stats implements ApplicationConstants {
         }
         if (amountOfOtherData > 0) {
             for (int x = MAX_SIZE - 1; x < size; x++) {
-                otherValues[x - (MAX_SIZE - 1)] = array.get(x).value;
+                otherValues[x - (MAX_SIZE - 1)] = array.get(x).value * utils.toGrams(array.get(x).unit);
                 otherKeys[x - (MAX_SIZE - 1)] = array.get(x).key;
                 otherUnits[x - (MAX_SIZE - 1)] = array.get(x).unit;
             }

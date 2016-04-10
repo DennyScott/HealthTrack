@@ -5,6 +5,8 @@ import business.GetGoals;
 import business.GoalsType;
 import business.InitPieChart;
 import business.Stats;
+import business.StatsUtils;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -39,6 +41,7 @@ public class StatsActivity extends Activity {
     private TextView title;
     InitPieChart pie;
     ClickSound playSound;
+    StatsUtils utils;
 
 
     /**
@@ -49,8 +52,10 @@ public class StatsActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         StatsBus.init(mode);
-        yData = StatsBus.getValues();
-        xData = StatsBus.getKeys();
+        utils = new StatsUtils();
+        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()));
+        yData = utils.y;
+        xData = utils.x;
         setContentView(R.layout.stats);
         playSound = new ClickSound(this);
         final TabHost host = (TabHost) findViewById(R.id.tabHost);
@@ -98,7 +103,7 @@ public class StatsActivity extends Activity {
     }
     public void setGoalsTab(ArrayList<GoalsType> list){
         LinearLayout tab2 =(LinearLayout)findViewById(R.id.barChartTabLinear);
-        tab2.setPadding(10,10,10,10);
+        tab2.setPadding(10, 10, 10, 10);
         title = new TextView(this);
         title.setTextSize(40);
         title.setTextColor(Color.parseColor("#ffffff"));
@@ -136,8 +141,9 @@ public class StatsActivity extends Activity {
     public void dayButton(View view) {
         mode = 0;
         StatsBus.init(mode);
-        yData = StatsBus.getValues();
-        xData = StatsBus.getKeys();
+        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()));
+        yData = utils.y;
+        xData = utils.x;
         dayButton.setAlpha(0.8f);
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.4f);
@@ -150,8 +156,9 @@ public class StatsActivity extends Activity {
     public void weekButton(View view) {
         mode = 1;
         StatsBus.init(mode);
-        yData = StatsBus.getValues();
-        xData = StatsBus.getKeys();
+        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()));
+        yData = utils.y;
+        xData = utils.x;
         dayButton.setAlpha(0.4f);
         weekButton.setAlpha(0.8f);
         monthButton.setAlpha(0.4f);
@@ -164,8 +171,9 @@ public class StatsActivity extends Activity {
     public void monthButton(View view) {
         mode = 2;
         StatsBus.init(mode);
-        yData = StatsBus.getValues();
-        xData = StatsBus.getKeys();
+        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()));
+        yData = utils.y;
+        xData = utils.x;
         dayButton.setAlpha(0.4f);
         weekButton.setAlpha(0.4f);
         monthButton.setAlpha(0.8f);

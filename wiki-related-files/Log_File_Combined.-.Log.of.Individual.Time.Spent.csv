@@ -192,3 +192,6 @@ SW,c5164bf6cd778a8da440ef9c6a59523c1cb6b509,3/13/2016,,3,4,Updated Architectural
 SW,4127e011b06eb3d4d614db747944e4a7b8a60b0a,3/18/2016,UI Tests,4,5,"Researched Robotium, troubleshoot test runners and gradle issues, added first UI test of Ate Activity"
 AR,7a65108c0bb6013eec1ed7718d9cdc5b66b2027a,3/24/2016,Bug Fix,1,1,"Copied layout-normal files to layout-large so that no elements were missing"
 KES,multiple,3/26/2016,Progress Bars and UI,3,4,"Added progress bar generator to Java code, will generate as many abrs as we have goals, bars will show up in under goals tab in stats, stubed database"
+KES,multiple,4/2/2016,Stats,6,8,"Improved stats business classes freatly to allow for easier database integration"
+KES,e305598848258670681206fb6684de15f0e99711,4/9/2016,Stats,0.5,1.5,"Fixed issues with stats class, pie wont show 0.0% anymore"
+KES,014bde7ca55805696676205e8d448284c7da3555,4/9/2016,GUI,0.2,0.2,"Removed all extra settings buttons"
