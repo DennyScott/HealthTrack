@@ -9,6 +9,7 @@ class UserData implements Serializable, ApplicationConstants {
     private int weight;
     private int height;
     private int gender;//0 male, 1 female
+    private int activeLevel;
     private boolean set;
 
     UserData() {
@@ -18,6 +19,7 @@ class UserData implements Serializable, ApplicationConstants {
         setWeight(0);
         setHeight(0);
         setGender(1);
+        setActiveLevel(0);
     }
 
     public String getName() {
@@ -58,6 +60,14 @@ class UserData implements Serializable, ApplicationConstants {
 
     public void setGender(int gender) {
         this.gender = gender;
+    }
+
+    public int getActiveLevel() {
+        return activeLevel;
+    }
+
+    public void setActiveLevel(int activeLevel) {
+        this.activeLevel = activeLevel;
     }
 
     public boolean isSet() {

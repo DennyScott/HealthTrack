@@ -107,6 +107,12 @@
             android:text="Female"
             android:id="@+id/female"
             android:onClick="female" />
+
+        <Spinner
+            android:entries="@array/activeLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/activeSpinner" />
     </RadioGroup>
 
 </RelativeLayout>

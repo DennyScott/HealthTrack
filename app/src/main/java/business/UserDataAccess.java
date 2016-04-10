@@ -90,17 +90,22 @@ public class UserDataAccess implements Serializable, ApplicationConstants {
         return user.getHeight();
     }
 
+    public int getActiveLevel() {
+        return user.getActiveLevel();
+    }
+
     public boolean isSet() {
         return user.isSet();
     }
 
-    public void setAll(String name, int age, int height, int weight, int gender) {
+    public void setAll(String name, int age, int height, int weight, int gender, int activeLevel) {
         if (user == null) user = new UserData();
         user.setName(name);
         user.setAge(age);
         user.setHeight(height);
         user.setWeight(weight);
         user.setGender(gender);
+        user.setActiveLevel(activeLevel);
         user.setSet(true);
     }
 

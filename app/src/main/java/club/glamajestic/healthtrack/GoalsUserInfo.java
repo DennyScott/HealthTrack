@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 
 import business.UserDataAccess;
 
@@ -24,6 +25,7 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
     private UserDataAccess user;
     private RadioButton male, female;
     private int gender;
+    private Spinner activeLevelText;
 
     /**
      * {@inheritDoc}
@@ -41,6 +43,7 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         heightText = (EditText)findViewById(R.id.heightTextEntry);
         male = (RadioButton)findViewById(R.id.male);
         female = (RadioButton)findViewById(R.id.female);
+        activeLevelText = (Spinner)findViewById(R.id.activeSpinner);
         user = new UserDataAccess(this);
     }
 
@@ -76,10 +79,27 @@ public class GoalsUserInfo extends Activity implements View.OnClickListener {
         String age = ageText.getText().toString();
         String weight = weightText.getText().toString();
         String height = heightText.getText().toString();
+        String activeLevelString = activeLevelText.getSelectedItem().toString();
+        int activeLevel;
+
+        switch (activeLevelString) {
+            case "Little To No Exercise": activeLevel = 1;
+                break;
+            case "Lightly Active": activeLevel = 2;
+                break;
+            case "Moderately Active": activeLevel = 3;
+                break;
+            case "Very Active": activeLevel = 4;
+                break;
+            case "Extra Active": activeLevel = 5;
+                break;
+            default: activeLevel = 0;
+                break;
+        }
 
         if(name != null && age != null && weight != null && height != null) {
             if(!name.equals("") && !age.equals( "") && !weight.equals("") && !height.equals( "")){
-                user.setAll(name,Integer.parseInt(age),Integer.parseInt(height),Integer.parseInt(weight),gender);
+                user.setAll(name,Integer.parseInt(age),Integer.parseInt(height),Integer.parseInt(weight),gender,activeLevel);
                 user.save();
 
                 Output.toastMessage(this, "Changes updated.", Output.SHORT_TOAST);

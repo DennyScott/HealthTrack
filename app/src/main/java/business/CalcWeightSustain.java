@@ -32,13 +32,29 @@ public class CalcWeightSustain implements Calculator, ApplicationConstants {
             calories = calcBMR.calculate();
         }
 
-
-
         if (Double.MAX_VALUE / VERY_LIGHT_ACTIVE < calories ||
                 calories < MIN_CALORIES || calories > MAX_CALORIES)
             return ApplicationConstants.BAD_CALCULATION;
 
-        calories = calories * VERY_LIGHT_ACTIVE;
+        UserDataAccess user = new UserDataAccess();
+        int activeLevel = user.getActiveLevel();
+        double activeMultiplier = NOT_ACTIVE;
+
+        switch (activeLevel) {
+            case 1: activeMultiplier = VERY_LIGHT_ACTIVE;
+                break;
+            case 2: activeMultiplier = LIGHT_ACTIVE;
+                break;
+            case 3: activeMultiplier = MOD_ACTIVE;
+                break;
+            case 4: activeMultiplier = VERY_ACTIVE;
+                break;
+            case 5: activeMultiplier = EXTRA_ACTIVE;
+                break;
+            default: break;
+        }
+
+        calories = calories * activeMultiplier;
 
         return calories;
     }

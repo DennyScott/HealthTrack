@@ -31,6 +31,14 @@
         <item>Female</item>
     </string-array>
 
+    <string-array name="activeLevel">
+        <item>Little To No Exercise</item>
+        <item>Lightly Active</item>
+        <item>Moderately Active</item>
+        <item>Very Active</item>
+        <item>Extra Active</item>
+    </string-array>
+
     <string name="test_load">Temp Test Load</string>
 
     <!-- Strings related to Settings -->
