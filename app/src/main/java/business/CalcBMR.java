@@ -23,7 +23,11 @@ public class CalcBMR implements Calculator, ApplicationConstants {
     private UserDataAccess user;
 
     public CalcBMR() {
-
+        user = new UserDataAccess();
+        weight = user.getWeight();
+        height = user.getHeight();
+        age = user.getAge();
+        gender = user.getGender();
     }
 
     public CalcBMR(double weight, double height, int age, int gender) {
