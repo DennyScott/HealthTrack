@@ -42,7 +42,7 @@ public class Journal implements ApplicationConstants {
                 null,
                 null
         );
-        db.close();
+
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 do {

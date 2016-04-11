@@ -1,17 +1,13 @@
 package persistence;
 
-import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v4.app.ActivityCompat;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -118,7 +114,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         }
 
 
-        db.close();
         String[] result = new String[allNutrientNames.size()];
         for (int i = 0; i < result.length; i++) {
             result[i] = allNutrientNames.get(i);
@@ -164,7 +159,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         }
 
         if(checkDB != null){
-            checkDB.close();
+
         }
 
         return checkDB != null;

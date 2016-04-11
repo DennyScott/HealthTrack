@@ -178,7 +178,7 @@ public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTe
                 cv.put(DataTransactionalHistory.COLNAME_PORTIONSIZE,Float.parseFloat(textbox.getText().toString()));
                 cv.put(DataTransactionalHistory.COLNAME_EATEN_DATE, today);
                 db.insert(DataTransactionalHistory.TABLE_NAME, null, cv);
-                db.close();
+
                 HTNotifications hn = new HTNotifications("Food successfully added to your log. Congratulations!");
                 hn.throwNotification(this);
 
@@ -198,15 +198,15 @@ public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTe
                     }
                     i++;
                 }
-                if(values[fatIndex]>fatLimit){
+                if(fatIndex!=-1&&values[fatIndex]>fatLimit){
                     HTNotifications fatNot = new HTNotifications("Fat", fatLimit);
                     fatNot.throwNotification(this);
                 }
-                if(values[carbIndex]>carbLimit){
+                if(carbIndex!=-1&&values[carbIndex]>carbLimit){
                     HTNotifications carbNot = new HTNotifications("Carbohydrate", carbLimit);
                     carbNot.throwNotification(this);
                 }
-                if(values[proteinIndex]>proteinLimit){
+                if(proteinIndex!=-1&&values[proteinIndex]>proteinLimit){
                     HTNotifications proteinNot = new HTNotifications("Protein", proteinLimit);
                     proteinNot.throwNotification(this);
                 }
