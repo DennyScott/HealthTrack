@@ -32,7 +32,6 @@ public class Journal implements ApplicationConstants {
                 new String[]{
                         DataTransactionalHistory.COLNAME_FOODNAME,
                         DataTransactionalHistory.COLNAME_EATEN_DATE,
-                        DataTransactionalHistory.COLNAME_EATEN_TIME,
                         DataTransactionalHistory.COLNAME_PORTIONSIZE,
                         DataTransactionalHistory.COLNAME_FOODTABLE_ID
                 },
@@ -42,7 +41,7 @@ public class Journal implements ApplicationConstants {
                 },
                 null,
                 null,
-                DataTransactionalHistory.COLNAME_EATEN_TIME   //order it by date THEN time
+                null
         );
         db.close();
         if (cursor != null) {
@@ -51,7 +50,6 @@ public class Journal implements ApplicationConstants {
                     journalEntryList.add(
                             new JournalEntry(
                                     Date.valueOf(cursor.getString(cursor.getColumnIndex(DataTransactionalHistory.COLNAME_EATEN_DATE))),
-                                    Time.valueOf(cursor.getString(cursor.getColumnIndex(DataTransactionalHistory.COLNAME_EATEN_TIME))),
                                     cursor.getInt(cursor.getColumnIndex(DataTransactionalHistory.COLNAME_PORTIONSIZE)),
                                     cursor.getInt(cursor.getColumnIndex(DataTransactionalHistory.COLNAME_FOODTABLE_ID))
                                     )

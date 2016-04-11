@@ -16,9 +16,8 @@ public class JournalEntry implements ApplicationConstants {
     DataFoods food;
     int servings;
 
-    public JournalEntry(Date dateEaten, Time timeEaten, int portionSize, int foodTableId) {
+    public JournalEntry(Date dateEaten, int portionSize, int foodTableId) {
         this.date = dateEaten;
-        this.time = timeEaten;
         this.servings = portionSize;
         this.food = new DataFoods(foodTableId);
     }

@@ -210,7 +210,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
                                 COLNAME_ID              + DATATYPE_INT  + OPT_PRIM_KEY + OPT_COMMA +
                                 COLNAME_FOODNAME        + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
                                 COLNAME_EATEN_DATE      + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
-                                COLNAME_EATEN_TIME      + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
                                 COLNAME_PORTIONSIZE     + DATATYPE_TEXT + OPT_NOT_NULL + OPT_COMMA +
                                 COLNAME_FOODTABLE_ID    + DATATYPE_INT + OPT_NOT_NULL + ");"
                 );

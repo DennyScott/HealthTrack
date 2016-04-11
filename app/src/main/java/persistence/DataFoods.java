@@ -82,6 +82,10 @@ public class DataFoods {
         return result;
     }
 
+    /**
+     * Get all the syntax names of the nutrient columns
+     * @return
+     */
     public static String[] getAllNutrientColumnNames() {
         Method[] nutrientMethods;
         if (allNutrientNamesGetCalls == null) initializeMethodCalls();
@@ -127,7 +131,9 @@ public class DataFoods {
                     }
                 }
                 if ((x && y) || (!x && !y)) {
-                    calls.add(allNutrientTableMethods[i]);
+                    if (!calls.contains(allNutrientTableMethods[i])) {
+                        calls.add(allNutrientTableMethods[i]);
+                    }
                 }
             }
         }
