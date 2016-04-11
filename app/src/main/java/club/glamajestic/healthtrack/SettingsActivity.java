@@ -129,6 +129,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
+
             setHasOptionsMenu(true);
 
             bindPreferenceSummaryToValue(findPreference("user_name"));
@@ -137,6 +138,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("user_weight"));
             bindPreferenceSummaryToValue(findPreference("user_gender"));
             bindPreferenceSummaryToValue(findPreference("user_activity_level"));
+
 
 
 
@@ -162,7 +164,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             addPreferencesFromResource(R.xml.pref_notification);
             setHasOptionsMenu(true);
 
-            bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
+            bindPreferenceSummaryToValue(findPreference("user_fat_limit"));
+            bindPreferenceSummaryToValue(findPreference("user_carb_limit"));
+            bindPreferenceSummaryToValue(findPreference("user_protein_limit"));
         }
 
         @Override

@@ -2,13 +2,7 @@ package club.glamajestic.healthtrack;
 
 import android.app.NotificationManager;
 import android.content.Context;
-import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
-
-import java.sql.Date;
-import java.util.ArrayList;
-
-import persistence.*;
 
 /**
  * Handles and throws notifications to the user.
