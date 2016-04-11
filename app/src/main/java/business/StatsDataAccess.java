@@ -56,8 +56,10 @@ public class StatsDataAccess implements ApplicationConstants {
                 String nutrients[] = DataTransactionalHistory.getAllFoodNutrients(Today,Today,foodNames[x]);
                 if(nutrients != null) {
                     for (int y = 0; y < nutrients.length; y++) {
-                        String[] Temp = nutrients[y].split("\\s+");
-                        food.addFoodData(Temp[0], Float.parseFloat(Temp[1]), Temp[2]);
+                        String[] Temp = nutrients[y].split("#");
+                        if (Temp.length == 3) {
+                            food.addFoodData(Temp[0], Float.parseFloat(Temp[1]), Temp[2]);
+                        }
                     }
                     day.add(new StatsFood(foodNames[x], food));
                 }
@@ -70,8 +72,10 @@ public class StatsDataAccess implements ApplicationConstants {
                 String nutrients[] = DataTransactionalHistory.getAllFoodNutrients(LastWeek,Today,foodNames[x]);
                 if(nutrients != null) {
                     for (int y = 0; y < nutrients.length; y++) {
-                        String[] Temp = nutrients[y].split("\\s+");
-                        food.addFoodData(Temp[0], Float.parseFloat(Temp[1]), Temp[2]);
+                        String[] Temp = nutrients[y].split("#");
+                        if (Temp.length == 3) {
+                            food.addFoodData(Temp[0], Float.parseFloat(Temp[1]), Temp[2]);
+                        }
                     }
                     week.add(new StatsFood(foodNames[x], food));
                 }
@@ -84,8 +88,10 @@ public class StatsDataAccess implements ApplicationConstants {
                 String nutrients[] = DataTransactionalHistory.getAllFoodNutrients(LastMonth,Today,foodNames[x]);
                 if(nutrients != null) {
                     for (int y = 0; y < nutrients.length; y++) {
-                        String[] Temp = nutrients[y].split("\\s+");
-                        food.addFoodData(Temp[0], Float.parseFloat(Temp[1]), Temp[2]);
+                        String[] Temp = nutrients[y].split("#");
+                        if (Temp.length == 3) {
+                            food.addFoodData(Temp[0], Float.parseFloat(Temp[1]), Temp[2]);
+                        }
                     }
                     month.add(new StatsFood(foodNames[x], food));
                 }
@@ -99,14 +105,14 @@ public class StatsDataAccess implements ApplicationConstants {
             for (int x = 0; x < day.size(); x++) {
                 String temp;
                 if ((temp = day.get(x).hasNutrient(nutrient)) != null){
-                    foods.add(day.get(x).foodName + " " + temp);
+                    foods.add(day.get(x).foodName + "#" + temp);
                 }
             }
         }else if(mode == 1){
             for (int x = 0; x < week.size(); x++) {
                 String temp;
                 if ((temp = week.get(x).hasNutrient(nutrient)) != null){
-                    foods.add(week.get(x).foodName + " " + temp);
+                    foods.add(week.get(x).foodName + "#" + temp);
                 }
             }
         }
@@ -114,7 +120,7 @@ public class StatsDataAccess implements ApplicationConstants {
                 for (int x = 0; x < month.size(); x++) {
                     String temp;
                     if ((temp = month.get(x).hasNutrient(nutrient)) != null) {
-                        foods.add(month.get(x).foodName + " " + temp);
+                        foods.add(month.get(x).foodName + "#" + temp);
                     }
                 }
         }

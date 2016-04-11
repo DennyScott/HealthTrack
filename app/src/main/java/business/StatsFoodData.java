@@ -36,7 +36,7 @@ public class StatsFoodData {
         String ret = null;
         if (nutrientNames.contains(nutriennt)) {
             int index = nutrientNames.indexOf(nutriennt);
-            ret = values.get(index) + " " + units.get(index);
+            ret = values.get(index) + "#" + units.get(index);
         }
         return ret;
 

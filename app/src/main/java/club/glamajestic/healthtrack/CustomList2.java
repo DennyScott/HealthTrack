@@ -21,9 +21,13 @@ public class CustomList2 extends ArrayAdapter<String> implements ApplicationCons
         value = new float[foods.length];
         units = new String[foods.length];
         for(int x = 0; x < foods.length; x++){
-            String[] temp = foods[x].split("\\s+");
+            String[] temp = foods[x].split("#");
             nutrient[x] = temp[0];
-            value[x] = Float.parseFloat(temp[1]);
+            try{
+                value[x] = Float.parseFloat(temp[1]);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
             units[x] = temp[2];
         }
         this.context = context;

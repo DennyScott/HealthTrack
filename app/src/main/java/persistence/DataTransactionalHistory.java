@@ -82,8 +82,8 @@ public class DataTransactionalHistory {
         Cursor cursorTrans = db.query(
                 DataTransactionalHistory.TABLE_NAME,
                 null,
-                COLNAME_EATEN_DATE + " >=? AND " + COLNAME_EATEN_DATE + " <=?" + " AND " + COLNAME_FOODNAME + " LIKE %?%",
-                new String[] {dateRangeStart, dateRangeEnd, foodName},
+                COLNAME_EATEN_DATE + " >=\'" + dateRangeStart + "' AND " + COLNAME_EATEN_DATE + " <='" + dateRangeEnd + "' AND " + COLNAME_FOODNAME + " LIKE '%" + foodName + "%'",
+                null,
                 null,
                 null,
                 null
@@ -114,13 +114,13 @@ public class DataTransactionalHistory {
                 for (int j = 0; j < allNutrientColumnNames.length; j++) {
                     currentNutrientColumn = allNutrientColumnNames[j];
                     //only set nutrient name and units once, since float sum is the changing value
-                    if (nutrientNames[i] == null || nutrientNames[i].equals(""))
-                        nutrientNames[i] = cursorDb.getString(cursorDb.getColumnIndex(currentNutrientColumn));
-                    if (nutrientUnits[i] == null || nutrientUnits[i].equals(""))
-                        nutrientUnits[i] = cursorDb.getString(cursorDb.getColumnIndex(currentNutrientColumn + "Unit"));
-                    if (nutrientSum[i] <= 0) nutrientSum[i] = 0;
+                    if (nutrientNames[j] == null || nutrientNames[j].equals(""))
+                        nutrientNames[j] = cursorDb.getString(cursorDb.getColumnIndex(currentNutrientColumn));
+                    if (nutrientUnits[j] == null || nutrientUnits[j].equals(""))
+                        nutrientUnits[j] = cursorDb.getString(cursorDb.getColumnIndex(currentNutrientColumn + "Unit"));
+                    if (nutrientSum[j] <= 0) nutrientSum[j] = 0;
                     //multiple by portion size too
-                    nutrientSum[i] += cursorDb.getFloat(cursorDb.getColumnIndex(currentNutrientColumn + "Value")) * portionSize;
+                    nutrientSum[j] += cursorDb.getFloat(cursorDb.getColumnIndex(currentNutrientColumn + "Value")) * portionSize;
                 }
 
             }
@@ -129,7 +129,7 @@ public class DataTransactionalHistory {
         db.close();
         String[] result = new String[nutrientNames.length];
         for (int i = 0; i < result.length; i++) {
-            result[i] = nutrientNames[i] + " " + nutrientSum[i] + " " + nutrientUnits[i];
+            result[i] = nutrientNames[i] + "#" + nutrientSum[i] + "#" + nutrientUnits[i];
         }
         return result;
     }

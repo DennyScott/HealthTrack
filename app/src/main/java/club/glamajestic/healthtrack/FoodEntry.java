@@ -1,6 +1,7 @@
 package club.glamajestic.healthtrack;
 
 import android.annotation.TargetApi;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
@@ -12,15 +13,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import persistence.DataFoods;
+import persistence.DataTransactionalHistory;
 import persistence.DatabaseDefinition;
 
 public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTextListener, SearchView.OnCloseListener {
@@ -30,6 +36,8 @@ public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTe
     DatabaseDefinition df;
     ListView multiListView;
     SearchView searchView;
+    EditText textbox;
+    Cursor cpos = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +49,12 @@ public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTe
 
         df = new DatabaseDefinition(this);
         df.createDatabase();
-
+        textbox = (EditText) findViewById(R.id.portionsText);
         multiListView = (ListView) findViewById(R.id.foodsSearchListView);
         //create the id set for holding the views
         alphabeticalNutrientNameTextIds = new ArrayList<>();
         alphabeticalNutrientValueTextIds = new ArrayList<>();
+
     }
 
     private void doQuery(String foodname) {
@@ -88,7 +97,7 @@ public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTe
             multiListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Cursor cpos = (Cursor) multiListView.getItemAtPosition(position);
+                    cpos = (Cursor) multiListView.getItemAtPosition(position);
                     populateUsingCursor(cpos);
 
                     searchView.setQuery("", true);
@@ -140,6 +149,40 @@ public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTe
     public boolean onClose() {
 
         return false;
+    }
+    public void onSave(View view){
+        if(textbox.getText().toString().equals("")){
+            Output.toastMessage(this,"Please enter portion first!",0);
+        }
+        else{
+            if(cpos != null){
+                SQLiteDatabase db = DatabaseDefinition.currentDatabase.getReadableDatabase();
+                ContentValues cv = new ContentValues();
+
+                //        transactional history (eaten)
+                //          id
+                //          food_name
+                //          eaten_date
+                //          portion_size
+                //          foodTableId
+                DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+                Calendar cal = Calendar.getInstance();
+                String today = dateFormat.format(cal.getTime());
+
+                cv.put(DataTransactionalHistory.COLNAME_FOODNAME,cpos.getString(cpos.getColumnIndex(DataFoods.COLNAME_FOODNAME)));
+                cv.put(DataTransactionalHistory.COLNAME_FOODTABLE_ID,cpos.getInt(cpos.getColumnIndex(DataFoods.COLNAME_ID)));
+                cv.put(DataTransactionalHistory.COLNAME_PORTIONSIZE,Float.parseFloat(textbox.getText().toString()));
+                cv.put(DataTransactionalHistory.COLNAME_EATEN_DATE,today);
+                db.insert(DataTransactionalHistory.TABLE_NAME,null,cv);
+                db.close();
+                HTNotifications hn = new HTNotifications("Food successfully added to your log. Congratulations!");
+                hn.throwNotification(this);
+                finish();
+            } else {
+                Output.toastMessage(this,"Please select a food",0);
+            }
+
+        }
     }
 
     /**
