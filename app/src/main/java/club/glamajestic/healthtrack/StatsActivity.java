@@ -59,7 +59,9 @@ public class StatsActivity extends Activity {
 
         StatsBus.init(mode);
         utils = new StatsUtils();
-        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()));
+        float offset = utils.getOffSet(StatsBus.getOtherValues(),StatsBus.getOtherUnits() );
+
+        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()),offset);
         yData = utils.y;
         xData = utils.x;
         setContentView(R.layout.stats);
@@ -130,7 +132,8 @@ public class StatsActivity extends Activity {
     public void dayButton(View view) {
         mode = 0;
         StatsBus.init(mode);
-        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()));
+        float offset = utils.getOffSet(StatsBus.getOtherValues(),StatsBus.getOtherUnits() );
+        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()),offset);
         yData = utils.y;
         xData = utils.x;
         dayButton.setAlpha(0.8f);
@@ -145,7 +148,8 @@ public class StatsActivity extends Activity {
     public void weekButton(View view) {
         mode = 1;
         StatsBus.init(mode);
-        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()));
+        float offset = utils.getOffSet(StatsBus.getOtherValues(),StatsBus.getOtherUnits() );
+        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()),offset);
         yData = utils.y;
         xData = utils.x;
         dayButton.setAlpha(0.4f);
@@ -160,7 +164,8 @@ public class StatsActivity extends Activity {
     public void monthButton(View view) {
         mode = 2;
         StatsBus.init(mode);
-        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()));
+        float offset = utils.getOffSet(StatsBus.getOtherValues(),StatsBus.getOtherUnits() );
+        utils.RemoveZeroTerms(StatsBus.getKeys(), utils.allToGrams(StatsBus.getValues(), StatsBus.Units()),offset);
         yData = utils.y;
         xData = utils.x;
         dayButton.setAlpha(0.4f);

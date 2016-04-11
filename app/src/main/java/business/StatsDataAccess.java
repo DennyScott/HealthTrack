@@ -62,6 +62,7 @@ public class StatsDataAccess implements ApplicationConstants {
                         }
                     }
                     day.add(new StatsFood(foodNames[x], food));
+                    food = new StatsFoodData();
                 }
             }
         }
@@ -94,6 +95,7 @@ public class StatsDataAccess implements ApplicationConstants {
                         }
                     }
                     month.add(new StatsFood(foodNames[x], food));
+                    food = new StatsFoodData();
                 }
             }
         }
