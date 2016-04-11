@@ -1,7 +1,12 @@
 package business;
 
 
+
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class StatsDataAccess implements ApplicationConstants {
     ////////////////////Given the name of a nutrient ex "fat" return a list of all foods that contribute to
@@ -32,43 +37,60 @@ public class StatsDataAccess implements ApplicationConstants {
         /// this will need to be replaced with a for loop that add each element from each food eaten
 
         //For loop adds all content for day, add all contents to food, then push to list, iterate over all foods in transactional database
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Calendar cal = Calendar.getInstance();
+        String Today = dateFormat.format(cal.getTime());
+        cal.add(Calendar.DATE, -7);
+        String LastWeek = dateFormat.format(cal.getTime());
+        cal.add(Calendar.DATE, -23);
+        String LastMonth = dateFormat.format(cal.getTime());
+
+        //System.out.println(Today + " " + LastWeek + " "  + LastMonth);
+
         StatsFoodData food = new StatsFoodData();
-        food.addFoodData("Cholesterol",5,"mg");// Add all elements of a single food item
-        food.addFoodData("Sodium",10,"mg");
-        food.addFoodData("Sugar",15,"g");
-        food.addFoodData("Protein", 30, "g");
-        day.add(new StatsFood("Chocolate", food));//Once all elements are added, push the food item in this case chocolate to the day, loop through all foods eaten that day, make sure
-        //to instantiate food every time we reset the loop ass seen on line 42 below
-        food = new StatsFoodData();
-        food.addFoodData("Fat",40,"g");
-        food.addFoodData("Fiber",20,"g");
-        food.addFoodData("Calcium",10,"g");
-        food.addFoodData("Carbs",60,"g");
-        day.add(new StatsFood("Pizza", food));
+        String foodNames[] = null;
+        if(foodNames != null) {
+            for (int x = 0; x < foodNames.length; x++) {
 
-        //Creata a loop that does the same as above but for whole week
-        food = new StatsFoodData();
-        food.addFoodData("Cholesterol",47,"mg");
-        food.addFoodData("Sodium",100,"mg");
-        food.addFoodData("Sugar",267,"g");
-        food.addFoodData("Protein",209,"g");
-        food.addFoodData("Fat",1200,"g");
-        food.addFoodData("Fiber",68,"g");
-        food.addFoodData("Calcium",12,"g");
-        food.addFoodData("Carbs", 5004, "g");
-        week.add(new StatsFood("StirFry", food)); // yes this dude ate nothign but stir fry for a week
+                String nutrients[] = null;
+                if(nutrients != null) {
+                    for (int y = 0; y < nutrients.length; y++) {
+                        String[] Temp = nutrients[y].split("\\s+");
+                        food.addFoodData(Temp[0], Float.parseFloat(Temp[1]), Temp[2]);
+                    }
+                    day.add(new StatsFood(foodNames[x], food));
+                }
+            }
+        }
+        foodNames = null;
+        if(foodNames != null) {
+            for (int x = 0; x < foodNames.length; x++) {
 
-        //Creata a loop that does the same as above but for whole month
-        food = new StatsFoodData();
-        food.addFoodData("Cholesterol", 1233, "mg");
-        food.addFoodData("Sodium",1116,"mg");
-        food.addFoodData("Sugar",1500,"g");
-        food.addFoodData("Protein",3000,"g");
-        food.addFoodData("Fat",4000,"g");
-        food.addFoodData("Fiber",200,"g");
-        food.addFoodData("Calcium",100,"g");
-        food.addFoodData("Carbs",18000,"g");
-        month.add(new StatsFood("Burger", food)); // yes this dude ate nothign but burgers for a month
+                String nutrients[] = null;
+                if(nutrients != null) {
+                    for (int y = 0; y < nutrients.length; y++) {
+                        String[] Temp = nutrients[y].split("\\s+");
+                        food.addFoodData(Temp[0], Float.parseFloat(Temp[1]), Temp[2]);
+                    }
+                    week.add(new StatsFood(foodNames[x], food));
+                }
+            }
+        }
+        foodNames = null;
+        if(foodNames != null) {
+            for (int x = 0; x < foodNames.length; x++) {
+
+                String nutrients[] = null;
+                if(nutrients != null) {
+                    for (int y = 0; y < nutrients.length; y++) {
+                        String[] Temp = nutrients[y].split("\\s+");
+                        food.addFoodData(Temp[0], Float.parseFloat(Temp[1]), Temp[2]);
+                    }
+                    month.add(new StatsFood(foodNames[x], food));
+                }
+            }
+        }
+
     }
     public String[] getFoods(int mode, String nutrient) {
         ArrayList<String> foods = new  ArrayList<String>();
