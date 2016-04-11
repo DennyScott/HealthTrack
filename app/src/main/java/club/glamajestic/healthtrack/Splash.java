@@ -11,12 +11,19 @@ import android.widget.TextView;
 
 import java.io.File;
 
+import business.UserDataAccess;
+import persistence.DatabaseDefinition;
+
 
 public class Splash extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
+        UserDataAccess.verifyStoragePermissions(this);
+        if(DatabaseDefinition.currentDatabase == null){
+            DatabaseDefinition df  = new DatabaseDefinition(this);
+        }
         final ImageView splashPic = (ImageView)findViewById(R.id.splashPic);
         final TextView splashText = (TextView) findViewById(R.id.splashText);
         Animation rot = AnimationUtils.loadAnimation(this,R.anim.rotate);

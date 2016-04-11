@@ -51,6 +51,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 
     //actual table names
     public static final String  TABLE_NAME_FOODS = "ExternalFoods";
+    public static final String  TABLE_NAME_TRANSHIST = "TransactionalHistory";
 
     /*
             ExternalFoods
@@ -161,7 +162,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
         try{
             String myPath = DATABASE_PATH;
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-        }catch(SQLiteException ignored){
+        }catch(Exception ignored){
 
         }
 

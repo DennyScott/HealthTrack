@@ -24,7 +24,7 @@ public class DataTransactionalHistory {
     //          foodTableId
 
     //Transactional History Table:
-    public static final String TABLE_NAME = DatabaseDefinition.TABLE_NAME_FOODS;
+    public static final String TABLE_NAME = DatabaseDefinition.TABLE_NAME_TRANSHIST;
     public static final String COLNAME_ID = "_id";
     public static final String COLNAME_FOODNAME = DataFoods.COLNAME_FOODNAME;
     public static final String COLNAME_EATEN_DATE = DatabaseDefinition.COLNAME_EATEN_DATE;

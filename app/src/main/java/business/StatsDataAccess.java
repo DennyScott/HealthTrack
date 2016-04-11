@@ -8,6 +8,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import persistence.DataTransactionalHistory;
+
 public class StatsDataAccess implements ApplicationConstants {
     ////////////////////Given the name of a nutrient ex "fat" return a list of all foods that contribute to
     ////////////////////that nutrient , how many grams they contribute each, and what units these measurments are in
@@ -35,7 +37,6 @@ public class StatsDataAccess implements ApplicationConstants {
     }
     private void populateFromDataBase(){
         /// this will need to be replaced with a for loop that add each element from each food eaten
-
         //For loop adds all content for day, add all contents to food, then push to list, iterate over all foods in transactional database
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         Calendar cal = Calendar.getInstance();
@@ -48,11 +49,11 @@ public class StatsDataAccess implements ApplicationConstants {
         //System.out.println(Today + " " + LastWeek + " "  + LastMonth);
 
         StatsFoodData food = new StatsFoodData();
-        String foodNames[] = null;
+        String foodNames[] = DataTransactionalHistory.getAllFoodNames(Today,Today);
         if(foodNames != null) {
             for (int x = 0; x < foodNames.length; x++) {
 
-                String nutrients[] = null;
+                String nutrients[] = DataTransactionalHistory.getAllFoodNutrients(Today,Today,foodNames[x]);
                 if(nutrients != null) {
                     for (int y = 0; y < nutrients.length; y++) {
                         String[] Temp = nutrients[y].split("\\s+");
@@ -62,11 +63,11 @@ public class StatsDataAccess implements ApplicationConstants {
                 }
             }
         }
-        foodNames = null;
+        foodNames = DataTransactionalHistory.getAllFoodNames(LastWeek,Today);
         if(foodNames != null) {
             for (int x = 0; x < foodNames.length; x++) {
 
-                String nutrients[] = null;
+                String nutrients[] = DataTransactionalHistory.getAllFoodNutrients(LastWeek,Today,foodNames[x]);
                 if(nutrients != null) {
                     for (int y = 0; y < nutrients.length; y++) {
                         String[] Temp = nutrients[y].split("\\s+");
@@ -76,11 +77,11 @@ public class StatsDataAccess implements ApplicationConstants {
                 }
             }
         }
-        foodNames = null;
+        foodNames = DataTransactionalHistory.getAllFoodNames(LastMonth,Today);
         if(foodNames != null) {
             for (int x = 0; x < foodNames.length; x++) {
 
-                String nutrients[] = null;
+                String nutrients[] = DataTransactionalHistory.getAllFoodNutrients(LastMonth,Today,foodNames[x]);
                 if(nutrients != null) {
                     for (int y = 0; y < nutrients.length; y++) {
                         String[] Temp = nutrients[y].split("\\s+");
