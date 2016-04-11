@@ -4,21 +4,27 @@ import business.ClickSound;
 import business.InitPieChart;
 import business.Stats;
 import business.StatsUtils;
+import persistence.DataTransactionalHistory;
 
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class StatsActivity extends Activity {
 
@@ -40,6 +46,8 @@ public class StatsActivity extends Activity {
     InitPieChart pie;
     ClickSound playSound;
     StatsUtils utils;
+    ListView multiListView;
+    String Today,LastWeek,LastMonth;
 
 
     /**
@@ -57,6 +65,7 @@ public class StatsActivity extends Activity {
         setContentView(R.layout.stats);
         playSound = new ClickSound(this);
         final TabHost host = (TabHost) findViewById(R.id.tabHost);
+        multiListView = (ListView) findViewById(R.id.statsFoodsSearchListView);
         host.setup();
         //Tab 1
         TabHost.TabSpec spec = host.newTabSpec("Pie Chart");
@@ -74,8 +83,6 @@ public class StatsActivity extends Activity {
         host.addTab(spec);
 
 
-
-
         x = (TextView) host.getTabWidget().getChildAt(1).findViewById(android.R.id.title);
         x.setTextSize(30);
 
@@ -89,6 +96,17 @@ public class StatsActivity extends Activity {
         });
         setTabColor(host);
 
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Calendar cal = Calendar.getInstance();
+        Today = dateFormat.format(cal.getTime());
+        cal.add(Calendar.DATE, -7);
+        LastWeek = dateFormat.format(cal.getTime());
+        cal.add(Calendar.DATE, -23);
+        LastMonth = dateFormat.format(cal.getTime());
+
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, DataTransactionalHistory.getAllFoodNames(Today,Today));
+        multiListView.setAdapter(listAdapter);
+
         dayButton = (Button) findViewById(R.id.dayButton);
         weekButton = (Button) findViewById(R.id.weekButton);
         monthButton = (Button) findViewById(R.id.monthButton);
@@ -99,10 +117,6 @@ public class StatsActivity extends Activity {
         pie = new InitPieChart(this, stats, chart, mode);
 
 
-    }
-    public void clearGoalsTab(){
-        LinearLayout tab2 =(LinearLayout)findViewById(R.id.barChartTabLinear);
-        tab2.removeAllViews();
     }
 
     public void onBackPressed() {
@@ -124,7 +138,8 @@ public class StatsActivity extends Activity {
         monthButton.setAlpha(0.4f);
         pie.addData(yData, xData, mode);
         playSound.play();
-        clearGoalsTab();
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, DataTransactionalHistory.getAllFoodNames(Today,Today));
+        multiListView.setAdapter(listAdapter);
     }
 
     public void weekButton(View view) {
@@ -138,7 +153,8 @@ public class StatsActivity extends Activity {
         monthButton.setAlpha(0.4f);
         pie.addData(yData, xData, mode);
         playSound.play();
-        clearGoalsTab();
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, DataTransactionalHistory.getAllFoodNames(LastWeek,Today));
+        multiListView.setAdapter(listAdapter);
     }
 
     public void monthButton(View view) {
@@ -152,7 +168,8 @@ public class StatsActivity extends Activity {
         monthButton.setAlpha(0.8f);
         pie.addData(yData, xData, mode);
         playSound.play();
-        clearGoalsTab();
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, DataTransactionalHistory.getAllFoodNames(LastMonth,Today));
+        multiListView.setAdapter(listAdapter);
     }
     public void setTabColor(TabHost tabhost) {
 
