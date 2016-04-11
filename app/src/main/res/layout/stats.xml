@@ -50,21 +50,21 @@
                     </FrameLayout>
                 </LinearLayout>
 
-                <ScrollView
+                <LinearLayout
                     android:id="@+id/barChartTab"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="bottom">
+                    <FrameLayout
                         android:id="@+id/barChartTabLinear"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="480dp"
                         android:orientation="vertical">
 
                         <ListView
-                            android:layout_height="200dp"
+                            android:layout_height="fill_parent"
                             android:layout_width="fill_parent"
-                            android:layout_weight=".50"
-                            android:id="@+id/foodsSearchListView"
+                            android:id="@+id/statsFoodsSearchListView"
                             android:minWidth="160dp"
                             android:layout_below="@+id/foodSearchView"
                             android:layout_alignParentLeft="true"
@@ -73,8 +73,8 @@
                             android:layout_alignEnd="@+id/foodEntryScrollableLayout"
                             android:layout_row="1"
                             android:layout_column="0" />
-                    </LinearLayout>
-                </ScrollView>
+                    </FrameLayout>
+                </LinearLayout>
 
             </FrameLayout>
         </LinearLayout>

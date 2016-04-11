@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     ClickSound playSound;
     boolean soundEnabled;
     int charInitMode;
+    InitPieChart pie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         }
         stats = (FrameLayout) findViewById(R.id.chartMainScreen);
         charInitMode = 3;
-        InitPieChart pie = new InitPieChart(this, stats, chart, charInitMode);
+        pie = new InitPieChart(this, stats, chart, charInitMode);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -106,6 +107,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 backgroundMusic.start();
             }
         }
+        stats.removeAllViews();
+        pie = new InitPieChart(this, stats, chart, charInitMode);
     }
 
     @Override
