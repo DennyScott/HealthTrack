@@ -91,9 +91,10 @@ public class Stats implements ApplicationConstants {
             keys[x] = array.get(x).key;
             units[x] = array.get(x).unit;
         }
+
         if (amountOfOtherData > 0) {
             for (int x = MAX_SIZE - 1; x < size; x++) {
-                otherValues[x - (MAX_SIZE - 1)] = array.get(x).value * utils.toGrams(array.get(x).unit);
+                otherValues[x - (MAX_SIZE - 1)] = array.get(x).value;
                 otherKeys[x - (MAX_SIZE - 1)] = array.get(x).key;
                 otherUnits[x - (MAX_SIZE - 1)] = array.get(x).unit;
             }
@@ -103,18 +104,31 @@ public class Stats implements ApplicationConstants {
             }
             values[MAX_SIZE - 1] = otherTotal;
             keys[MAX_SIZE - 1] = "Other";
-            units[MAX_SIZE - 1] = "";
+            units[MAX_SIZE - 1] = "g";
+            float[] newValue = utils.GramsToAll( values,units);
+            values = newValue;
         }
     }
 
     private ArrayList<KeyValuePair> sort(float[] values, String[] keys, String[] units) {
         ArrayList<KeyValuePair> retVal = null;
+        StatsUtils util = new StatsUtils();
         if (size > 0 && values.length == size && keys.length == size) {
             ArrayList<KeyValuePair> kVP = new ArrayList<KeyValuePair>();
+            ArrayList<KeyValuePair> energy = new ArrayList<KeyValuePair>();
+            float[] newFloatVals =  util.allToGrams(values,units);
             for (int x = 0; x < size; x++) {
-                kVP.add(new KeyValuePair(keys[x], values[x], units[x]));
+                if(units[x].equals("kJ") || units[x].equals("kCal")){
+                    energy.add(new KeyValuePair(keys[x], newFloatVals[x], units[x]));
+                }
+                else {
+                    kVP.add(new KeyValuePair(keys[x], newFloatVals[x], units[x]));
+                }
             }
             Collections.sort(kVP);
+            for(int x = 0; x< energy.size();x++){
+                kVP.add(energy.get(x));
+            }
             retVal = kVP;
         }
         return retVal;

@@ -49,7 +49,9 @@ public class InitPieChart implements  ApplicationConstants {
     }
     private void initChart(float[] y, String[] x){
         STATS_BUS.init(0);
-        utils.RemoveZeroTerms(STATS_BUS.getKeys(), utils.allToGrams(STATS_BUS.getValues(), STATS_BUS.Units()));
+        float offset = utils.getOffSet(STATS_BUS.getOtherValues(),STATS_BUS.getOtherUnits() );
+
+        utils.RemoveZeroTerms(STATS_BUS.getKeys(), utils.allToGrams(STATS_BUS.getValues(), STATS_BUS.Units()),offset);
         y = utils.y;
         x = utils.x;
         pie = new PieChart(ctx);
