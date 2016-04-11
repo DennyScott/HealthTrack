@@ -216,3 +216,9 @@ RS,8c93a09ddef0cef61cf3dc31afefed738f6f21fb,3/28/2016,,4,6,Fixed bugs with Exter
 RS,85c4035c070b2c3d3d7b1aa513248f31de8f53e6,4/1/2016,,9,10,"Reverted deletes; Fixed converter, optimized database and removed unneeded tables, refractored classes"
 RS,5d9e01816d06db9e2db8086c05538eda0f6a6247,4/2/2016,,3,2,Optimized food search queries in database 
 RS,18691929d8b7a30c29cb97612e337b685abad8c2,4/10/2016,,8,15,"Optimized project submission, removed features and refractored code"
+KB,ee34a4bb93c39b73b212ccbbb5ef87e836a31118,3/20/2016,GUI,1,0.5,Fixed logo scaling problem
+KB,7f77959c38f7b4ea1a196a5059798cdf272e30cc,3/27/2016,,0,0,Merged branches
+KB,eb0982fbaebfe9feb5ee72d31feee562a45e7b22,3/28/2016,GUI,1,0.5,Made three dot settings button functional
+KB,9c317d206bc958d5bbcaebd040843df2e7ef9eeb,4/1/2016,GUI,1,2,Added new click noise
+KB,e04b602de0ab6d2572fdc2302bd1ac06fcad5c6a,4/1/2016,GUI,1,1,Linked sound with business object
+
