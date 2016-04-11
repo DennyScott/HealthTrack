@@ -5,8 +5,8 @@
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
     <EditTextPreference
         android:capitalize="words"
-        android:defaultValue="@string/example_name"
-        android:inputType="textCapWords"
+        android:defaultValue="@string/pref_default_display_name"
+        android:inputType="textPersonName"
         android:key="user_name"
         android:maxLines="1"
         android:selectAllOnFocus="true"
@@ -53,8 +53,17 @@
         android:entries="@array/pref_gender_list"
         android:entryValues="@array/pref_gender_values"
         android:key="user_gender"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
+        android:negativeButtonText="@string/pref_dialog_negative"
+        android:positiveButtonText="@string/pref_dialog_positive"
         android:title="@string/pref_title_user_gender" />
+
+    <ListPreference
+        android:defaultValue="-1"
+        android:entries="@array/pref_activity_level_list"
+        android:entryValues="@array/pref_activity_level_values"
+        android:key="user_activity_level"
+        android:negativeButtonText="@string/pref_dialog_negative"
+        android:positiveButtonText="@string/pref_dialog_positive"
+        android:title="@string/pref_title_user_activity_level" />
 
 </PreferenceScreen>

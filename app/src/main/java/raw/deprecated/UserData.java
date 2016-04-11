@@ -1,6 +1,8 @@
-package business;
+package raw.deprecated;
 
 import java.io.Serializable;
+
+import business.ApplicationConstants;
 
 
 class UserData implements Serializable, ApplicationConstants {

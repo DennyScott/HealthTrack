@@ -1,9 +1,11 @@
-package business;
+package raw.deprecated;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 
 import java.io.BufferedInputStream;
@@ -16,6 +18,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import business.ApplicationConstants;
+
 
 public class UserDataAccess implements Serializable, ApplicationConstants {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -25,8 +29,9 @@ public class UserDataAccess implements Serializable, ApplicationConstants {
     };
     Activity ctx;
     UserData user;
+    SharedPreferences sharedPref;
 
-    public UserDataAccess() {
+/*    public UserDataAccess() {
         File userInfo = new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userInfo.ser");
         if (userInfo.exists()) {
             try {
@@ -39,10 +44,12 @@ public class UserDataAccess implements Serializable, ApplicationConstants {
         } else {
             user = new UserData();
         }
-    }
+    }*/
 
     public UserDataAccess(Activity ctx) {
         this.ctx = ctx;
+        this.sharedPref = PreferenceManager.getDefaultSharedPreferences(this.ctx);
+
         verifyStoragePermissions(ctx);
         File userInfo = new File(Environment.getExternalStorageDirectory().getPath() + "/HealthTrack/userInfo.ser");
         if (userInfo.exists()) {
@@ -71,28 +78,22 @@ public class UserDataAccess implements Serializable, ApplicationConstants {
     }
 
     public String getName() {
-        return user.getName();
+        return sharedPref.getString("user_name","Goku");
     }
 
     public int getGender() {
-        return user.getGender();
+        return sharedPref.getInt("user_gender",0);
     }
 
     public int getAge() {
-        return user.getAge();
+        return sharedPref.getInt("user_age",1);
     }
 
-    public int getWeight() {
-        return user.getWeight();
-    }
+    public int getWeight() { return sharedPref.getInt("user_weight", 1); }
 
-    public int getHeight() {
-        return user.getHeight();
-    }
+    public int getHeight() { return sharedPref.getInt("user_height", 1); }
 
-    public int getActiveLevel() {
-        return user.getActiveLevel();
-    }
+    public int getActiveLevel() { return sharedPref.getInt("user_activity_level", 0); }
 
     public boolean isSet() {
         return user.isSet();

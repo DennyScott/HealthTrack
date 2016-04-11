@@ -6,7 +6,7 @@
 //import android.view.View;
 //import android.widget.Button;
 //
-//import club.glamajestic.healthtrack.GoalsUserInfo;
+//import raw.deprecated.GoalsUserInfo;
 //import club.glamajestic.healthtrack.R;
 //import club.glamajestic.healthtrack.SettingsActivity;
 //

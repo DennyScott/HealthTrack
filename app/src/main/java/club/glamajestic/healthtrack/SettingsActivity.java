@@ -136,6 +136,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("user_height"));
             bindPreferenceSummaryToValue(findPreference("user_weight"));
             bindPreferenceSummaryToValue(findPreference("user_gender"));
+            bindPreferenceSummaryToValue(findPreference("user_activity_level"));
+
 
 
 

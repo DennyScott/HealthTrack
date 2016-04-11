@@ -31,29 +31,13 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Stats"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
         <activity
-            android:name="raw.deprecated.Goals"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity
-            android:name=".GoalsUserInfo"
+            android:name="raw.deprecated.GoalsUserInfo"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Goals User Info"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="raw.deprecated.GoalsSubmission"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Goals Submission"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="raw.deprecated.Ate"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="What I ate Today"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="raw.deprecated.Warnings"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Warnings"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
@@ -73,17 +57,7 @@
             android:targetPackage="club.glamajestic.healthtrack.test" />
 
         <activity android:name=".FoodEntry" />
-        <activity
-            android:name="raw.deprecated.MealEntry"
-            android:label="@string/title_activity_meal_entry"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme">
-            android:pack
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="club.glamajestic.healthtrack.MainActivity" />
-        </activity>
-        <activity android:name=".ChooseNutrientsDialog"></activity>
+
     </application>
 
 </manifest>
