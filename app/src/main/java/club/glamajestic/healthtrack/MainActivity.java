@@ -2,8 +2,6 @@ package club.glamajestic.healthtrack;
 
 import android.Manifest;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,11 +18,8 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import com.github.mikephil.charting.charts.PieChart;
 
-import business.ApplicationConstants;
 import business.ClickSound;
 import business.InitPieChart;
-import persistence.CsvConverter;
-import persistence.DatabaseDefinition;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout stats;
@@ -55,14 +50,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                playSound.play();
-                startActivity(new Intent(MainActivity.this, Ate.class));
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -146,18 +134,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_goals) {
-            Intent gameMode = new Intent(this, Goals.class);
+        if (id == R.id.nav_food) {
+            Intent gameMode = new Intent(this, FoodEntry.class);
             startActivity(gameMode);
             //finish();
-        } else if (id == R.id.nav_food) {
-            Intent gameMode = new Intent(this, Ate.class);
-            startActivity(gameMode);
-            //finish();
-        } else if (id == R.id.nav_dstats) {
-            Intent gameMode = new Intent(this, StatsActivity.class);
-            startActivity(gameMode);
-            //finish();
+
         } else if (id == R.id.nav_settings) {
             Intent gameMode = new Intent(this, SettingsActivity.class);
             startActivity(gameMode);

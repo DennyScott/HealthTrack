@@ -138,7 +138,7 @@ public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTe
      */
     @Override
     public boolean onClose() {
-        db.close();
+
         return false;
     }
 

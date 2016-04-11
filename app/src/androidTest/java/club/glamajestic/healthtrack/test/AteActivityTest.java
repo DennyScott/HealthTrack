@@ -36,11 +36,11 @@ public class AteActivityTest extends ActivityInstrumentationTestCase2<Splash> {
 		solo.clickOnView(solo.getView(android.widget.ImageButton.class, 0));
         //Click on Food Journal FrameLayout
 		solo.clickInRecyclerView(1, 0);
-        //Wait for activity: 'club.glamajestic.healthtrack.Ate'
-		assertTrue("club.glamajestic.healthtrack.Ate is not found!", solo.waitForActivity(club.glamajestic.healthtrack.Ate.class));
+        //Wait for activity: 'raw.deprecated.Ate'
+		//assertTrue("raw.deprecated.Ate is not found!", solo.waitForActivity(raw.deprecated.Ate.class));
         //Click on Enter Food
 		solo.clickOnView(solo.getView(club.glamajestic.healthtrack.R.id.foodEntryButton));
-		//Wait for activity: 'club.glamajestic.healthtrack.Ate'
+		//Wait for activity: 'raw.deprecated.Ate'
 		assertTrue("club.glamajestic.healthtrack.FoodEntry is not found!", solo.waitForActivity(club.glamajestic.healthtrack.FoodEntry.class));
 		//Click on first field
 		solo.clickOnEditText(0);

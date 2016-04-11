@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:keepScreenOn="true"
+    android:layout_weight="3"
+    android:id="@+id/stats">
+
+    <TabHost
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tabHost">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/pieChartTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/chartFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="537dp"
+                        android:largeHeap="true"
+                        android:layout_alignRight="@+id/monthButton"
+                        android:layout_alignEnd="@+id/monthButton"
+                        android:layout_above="@+id/dayButton"
+                        android:layout_marginTop="25dp"
+                        android:paddingBottom="10dp">
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <ScrollView
+                    android:id="@+id/barChartTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:id="@+id/barChartTabLinear"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ListView
+                            android:layout_height="200dp"
+                            android:layout_width="fill_parent"
+                            android:layout_weight=".50"
+                            android:id="@+id/foodsSearchListView"
+                            android:minWidth="160dp"
+                            android:layout_below="@+id/foodSearchView"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignRight="@+id/foodEntryScrollableLayout"
+                            android:layout_alignEnd="@+id/foodEntryScrollableLayout"
+                            android:layout_row="1"
+                            android:layout_column="0" />
+                    </LinearLayout>
+                </ScrollView>
+
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/day_button"
+        android:id="@+id/dayButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/stats_time_button_text_size"
+        android:onClick="dayButton"
+        android:background="#e28f13"
+        android:alpha="0.4"
+        android:layout_toLeftOf="@+id/weekButton"
+        android:layout_toStartOf="@+id/weekButton"
+        android:textStyle="bold"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/week_button"
+        android:id="@+id/weekButton"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/stats_time_button_text_size"
+        android:onClick="weekButton"
+        android:alpha="0.4"
+        android:background="#e28f13"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:textStyle="bold"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/month_button"
+        android:id="@+id/monthButton"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/stats_time_button_text_size"
+        android:onClick="monthButton"
+        android:background="#e28f13"
+        android:alpha="0.4"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/weekButton"
+        android:layout_toEndOf="@+id/weekButton"
+        android:textStyle="bold"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp" />
+
+</RelativeLayout>

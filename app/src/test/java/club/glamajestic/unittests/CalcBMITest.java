@@ -3,7 +3,7 @@ package club.glamajestic.unittests;
 import junit.framework.TestCase;
 
 import business.ApplicationConstants;
-import business.CalcBMI;
+import raw.deprecated.CalcBMI;
 
 //calculate body mass index based on weight in kg divided by height in m^2
 

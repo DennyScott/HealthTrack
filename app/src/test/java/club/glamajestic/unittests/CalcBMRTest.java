@@ -3,7 +3,7 @@ package club.glamajestic.unittests;
 import junit.framework.TestCase;
 
 import business.ApplicationConstants;
-import business.CalcBMR;
+import raw.deprecated.CalcBMR;
 //These tests fail because UserDataAccess Environment variable has not been mocked. Waiting for IT3
 
 public class CalcBMRTest extends TestCase {

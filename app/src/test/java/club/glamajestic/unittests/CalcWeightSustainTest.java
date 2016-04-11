@@ -3,7 +3,7 @@ package club.glamajestic.unittests;
 import junit.framework.TestCase;
 
 import business.ApplicationConstants;
-import business.CalcWeightSustain;
+import raw.deprecated.CalcWeightSustain;
 
 
 public class CalcWeightSustainTest extends TestCase {

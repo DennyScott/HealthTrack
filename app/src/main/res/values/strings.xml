@@ -1,48 +1,15 @@
 <resources>
     <string name="app_name">HealthTrack</string>
     <string name="action_settings">Settings</string>
-    <string name="ate_main_screen">Tell us what you\'ve eaten today.</string>
-    <string name="ate_title">Manage Foods</string>
-    <string name="goals_main_screen">Set and track your goals.</string>
-    <string name="goals_title">Goals</string>
-    <string name="settings_title">Settings</string>
-    <string name="stats_main_screen">View your daily-intake stats.</string>
-    <string name="stats_title">Stats</string>
-    <string name="warnings_main_screen">View potential health risks.</string>
-    <string name="warnings_title">Potential Risks</string>
-    <string name="title_activity_main_stats">mainStats</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="user_info_button">Enter User Info</string>
-    <string name="goals_submission_button">Goals Submission</string>
-    <string name="goals_submission_title">Goals Submission</string>
     <string name="user_info_title">User Information</string>
     <string name="save_changes_button">Save Changes</string>
     <string name="name_submission_hint">Name</string>
     <string name="age_submission_hint">Age</string>
     <string name="weight_submission_hint">Weight (lbs)</string>
-    <string name="height_submission_hint">Height (inches)</string>
-    <string name="weight_goal_hint">Target Weight (lbs)</string>
-    <string name="weeks_goal_hint">Target Number of Weeks</string>
-
-    <string name="required_goals">Required</string>
-    <string name="optional_goals">Optional</string>
-
-    <string name="fat_goal_hint">Fat (g)</string>
-    <string name="carbs_goal_hint">Carbohydrate (g)</string>
-    <string name="protein_goal_hint">Protein (g)</string>
-    <string name="sodium_goal_hint">Sodium (g)</string>
-    <string name="potassium_goal_hint">Potassium (g)</string>
-    <string name="fiber_goal_hint">Fiber (g)</string>
-    <string name="iron_goal_hint">Iron (g)</string>
-    <string name="vitamin_goal_hint">Vitamin (g)</string>
-
-    <string-array name="gender">
-        <item>Male</item>
-        <item>Female</item>
-    </string-array>
 
     <string-array name="activeLevel">
         <item>Little To No Exercise</item>
@@ -52,35 +19,13 @@
         <item>Extra Active</item>
     </string-array>
 
-    <string name="test_load">Temp Test Load</string>
-
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
-
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
 
     <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
-
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
 
     <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
 
     <string name="pref_title_sync_frequency">Sync frequency</string>
     <string-array name="pref_sync_frequency_titles">
@@ -122,17 +67,7 @@
     <string name="day_button">Day</string>
     <string name="week_button">Week</string>
     <string name="month_button">Month</string>
-    <string name="food_entry_save">Save</string>
-    <string name="food_entry_food_name">Food Name</string>
-    <string name="food_entry_nutrient_amount_calories">Calories (Cal)</string>
-    <string name="food_entry_nutrient_carbs">Carbohydrates (g)</string>
-    <string name="food_entry_nutrient_fat">Fat (g)</string>
-    <string name="food_entry_nutrient_protein">Protein (g)</string>
-    <string name="food_entry_nutrient_cholesterol">Cholsterol (mg)</string>
-    <string name="food_entry_nutient_sodium">Sodium (mg)</string>
-    <string name="food_entry_serving_hint">Servings</string>
     <string name="pref_header_user_info">User Info</string>
-    <string name="pref_default_age">Age</string>
     <string name="pref_title_user_age">Age</string>
     <string name="pref_default_user_age">Age</string>
     <string name="example_name">Kakarotto</string>
@@ -142,6 +77,5 @@
     <string name="pref_default_user_height">Height (cm)</string>
     <string name="pref_title_user_height">Height</string>
     <string name="title_activity_meal_entry">MealEntry</string>
-    <string name="mealEntryText">Add Meal Entry</string>
 
 </resources>

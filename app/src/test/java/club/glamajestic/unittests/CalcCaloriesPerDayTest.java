@@ -3,7 +3,7 @@ package club.glamajestic.unittests;
 import junit.framework.TestCase;
 
 import business.ApplicationConstants;
-import business.CalcCaloriesPerDay;
+import raw.deprecated.CalcCaloriesPerDay;
 //These tests fail because UserDataAccess Environment variable has not been mocked. Waiting for IT3
 
 public class CalcCaloriesPerDayTest extends TestCase {

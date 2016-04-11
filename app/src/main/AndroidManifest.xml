@@ -32,7 +32,7 @@
             android:label="Stats"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".Goals"
+            android:name="raw.deprecated.Goals"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
             android:name=".GoalsUserInfo"
@@ -40,17 +40,17 @@
             android:label="Goals User Info"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".GoalsSubmission"
+            android:name="raw.deprecated.GoalsSubmission"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Goals Submission"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".Ate"
+            android:name="raw.deprecated.Ate"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="What I ate Today"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".Warnings"
+            android:name="raw.deprecated.Warnings"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Warnings"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
@@ -74,7 +74,7 @@
 
         <activity android:name=".FoodEntry" />
         <activity
-            android:name=".MealEntry"
+            android:name="raw.deprecated.MealEntry"
             android:label="@string/title_activity_meal_entry"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme">

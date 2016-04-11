@@ -8,14 +8,6 @@
             android:icon="@drawable/ic_food"
             android:title="Food Journal" />
         <item
-            android:id="@+id/nav_dstats"
-            android:icon="@drawable/ic_dstats"
-            android:title="Detailed Stats" />
-        <item
-            android:id="@+id/nav_goals"
-            android:icon="@drawable/ic_goals"
-            android:title="Goals" />
-        <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_manage"
             android:title="Settings" />

@@ -1,8 +1,6 @@
 package club.glamajestic.healthtrack;
 
 import business.ClickSound;
-import business.GetGoals;
-import business.GoalsType;
 import business.InitPieChart;
 import business.Stats;
 import business.StatsUtils;
@@ -70,12 +68,13 @@ public class StatsActivity extends Activity {
         x.setTextSize(30);
 
         //Tab 2
-        spec = host.newTabSpec("Goals");
+        spec = host.newTabSpec("View Foods");
         spec.setContent(R.id.barChartTab);
-        spec.setIndicator("Goals");
+        spec.setIndicator("View Foods");
         host.addTab(spec);
 
-        setGoalsTab(GetGoals.loadGoalsFromDBDay());
+
+
 
         x = (TextView) host.getTabWidget().getChildAt(1).findViewById(android.R.id.title);
         x.setTextSize(30);
@@ -99,30 +98,6 @@ public class StatsActivity extends Activity {
         stats = (FrameLayout) findViewById(R.id.chartFrame);
         pie = new InitPieChart(this, stats, chart, mode);
 
-
-    }
-    public void setGoalsTab(ArrayList<GoalsType> list){
-        LinearLayout tab2 =(LinearLayout)findViewById(R.id.barChartTabLinear);
-        tab2.setPadding(10, 10, 10, 10);
-        title = new TextView(this);
-        title.setTextSize(40);
-        title.setTextColor(Color.parseColor("#ffffff"));
-        title.setText("Your Progress");
-        tab2.addView(title);
-
-        for(int aa = 0; aa< list.size(); aa++) {
-            bars = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
-            bars.setPadding(5, 10, 10, 5);
-            int progress = list.get(aa).getProgress();
-            int max = list.get(aa).getMax();
-            String title = list.get(aa).getTitle();
-            bars.setMax(max);
-            bars.setProgress(progress);
-            barTitles = new TextView(this);
-            barTitles.setText(title+": " + progress + "/" +max);
-            tab2.addView(bars);
-            tab2.addView(barTitles);
-        }
 
     }
     public void clearGoalsTab(){
@@ -150,7 +125,6 @@ public class StatsActivity extends Activity {
         pie.addData(yData, xData, mode);
         playSound.play();
         clearGoalsTab();
-        setGoalsTab(GetGoals.loadGoalsFromDBDay());
     }
 
     public void weekButton(View view) {
@@ -165,7 +139,6 @@ public class StatsActivity extends Activity {
         pie.addData(yData, xData, mode);
         playSound.play();
         clearGoalsTab();
-        setGoalsTab(GetGoals.loadGoalsFromDBWeek());
     }
 
     public void monthButton(View view) {
@@ -180,7 +153,6 @@ public class StatsActivity extends Activity {
         pie.addData(yData, xData, mode);
         playSound.play();
         clearGoalsTab();
-        setGoalsTab(GetGoals.loadGoalsFromDBMonth());
     }
     public void setTabColor(TabHost tabhost) {
 

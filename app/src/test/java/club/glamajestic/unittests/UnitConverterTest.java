@@ -2,7 +2,7 @@ package club.glamajestic.unittests;
 import junit.framework.TestCase;
 
 import business.ApplicationConstants;
-import business.UnitConverter;
+import raw.deprecated.UnitConverter;
 
 public class UnitConverterTest extends TestCase implements ApplicationConstants {
 

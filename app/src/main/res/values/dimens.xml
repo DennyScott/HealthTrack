@@ -2,21 +2,12 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="customPad">0dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
-    <dimen name="title_large">70sp</dimen>
     <dimen name="title_normal">40sp</dimen>
-    <dimen name="settings_button_normal_width">60dp</dimen>
-    <dimen name="settings_button_normal_height">40dp</dimen>
-    <dimen name="settings_button_margin">25dp</dimen>
     <dimen name="stats_time_button_text_size">25sp</dimen>
     <dimen name="save_changes_button_width">200dp</dimen>
     <dimen name="save_changes_button_height">50dp</dimen>
-    <dimen name="goals_button_width">200dp</dimen>
-    <dimen name="goals_button_height">50dp</dimen>
-    <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
 </resources>

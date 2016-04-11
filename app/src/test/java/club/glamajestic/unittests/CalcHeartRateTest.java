@@ -3,7 +3,7 @@ package club.glamajestic.unittests;
 import junit.framework.TestCase;
 
 import business.ApplicationConstants;
-import business.CalcHeartRate;
+import raw.deprecated.CalcHeartRate;
 
 //These tests fail because UserDataAccess Environment variable has not been mocked. Waiting for IT3
 

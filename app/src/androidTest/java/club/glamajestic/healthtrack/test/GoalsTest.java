@@ -4,7 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
 
-import club.glamajestic.healthtrack.Goals;
+import raw.deprecated.Goals;
 import club.glamajestic.healthtrack.R;
 
 
@@ -33,7 +33,7 @@ public class GoalsTest extends ActivityInstrumentationTestCase2<Goals> {
 
     public void testRun(){
         //Wait for activity: 'club.glamajestic.healthtrack.StatsGuiActivity'
-        assertTrue("club.glamajestic.healthtrack.Goals is not found!", solo.waitForActivity(club.glamajestic.healthtrack.Goals.class));
+        //assertTrue("raw.deprecated.Goals is not found!", solo.waitForActivity(raw.deprecated.Goals.class));
         //Click on Enter Food
         solo.clickOnView(solo.getView(club.glamajestic.healthtrack.R.id.goalsUserInfoButton));
         //Wait for activity: 'club.glamajestic.healthtrack.StatsGuiActivity'
