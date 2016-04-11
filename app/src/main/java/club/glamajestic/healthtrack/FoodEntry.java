@@ -43,17 +43,6 @@ public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTe
         df.createDatabase();
 
         multiListView = (ListView) findViewById(R.id.foodsSearchListView);
-
-
-//        tvFoodname = (TextView) findViewById(R.id.foodNameTextView);
-//        tvCalories= (TextView) findViewById(R.id.editCals);
-//        tvProteins = (TextView) findViewById(R.id.editProtein);
-//        tvFats = (TextView) findViewById(R.id.editFat);
-//        tvSodium= (TextView) findViewById(R.id.editSodium);
-//        tvChole = (TextView) findViewById(R.id.editCholesterol);
-//        tvCarbs = (TextView) findViewById(R.id.editCarbs);
-
-
         //create the id set for holding the views
         alphabeticalNutrientNameTextIds = new ArrayList<>();
         alphabeticalNutrientValueTextIds = new ArrayList<>();

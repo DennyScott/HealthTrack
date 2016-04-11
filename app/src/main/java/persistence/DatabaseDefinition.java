@@ -21,7 +21,6 @@ import java.util.ArrayList;
 
 public class DatabaseDefinition extends SQLiteOpenHelper {
 
-    private static final String LOG  = "DatabaseDefinitionTest";
     //for all tables
     private static final String DATABASE_NAME  = "HEALTHTRACK_DB";
     private static String EXTERNAL_DATABASE_PATH = "extdb/external_db.db";
@@ -36,8 +35,6 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
     public static final String DATATYPE_TEXT  = " TEXT";
     public static final String OPT_NOT_NULL   = " NOT NULL";
     public static final String OPT_PRIM_KEY   = " PRIMARY KEY";
-    public static final String OPT_DEFAULT    = " DEFAULT";
-    public static final String OPT_UNIQUE     = " UNIQUE (";
 
     public static final String OPT_COMMA      = ",";
     private static final String FOODS_TABLE_CREATE_QUERY_PART = "_id  INTEGER PRIMARY KEY,FoodDescription TEXT,MeasureDescription TEXT,ConversionFactorValue TEXT,FoodGroupName TEXT,PROCNT TEXT,PROCNTUnit TEXT,PROCNTValue TEXT,FAT TEXT,FATUnit TEXT,FATValue TEXT,CHOCDF TEXT,CHOCDFUnit TEXT,CHOCDFValue TEXT,ENERC_KCAL TEXT,ENERC_KCALUnit TEXT,ENERC_KCALValue TEXT,ALC TEXT,ALCUnit TEXT,ALCValue TEXT,WATER TEXT,WATERUnit TEXT,WATERValue TEXT,CAFFN TEXT,CAFFNUnit TEXT,CAFFNValue TEXT,ENERC_KJ TEXT,ENERC_KJUnit TEXT,ENERC_KJValue TEXT,SUGAR TEXT,SUGARUnit TEXT,SUGARValue TEXT,FIBTG TEXT,FIBTGUnit TEXT,FIBTGValue TEXT,CA TEXT,CAUnit TEXT,CAValue TEXT,FE TEXT,FEUnit TEXT,FEValue TEXT,MG TEXT,MGUnit TEXT,MGValue TEXT,P TEXT,PUnit TEXT,PValue TEXT,K TEXT,KUnit TEXT,KValue TEXT,NA TEXT,NAUnit TEXT,NAValue TEXT,ZN TEXT,ZNUnit TEXT,ZNValue TEXT,MN TEXT,MNUnit TEXT,MNValue TEXT,VITC TEXT,VITCUnit TEXT,VITCValue TEXT,THIA TEXT,THIAUnit TEXT,THIAValue TEXT,RIBF TEXT,RIBFUnit TEXT,RIBFValue TEXT,VITB6A TEXT,VITB6AUnit TEXT,VITB6AValue TEXT,VITB12 TEXT,VITB12Unit TEXT,VITB12Value TEXT,VITK TEXT,VITKUnit TEXT,VITKValue TEXT,FOLAC TEXT,FOLACUnit TEXT,FOLACValue TEXT,CHOLE TEXT,CHOLEUnit TEXT,CHOLEValue TEXT,FATRN TEXT,FATRNUnit TEXT,FATRNValue TEXT,FASAT TEXT,FASATUnit TEXT,FASATValue TEXT,FAMS TEXT,FAMSUnit TEXT,FAMSValue TEXT,FAPU TEXT,FAPUUnit TEXT,FAPUValue TEXT,FOLFD TEXT,FOLFDUnit TEXT,FOLFDValue TEXT,ERGCAL TEXT,ERGCALUnit TEXT,ERGCALValue TEXT,SUCS TEXT,SUCSUnit TEXT,SUCSValue TEXT,GLUS TEXT,GLUSUnit TEXT,GLUSValue TEXT,FRUS TEXT,FRUSUnit TEXT,FRUSValue TEXT,LACS TEXT,LACSUnit TEXT,LACSValue TEXT,GALS TEXT,GALSUnit TEXT,GALSValue TEXT,STARCH TEXT,STARCHUnit TEXT,STARCHValue TEXT,F6D0 TEXT,F6D0Unit TEXT,F6D0Value TEXT,F8D0 TEXT,F8D0Unit TEXT,F8D0Value TEXT,F10D0 TEXT,F10D0Unit TEXT,F10D0Value TEXT,F24D0 TEXT,F24D0Unit TEXT,F24D0Value TEXT,MNSAC TEXT,MNSACUnit TEXT,MNSACValue TEXT";
@@ -288,175 +285,7 @@ public class DatabaseDefinition extends SQLiteOpenHelper {
 
     /////////////////END DATABASE INSERTIONS////////////////////////
 
-    //***************DATABASE SINGLE ID RETRIEVALS****************************
-
-
-    public int findFoodById(String foodName) {
-        SQLiteDatabase db = currentDatabase.getWritableDatabase();
-        int result = -1;
-        //SELECT * FROM TABLE_ WHERE FOOD_DESCRIPTION = foodName
-        Cursor cursor = db.query(
-                TABLE_NAME_FOODS,
-                new String[] {COLNAME_ID},
-                foodName + "=" + foodName,
-                null,
-                null,
-                null,
-                null);
-
-        if (cursor.getCount() > 0) {
-            result = cursor.getInt(0);
-        }
-        cursor.close();
-        db.close();
-        return result;
-    }
-
-
-    public DataTransactionalHistory getTransactionalHistory(int id) {
-        SQLiteDatabase db = currentDatabase.getWritableDatabase();
-
-        //SELECT * FROM TABLE_ WHERE _id = id
-        Cursor cursor = db.query(
-                TABLE_CREATE_TRANS_HIST,
-                null,
-                "_id=?",
-                new String[] {Integer.toString(id)},
-                null,
-                null,
-                null);
-        //retreieve the data in the assumed order:
-        //        transactional history (eaten)
-        //          id
-        //          food_name
-        //          eaten_date
-        //          eaten_time
-        //          portion_size
-        //          foodTableID
-        DataTransactionalHistory retrievedData = new DataTransactionalHistory(
-                cursor.getInt(0), //int _id is always the first column
-                cursor.getString(1),
-                cursor.getString(2),
-                cursor.getString(2),
-                cursor.getString(3),
-                cursor.getInt(4)
-        );
-
-        return retrievedData;
-    }
-
-    public DataTransactionalHistory getSumTransactionalHistory(int id) {
-        SQLiteDatabase db = currentDatabase.getWritableDatabase();
-
-        //SELECT * FROM TABLE_ WHERE _id = id
-        Cursor cursor = db.query(
-                TABLE_CREATE_TRANS_HIST,
-                null,
-                "_id=?",
-                new String[] {Integer.toString(id)},
-                null,
-                null,
-                null);
-        //retreieve the data in the assumed order:
-        //        transactional history (eaten)
-        //          id
-        //          food_name
-        //          eaten_date
-        //          eaten_time
-        //          portion_size
-        //          calories_eaten
-        //          protein_eaten
-        //          carbohydrdates_eaten
-        //          fats_eaten
-        DataTransactionalHistory retrievedData = new DataTransactionalHistory(
-                cursor.getInt(0), //int _id is always the first column
-                cursor.getString(1),
-                cursor.getString(2),
-                cursor.getString(2),
-                cursor.getString(3),
-                cursor.getInt(4)
-        );
-
-        return retrievedData;
-    }
-
-    /////////////////END DATABASE SINGLE ID RETRIEVALS////////////////////////
-
-    //***************DATABASE SINGLE ID DELETIONS******************************
-
-    public void deleteCustomFood(int id) {
-        SQLiteDatabase db = currentDatabase.getWritableDatabase();
-        db.delete(
-                TABLE_CREATE_FOODS,
-                "_id=?",
-                new String[] {Integer.toString(id)}
-        );
-        db.close();
-    }
-
-    public void deleteTransHistoryRecord(int id) {
-        SQLiteDatabase db = currentDatabase.getWritableDatabase();
-        db.delete(
-                TABLE_CREATE_TRANS_HIST,
-                "_id=?",
-                new String[]{Integer.toString(id)}
-        );
-        db.close();
-    }
-    /////////////////END DATABASE SINGLE ID DELETIONS//////////////////////////
 
     //***************DATABASE SINGLE ID UPDATES******************************
-
-    public int updateTransaHistoryRecord(DataTransactionalHistory newRecord) {
-        SQLiteDatabase db = currentDatabase.getWritableDatabase();
-        ContentValues vals = new ContentValues();
-        //update the data in the assumed order:
-        //        transactional history (eaten)
-        //          id
-        //          food_name
-        //          eaten_date
-        //          eaten_time
-        //          portion_size
-        //          foodTableId
-        vals.put(COLNAME_ID, newRecord.getmId());
-        vals.put(COLNAME_FOODNAME, newRecord.getmFoodName());
-        vals.put(COLNAME_EATEN_DATE, newRecord.getmEatendate());
-        vals.put(COLNAME_EATEN_TIME, newRecord.getmEatentime());
-        vals.put(COLNAME_PORTIONSIZE, newRecord.getmPortionSize());
-        vals.put(COLNAME_FOODTABLE_ID, newRecord.getmFoodTableID());
-
-        //returns the number of rows affected
-        return db.update(TABLE_CREATE_TRANS_HIST,vals,"id=?",new String[] {Integer.toString(newRecord.getmId())});
-    }
-
-    /////////////////END DATABASE SINGLE ID UPDATES//////////////////////////
-
-    public static DataFoods getFood(int foodTableId) {
-        DataFoods result = null;
-        SQLiteDatabase db = currentDatabase.getReadableDatabase();
-        Cursor cursor = db.query(
-                DataFoods.TABLE_NAME_FOODS,
-                null,
-                DataFoods.COLNAME_ID + " = " + foodTableId,
-                null,
-                null,
-                null,
-                null
-        );
-
-        if (cursor.getCount() > 0) {
-            //create a food from the first entry
-            cursor.moveToFirst();
-            result = DataFoods.createFoodFromRow(cursor);
-        }
-        else {
-            //TODO no results returned
-        }
-
-        db.close();
-
-        return result;
-    }
-
 }
 

@@ -13,12 +13,6 @@ public class DataFoods {
     public static final String TABLE_NAME_FOODS = "ExternalFoods";
     public static final String COLNAME_ID = "_id";
     public static final String COLNAME_FOODNAME = "FoodDescription";
-    public static final String COLNAME_CALORIES = "ENERC_KCALValue";
-    public static final String COLNAME_PROTEINS = "PROCNTValue";
-    public static final String COLNAME_CARBOHYDRATES = "CHOCDFValue";
-    public static final String COLNAME_FATS = "FATValue";
-    public static final String COLNAME_CHOLESTROL = "CHOLEValue";
-    public static final String COLNAME_SODIUM = "NAValue";
     private static final Method[] allNutrientTableMethods = DataNutrientTable.class.getDeclaredMethods();
     public static String[] allNutrientNames;
     private static Method[] allNutrientNamesGetCalls;

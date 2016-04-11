@@ -139,8 +139,6 @@ public class Foods {
                 oldFood.vals.data.add(fileData);
             } else {
                 //column exists
-                //todo assert if this data is the same, which it should be. hell it shouldnt even get here
-                //System.out.println("Why are we here?");
             }
         }
 

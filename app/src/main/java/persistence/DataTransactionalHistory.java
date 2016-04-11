@@ -40,10 +40,6 @@ public class DataTransactionalHistory {
         this.mFoodTableID = mFoodTableID;
     }
 
-    public static void getFoodNutrients(String foodName) {
-
-    }
-
     public static String[] getAllFoodNames(String dateRangeStart, String dateRangeEnd) {
         SQLiteDatabase db = DatabaseDefinition.currentDatabase.getReadableDatabase();
         ArrayList<String> names = new ArrayList<>();

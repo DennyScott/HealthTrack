@@ -1,6 +1,8 @@
 package persistence;
 
-import org.sqlite.JDBC;
+import android.annotation.TargetApi;
+import android.os.Build;
+
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -9,10 +11,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.ListIterator;
-import java.util.Scanner;
-//TODO fix last nutrient error
 
+@TargetApi(Build.VERSION_CODES.KITKAT)
 public class CsvConverter {
     private static final int COLUMNS_BEFORE_NUTRIENT_DATA = 4;
     private static final Charset CHARACTER_SET = StandardCharsets.ISO_8859_1;
@@ -24,15 +24,6 @@ public class CsvConverter {
     static Foods foods;
     static String[] foodsPattern;
     static ArrayList<String> allPossibleCols;
-    //    String[] filenames = {
-//            "extdb/FOOD NAME.csv",
-//            "extdb/FOOD SOURCE.csv",
-//            "extdb/FOOD GROUP.csv",
-//            "extdb/CONVERSION FACTOR.csv",
-//            "extdb/MEASURE NAME.csv",
-//            "extdb/REFUSE AMOUNT.csv",
-//            "extdb/REFUSE NAME.csv"
-//    };
 
 
     public CsvConverter(String[] foodsPattern) {
@@ -41,7 +32,7 @@ public class CsvConverter {
         outCols = new ArrayList<String>();
         files = new ArrayList<String>();
         foods = new Foods(commonCols, allCols, outCols, files);
-        this.foodsPattern = foodsPattern;
+        CsvConverter.foodsPattern = foodsPattern;
 //        getFiles();
         //reorganize columns
         //reorderColumns();
@@ -142,12 +133,6 @@ public class CsvConverter {
         }
     }
 
-    private void printFoods() {
-        for (Foods f : Foods.entries) {
-            System.out.println(f.vals.data.get(f.vals.cols.indexOf("FoodDescription")));
-        }
-    }
-
     //purpose: data in the file sometimes contains information that has commas, but at least it begins with quotes
     //so delimit by quotes
     private String[] splitLineIntoData(String line, String delimiter) {
@@ -198,80 +183,6 @@ public class CsvConverter {
         }
     }
 
-    public void chooseOutColumns() {
-        listColumns();
-        System.out.println("Which columns desired for final output? (space separated)");
-        Scanner cin = new Scanner(System.in);
-        String input = cin.nextLine();
-
-        String[] desiredCols = input.split(" ");
-
-        for (String c : desiredCols) {
-            outCols.add(
-                    allCols.get(
-                            Integer.parseInt(c)
-                    )
-            );
-        }
-    }
-
-    public void printPrimaryKeys() {
-        //list the current columns in commonCols
-        for (String c : commonCols) {
-            System.out.println(commonCols.indexOf(c) + ": " + c);
-        }
-    }
-
-    public void reorderColumns() {
-        Scanner cin = new Scanner(System.in);
-        System.out.println("Re-order columns? y/n: ");
-        String input = cin.nextLine();
-
-        while (!input.equalsIgnoreCase("n")) {
-            listColumns();
-            promptSwap();
-            System.out.println("Swap again? y/n");
-            input = cin.nextLine();
-        }
-        listColumns();
-        System.out.println("^ Final order ^");
-    }
-
-    public void promptSwap() {
-        System.out.printf("Which columns to swap (space separated)?: ");
-        Scanner cin = new Scanner(System.in);
-
-        String swapNums = cin.nextLine();
-        String[] tokens = swapNums.split(" ");
-
-        //swap the allCols
-        //store temp
-        String temp = allCols.get(
-                Integer.parseInt(
-                        tokens[1])
-        );
-
-        //replace token 1's position
-        allCols.set(
-                Integer.parseInt(tokens[1]),
-                allCols.get(
-                        Integer.parseInt(tokens[0])
-                )
-        );
-        //replace token 0's position
-        allCols.set(
-                Integer.parseInt(tokens[0]),
-                temp
-        );
-    }
-
-    public void listColumns() {
-        //list the current columns in allcols
-        for (String c : allCols) {
-            System.out.println(allCols.indexOf(c) + ": " + c);
-        }
-    }
-
     /**
      * Gets the column headings from the CSV files and compiles them together. Calls {@link #joinColumns(String[])}
      *
@@ -296,7 +207,7 @@ public class CsvConverter {
      *
      * @param columns
      */
-    public void joinColumns(String[] columns) {
+    private void joinColumns(String[] columns) {
         for (String c : columns) {
             if (allCols.contains(c)) {
                 //common column
@@ -407,10 +318,6 @@ public class CsvConverter {
             }
         }
 
-    }
-
-    private void swapColumns(){
-        //
     }
     /**
      * For each food, loop through each column and remove the corresponding column/data entries
@@ -560,11 +467,6 @@ public class CsvConverter {
         }
     }
 
-    public void deleteCorrespondingArrayElements(ArrayList<String> a, ArrayList<String> b, int index) {
-        System.out.println("removing :" + a.get(index) + " and " + b.get(index));
-        a.remove(index);
-        b.remove(index);
-    }
     //delete all nutrients that do not fit in the accepted pattern
     //TOO BUGGED
     public void deleteNonInterestingNutrients(String[] nutrientsToKeep) {
@@ -587,7 +489,6 @@ public class CsvConverter {
         int thisIndexToRemove;
 
         String col;
-        String val;
         boolean match;
         for (Foods f : Foods.entries) {
             //create new instances of the removals
@@ -607,7 +508,6 @@ public class CsvConverter {
 
             while (colIt.hasNext()) {
                 col = colIt.next();
-                val = valsIt.next();
 
                 if (col.contains("Symbol")) {
                     //this is a symbol, go back one to get the nutrient name
@@ -629,7 +529,6 @@ public class CsvConverter {
                         while (!col.contains("Decimals")) {
                             //add the remaining columns until the next nutrient
                             col = colIt.next();
-                            val = valsIt.next();
                             removeValues.add(indexOfPrev++);
                         }
                         //remove the decimals column now
@@ -652,13 +551,6 @@ public class CsvConverter {
                 f.vals.cols.remove(thisIndexToRemove);
                 f.vals.data.remove(thisIndexToRemove);
             }
-        }
-    }
-
-    private void advanceIterators(Iterator<String> it1, Iterator<String> it2, int numToAdvance) {
-        for (int i = 0; i < numToAdvance && it1.hasNext() && it2.hasNext(); i++) {
-            it1.next();
-            it2.next();
         }
     }
 
@@ -743,9 +635,9 @@ public class CsvConverter {
 
     public void createSQLiteDatabase(String external_db, String tableName) {
 
-        Connection connection = null;
+        Connection connection;
         //for sending statements to the db
-        Statement statement = null;
+        Statement statement;
         try {
             //ties with the included ilbrary sqlite-jdbc by Google for creating sqlite dbases
 

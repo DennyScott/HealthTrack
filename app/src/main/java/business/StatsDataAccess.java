@@ -28,7 +28,7 @@ public class StatsDataAccess implements ApplicationConstants {
     float[] allValuesMonth;
     String[] allUnitsMonth;
 
-    StatsDataAccess(){
+    public StatsDataAccess(){
         day = new ArrayList<StatsFood>();
         week = new ArrayList<StatsFood>();
         month = new ArrayList<StatsFood>();
