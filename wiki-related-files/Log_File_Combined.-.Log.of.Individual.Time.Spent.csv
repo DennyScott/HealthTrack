@@ -221,4 +221,17 @@ KB,7f77959c38f7b4ea1a196a5059798cdf272e30cc,3/27/2016,,0,0,Merged branches
 KB,eb0982fbaebfe9feb5ee72d31feee562a45e7b22,3/28/2016,GUI,1,0.5,Made three dot settings button functional
 KB,9c317d206bc958d5bbcaebd040843df2e7ef9eeb,4/1/2016,GUI,1,2,Added new click noise
 KB,e04b602de0ab6d2572fdc2302bd1ac06fcad5c6a,4/1/2016,GUI,1,1,Linked sound with business object
+SW,a2b780dd38275e8eb806b44b17a9f3abb9107915,3/26/2016,UI Tests,2,2,"Updated UI Tests"
+SW,d33dbef1a9e05a76c7137f15e6d1d03c1baf0af1,3/27/2016,Food Entry Dialog,6,8,"Researched SearchView Created food entry dialog activity"
+SW,d6542f40e262cb5ce41a09f5a25c27647bdf2b2e,3/29/2016,Food Entry,2,2,"Hooked up Notification to Food Entry"
+SW,4127e011b06eb3d4d614db747944e4a7b8a60b0a,4/3/2016,Acceptance Testing,2,2,"Updated acceptance tests"
+SW,8841c07d502c124e508c2fcd6f76bdff651ec9b3,4/3/2016,Goals,0,2,"Fixed bug plaguing goals"
+SW,52b561abf8fb99590160e055bfde47c357a9ccc2,4/9/2016,UserInfo,4,4,"Added user info to preferences"
+SW,5d448d2ea7b3ee110b1888f69b75664aee1f8d92,4/10/2016,Tests,0,8,"Refactoring - removing unused tests, adding new alerts settings in preferences"
+SW,d9df0273f6c5835bd524f27108a5bb1229cfb680,4/11/2016,Admin,0,1,"Updated Arch Diagram and log"
+
+
+
+
+
 
