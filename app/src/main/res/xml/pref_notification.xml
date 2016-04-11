@@ -20,7 +20,6 @@
     <EditTextPreference
         android:capitalize="words"
         android:dependency="notifications_new_message"
-
         android:defaultValue="@string/pref_default_carbs_alert"
         android:inputType="number"
         android:key="user_carb_limit"
@@ -32,7 +31,6 @@
     <EditTextPreference
         android:capitalize="words"
         android:dependency="notifications_new_message"
-
         android:defaultValue="@string/pref_default_protein_alert"
         android:inputType="number"
         android:key="user_protein_limit"

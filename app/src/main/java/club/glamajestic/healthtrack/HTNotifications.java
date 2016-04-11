@@ -14,7 +14,7 @@ public class HTNotifications {
 
     private String type;
     private double amount;
-    private String message;
+    private String message = "";
     public HTNotifications(String type, double amount) {
         this.type = type;
         this.amount = amount;

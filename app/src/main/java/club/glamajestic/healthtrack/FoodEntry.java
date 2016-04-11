@@ -2,29 +2,28 @@ package club.glamajestic.healthtrack;
 
 import android.annotation.TargetApi;
 import android.content.ContentValues;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import business.StatsDataAccess;
 import persistence.DataFoods;
 import persistence.DataTransactionalHistory;
 import persistence.DatabaseDefinition;
@@ -155,6 +154,11 @@ public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTe
             Output.toastMessage(this,"Please enter portion first!",0);
         }
         else{
+            StatsDataAccess sda = new StatsDataAccess();
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            int fatLimit = Integer.parseInt(sharedPref.getString("user_fat_limit", ""));
+            int carbLimit = Integer.parseInt(sharedPref.getString("user_carb_limit", ""));
+            int proteinLimit =Integer.parseInt(sharedPref.getString("user_protein_limit", ""));
             if(cpos != null){
                 SQLiteDatabase db = DatabaseDefinition.currentDatabase.getReadableDatabase();
                 ContentValues cv = new ContentValues();
@@ -172,11 +176,40 @@ public class FoodEntry extends AppCompatActivity implements SearchView.OnQueryTe
                 cv.put(DataTransactionalHistory.COLNAME_FOODNAME,cpos.getString(cpos.getColumnIndex(DataFoods.COLNAME_FOODNAME)));
                 cv.put(DataTransactionalHistory.COLNAME_FOODTABLE_ID,cpos.getInt(cpos.getColumnIndex(DataFoods.COLNAME_ID)));
                 cv.put(DataTransactionalHistory.COLNAME_PORTIONSIZE,Float.parseFloat(textbox.getText().toString()));
-                cv.put(DataTransactionalHistory.COLNAME_EATEN_DATE,today);
-                db.insert(DataTransactionalHistory.TABLE_NAME,null,cv);
+                cv.put(DataTransactionalHistory.COLNAME_EATEN_DATE, today);
+                db.insert(DataTransactionalHistory.TABLE_NAME, null, cv);
                 db.close();
                 HTNotifications hn = new HTNotifications("Food successfully added to your log. Congratulations!");
                 hn.throwNotification(this);
+
+                String[] names = sda.getNutrientsNames(0);
+                int fatIndex = -1;
+                int carbIndex = -1;
+                int proteinIndex = -1;
+                float[] values = sda.getNutrientsValues(0);
+                int i=0;
+                while((fatIndex==-1||carbIndex==-1||proteinIndex==-1)&&i<names.length-1){
+                    if(names[i].equalsIgnoreCase("fat total lipids")){
+                        fatIndex = i;
+                    }else if(names[i].equalsIgnoreCase("carbohydrate, total (by difference)")){
+                        fatIndex = i;
+                    }else if(names[i].equalsIgnoreCase("protein")){
+                        fatIndex = i;
+                    }
+                    i++;
+                }
+                if(values[fatIndex]>fatLimit){
+                    HTNotifications fatNot = new HTNotifications("Fat", fatLimit);
+                    fatNot.throwNotification(this);
+                }
+                if(values[carbIndex]>carbLimit){
+                    HTNotifications carbNot = new HTNotifications("Carbohydrate", carbLimit);
+                    carbNot.throwNotification(this);
+                }
+                if(values[proteinIndex]>proteinLimit){
+                    HTNotifications proteinNot = new HTNotifications("Protein", proteinLimit);
+                    proteinNot.throwNotification(this);
+                }
                 finish();
             } else {
                 Output.toastMessage(this,"Please select a food",0);
