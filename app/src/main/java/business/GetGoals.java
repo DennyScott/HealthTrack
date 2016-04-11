@@ -2,10 +2,6 @@ package business;
 
 import java.util.ArrayList;
 
-/**
- * TODO
- * Need to use values based on actual user goals and the foods they ate
- */
 public class GetGoals {
     private static int DAY = 1;
     private static int DAYS_IN_WEEK = 7;

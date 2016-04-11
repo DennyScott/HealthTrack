@@ -2,9 +2,7 @@ package business;
 
 import java.util.ArrayList;
 
-/**
- * Created by Khaled on 4/9/2016.
- */
+
 public class StatsUtils {
     public float[] y;
     public String[] x;
