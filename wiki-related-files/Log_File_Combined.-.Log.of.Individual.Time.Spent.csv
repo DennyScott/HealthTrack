@@ -192,6 +192,11 @@ SW,c5164bf6cd778a8da440ef9c6a59523c1cb6b509,3/13/2016,,3,4,Updated Architectural
 SW,4127e011b06eb3d4d614db747944e4a7b8a60b0a,3/18/2016,UI Tests,4,5,"Researched Robotium, troubleshoot test runners and gradle issues, added first UI test of Ate Activity"
 AR,7a65108c0bb6013eec1ed7718d9cdc5b66b2027a,3/24/2016,Bug Fix,1,1,Copied layout-normal files to layout-large so that no elements were missing
 KES,multiple,3/26/2016,Progress Bars and UI,3,4,"Added progress bar generator to Java code, will generate as many abrs as we have goals, bars will show up in under goals tab in stats, stubed database"
+AR,51b9020f79cccec0be1748618614d067e3d2c89f,3/26/2016,Coding Standards,0.5,0.5,Refactored Stats and Main activities to remove dead code
+AR,Same commit as above,3/26/2016,Bug Fix,0.5,1,Fixed DataCustomFoods and DataExternalFoods so that the app would not crash
+AR,3909f514fd8574316ac13a4843bbbe49fa7f15c4,3/31/2016,Sound,0.5,0.5,Deleted ClickSound because it made customer feel jumpy
+AR,accccee7f57fc250ec20f8d38ca04b6c68475c98,3/31/2016,Sound,0.5,0.5,Deleted mp3 files that made customer feel jumpy
+AR,f29eed835ee936c72be25ca5f00051b729a80a50,3/31/2016,Goals Calculations,2,4,Re-wrote GetGoals and related classes to make calculations rather than rely on hard-code values 
 KES,multiple,4/2/2016,Stats,6,8,Improved stats business classes freatly to allow for easier database integration
 KES,e305598848258670681206fb6684de15f0e99711,4/9/2016,Stats,0.5,1.5,"Fixed issues with stats class, pie wont show 0.0% anymore"
 KES,014bde7ca55805696676205e8d448284c7da3555,4/9/2016,GUI,0.2,0.2,Removed all extra settings buttons
@@ -202,3 +207,18 @@ WT,8c98706d7610ca5267de82a7fd0185bee36473dd,4/10/2016,Setting Goals,4,3,Incorpor
 WT,6affd9c5526f701794fcc64b921a2d38ce8d8901,4/10/2016,Goals,2,1,Refactored duplicate code smell in GetGoals class
 WT,6e681cc32955d164df62562e23c59a6b99bbf548,4/10/2016,Goals,1,1,Refactored for primitive obsession code smell by introducing Nutrient class and various subclasses
 WT,baeb0223a1f2a5ba400f7026b7662402b6fe01d3,4/10/2016,Goals,1,1,Added method to nutrient subclasses to support removal of switch statement code smells which used an integer code to determine nutrient type
+KES,e604eca746c426acf092535ac46696300dd8bc3d,4/2/2016,,8,8,Worked on stats feature
+KES,e305598848258670681206fb6684de15f0e99711,4/9/2016,,3,3,Fixed issues with stats class
+KES,72dc004465082edd3fffe85dae139e93c4fb3596,4/10/2016,,4,5,Optimized project submission
+KES,61ec1a5f5271b13b02cfe43af35a5562ddb4a01a,4/11/2016,,3,3,Fixed pie chart and meal entry
+RS,79f7e2d09ede33e86102956e6a10b75f6ef11aec,3/27/2016,,7,11,Added food entry class and optimized search queries
+RS,8c93a09ddef0cef61cf3dc31afefed738f6f21fb,3/28/2016,,4,6,Fixed bugs with External Database
+RS,85c4035c070b2c3d3d7b1aa513248f31de8f53e6,4/1/2016,,9,10,"Reverted deletes; Fixed converter, optimized database and removed unneeded tables, refractored classes"
+RS,5d9e01816d06db9e2db8086c05538eda0f6a6247,4/2/2016,,3,2,Optimized food search queries in database 
+RS,18691929d8b7a30c29cb97612e337b685abad8c2,4/10/2016,,8,15,"Optimized project submission, removed features and refractored code"
+KB,ee34a4bb93c39b73b212ccbbb5ef87e836a31118,3/20/2016,GUI,1,0.5,Fixed logo scaling problem
+KB,7f77959c38f7b4ea1a196a5059798cdf272e30cc,3/27/2016,,0,0,Merged branches
+KB,eb0982fbaebfe9feb5ee72d31feee562a45e7b22,3/28/2016,GUI,1,0.5,Made three dot settings button functional
+KB,9c317d206bc958d5bbcaebd040843df2e7ef9eeb,4/1/2016,GUI,1,2,Added new click noise
+KB,e04b602de0ab6d2572fdc2302bd1ac06fcad5c6a,4/1/2016,GUI,1,1,Linked sound with business object
+

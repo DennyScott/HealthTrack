@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import persistence.DataTransactionalHistory;
+import persistence.DatabaseDefinition;
 
 public class StatsDataAccess implements ApplicationConstants {
     ////////////////////Given the name of a nutrient ex "fat" return a list of all foods that contribute to
