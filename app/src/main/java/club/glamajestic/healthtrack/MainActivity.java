@@ -20,6 +20,7 @@ import com.github.mikephil.charting.charts.PieChart;
 
 import business.ClickSound;
 import business.InitPieChart;
+import persistence.DatabaseDefinition;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout stats;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         }
         stats = (FrameLayout) findViewById(R.id.chartMainScreen);
         charInitMode = 3;
+
         pie = new InitPieChart(this, stats, chart, charInitMode);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
