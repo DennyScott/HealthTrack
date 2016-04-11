@@ -1,5 +1,5 @@
 # HealthTrack
-HealthTrack is a simple Android app that tracks diets and sets goals.
+HealthTrack is a simple Android app that tracks foods eaten.
 
 ##Contributors
 The project is made by Group 1 in COMP 3350, which includes Katrina Barkwell, Arden Raaen, Khaled El-Salakawy, Rashpal Singh, Wilson Tieu, and Scott Woodcock.

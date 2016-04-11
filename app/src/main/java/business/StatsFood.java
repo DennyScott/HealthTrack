@@ -1,8 +1,6 @@
 package business;
 
-/**
- * Created by Khaled on 4/1/2016.
- */
+
 public class StatsFood {
     String foodName;
     StatsFoodData foodData;

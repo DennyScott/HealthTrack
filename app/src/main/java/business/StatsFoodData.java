@@ -2,9 +2,7 @@ package business;
 
 import java.util.ArrayList;
 
-/**
- * Created by Khaled on 4/1/2016.
- */
+
 public class StatsFoodData {
     ArrayList<String> nutrientNames;
     ArrayList<String> units;

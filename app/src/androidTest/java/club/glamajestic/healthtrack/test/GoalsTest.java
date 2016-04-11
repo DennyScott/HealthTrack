@@ -8,9 +8,7 @@ import raw.deprecated.Goals;
 import club.glamajestic.healthtrack.R;
 
 
-/**
- * Created by scott on 03/04/16.
- */
+
 
 public class GoalsTest extends ActivityInstrumentationTestCase2<Goals> {
     private Solo solo;

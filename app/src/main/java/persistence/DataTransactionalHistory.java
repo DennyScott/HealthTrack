@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DataTransactionalHistory {
     private int mId;
     private String mFoodName;
-    private String mEatendate;  //TODO change this to a date object later
+    private String mEatendate;
     private String mEatentime;
     private String  mPortionSize;
     private int mFoodTableID;
