@@ -207,3 +207,12 @@ WT,8c98706d7610ca5267de82a7fd0185bee36473dd,4/10/2016,Setting Goals,4,3,Incorpor
 WT,6affd9c5526f701794fcc64b921a2d38ce8d8901,4/10/2016,Goals,2,1,Refactored duplicate code smell in GetGoals class
 WT,6e681cc32955d164df62562e23c59a6b99bbf548,4/10/2016,Goals,1,1,Refactored for primitive obsession code smell by introducing Nutrient class and various subclasses
 WT,baeb0223a1f2a5ba400f7026b7662402b6fe01d3,4/10/2016,Goals,1,1,Added method to nutrient subclasses to support removal of switch statement code smells which used an integer code to determine nutrient type
+KES,e604eca746c426acf092535ac46696300dd8bc3d,4/2/2016,,8,8,Worked on stats feature
+KES,e305598848258670681206fb6684de15f0e99711,4/9/2016,,3,3,Fixed issues with stats class
+KES,72dc004465082edd3fffe85dae139e93c4fb3596,4/10/2016,,4,5,Optimized project submission
+KES,61ec1a5f5271b13b02cfe43af35a5562ddb4a01a,4/11/2016,,3,3,Fixed pie chart and meal entry
+RS,79f7e2d09ede33e86102956e6a10b75f6ef11aec,3/27/2016,,7,11,Added food entry class and optimized search queries
+RS,8c93a09ddef0cef61cf3dc31afefed738f6f21fb,3/28/2016,,4,6,Fixed bugs with External Database
+RS,85c4035c070b2c3d3d7b1aa513248f31de8f53e6,4/1/2016,,9,10,"Reverted deletes; Fixed converter, optimized database and removed unneeded tables, refractored classes"
+RS,5d9e01816d06db9e2db8086c05538eda0f6a6247,4/2/2016,,3,2,Optimized food search queries in database 
+RS,18691929d8b7a30c29cb97612e337b685abad8c2,4/10/2016,,8,15,"Optimized project submission, removed features and refractored code"
