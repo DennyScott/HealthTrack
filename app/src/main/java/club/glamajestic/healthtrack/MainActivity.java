@@ -4,10 +4,9 @@ import android.Manifest;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.view.View;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+
 import com.github.mikephil.charting.charts.PieChart;
 
 import business.ClickSound;
@@ -32,6 +32,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
+        PreferenceManager.setDefaultValues(this, R.xml.pref_notification, false);
+
+
         //request permissions to and read
         String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
         ActivityCompat.requestPermissions(this,permissions,43);

@@ -29,6 +29,9 @@ android {
         }
     }
 
+    aaptOptions {
+        ignoreAssetsPattern 'deprecated*'
+    }
 }
 
 dependencies {

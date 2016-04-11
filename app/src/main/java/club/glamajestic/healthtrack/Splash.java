@@ -11,7 +11,8 @@ import android.widget.TextView;
 
 import java.io.File;
 
-import business.UserDataAccess;
+import raw.deprecated.GoalsUserInfo;
+import raw.deprecated.UserDataAccess;
 import persistence.DatabaseDefinition;
 
 

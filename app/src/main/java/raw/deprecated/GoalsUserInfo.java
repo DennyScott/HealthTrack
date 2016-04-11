@@ -1,4 +1,4 @@
-package club.glamajestic.healthtrack;
+package raw.deprecated;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +9,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
-import business.UserDataAccess;
+import club.glamajestic.healthtrack.MainActivity;
+import club.glamajestic.healthtrack.Output;
+import club.glamajestic.healthtrack.R;
 
 /**
  * <code>GoalsUserInfo</code> allows the user to enter information about themselves, which the
