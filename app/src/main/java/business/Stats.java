@@ -32,6 +32,7 @@ public class Stats implements ApplicationConstants {
         otherKeys = new String[]{"Nothing to Show"};
         otherValues = new float[]{0};
         units = new String[]{""};
+        otherUnits = new String[]{"g"};
         this.mode = mode;
         values = new float[MAX_SIZE];
         keys = new String[MAX_SIZE];
