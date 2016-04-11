@@ -82,5 +82,11 @@
 
     <string name="title_activity_meal_entry">MealEntry</string>
     <string name="pref_title_user_activity_level">Activity Level</string>
+    <string name="pref_title_user_fat_alert">Fat Alert Threshold</string>
+    <string name="pref_default_fat_alert">65</string>
+    <string name="pref_default_carbs_alert">310</string>
+    <string name="pref_default_protein_alert">50</string>
+    <string name="pref_title_user_carbs_alert">Carbohydrate Alert Threshold</string>
+    <string name="pref_title_user_protein_alert">Protein Alert Threshold</string>
 
 </resources>
