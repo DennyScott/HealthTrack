@@ -1,5 +1,7 @@
-package club.glamajestic.healthtrack;
+package raw.deprecated;
 
+
+import club.glamajestic.healthtrack.HTNotifications;
 
 public class HTNotificationFactory {
     public HTNotifications createNotification (String type, double alertAmount){
